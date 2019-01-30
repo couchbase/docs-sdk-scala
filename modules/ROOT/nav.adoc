@@ -1,0 +1,52 @@
+.Hello World!
+* xref:start-using-sdk.adoc[Start Using the SDK]
+* xref:sample-application.adoc[Sample Application]
+ ** xref:sample-app-backend.adoc[Sample App Backend]
+* xref:webui-cli-access.adoc[Browser and CLI Access]
+
+.Users and Security
+* xref:sdk-authentication-overview.adoc[Authentication]
+* xref:sdk-user-management-overview.adoc[User Management]
+ ** xref:sdk-user-management-example.adoc[Sample Code]
+* xref:encryption.adoc[Field Level Encryption]
+ ** xref:encrypting-using-sdk.adoc[Field Level Encryption from the C SDK]
+
+.Working with Data
+* xref:core-operations.adoc[Core Operations]
+* xref:document-operations.adoc[Document Operations]
+* xref:subdocument-operations.adoc[Sub-Document Operations]
+* xref:datastructures.adoc[Data Structures]
+* xref:n1ql-query.adoc[Querying with N1QL]
+* xref:n1ql-queries-with-sdk.adoc[N1QL from the SDK]
+ ** xref:scan-consistency-examples.adoc[Using Scan Consistency]
+* xref:full-text-search-overview.adoc[Full Text Search]
+* xref:full-text-searching-with-sdk.adoc[Searching from the SDK]
+* xref:view-queries-with-sdk.adoc[MapReduce Views]
+* xref:async-programming.adoc[Asynchronous Programming]
+* xref:batching-operations.adoc[Batching Operations]
+* xref:durability.adoc[Durability]
+* xref:concurrent-mutations-cluster.adoc[Concurrent Document Mutations]
+* xref:sdk-xattr-overview.adoc[Extended Attributes]
+ ** xref:sdk-xattr-example.adoc[Sample Code]
+* xref:nonjson.adoc[Non-JSON Documents]
+* xref:compression-intro.adoc[Compression]
+
+.Deployment Environments
+* xref:managing-connections.adoc[Managing Connections]
+* xref:managing-clusters.adoc[Managing Clusters]
+* xref:compatibility-versions-features.adoc[Compatibility]
+
+.Settings, Error Handling & Diagnostics
+* xref:client-settings.adoc[Client Settings]
+* xref:handling-error-conditions.adoc[Handling Errors]
+* xref:failure-considerations.adoc[Failure Considerations]
+* xref:collecting-information-and-logging.adoc[Collecting Information]
+* xref:threshold-logging.adoc[Threshold Logging]
+* xref:tracing-from-the-sdk.adoc[Tracing from the SDK]
+
+.Project Docs
+* xref:relnotes-c-sdk.adoc[Release Notes]
+* xref:compatibility-versions-features.adoc[Compatibility]
+* xref:sdk-licenses.adoc[Licenses]
+* xref:get-involved.adoc[Get involved]
+ ** https://docs.couchbase.com/home/contribute/index.html[Improve the Docs]
