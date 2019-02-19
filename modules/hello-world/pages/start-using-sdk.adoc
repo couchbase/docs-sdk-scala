@@ -41,14 +41,14 @@ Couchbase uses xref:6.5@server:learn/security:roles.adoc[Role Based Access Contr
 
 [source,scala]
 ----
-include::partial$Cluster.scala[tag=cluster]
+include::example$Cluster.scala[tag=cluster]
 ----
 
 You can now open bucket, scope, and collection resources:
 
 [source,scala]
 ----
-include::partial$Cluster.scala[tag=resources]
+include::example$Cluster.scala[tag=resources]
 ----
 
 The 3.0 SDK is ready for the introduction of xref:#[Collections] in a forthcoming release of the Couchbase Data Platform.
@@ -68,7 +68,7 @@ But let's start simple and create some (very simple) JSON like this:
 
 [source,scala]
 ----
-include::partial$Cluster.scala[tag=json]
+include::example$Cluster.scala[tag=json]
 ----
 
 And now let's upsert it into Couchbase (upsert is an operation that will insert the document if it does not exist, or replace it if it does).  
@@ -76,7 +76,7 @@ We need to provide a unique ID for the JSON, and we'll use a UUID here:
 
 [source,scala]
 ----
-include::partial$Cluster.scala[tag=upsert]
+include::example$Cluster.scala[tag=upsert]
 ----
 
 A note on error handling: the Scala SDK will not throw exceptions. 
@@ -87,7 +87,7 @@ Now let's get the data back (this example will look a little messy, but we'll se
 
 [source,scala]
 ----
-include::partial$Cluster.scala[tag=get]
+include::example$Cluster.scala[tag=get]
 ----
 
 Here we're fetching the value for the key `docId`, converting that value to a `JsonObject`, and then accessing the value of the *status* key as a String.
@@ -97,14 +97,14 @@ One way to improve on this is by using flatmap, like this:
 
 [source,scala]
 ----
-include::partial$Cluster.scala[tag=get-map]
+include::example$Cluster.scala[tag=get-map]
 ----
 
 Alternatively, you can use a for-comprehension, like so:
 
 [source,scala]
 ----
-include::partial$Cluster.scala[tag=get-for]
+include::example$Cluster.scala[tag=get-for]
 ----
 
 // TODO FIXLINK
