@@ -4,90 +4,117 @@
 [abstract]
 The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster from the Scala language.
 
-WARNING: These pages cover the first _Developer Preview_ of the Couchbase .NET SDK 3.0 (DP1).
+WARNING: These pages cover the first _Developer Preview_ of the Couchbase Scala SDK 1.0 (DP1).
 As such they are likely to change without notice.
 The DP1 code _should not_ be used in production.
 
 == Installing the SDK
 
-// whatever the cool kids do with their jars of Scala....
+The Couchbase Scala SDK will ultimately be distributed on the Maven repository, but in its Developer Preview state the
+jar file should be placed in a `lib` directory.
 
+Create a `lib` in the root of the project, in the same directory as the `build.gradle` file.
+
+Add the following to `build.gradle` to tell it to look for jars in the `lib` directory, and to use the Couchbase Scala
+SDK jar.
+
+```
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile group: 'com.couchbase.client', name: 'scala-client', version: '1.0.0-DP1'  **FIXVERSION**
+}
+```
 
 == Hello Couchbase
 
-// Needs localising to Scala
+Now you have the Scala client installed, open a fresh project in your favourite IDE and try out the following to connect to a Couchbase cluster.
 
-Now you have the .NET client installed grab the code from link:href://devguideexamples or open a fresh project in VS Code and try out the following:
+You'll need to provide the IP address of one of the nodes of the Couchbase cluster.  If you're developing client code on the same VM or machine as the Couchbase Server, this can be _localhost_.  Couchbase uses xref:6.5@server:learn/security:roles.adoc[Role Based Access Control (RBAC)] to control access to resources, so specify the username and password of a user you've setup during installation of the Couchbase Data Platform.
 
-[source,csharp]
+
+[source,scala]
 ----
-var config = new Configuration
-{
-    Servers = new List<Uri> {new Uri("http://10.112.180.101:8091")},
-    UserName = "username",
-    Password = "password"
-};
+include::{examplesdir}/Cluster.scala[tag=cluster]
 ----
 
-Couchbase uses xref:6.5@server:learn/security:roles.adoc[Role Based Access Control (RBAC) to control access to resources.
-Here we will use the _Full Admin_ role created during installation of the Couchbase Data Platform.
-For production client code, you will want to use xref:3.0dp1@net-sdk:howtos:managing-connections.adoc#rbac[more appropriate, restrictive settings], but here we want to get you up and running quickly.
-If you're developing client code on the same VM or machine as the Couchbase Server, your URI can be _localhost_.
 
+You can now open bucket, scope and collection resources:
 
-// initialize cluster
-
-[source,csharp]
+[source,scala]
 ----
-var cluster = new Cluster();
-await cluster.Initialize(config)
-
-// possible alternative (doesn't currently work)
-//var cluster = await Cluster.Connect(config);
-----
-
-Connection to the cluster is initialized by
-// to be filled in when above is clarified.
-
-// Mike: ideal is for socket / http client init during cluster connect, but we typically require a bucket, so may be delated until a bucket instance is requested, like it is in 2.x.
-
-[source,csharp]
-----
-// get a bucket reference
-var bucket = await cluster.Bucket("bucket-name");
-----
-
-If you installed the travel sample data bucket, substitute _travel-sample_ for _bucket-name_.
-
-[source,csharp]
-----
-// get a collection reference
-var collection = await bucket.DefaultCollection;
-var myCollection = bucket.Scope("my-collection");
+include::{examplesdir}/Cluster.scala[tag=resources]
 ----
 
 The 3.0 SDK is ready for the introduction of xref:#[Collections] in Cheshire Cat, the next release of the Couchbase Data Platform.
 The latest release, Mad Hatter, brings a limited _Developer Preview_ of Collections, allowing Documents to be grouped by purpose or theme, according to specified _Scope_.
-Here we will use the `DefaultCollection`, which covers the whole Bucket.
 
-[source,csharp]
+Now we can do some simple Key Value (KV) operations.  First, let's create some JSON.  The Scala SDK directly supports several
+popular JSON libraries, including https://github.com/lihaoyi/upickle[uPickle/uJson], https://circe.github.io/circe/[Circe], https://github.com/playframework/play-json[Play Json],
+ https://github.com/typelevel/jawn[Jawn], and https://github.com/json4s/json4s[Json4s] (if you'd like to see your favourite supported, please let us know).  In addition you can supply JSON encoded
+into a `String` or `Array[Byte]`, opening the door to any JSON library; https://jsoniter.com/[Jsoniter] and https://github.com/FasterXML/jackson[Jackson] have been tested, but any
+should work.
+
+To make things easy and to help get you started, the Scala SDK also bundles a home-grown small JSON library, which you are free to use instead of or alongside any of the other supported JSON libraries.  The
+philosophy behind this library is to provide a very easy-to-use API and the fastest JSON
+implementation possible.  Everything that benchmarking found made it slower was removed, so you'll find that it's mutable, and there are no lenses or cursors or other functional goodies: for those,
+you can look to one of the other supported libraries, such as the excellent Circe.
+
+We can use the Scala SDK's built in JSON library, or many of the alternative JSON libraries above, to directly encode and decode
+ Scala case classes with Couchbase.  But let's start simple and create some (very simple) JSON like this:
+
+[source,scala]
 ----
-// upsert document
-var upsertResult = await collection.Binary.Upsert("my-document", new {name = "mike"});
-
-// get document
-var getResult = await collection.Binary.Get("my-document");
+include::{examplesdir}/Cluster.scala[tag=json]
 ----
 
-The `Binary` service is a wrapper for the core Key Value (KV) database service.
-KV Operations are described in detail on the xref:net-sdk:howtos:kv-operations.adoc[KV Operations page].
-Now that you know the basics, you may wish to go straight to that page -- or first see a complete worked example of using the Couchbase .NET client, our xref:3.0dp1@sample-application.adoc[Travel Sample Application].
+And now let's upsert it into Couchbase (upsert is an operation that will insert the document if it does not exist, or replace it if it does).  We need to provide a unique ID for the JSON, and we'll use a UUID here:
+
+[source,scala]
+----
+include::{examplesdir}/Cluster.scala[tag=upsert]
+----
+
+A note on error handling: the Scala SDK will not throw exceptions.  Instead, methods that can error will return a Scala `Try`
+object, which can either be a `Success` containing the result, or a `Failure` containing a Throwable exception.  The easiest way to handle a single operation is with
+pattern matching, as shown above.
+
+Now let's get the data back (this example will look a little messy, but we'll see how to clean it up shortly):
+
+[source,scala]
+----
+include::{examplesdir}/Cluster.scala[tag=get]
+----
+
+Here we're fetching the value for the key `docId`, converting that value to a `JsonObject`, and then accessing the value of the "status" key as a String.
+
+All three of these operations could fail, so there's quite a lot of error handling code here to do something quite simple.
+One way to improve on this is by using flatmap, like this:
+
+[source,scala]
+----
+include::{examplesdir}/Cluster.scala[tag=get-map]
+----
+
+Alternatively, you can use a for-comprehension, like so:
+
+[source,scala]
+----
+include::{examplesdir}/Cluster.scala[tag=get-for]
+----
+
+// TODO FIXLINK
+KV Operations are described in detail on the xref:scala-sdk:howtos:kv-operations.adoc[KV Operations page].
+Now that you know the basics, you may wish to go straight to that page.
 
 == Additional Resources
 
+// TODO FIXLINK
 The API reference is generated for each release and can be found xref:http://docs.couchbase.com/sdk-api/couchbase-scala-client-3.0.0dp1/[here].
 
-xref:migrating-sdk-code-to-3.n.adoc[The Migrating from SDK2 to 3 page] highlights the main differences to be aware of when migrating your code.
-
 Couchbase welcomes community contributions to the Scala SDK.
-The C SDK source code is available on xref:https://github.com/couchbase/couchbase-scala-client-3.0.0[GitHub].
+The source code is available on xref:https://github.com/couchbase/couchbase-jvm-clients[GitHub].

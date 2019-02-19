@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'scala'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'modules/hello-world/examples'
+        }
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile group: 'com.couchbase.client', name: 'scala-client', version: '1.0.1-SNAPSHOT'
+}
