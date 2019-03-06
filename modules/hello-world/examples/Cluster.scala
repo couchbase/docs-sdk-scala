@@ -1,7 +1,9 @@
 // #tag::imports[]
 import java.util.UUID
+
 import com.couchbase.client.scala.Cluster
-import com.couchbase.client.scala.json.JsonObject
+import com.couchbase.client.scala.json.{JsonObject, JsonObjectSafe}
+
 import scala.util.{Failure, Success}
 // #end::imports[]
 
@@ -33,12 +35,12 @@ class Cluster {
   collection.get(docId) match {
     case Success(result) =>
 
-      // Convert the content to a JsonObject
-      result.contentAs[JsonObject] match {
+      // Convert the content to a JsonObjectSafe
+      result.contentAs[JsonObjectSafe] match {
         case Success(json) =>
 
           // Pull out the JSON's status field, if it exists
-          json.strTry("status") match {
+          json.str("status") match {
             case Success(hello) => println(s"Couchbase is $hello")
             case _              => println("Field 'status' did not exist")
           }
@@ -51,8 +53,8 @@ class Cluster {
   // #tag::get-for[]
   (for {
     result <- collection.get(docId)
-    json   <- result.contentAs[JsonObject]
-    status <- json.strTry("status")
+    json   <- result.contentAs[JsonObjectSafe]
+    status <- json.str("status")
   } yield status) match {
     case Success(status) => println(s"Couchbase is $status")
     case Failure(err)    => println("Error: " + err)
@@ -61,8 +63,8 @@ class Cluster {
 
   // #tag::get-map[]
   collection.get(docId)
-    .flatMap(_.contentAs[JsonObject])
-    .flatMap(_.strTry("status")) match {
+    .flatMap(_.contentAs[JsonObjectSafe])
+    .flatMap(_.str("status")) match {
     case Success(status) => println(s"Couchbase is $status")
     case Failure(err)    => println("Error: " + err)
   }

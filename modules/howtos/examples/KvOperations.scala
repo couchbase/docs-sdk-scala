@@ -1,11 +1,16 @@
 // #tag::imports[]
 import java.util.UUID
 
-import com.couchbase.client.scala.Cluster
+import com.couchbase.client.core.error._
+import com.couchbase.client.scala._
 import com.couchbase.client.scala.api.MutationResult
-import com.couchbase.client.scala.json.JsonObject
+import com.couchbase.client.scala.codec.Conversions.Codec
+import com.couchbase.client.scala.durability._
+import com.couchbase.client.scala.implicits.Codecs
+import com.couchbase.client.scala.json._
 
-import scala.util.{Failure, Success}
+import scala.concurrent.duration._
+import scala.util.{Failure, Success, Try}
 // #end::imports[]
 
 // #tag::cc-create[]
@@ -29,6 +34,11 @@ class KvOperations {
   val scope = bucket.scope("scope-name")
   val collection = scope.collection("collection-name")
   // #end::resources[]
+
+  // #tag::apis[]
+  val asyncApi: AsyncCollection = collection.async
+  val reactiveApi: ReactiveCollection = collection.reactive
+  // #end::apis[]
 
   // #tag::upsert[]
   val json = JsonObject.create.put("foo", "bar").put("baz", "qux")
@@ -157,14 +167,14 @@ class KvOperations {
     }
 
     // Try the provided operation, retrying on CASMismatchException
-    def retryOnCASMismatch(operation: => Try[MutationResult]): Try[MutationResult] = {
+    def retryOnCASMismatch(op: () => Try[MutationResult]): Try[MutationResult] = {
       // Perform the operation
-      val result = operation()
+      val result = op()
 
       result match {
         // Retry on any CASMismatchException errors
         case Failure(err: CASMismatchException) =>
-          retryOnCASMismatch(operation)
+          retryOnCASMismatch(op)
 
         // If Success or any other Failure, return it
         case _ => result
@@ -286,10 +296,11 @@ class KvOperations {
     (for {
       doc   <- collection.get("document-key")
       user  <- doc.contentAs[User]
-    } yield result) match {
-      case Success(user: User) => println(s"User: ${user})
+    } yield user) match {
+      case Success(user: User) => println(s"User: ${user}")
       case Failure(err)        => println("Error: " + err)
     }
     // #end::cc-get[]
 
   }
+}

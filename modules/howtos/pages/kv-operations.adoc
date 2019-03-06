@@ -54,8 +54,15 @@ include::example$KvOperations.scala[tag=upsert]
 ----
 
 [NOTE]
+=====
 All the examples here use the Scala SDK's simplest API, which blocks until the operation is performed.  There's also an asynchronous API that is based around Scala `Future`, and a
-reactive API built around https://projectreactor.io/[Project Reactor].
+reactive API built around https://projectreactor.io/[Project Reactor].  They can be accessed like this:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=apis]
+----
+=====
 
 == Handling single errors
 A note on error handling: the Scala SDK will not throw exceptions.
@@ -170,15 +177,23 @@ But if we get a CAS mismatch, we usually just want to retry the operation.  Let'
 include::example$KvOperations.scala[tag=replace-retry]
 ----
 
+== Removing
+Removing a document is straightforward:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=remove]
+----
+
 == Sub-Document operations
 All of the operations seen so far involve fetching the complete document.
 
 As an optimization the application may consider using the xref:subdocument-operations.adoc[Sub-Document API] to access or mutate specific parts of a document.
 
 == Case classes
-So far we've used `JsonObject`, but it can be very useful to deal with Scala case classes instead.
+So far we've used JSON fairly directly with `JsonObject`, but it can be very useful to deal with Scala case classes instead.
 
-Let's start by creating a couple of simple case classes
+Let's start by creating a couple of simple case classes:
 
 [source,scala]
 ----
@@ -194,7 +209,7 @@ include::example$KvOperations.scala[tag=cc-fails]
 
 This is because the Scala SDK does not currently know how to convert a `User` into JSON it can send to the server.
 
-More technically, methods like `insert` that take content of type `T` also take an implicit `Encodable[T]`.  If the Scala compiler cannot find a suitable `Encodable[T]`, then it will report an error.
+More technically, methods like `insert` that take content of type `T` also take an implicit `Encodable[T]`, which defines how to turn `T` into JSON.  If the Scala compiler cannot find a suitable `Encodable[T]`, then it will report an error.
 
 So, let's provide an `Encodable[User]`.  It's not complicated to create one manually, but the Scala SDK includes a convenient shortcut:
 
@@ -205,7 +220,7 @@ include::example$KvOperations.scala[tag=cc-codec]
 
 (As this is a companion object for User, it needs to go in the same file as the `User` case class you added earlier.)
 
-This short line of boilerplate uses Scala macros to, at compile time, create an `Encodable[User]`.  Note that we don't need one for `Address` too - only the top-level case classes you're dealing with need a `Codec`.
+This short line of boilerplate uses Scala macros to, at compile time, provide an `Encodable[User]`.  Note that we don't need one for `Address` too - only the top-level case classes you're dealing with need a `Codec`.
 
 Now we can pass a `User` directly to `insert`, and it will work fine.  The Scala compiler will look for an `Encodable[User]` in a number of places, and find it in the `User` companion object.
 
@@ -213,7 +228,7 @@ Since the encoding logic is generated at compile time it can also be extremely f
 
 The generated JSON will be as you expect, with "name" and "age" fields, and an "addresses" array.
 
-The same `Codec` can also be used to pull data out as our case class, using `contentAs`:
+The same `Codec` also generates a `Decodable[User]` which can be used to pull data out as our case class, using `contentAs`:
 
 [source,scala]
 ----
@@ -221,20 +236,13 @@ include::example$KvOperations.scala[tag=cc-get]
 ----
 
 [NOTE]
+====
 There are other ways to handle case classes.  Most of the previously mentioned supported JSON libraries have a method to encode and decode case classes, and these can be used with the Scala SDK.
 
 For example, you could use `asJson` from the library https://circe.github.io/circe/[Circe] to convert the User into Circe's JSON representation.  The Scala SDK has an `Encodable` built-in for this, so it will work.
 
 Or you could use https://github.com/plokhotnyuk/jsoniter-scala[Jsoniter] to convert the User into an `Array[Byte]`, and provide that.  An `Encodable` also exists for this.
-
-
-== Removing
-Removing a document is straightforward:
-
-[source,scala]
-----
-include::example$KvOperations.scala[tag=remove]
-----
+====
 
 == Durability
 Writes in Couchbase are written to a single node, and from there the Couchbase Server will take care of sending that mutation to any configured replicas.

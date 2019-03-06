@@ -96,7 +96,7 @@ Now let's get the data back (this example will look a little messy, but we'll se
 include::example$Cluster.scala[tag=get]
 ----
 
-Here we're fetching the value for the key `docId`, converting that value to a `JsonObject`, and then accessing the value of the *status* key as a String.
+Here we're fetching the value for the key `docId`, converting that value to a `JsonObjectSafe` (a simple wrapper around `JsonObject` that returns `Try` rather than throwing exceptions), and then accessing the value of the *status* key as a String.
 
 All three of these operations could fail, so there's quite a lot of error handling code here to do something quite simple.
 One way to improve on this is by using flatmap, like this:
