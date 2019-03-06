@@ -3,223 +3,324 @@
 :page-topic-type: howto
 :page-aliases: document-operations.adoc
 
-WARNING: These pages cover the first _Developer Preview_ of the Couchbase .NET SDK 3.0 (DP1).
+WARNING: These pages cover the first _Developer Preview_ of the Couchbase Scala SDK (DP1).
 As such they are likely to change without notice.
 The DP1 code _should not_ be used in production.
 
 
-The complete code sample used on this page can be downloaded from
-///  xref::example$document.cs[here]
-- from which you can see in context how to authenticate and connect to a Couchbase Cluster, then perform these Bucket operations.
+The complete code sample used on this page can be downloaded from https://github.com/couchbase/docs-sdk-scala/tree/3.0dp1/modules/howtos/examples/KvOperations.scala[here].
 
-
-== Documents
+At its heart Couchbase Server is a high-performance key-value store, and the key-value interface outlined below is the fastest and best method to perform operations involving single documents.
 
 A _document_ refers to an entry in the database (other databases may refer to the same concept as a _row_).
 A document has an ID (_primary key_ in other databases), which is unique to the document and by which it can be located.
 The document also has a value which contains the actual application data.
 See xref::concept-docs:documents.adoc[the concept guide to _Documents_] for a deeper dive into documents in the Couchbase Data Platform.
-Or read on, for a hands-on introduction to working with documents from the .NET SDK.
 
-== CRUD Operations
+Before proceeding, make sure you're familiar with the basics of authorization and connecting to a Cluster from the xref::hello-world:start-using-sdk.adoc[Start Using the SDK] section.
 
-The core interface to Couchbase Server is simple KV operations on full documents.
-Make sure you're familiar with the basics of authorization and connecting to a Cluster from the xref::hello-world:start-using-sdk.adoc[Start Using the SDK section].
-We're going to expand on the short _Upsert_ example we used there, adding options as we move through the various CRUD operations.
-Here is the _Insert_ operation at its simplest:
+The code samples below will use these imports:
 
-[source,csharp]
+[source,scala]
 ----
-Insert
-var document = new {foo = "bar", bar = "foo"};
-var result = await collection.Insert("document-key", document);
+include::example$KvOperations.scala[tag=imports]
 ----
-
-Options may be added to operations:
-
-[source,csharp]
-----
-Insert (with options)
-var document = new {foo = "bar", bar = "foo"};
-var result = await collection.Insert("document-key", document,
-    new InsertOptions
-    {
-        Cas = 12345,
-        Timeout = TimeSpan.FromSeconds(5)
-    }
-);
-----
-
-Setting a Compare and Swap (CAS) value is a form of optimistic locking - dealt with in depth in the xref:concurrent-document-mutations.adoc[CAS page].
-Here we just note that the CAS is a value representing the current state of an item; each time the item is modified, its CAS changes.
-The CAS value is returned as part of a document’s metadata whenever a document is accessed.
-Without explicitly setting it, a newly-created document would have a CAS value of _0_.
-
-_Timeout_ is an optional parameter which in the .NET SDK has a type value of `TimeSpan`.
-Timeout sets the timeout value for the underlying network connection.
-We will add to these options for the _Replace_ example:
-
-[source,csharp]
-----
-var document = new {foo = "bar", bar = "foo"};
-var result = await collection.Replace("document-key", document,
-    new ReplaceOptions
-    {
-        Cas = 12345,
-        Expiration = TimeSpan.FromMinutes(1),
-        Timeout = TimeSpan.FromSeconds(5)
-    }
-);
-----
-
-Expiration sets an explicit time to live (TTL) for a document, for which you can also xref:sdk-xattr-example.adoc[see a more detailed example of TTL discovery] later in the docs.
-We'll discuss modifying `Expiration` in more details xref:#net-modifying-expiration[below].
-For a discussion of item (Document) _vs_ Bucket expiration, see the 
-xref:6.5@server:learn:buckets-memory-and-storage/expiration.adoc#expiration-bucket-versus-item[Expiration Overview page].
-
-[source,csharp]
-----
-var document = new {foo = "bar", bar = "foo"};
-var result = await collection.Upsert("document-key", document,
-    new UpsertOptions
-    {
-        Cas = 12345,
-        Expiration = TimeSpan.FromMinutes(1),
-        PersistTo = PersistTo.One,
-        ReplicateTo = ReplicateTo.One,
-        Timeout = TimeSpan.FromSeconds(5)
-    }
-);
-----
-
-Here, we have add _Durability_ options, namely `PersistTo` and `ReplicateTo`.
-In Couchbase Server releases before 6.5, Durability was set with these two options -- see the xref:https://docs.couchbase.com/dotnet-sdk/2.7/durability.html[6.0 Durability documentation] -- covering  how many replicas the operation must be propagated to and how many persisted copies of the modified record must exist. 
-Couchbase Data Platform 6.5 refines these two options, with xref:synchronous-replication.adoc[Synchronous Replication] -- although they remain essentially the same in use -- as well as adding the option of xref:transactions.adoc[atomic document transactions].
-
 
 [TIP]
-.Sub-Document Operations
-====
-All of these operations involve fetching the complete document from the Cluster.
-Where the number of operations or other circumstances make bandwidth a significant issue, the SDK can work on just a specific _path_ of the document with xref:subdocument-operations.adoc[Sub-Docunent Operations].
-====
+N1QL can also be used to perform many single-document operations but we very strongly recommend using the key-value API for this instead, as it can be much more efficient.  The request can go directly to the correct node, there's no query parsing overhead, and it's over the highly optimized memcached binary protocol.
 
-== Retrieving full documents
+== JSON
+The Couchbase Server is a key-value store that's agnostic to what's stored, but it's very common to store JSON so most of the examples below will focus on that use-case.
 
-Using the `Get()` method with the document key can be done in a similar fashion to the other operations:
+The Scala SDK provides you with several options for working with JSON.
 
-[source,csharp]
+It directly supports several popular JSON libraries: https://github.com/lihaoyi/upickle[uPickle/uJson], https://circe.github.io/circe/[Circe], https://github.com/playframework/play-json[Play Json], https://github.com/typelevel/jawn[Jawn], and https://github.com/json4s/json4s[Json4s].
+
+In addition you can supply and receive JSON as a `String` or `Array[Byte]`, opening the door to any JSON library; https://jsoniter.com/[Jsoniter] and https://github.com/FasterXML/jackson[Jackson] have been tested, but any should work.
+
+To make things easy and to help get you started, the Scala SDK also bundles a home-grown small JSON library, which you are free to use instead of or alongside any of the other supported JSON libraries.
+The philosophy behind this library is to provide a very easy-to-use API and the fastest JSON implementation possible.
+
+To this end it provides a mutable API, and there are no lenses or cursors or other functional goodies: for those, you can look to one of the other supported libraries, such as the excellent Circe.
+
+== Upsert
+Here is a simple upsert operation, which will insert the document if it does not exist, or replace it if it does.
+
+We'll use the built-in JSON library for simplicity, but remember there are many other ways to put JSON into Couchbase:
+
+[source,scala]
 ----
-var result = await collection.Get(“document-key”);
-var content = result.ContentAs<string>();
+include::example$KvOperations.scala[tag=upsert]
 ----
 
-Timeout can also be set - as in the earlier `Insert` example:
+[NOTE]
+All the examples here use the Scala SDK's simplest API, which blocks until the operation is performed.  There's also an asynchronous API that is based around Scala `Future`, and a
+reactive API built around https://projectreactor.io/[Project Reactor].
 
-[source,csharp]
+== Handling single errors
+A note on error handling: the Scala SDK will not throw exceptions.
+ 
+Instead, methods that can error will return a Scala `Try` object, which can either be a `Success` containing the result, or a `Failure` containing a _Throwable_ exception.
+ 
+Pattern matching can be used to handle a `Try`, as above.
+
+Don't worry about cluttering up your code with explicit error handling for every operation: Scala provides useful methods to chain multiple `Try` together, and we'll go into these later.
+
+[NOTE]
+We will use `println` to simply print any errors in these samples, but the application will of course want to perform better error handling.
+
+== Insert
+Insert works very similarly to upsert, but will fail if the document already exists:
+
+[source,scala]
 ----
-Get (with options)
-var result = await collection.Get(“document-key”,
-    new GetOptions
-    {
-        Timeout = TimeSpan.FromSeconds(5)
-    }
-);
-var content = result.ContentAs<string>();
+include::example$KvOperations.scala[tag=insert]
 ----
+
+Note that a `Try` lets us check for a particular sort of error.  The case clauses are tried in order from the top: if it is not a `Success`, and not a `Failure` containing a `DocumentAlreadyExistsException`, it will drop to the default `Failure(err)` case. 
+
+== Retrieving documents
+
+We've tried upserting and inserting documents into Couchbase Server, let's get them back:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=get-simple]
+----
+
+Of course if we're getting a document we probably want to do something with the content:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=get]
+----
+
+Woah, this looks messy!  Don't worry, this is the ugliest possible way of handling multiple `Try` results and we'll see ways of tidying this up very soon.
+
+For now, let's break down what's going on here.
+
+First, we create some JSON and insert it.
+
+Then, we get the document.
+
+If it's successful, we convert the document's content into a `JsonObjectSafe`.
+
+We can use `contentAs` to return the document's
+content in all sorts of ways: as a String, as an Array[Byte], as a `org.json4s.JValue` from the https://github.com/json4s/json4s[json4s library]... it's very flexible.  Here,
+we've asked for it to be returned as a `JsonObjectSafe` - a 'safe' interface to the `JsonObject` that doesn't throw exceptions.
+
+Finally, if the conversion to a `JsonObjectSafe` was successful, we try to get the "status" field (which returns a `Try` with `JsonObjectSafe`), and print it if we were successful.
+
+== Handling multiple errors
+Nesting multiple `Try` in that way quickly gets very hard to parse.  Luckily, Scala provides functional tools to easily combine `Try` and handle them in one place.
+
+First there's `flatMap`, which can be used to rewrite the previous example like this:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=get-map]
+----
+
+Here, if the `get` is successful then the `contentAs` is tried, and if that is successful then the `str` call is tried.  The end result is a single `Try[String]` that will be `Success` if all three operations succeeded, or otherwise `Failure`.
+
+Some may prefer a for-comprehension, which is simply syntactic sugar around the `flatMap` example:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=get-for]
+----
+
+== Replace
+A very common operation is to `get` a document, modify its contents, and `replace` it.  Let's use a for-comprehension:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=replace]
+----
+
+This is a more complex for-comprehension than we saw before, so let's break down what happens:
+
+We `insert` an initial version of the document.  We don't care about the exact details of the result, just whether it succeeded or not, so discard the result into `_`.
+
+Then `get` it back into `doc`.
+
+Pull out the document's content as a `JsonObject` using `contentAs`.
+
+Update a field in the `JsonObject` with `put`.  `JsonObject` is mutable, we don't need to store the result of the `put` - so we just send it to `_`.
+
+`replace` the document with the updated content, and a CAS value, storing the final result as `result`.
+
+Finally we `yield` that `result`, and pattern match on it.
+
+There's a couple of things to cover with the `replace` line.
+
+First, most of the methods in the Scala SDK take optional parameters that have sensible defaults.  One of them, `cas`, is provided here.  We'll see more throughout this document.
+
+So, what is CAS?
+
+CAS, or Compare and Swap, is a form of optimistic locking.  Every document in Couchbase has a CAS value, and it's changed on every mutation.  When you `get` a document you also get the document's CAS, and then when it's time to write the document, you send the same CAS back.  If another agent has modified that document, the Couchbase Server can detect you've provided a now-outdated CAS, and return an error.  This provides cheap, safe concurrency.  See xref:concurrent-document-mutations.adoc[this detailed description of CAS] for further details.
+
+In general, you'll want to provide a CAS value whenever you `replace` a document, to prevent overwriting another agent's mutations.
+
+== Retrying on CAS failures
+But if we get a CAS mismatch, we usually just want to retry the operation.  Let's see a more advanced `replace` example that shows one way to handle this:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=replace-retry]
+----
+
+== Sub-Document operations
+All of the operations seen so far involve fetching the complete document.
+
+As an optimization the application may consider using the xref:subdocument-operations.adoc[Sub-Document API] to access or mutate specific parts of a document.
+
+== Case classes
+So far we've used `JsonObject`, but it can be very useful to deal with Scala case classes instead.
+
+Let's start by creating a couple of simple case classes
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=cc-create]
+----
+
+If we try and insert this case class directly, we'll get an error, e.g. this won't work:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=cc-fails]
+----
+
+This is because the Scala SDK does not currently know how to convert a `User` into JSON it can send to the server.
+
+More technically, methods like `insert` that take content of type `T` also take an implicit `Encodable[T]`.  If the Scala compiler cannot find a suitable `Encodable[T]`, then it will report an error.
+
+So, let's provide an `Encodable[User]`.  It's not complicated to create one manually, but the Scala SDK includes a convenient shortcut:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=cc-codec]
+----
+
+(As this is a companion object for User, it needs to go in the same file as the `User` case class you added earlier.)
+
+This short line of boilerplate uses Scala macros to, at compile time, create an `Encodable[User]`.  Note that we don't need one for `Address` too - only the top-level case classes you're dealing with need a `Codec`.
+
+Now we can pass a `User` directly to `insert`, and it will work fine.  The Scala compiler will look for an `Encodable[User]` in a number of places, and find it in the `User` companion object.
+
+Since the encoding logic is generated at compile time it can also be extremely fast - no reflection is used.
+
+The generated JSON will be as you expect, with "name" and "age" fields, and an "addresses" array.
+
+The same `Codec` can also be used to pull data out as our case class, using `contentAs`:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=cc-get]
+----
+
+[NOTE]
+There are other ways to handle case classes.  Most of the previously mentioned supported JSON libraries have a method to encode and decode case classes, and these can be used with the Scala SDK.
+
+For example, you could use `asJson` from the library https://circe.github.io/circe/[Circe] to convert the User into Circe's JSON representation.  The Scala SDK has an `Encodable` built-in for this, so it will work.
+
+Or you could use https://github.com/plokhotnyuk/jsoniter-scala[Jsoniter] to convert the User into an `Array[Byte]`, and provide that.  An `Encodable` also exists for this.
 
 
 == Removing
+Removing a document is straightforward:
 
-When removing a document, you will have the same concern for durability as with any additive modification to the Bucket:
-
-Remove (with options)
-[source,csharp]
+[source,scala]
 ----
-var result = await collection.Remove("document-key",
-    new RemoveOptions
-    {
-        Cas = 12345,
-        PersistTo = PersistTo.One,
-        ReplicateTo = ReplicateTo.One,
-        Timeout = TimeSpan.FromSeconds(5)
-    }
-);
+include::example$KvOperations.scala[tag=remove]
 ----
 
-== Expiration / TTL
+== Durability
+Writes in Couchbase are written to a single node, and from there the Couchbase Server will take care of sending that mutation to any configured replicas.
 
-By default, Couchbase documents do not expire, but transient or temporary data may be needed for user sessions, caches, or other temporary documents. 
-Using `Touch()`, you can set expiration values on documents to handle transient data:
+The optional `durability` parameter, which all mutating operations accept, allows the application to wait until this replication is successful before proceeding.
 
-[source,csharp]
+It can be used like this:
+
+[source,scala]
 ----
-var result = await collection.Touch("document-key", TimeSpan.FromSeconds(10));
-----
-
-A network timeout can be set with the optional `TouchOptions()`, in the same fashion as earlier examples on this page:
-
-[source,csharp]
-----
-var result = await collection.Touch("document-key", TimeSpan.FromSeconds(30),
-    new TouchOptions
-    {
-        Timeout = TimeSpan.FromSeconds(5)
-    }
-);
+include::example$KvOperations.scala[tag=durability]
 ----
 
-== Atomic document modifications
+The default is `Durability.Disabled`, in which the SDK will return as soon as Couchbase Server has the mutation available in-memory on the master node.  This is the default for a reason: it's the fastest mode, and the majority of the time is all the application needs.  Couchbase Server is designed, after all, to preserve your data in the advent of node and network failures.
 
-The value of a document can be increased or decreased atomically using `Binary.Increment()` and `.Binary.Decrement()`.
+However, we recognize that there are times when the application needs that extra certainty that especially vital mutations have been successfully replicated, and the other durability options provide the means to achieve this.
 
-.Increment
-[source,csharp]
+The options differ depend on what Couchbase Server version is in use.  If 6.5 or above is being used, you can take advantage of the 'synchronous replication' feature, in which Couchbase Server will only return success to the SDK after the requested replication level has been achieved.  The three replication levels are:
+
+`Majority` - The server will ensure that the change is available in memory on the majority of configured replicas.
+
+`MajorityAndPersistOnMaster` - Majority level, plus persisted to disk on the master node.
+
+`PersistToMajority` - Majority level, plus persisted to disk on the majority of configured replicas.
+
+The options are in increasing levels of safety.  Note that nothing comes for free - for a given node, waiting for writes to storage is considerably slower than waiting for it to be available in-memory.
+
+In a version of Couchbase Server lower than 6.5 is being used then the application can fall-back to 'client verified' durability.  Here the SDK will do a simple poll of the replicas and only return once the requested durability level is achieved.  This can be achieved like this:
+
+[source,scala]
 ----
-// increment binary value by 1, if document doesn’t exist, seed it at 1000
-await collection.Binary.Increment("document-key", 1, 1000);
-----
-
-[source,csharp]
-----
-.Increment (with options)
-// increment binary value by 1, if document doesn’t exist, seed it at 1000
-// optional arguments:
-// - Timeout (TimeSpan)
-// - Expiration (TimeSpan)
-// - CAS (ulong)
-
-await collection.Binary.Increment("document-key", 1, 1000, TimeSpan.FromSeconds(5), TimeSpan.FromDays(1), cas);
+include::example$KvOperations.scala[tag=durability-observed]
 ----
 
-.Decrement
-[source,csharp]
+To stress, durability is a useful feature but should not be the default for most applications, as there is a performance consideration, and the default level of safety provided by Couchbase will be resaonable for the majority of situations.
+
+== Expiration/TTL
+Couchbase Server includes an option to have particular documents automatically expire after a set time.  This can be useful for some use-cases, such as user sessions, caches, or other temporary documents.
+
+You can set an expiration value when creating a document:
+
+[source,scala]
 ----
-// decrement binary value by 1, if document doesn’t exist, seed it at 1000
-await collection.Binary.Decrement("document-key", 1, 1000);
+include::example$KvOperations.scala[tag=expiry-insert]
 ----
 
-.Increment (with options)
-[source,csharp]
+When getting a document, the expiry is not provided automatically by Couchbase Server but it can be requested:
+
+[source,scala]
 ----
-// decrement binary value by 1, if document doesn’t exist, seed it at 1000
-// optional arguments:
-// - Timeout (TimeSpan)
-// - Expiration (TimeSpan)
-// - CAS (ulong)
-await collection.Binary.Decrement("document-key", 1, 1000, TimeSpan.FromSeconds(5), TimeSpan.FromDays(1), cas);
+include::example$KvOperations.scala[tag=expiry-get]
 ----
 
-NOTE: Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change
+Note that when updating the document, special care must be taken to avoid resetting the expiry to zero.  Here's how:
 
-== Additional Resources
+[source,scala]
+----
+include::example$KvOperations.scala[tag=expiry-replace]
+----
+
+Some applications may find `getAndTouch` useful, which fetches a document while updating its expiry field.  It can be used like this:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=expiry-touch]
+----
+
+== Counter operations
+To support counter use-cases, a Couchbase document can be treated as an integer counter and adjusted or created atomically like this:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=counter-increment]
+----
+
+Note that a counter cannot be below 0.
+
+== Additional resources
 
 Working on just a specific path within a JSON document will reduce network bandwidth requirements - see the xref:subdocument-operations.adoc[Sub-Document] pages.
+
 For working with metadata on a document, reference our xref:sdk-xattr-example.adoc[Extended Attributes] pages.
 
 Another way of increasing network performance is to _pipeline_ operations with xref:batching-operations.adoc[Batching Operations].
 
-As well as various xref:concept-docs:data-model.adoc[Formats] of JSON, Couchbase can work directly with xref:non-json.adoc[arbitary bytes, or binary format].
+As well as various xref:concept-docs:data-model.adoc[Formats] of JSON, Couchbase can work directly with xref:non-json.adoc[arbitrary bytes, or binary format].
 
 Our xref:n1ql-queries-with-sdk.adoc[Query Engine] enables retrieval of information using the SQL-like syntax of N1QL.
 

@@ -34,7 +34,13 @@ dependencies {
 
 Now you have the Scala client installed, open a fresh project in your favourite IDE and try out the following to connect to a Couchbase cluster.
 
-You'll need to provide the IP address of one of the nodes of the Couchbase cluster. 
+First pull in all the imports we'll be using:
+[source,scala]
+----
+include::example$Cluster.scala[tag=imports]
+----
+
+Now we can connect to the cluster - you'll need to provide the IP address of one of the nodes of the cluster.
 If you're developing client code on the same VM or machine as the Couchbase Server, this can be _localhost_.  
 Couchbase uses xref:6.5@server:learn/security:roles.adoc[Role Based Access Control (RBAC)] to control access to resources, so specify the username and password of a user you've setup during installation of the Couchbase Data Platform.
 
@@ -44,7 +50,7 @@ Couchbase uses xref:6.5@server:learn/security:roles.adoc[Role Based Access Contr
 include::example$Cluster.scala[tag=cluster]
 ----
 
-You can now open bucket, scope, and collection resources:
+You can now open bucket, scope, and collection resources.  You will need to create these using the Couchbase Admin UI first.
 
 [source,scala]
 ----

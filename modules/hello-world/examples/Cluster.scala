@@ -1,21 +1,19 @@
+// #tag::imports[]
 import java.util.UUID
-
 import com.couchbase.client.scala.Cluster
 import com.couchbase.client.scala.json.JsonObject
-
 import scala.util.{Failure, Success}
+// #end::imports[]
 
 class Cluster {
   // #tag::cluster[]
-  // TODO .get will probably go
-  val cluster = Cluster.connect("10.112.180.101", "username", "password").get
+  val cluster = Cluster.connect("10.112.180.101", "username", "password")
   // #end::cluster[]
 
   // #tag::resources[]
-  // TODO .gets will probably go
-  val bucket     = cluster.bucket("bucket-name").get
-  val scope      = bucket.scope("scope-name").get
-  val collection = scope.collection("collection-name").get
+  val bucket     = cluster.bucket("bucket-name")
+  val scope      = bucket.scope("scope-name")
+  val collection = scope.collection("collection-name")
   // #end::resources[]
 
   // #tag::json[]
