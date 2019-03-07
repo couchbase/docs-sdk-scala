@@ -145,20 +145,6 @@ A very common operation is to `get` a document, modify its contents, and `replac
 include::example$KvOperations.scala[tag=replace]
 ----
 
-This is a more complex for-comprehension than we saw before, so let's break down what happens:
-
-We `insert` an initial version of the document.  We don't care about the exact details of the result, just whether it succeeded or not, so discard the result into `_`.
-
-Then `get` it back into `doc`.
-
-Pull out the document's content as a `JsonObject` using `contentAs`.
-
-Update a field in the `JsonObject` with `put`.  `JsonObject` is mutable, we don't need to store the result of the `put` - so we just send it to `_`.
-
-`replace` the document with the updated content, and a CAS value, storing the final result as `result`.
-
-Finally we `yield` that `result`, and pattern match on it.
-
 There's a couple of things to cover with the `replace` line.
 
 First, most of the methods in the Scala SDK take optional parameters that have sensible defaults.  One of them, `cas`, is provided here.  We'll see more throughout this document.

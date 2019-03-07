@@ -7,8 +7,9 @@ import com.couchbase.client.scala.json.{JsonObject, JsonObjectSafe}
 import scala.util.{Failure, Success}
 // #end::imports[]
 
-class Cluster {
-  // #tag::cluster[]
+object ClusterExample {
+  def main(args: Array[String]) {
+    // #tag::cluster[]
   val cluster = Cluster.connect("10.112.180.101", "username", "password")
   // #end::cluster[]
 
@@ -69,4 +70,5 @@ class Cluster {
     case Failure(err)    => println("Error: " + err)
   }
   // #end::get-map[]
+  }
 }

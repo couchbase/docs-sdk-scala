@@ -25,7 +25,5 @@ sourceSets {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
-    // TODO this shouldn't be required!
-    compile group: 'com.couchbase.client', name: 'scala-implicits', version: '1.0.0-dp1-SNAPSHOT'
-    compile group: 'com.couchbase.client', name: 'scala-client', version: '1.0.0-dp1-SNAPSHOT'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.0-dp1-SNAPSHOT'
 }
