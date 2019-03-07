@@ -1,6 +1,4 @@
 // #tag::imports[]
-import java.util.UUID
-
 import com.couchbase.client.core.error._
 import com.couchbase.client.scala._
 import com.couchbase.client.scala.api.MutationResult
@@ -8,9 +6,6 @@ import com.couchbase.client.scala.codec.Conversions.Codec
 import com.couchbase.client.scala.durability._
 import com.couchbase.client.scala.implicits.Codecs
 import com.couchbase.client.scala.json._
-
-import com.couchbase.client.scala.deps.plokhotnyuk.jsoniter_scala.core._
-
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 // #end::imports[]
@@ -29,7 +24,51 @@ object User {
 object KvOperations {
   def main(args: Array[String]) {
 
-// #tag::cluster[]
+def json1() {
+
+  // User("Eric Wimp", 9, Seq(Address("29 Acacia Road")))
+// #tag::json1[]
+val json = JsonObject("name" -> "Eric Wimp",
+  "age" -> 9,
+  "addresses" -> JsonArray(JsonObject("address" -> "29 Acacia Road")))
+
+val str = json.toString()
+// """{"name":"Eric Wimp","age":9,"addresses":[{"address","29 Acacia Road"}]}"""
+// #end::json1[]
+
+// #tag::json-mutable[]
+val obj = JsonObject.create.put("name", "Eric Wimp")
+obj.put("age", 9)
+val arr = JsonArray.create
+arr.add(JsonObject("address" -> "29 Acacia Road"))
+obj.put("addresses", arr)
+// #end::json-mutable[]
+
+// #tag::json2[]
+json.str("name") // "Eric Wimp"
+json.arr("addresses").obj(0).str("address")  // "29 Acacia Road"
+// #end::json2[]
+
+  // #tag::json3[]
+json.dyn.name.str // "Eric Wimp"
+json.dyn.addresses(0).address.str  // "29 Acacia Road"
+// #end::json3[]
+
+// #tag::json4[]
+val safe: JsonObjectSafe = json.safe
+
+val r: Try[String] = safe.str("name")
+
+r match {
+  case Success(name) => println(s"Their name is $name")
+  case Failure(err)  => println(s"Could not find field 'name': $err")
+}
+// #end::json4[]
+
+}
+
+
+    // #tag::cluster[]
 val cluster = Cluster.connect("localhost", "username", "password")
 // #end::cluster[]
 
@@ -45,7 +84,7 @@ val reactiveApi: ReactiveCollection = collection.reactive
 // #end::apis[]
 
 // #tag::upsert[]
-val json = JsonObject.create.put("foo", "bar").put("baz", "qux")
+val json = JsonObject("foo" -> "bar", "baz" -> "qux")
 
 collection.upsert("document-key", json) match {
   case Success(result) =>
@@ -54,14 +93,14 @@ collection.upsert("document-key", json) match {
 // #end::upsert[]
 
 def insert() {
-  // #tag::insert[]
-  collection.insert("document-key", json) match {
-    case Success(result) =>
-    case Failure(err: DocumentAlreadyExistsException) =>
-      println("The document already exists")
-    case Failure(err) => println("Error: " + err)
-  }
-  // #end::insert[]
+// #tag::insert[]
+collection.insert("document-key", json) match {
+  case Success(result) =>
+  case Failure(err: DocumentAlreadyExistsException) =>
+    println("The document already exists")
+  case Failure(err) => println("Error: " + err)
+}
+// #end::insert[]
 }
 
 // #tag::get-simple[]
@@ -74,7 +113,7 @@ collection.get("document-key") match {
 def get() {
 // #tag::get[]
 // Create some initial JSON
-val json = JsonObject.create.put("status", "awesome!")
+val json = JsonObject("status" -> "awesome!")
 
 // Insert it
 collection.insert("document-key", json) match {
@@ -132,7 +171,7 @@ r match {
 
 def replace() {
 // #tag::replace[]
-val initial = JsonObject.create.put("status", "great")
+val initial = JsonObject("status" -> "great")
 
 val r: Try[MutationResult] = for {
   // Insert a document.  Don't care about the exact details of the result, just
@@ -165,7 +204,7 @@ r match {
 
 def replaceRetry() {
 // #tag::replace-retry[]
-val initial = JsonObject.create.put("status", "great")
+val initial = JsonObject("status" -> "great")
 
 // Insert some initial data
 collection.insert("document-key", json) match {

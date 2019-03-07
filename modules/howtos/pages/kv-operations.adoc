@@ -41,7 +41,52 @@ In addition you can supply and receive JSON as a `String` or `Array[Byte]`, open
 To make things easy and to help get you started, the Scala SDK also bundles a home-grown small JSON library, which you are free to use instead of or alongside any of the other supported JSON libraries.
 The philosophy behind this library is to provide a very easy-to-use API and the fastest JSON implementation possible.
 
-To this end it provides a mutable API, and there are no lenses or cursors or other functional goodies: for those, you can look to one of the other supported libraries, such as the excellent Circe.
+=== Using JsonObject and JsonArray
+Using the built-in JSON library here's how to create some simple JSON:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=json1]
+----
+
+`JsonObject` and `JsonArray` are both mutable, so they can also be created this way:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=json-mutable]
+----
+
+It's easy to retrieve data:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=json2]
+----
+
+Or, using a feature of Scala called `Dynamic`, you can use an alternative syntax like this:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=json3]
+----
+
+The majority of the Scala SDK will not throw exceptions.  Methods on `JsonObject` are, well, an exception to this rule.
+
+If you'd rather not deal with exceptions, `JsonObject` comes with a counterpart `JsonObjectSafe` that provides an alternative interface in which all methods return Scala `Try` rather than throwing:
+
+[source,scala]
+----
+include::example$KvOperations.scala[tag=json4]
+----
+
+(Don't worry if `Try` is unfamiliar, you'll see plenty of examples of how to use it and combine it with other `Try` in the examples below.)
+
+Note that `JsonObjectSafe`, though presenting a more functional interface, is still mutable.
+
+[NOTE]
+Using JsonObject and JsonArray is 100% optional.  If you would rather use a purely functional JSON library, with immutable
+data, lenses, cursors and other functional goodies, then the Scala SDK includes full support
+for the excellent https://circe.github.io/circe/[Circe] library, among other great JSON libraries.
 
 == Upsert
 Here is a simple upsert operation, which will insert the document if it does not exist, or replace it if it does.
@@ -177,7 +222,7 @@ All of the operations seen so far involve fetching the complete document.
 As an optimization the application may consider using the xref:subdocument-operations.adoc[Sub-Document API] to access or mutate specific parts of a document.
 
 == Case classes
-So far we've used JSON fairly directly with `JsonObject`, but it can be very useful to deal with Scala case classes instead.
+So far we've used JSON directly with `JsonObject` and `JsonObjectSafe`, but it can be very useful to deal with Scala case classes instead.
 
 Let's start by creating a couple of simple case classes:
 
@@ -225,9 +270,10 @@ include::example$KvOperations.scala[tag=cc-get]
 ====
 There are other ways to handle case classes.  Most of the previously mentioned supported JSON libraries have a method to encode and decode case classes, and these can be used with the Scala SDK.
 
-For example, you could use `asJson` from the library https://circe.github.io/circe/[Circe] to convert the User into Circe's JSON representation.  The Scala SDK has an `Encodable` built-in for this, so it will work.
+For example, you could use `asJson` from the library https://circe.github.io/circe/[Circe] to convert the User into Circe's JSON representation.  The Scala SDK has an `Encodable[io.circe.Json]` built-in for this, so it will work.  Similar
+`Encodable` exist for the other supported JSON libraries.
 
-Or you could use https://github.com/plokhotnyuk/jsoniter-scala[Jsoniter] to convert the User into an `Array[Byte]`, and provide that.  An `Encodable` also exists for this.
+Or you could use https://github.com/plokhotnyuk/jsoniter-scala[Jsoniter] or a similar library to convert the User into an `Array[Byte]` or `String`, and provide that.  An `Encodable` also exists for these.
 ====
 
 == Durability
