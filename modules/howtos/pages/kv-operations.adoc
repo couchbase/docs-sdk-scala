@@ -81,12 +81,12 @@ include::example$KvOperations.scala[tag=json4]
 
 (Don't worry if `Try` is unfamiliar, you'll see plenty of examples of how to use it and combine it with other `Try` in the examples below.)
 
-Note that `JsonObjectSafe`, though presenting a more functional interface, is still mutable.
+Note that `JsonObjectSafe`, though presenting a more functional interface, is still mutable.  A `JsonArraySafe` counterpart exists.
 
 [NOTE]
 Using JsonObject and JsonArray is 100% optional.  If you would rather use a purely functional JSON library, with immutable
 data, lenses, cursors and other functional goodies, then the Scala SDK includes full support
-for the excellent https://circe.github.io/circe/[Circe] library, among other great JSON libraries.
+for the excellent https://circe.github.io/circe/[Circe], among other great JSON libraries.
 
 == Upsert
 Here is a simple upsert operation, which will insert the document if it does not exist, or replace it if it does.
@@ -109,7 +109,7 @@ include::example$KvOperations.scala[tag=apis]
 ----
 =====
 
-== Handling single errors
+== Handling Single Errors
 A note on error handling: the Scala SDK will not throw exceptions.
  
 Instead, methods that can error will return a Scala `Try` object, which can either be a `Success` containing the result, or a `Failure` containing a _Throwable_ exception.
@@ -131,7 +131,7 @@ include::example$KvOperations.scala[tag=insert]
 
 Note that a `Try` lets us check for a particular sort of error.  The case clauses are tried in order from the top: if it is not a `Success`, and not a `Failure` containing a `DocumentAlreadyExistsException`, it will drop to the default `Failure(err)` case. 
 
-== Retrieving documents
+== Retrieving Documents
 
 We've tried upserting and inserting documents into Couchbase Server, let's get them back:
 
@@ -163,7 +163,7 @@ we've asked for it to be returned as a `JsonObjectSafe` - a 'safe' interface to 
 
 Finally, if the conversion to a `JsonObjectSafe` was successful, we try to get the "status" field (which returns a `Try` with `JsonObjectSafe`), and print it if we were successful.
 
-== Handling multiple errors
+== Handling Multiple Errors
 Nesting multiple `Try` in that way quickly gets very hard to parse.  Luckily, Scala provides functional tools to easily combine `Try` and handle them in one place.
 
 First there's `flatMap`, which can be used to rewrite the previous example like this:
@@ -200,7 +200,7 @@ CAS, or Compare and Swap, is a form of optimistic locking.  Every document in Co
 
 In general, you'll want to provide a CAS value whenever you `replace` a document, to prevent overwriting another agent's mutations.
 
-== Retrying on CAS failures
+== Retrying on CAS Failures
 But if we get a CAS mismatch, we usually just want to retry the operation.  Let's see a more advanced `replace` example that shows one way to handle this:
 
 [source,scala]
@@ -216,12 +216,12 @@ Removing a document is straightforward:
 include::example$KvOperations.scala[tag=remove]
 ----
 
-== Sub-Document operations
+== Sub-Document Operations
 All of the operations seen so far involve fetching the complete document.
 
 As an optimization the application may consider using the xref:subdocument-operations.adoc[Sub-Document API] to access or mutate specific parts of a document.
 
-== Case classes
+== Case Classes
 So far we've used JSON directly with `JsonObject` and `JsonObjectSafe`, but it can be very useful to deal with Scala case classes instead.
 
 Let's start by creating a couple of simple case classes:
@@ -342,7 +342,7 @@ Some applications may find `getAndTouch` useful, which fetches a document while 
 include::example$KvOperations.scala[tag=expiry-touch]
 ----
 
-== Counter operations
+== Counter Operations
 To support counter use-cases, a Couchbase document can be treated as an integer counter and adjusted or created atomically like this:
 
 [source,scala]
@@ -352,7 +352,7 @@ include::example$KvOperations.scala[tag=counter-increment]
 
 Note that a counter cannot be below 0.
 
-== Additional resources
+== Additional Resources
 
 Working on just a specific path within a JSON document will reduce network bandwidth requirements - see the xref:subdocument-operations.adoc[Sub-Document] pages.
 

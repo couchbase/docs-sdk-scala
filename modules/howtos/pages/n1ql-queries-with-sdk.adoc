@@ -1,2 +1,173 @@
 = N1QL Queries from the SDK
+:navtitle: N1QL from the SDK
+:page-topic-type: howto
+:page-aliases: n1ql-query
 
+[abstract]
+You can query for documents in Couchbase using the N1QL query language, a language based on SQL, but designed for structured and flexible JSON documents.
+
+[WARNING]
+====
+These pages cover the first _Developer Preview_ of the Couchbase Scala SDK (DP1).
+As such they are likely to change without notice.
+The Developer Preview _should not_ be used in production.
+====
+
+Our query service uses N1QL, which will be fairly familiar to anyone who's used any dialect of SQL.
+xref:#additional-resources[Further resources] for learning about N1QL are listed at the bottom of the page.
+// TODO link
+Before you get started you may wish to checkout the N1QL intro page TODO LINK.
+
+[TIP]
+.N1QL Compared to Key-Value
+====
+N1QL is excellent for performing queries against multiple documents, but if you only need to access or mutate a single document and you know its unique ID, it will be
+much more efficient to use the Key-Value API.  We strongly recommend using both APIs to create a flexible, performant application.
+====
+
+== Getting Started
+Let's get started by pulling in all the imports needed in the examples below:
+
+[source,scala]
+----
+include::example$Queries.scala[tag=imports]
+----
+
+Then we connect to a Couchbase cluster, as usual (of course, change the address and credentials to match your own cluster's):
+
+[source,scala]
+----
+include::example$Queries.scala[tag=cluster]
+----
+
+The examples below will use the travel-sample example bucket, which can be installed through the Couchbase Admin UI in Settings -> Sample Buckets.
+
+In order to be able to use query on a bucket, it must have at least a primary index created.  The easiest way to create this is
+through the Couchbase Admin UI.  Simply visit the Query tab then write this in the Query Editor and hit Execute:
+
+[source,n1ql]
+----
+CREATE PRIMARY INDEX ON `travel-sample`
+----
+
+== A Simple Query
+Here's the basics of how to run a simple query to fetch 10 random rows from travel-sample and print the results:
+
+[source,scala]
+----
+include::example$Queries.scala[tag=simple]
+----
+
+(Note that we won't be covering the N1QL language itself in any detail here, but if you're familar with SQL you'll see it's very similar.)
+
+The Scala SDK returns `Try` rather than throwing exceptions, to allow you to handle errors in a functional way.  A `Try` can either be a `Success(QueryResult)` if the N1QL statement was successfully execute, or `Failure(Throwable)` if something went wrong.  It can be pattern matched on like this:
+
+[source,scala]
+----
+include::example$Queries.scala[tag=simple-results]
+----
+
+The returned `QueryResult` contains a `rows: Seq[QueryRow]` field.  A `QueryRow` can be converted into many forms using `contentAs`.  This is an example of converting into `JsonObject`, the simple JSON library included with the Scala SDK:
+
+[source,scala]
+----
+include::example$Queries.scala[tag=simple-results-full]
+----
+
+Note that contentAs also returns Try, so we use pattern matching again to check if it was successful.
+
+Other things contentAs can convert to are:
+
+* `io.circe.Json` from the popular Scala JSON library https://circe.github.io/circe/[Circe]
+* Similar support is included for other excellent JSON libraries: https://github.com/lihaoyi/upickle[uPickle/uJson], https://github.com/playframework/play-json[Play Json], https://github.com/typelevel/jawn[Jawn], and https://github.com/json4s/json4s[Json4s].
+// TODO fix link
+* Scala case classes.  A tiny amount of boilerplate is needed to support this: see xref:kv-operations.adoc[Key-Value Operations] for details.
+* `String`
+* `Array[Byte]`
+
+Of course, it wouldn't be Scala if we couldn't elegantly combine the operations above more concisely:
+
+[source,scala]
+----
+include::example$Queries.scala[tag=get-rows]
+----
+
+[NOTE]
+=====
+Most of the examples here use the simplest of the three APIs provided by the Scala SDK, which blocks until the operation is performed.  There's also an asynchronous API that is based around Scala `Future`, and a
+streaming reactive API, for which we'll see an example later.
+=====
+
+== Placeholder and Named Arguments
+Placeholders allow you to specify variable constraints for a query.
+
+There are two variants of placeholders: positional and named parameters.  Both are used as placeholders for values in the WHERE, LIMIT or OFFSET clause of a query.
+
+Positional parameters use an ordinal placeholder for substitution and can be used like this:
+
+[source,scala]
+----
+include::example$Queries.scala[tag=positional]
+----
+
+Whereas named parameters can be used like this:
+
+[source,scala]
+----
+include::example$Queries.scala[tag=named]
+----
+
+(In both examples, the result should be handled as above.)
+
+== Scan Consistency
+Queries take an optional `scanConsistency` parameter that enables a tradeoff between latency and (eventual) consistency.
+
+* A N1QL query using the default `NotBounded` scan consistency will not wait for any indexes to finish updating before running the query and returning results, meaning that results are returned quickly, but the query will not return any documents that are yet to be indexed.
+
+* With scan consistency set to `RequestPlus`, all outstanding document changes and index updates are processed before the query is run.
+Select this when consistency is always more important than performance.
+
+* For a middle ground, `AtPlus` is a "read your own write" (RYOW) option, which means it just waits for the documents that you specify to be indexed.
+
+[NOTE]
+AtPlus is not supported in Developer Preview 1, but will be available in the next release.
+
+Here's how to specify the `RequestPlus` scan consistency level:
+
+[source,scala]
+----
+include::example$Queries.scala[tag=request-plus]
+----
+
+== Streaming Large Result Sets
+As mentioned earlier, the Scala SDK provides three SDKs:
+
+* The blocking API you've seen so far, that returns a `QueryResult` containing all rows.
+
+* An async API that returns a `Future[QueryResult]`, which also contains all rows.  This can be accessed like this:
+
+[source,scala]
+----
+include::example$Queries.scala[tag=async]
+----
+
+* A reactive API, that can be used to stream rows.
+
+The former two APIs buffer all rows in-memory until they can be returned to you.  With smaller queries this is likely to be fine, but for large data sets this could lead to Java `OutOfMemoryError` exceptions.
+
+The recommended solution is to use the reactive API.  Reactive programming is a sophisticated paradigm that is rapidly gaining popularity for its ability to handle, amongst other things, streaming large amounts of data over fallible networks, while allowing error handling and backpressure.
+
+The Scala SDK exposes primitives from the https://projectreactor.io/[Project Reactor] library, most notably `Mono` and `Flux`.  We strongly recommend https://projectreactor.io/learn[learning] a little of this library first, and the following examples will assume basic familiarity with Reactor.
+
+[NOTE]
+You'll see both `reactor.core.scala.publisher` and `reactor.core.publisher` imports available for Reactor.  Use the former, it is the Scala-optimized variant.
+
+Here's how to perform a query and stream the results using the reactive API:
+
+[source,scala]
+----
+include::example$Queries.scala[tag=reactive]
+----
+
+== Additional Resources
+The http://query.pub.couchbase.com/tutorial/#1[N1QL interactive tutorial] is a good introduction to the basics of N1QL use.

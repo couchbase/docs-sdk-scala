@@ -1,5 +1,5 @@
 name: scala-sdk
-version: '3.0dp1'
+version: '1.0.0-dp1'
 title: Scala SDK
 start_page: hello-world:start-using-sdk.adoc
 nav:

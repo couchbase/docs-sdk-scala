@@ -64,11 +64,9 @@ r match {
   case Failure(err)  => println(s"Could not find field 'name': $err")
 }
 // #end::json4[]
-
 }
 
-
-    // #tag::cluster[]
+// #tag::cluster[]
 val cluster = Cluster.connect("localhost", "username", "password")
 // #end::cluster[]
 
