@@ -6,12 +6,9 @@
 [abstract]
 You can query for documents in Couchbase using the N1QL query language, a language based on SQL, but designed for structured and flexible JSON documents.
 
-[WARNING]
-====
-These pages cover the first _Developer Preview_ of the Couchbase Scala SDK (DP1).
+WARNING: These pages cover the first _Developer Preview_ of the Couchbase .NET SDK -- 3.0 _alpha_.
 As such they are likely to change without notice.
-The Developer Preview _should not_ be used in production.
-====
+The _alpha_ code _should not_ be used in production.
 
 Our query service uses N1QL, which will be fairly familiar to anyone who's used any dialect of SQL.
 xref:#_additional_resources[Further resources] for learning about N1QL are listed at the bottom of the page.
@@ -130,7 +127,7 @@ Select this when consistency is always more important than performance.
 * For a middle ground, `AtPlus` is a "read your own write" (RYOW) option, which means it just waits for the documents that you specify to be indexed.
 
 [NOTE]
-AtPlus is not supported in Developer Preview 1, but will be available in the next release.
+AtPlus is not supported in Developer Preview 1 (1.0alpha), but will be available in the next release.
 
 Here's how to specify the `RequestPlus` scan consistency level:
 
