@@ -42,7 +42,7 @@ include::example$Cluster.scala[tag=imports]
 
 Now we can connect to the cluster - you'll need to provide the IP address of one of the nodes of the cluster.
 If you're developing client code on the same VM or machine as the Couchbase Server, this can be _localhost_.  
-Couchbase uses xref:6.5@server:learn/security:roles.adoc[Role Based Access Control (RBAC)] to control access to resources, so specify the username and password of a user you've setup during installation of the Couchbase Data Platform.
+Couchbase uses xref:server:learn/security:roles.adoc[Role Based Access Control (RBAC)] to control access to resources, so specify the username and password of a user you've setup during installation of the Couchbase Data Platform.
 
 
 [source,scala]
