@@ -51,7 +51,7 @@ result.rows.foreach(row => {
 def getRows() {
 // #tag::get-rows[]
 cluster.query("""select * from `travel-sample` limit 10;""")
-  // Use flatMap and toOption to output a Try[Seq[JsonObject]]
+  // Drop any rows that fail to convert
   .map(_.rows.flatMap(_.contentAs[JsonObject].toOption)) match {
   case Success(rows: Seq[JsonObject]) =>
     rows.foreach(row => println(row))
@@ -66,7 +66,6 @@ def positional() {
 val stmt = """select * from `travel-sample` where type=$1 and country=$2 limit 10;"""
 val result = cluster.query(stmt,
   QueryOptions().positionalParameters("airline", "United States"))
-  .map(_.rows.flatMap(_.contentAs[JsonObject].toOption))
 // #end::positional[]
 
   assert(cluster.query("""select * from `travel-sample` where type=$1 and country=$2 limit 10;""",
@@ -78,7 +77,6 @@ def named() {
 val stmt = """select * from `travel-sample` where type=$type and country=$country limit 10;"""
 val result = cluster.query(stmt,
   QueryOptions().namedParameters("type" -> "airline", "country" -> "United States"))
-  .map(_.rows.flatMap(_.contentAs[JsonObject].toOption))
 // #end::named[]
 
   assert(cluster.query("""select * from `travel-sample` where type=$type and country=$country limit 10;""",

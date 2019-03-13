@@ -15,12 +15,11 @@ val cluster = Cluster.connect("10.112.180.101", "username", "password")
 
 // #tag::resources[]
 val bucket     = cluster.bucket("bucket-name")
-val scope      = bucket.scope("scope-name")
-val collection = scope.collection("collection-name")
+val collection = bucket.defaultCollection
 // #end::resources[]
 
 // #tag::json[]
-val json = JsonObject.create.put("status", "awesome")
+val json = JsonObject("status" -> "awesome")
 // #end::json[]
 
 // #tag::upsert[]

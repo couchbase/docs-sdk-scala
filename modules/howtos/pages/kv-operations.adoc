@@ -3,11 +3,9 @@
 :page-topic-type: howto
 :page-aliases: document-operations.adoc
 
-WARNING: These pages cover the first _Developer Preview_ of the Couchbase Scala SDK -- 1.0 _alpha_.
+WARNING: These pages cover the first _Alpha_ of the Couchbase Scala SDK -- 1.0 _alpha_.
 As such they are likely to change without notice.
 The _alpha_ code _should not_ be used in production.
-
-The complete code sample used on this page can be downloaded from https://github.com/couchbase/docs-sdk-scala/tree/3.0dp1/modules/howtos/examples/KvOperations.scala[here].
 
 At its heart Couchbase Server is a high-performance key-value store, and the key-value interface outlined below is the fastest and best method to perform operations involving single documents.
 
@@ -36,6 +34,8 @@ The Scala SDK provides you with several options for working with JSON.
 It directly supports several popular JSON libraries: https://github.com/lihaoyi/upickle[uPickle/uJson], https://circe.github.io/circe/[Circe], https://github.com/playframework/play-json[Play Json], https://github.com/typelevel/jawn[Jawn], and https://github.com/json4s/json4s[Json4s].
 
 In addition you can supply and receive JSON as a `String` or `Array[Byte]`, opening the door to any JSON library; https://jsoniter.com/[Jsoniter] and https://github.com/FasterXML/jackson[Jackson] have been tested, but any should work.
+
+You can also directly encode and decode Scala case classes to and from the SDK.
 
 To make things easy and to help get you started, the Scala SDK also bundles a home-grown small JSON library, which you are free to use instead of or alongside any of the other supported JSON libraries.
 The philosophy behind this library is to provide a very easy-to-use API and the fastest JSON implementation possible.

@@ -5,13 +5,14 @@
 [abstract]
 The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster from the Scala language.
 
-WARNING: These pages cover the first _Developer Preview_ of the Couchbase Scala SDK -- 1.0 _alpha_.
+WARNING: These pages cover the first _Alpha_ of the Couchbase Scala SDK -- 1.0 _alpha_.
 As such they are likely to change without notice.
 The _alpha_ code _should not_ be used in production.
 
 == Installing the SDK
 
-The Couchbase Scala SDK is available on a Couchbase Maven repository:
+The Couchbase Scala SDK is available on the Couchbase Maven repository and can be included in your `build.gradle`
+like this:
 
 [source,groovy]
 ----
@@ -26,9 +27,9 @@ dependencies {
 }
 ----
 
-== Hello Couchbase
+== Connecting to a Cluster
 
-Now you have the Scala client installed, open a fresh project in your favourite IDE and try out the following to connect to a Couchbase cluster.
+Now you have the Scala client installed, try out the following to connect to a Couchbase cluster.
 
 First pull in all the imports we'll be using:
 [source,scala]
@@ -36,43 +37,48 @@ First pull in all the imports we'll be using:
 include::example$Cluster.scala[tag=imports]
 ----
 
-Now we can connect to the cluster - you'll need to provide the IP address of one of the nodes of the cluster.
-If you're developing client code on the same VM or machine as the Couchbase Server, this can be _localhost_.  
-Couchbase uses xref:6.0@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources, so specify the username and password of a user you've setup during installation of the Couchbase Data Platform.
-
+Now we can connect to the cluster:
 
 [source,scala]
 ----
 include::example$Cluster.scala[tag=cluster]
 ----
 
-You can now open bucket, scope, and collection resources.  You will need to create these using the Couchbase Admin UI first.
+Of course, you'll need to change the IP address to match your own cluster's.
+
+Couchbase uses xref:6.0@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources, so specify the username and password of a user you've setup during installation of the Couchbase Data Platform.
+
+Now we can open a Couchbase bucket, and its default collection:
 
 [source,scala]
 ----
 include::example$Cluster.scala[tag=resources]
 ----
 
-The 3.0 SDK is ready for the introduction of xref:#[Collections] in a forthcoming release of the Couchbase Data Platform.
-The latest release, Mad Hatter, brings a limited _Developer Preview_ of Collections, allowing Documents to be grouped by purpose or theme, according to specified _Scope_.
+The Scala SDK is forwards-looking to future releases of Couchbase Server which will support the new features of _scopes_ and
+_collections_. These will allow documents to be grouped in a more granular way than buckets allow.  For now, we
+will just open the 'default collection', which includes all documents in a bucket, and is forwards and backwards compatible
+with all supported versions of Couchbase Server.
 
-Now we can do some simple Key Value (KV) operations. 
-First, let's create some JSON.  
-The Scala SDK directly supports several popular JSON libraries, including https://github.com/lihaoyi/upickle[uPickle/uJson], https://circe.github.io/circe/[Circe], https://github.com/playframework/play-json[Play Json], https://github.com/typelevel/jawn[Jawn], and https://github.com/json4s/json4s[Json4s] (if you'd like to see your favourite supported, please let us know). 
-In addition you can supply JSON encoded into a `String` or `Array[Byte]`, opening the door to any JSON library; https://jsoniter.com/[Jsoniter] and https://github.com/FasterXML/jackson[Jackson] have been tested, but any should work.
+== JSON
+Now we can do some simple Key Value (KV) operations.  First, let's create some JSON.
 
-To make things easy and to help get you started, the Scala SDK also bundles a home-grown small JSON library, which you are free to use instead of or alongside any of the other supported JSON libraries. 
-The philosophy behind this library is to provide a very easy-to-use API and the fastest JSON implementation possible. 
-Everything that benchmarking found made it slower was removed, so you'll find that it's mutable, and there are no lenses or cursors or other functional goodies: for those, you can look to one of the other supported libraries, such as the excellent Circe.
+The Scala SDK directly supports several popular JSON libraries, including https://github.com/lihaoyi/upickle[uPickle/uJson], https://circe.github.io/circe/[Circe], https://github.com/playframework/play-json[Play Json], https://github.com/typelevel/jawn[Jawn], and https://github.com/json4s/json4s[Json4s] (if you'd like to see your favourite supported, please let us know).
+In addition you can supply JSON encoded into a `String` or `Array[Byte]`, opening the door to any JSON library; https://jsoniter.com/[Jsoniter] and https://github.com/FasterXML/jackson[Jackson] have been tested this way, but any should work.
 
-We can use the Scala SDK's built in JSON library, or many of the alternative JSON libraries above, to directly encode and decode Scala case classes with Couchbase. 
-But let's start simple and create some (very simple) JSON like this:
+You can also directly encode and decode Scala case classes to and from the SDK.
+
+To make things easy and to help get you started, the Scala SDK also bundles a home-grown small JSON library, which you are free to use instead of or alongside any of the other supported JSON libraries.
+The philosophy behind this library is to provide a very easy-to-use API and the fastest JSON implementation possible.
+
+Here's how to get started with it:
 
 [source,scala]
 ----
 include::example$Cluster.scala[tag=json]
 ----
 
+== Key-Value Operations
 And now let's upsert it into Couchbase (upsert is an operation that will insert the document if it does not exist, or replace it if it does).  
 We need to provide a unique ID for the JSON, and we'll use a UUID here:
 
@@ -81,6 +87,7 @@ We need to provide a unique ID for the JSON, and we'll use a UUID here:
 include::example$Cluster.scala[tag=upsert]
 ----
 
+[NOTE]
 A note on error handling: the Scala SDK will not throw exceptions. 
 Instead, methods that can error will return a Scala `Try` object, which can either be a `Success` containing the result, or a `Failure` containing a _Throwable_ exception. 
 The easiest way to handle a single operation is with pattern matching, as shown above.
@@ -94,8 +101,9 @@ include::example$Cluster.scala[tag=get]
 
 Here we're fetching the value for the key `docId`, converting that value to a `JsonObjectSafe` (a simple wrapper around `JsonObject` that returns `Try` rather than throwing exceptions), and then accessing the value of the *status* key as a String.
 
+== Better Error Handling
 All three of these operations could fail, so there's quite a lot of error handling code here to do something quite simple.
-One way to improve on this is by using flatmap, like this:
+One way to improve on this is by using flatMap, like this:
 
 [source,scala]
 ----
@@ -109,14 +117,11 @@ Alternatively, you can use a for-comprehension, like so:
 include::example$Cluster.scala[tag=get-for]
 ----
 
-// TODO FIXLINK
-KV Operations are described in detail on the xref:scala-sdk:howtos:kv-operations.adoc[KV Operations page].
-Now that you know the basics, you may wish to go straight to that page.
+== Next Steps
+You now know the basics of connecting to a Couchbase cluster, creating some JSON, and performing Key-Value operations.
 
-== Additional Resources
+Key-Value operations are described in detail xref:scala-sdk:howtos:kv-operations.adoc[here].
 
-// TODO FIXLINK
-The API reference is generated for each release and can be found xref:http://docs.couchbase.com/sdk-api/couchbase-scala-client-3.0.0dp1/[here].
+For performing operations against multiple documents, check out how to use N1QL in Scala xref:scala-sdk:howtos:n1ql-queries-with-sdk.adoc[here].
 
-Couchbase welcomes community contributions to the Scala SDK.
-The source code is available on xref:https://github.com/couchbase/couchbase-jvm-clients[GitHub].
+API reference are available in a javadocs jar alongside the release.

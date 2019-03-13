@@ -6,12 +6,12 @@
 [abstract]
 You can query for documents in Couchbase using the N1QL query language, a language based on SQL, but designed for structured and flexible JSON documents.
 
-WARNING: These pages cover the first _Developer Preview_ of the Couchbase Scala SDK -- 1.0 _alpha_.
+WARNING: These pages cover the first _Alpha_ of the Couchbase Scala SDK -- 1.0 _alpha_.
 As such they are likely to change without notice.
 The _alpha_ code _should not_ be used in production.
 
 Our query service uses N1QL, which will be fairly familiar to anyone who's used any dialect of SQL.
-xref:#_additional_resources[Further resources] for learning about N1QL are listed at the bottom of the page.
+<<Additional Resources>> for learning about N1QL are listed at the bottom of the page.
 Before you get started you may wish to checkout the xref:6.0@server:n1ql:n1ql-language-reference/index.adoc[N1QL intro page].
 
 [TIP]
@@ -36,8 +36,7 @@ Then we connect to a Couchbase cluster, as usual (of course, change the address 
 include::example$Queries.scala[tag=cluster]
 ----
 
-The examples below will use the travel-sample example bucket, which is installed by default on Couchbase Server.
-If you have an older version of Server without a default install, the travel-sample bucket can be installed through the Couchbase Admin UI in Settings -> Sample Buckets.
+The examples below will use the travel-sample example bucket.  This can be installed through the Couchbase Admin UI in Settings -> Sample Buckets.
 
 In order to be able to use query on a bucket, it must have at least a primary index created.  The easiest way to create this is
 through the Couchbase Admin UI.  Simply visit the Query tab then write this in the Query Editor and hit Execute:
@@ -55,7 +54,7 @@ Here's the basics of how to run a simple query to fetch 10 random rows from trav
 include::example$Queries.scala[tag=simple]
 ----
 
-(Note that we won't be covering the N1QL language itself in any detail here, but if you're familar with SQL you'll see it's very similar.)
+(Note that we won't be covering the N1QL language itself in any detail here, but if you're familiar with SQL you'll see it's very similar.)
 
 The Scala SDK returns `Try` rather than throwing exceptions, to allow you to handle errors in a functional way.  A `Try` can either be a `Success(QueryResult)` if the N1QL statement was successfully execute, or `Failure(Throwable)` if something went wrong.  It can be pattern matched on like this:
 
@@ -77,7 +76,6 @@ Other things contentAs can convert to are:
 
 * `io.circe.Json` from the popular Scala JSON library https://circe.github.io/circe/[Circe]
 * Similar support is included for other excellent JSON libraries: https://github.com/lihaoyi/upickle[uPickle/uJson], https://github.com/playframework/play-json[Play Json], https://github.com/typelevel/jawn[Jawn], and https://github.com/json4s/json4s[Json4s].
-// TODO fix link
 * Scala case classes.  A tiny amount of boilerplate is needed to support this: see xref:kv-operations.adoc[Key-Value Operations] for details.
 * `String`
 * `Array[Byte]`
@@ -157,7 +155,7 @@ The recommended solution is to use the reactive API.  Reactive programming is a 
 The Scala SDK exposes primitives from the https://projectreactor.io/[Project Reactor] library, most notably `Mono` and `Flux`.  We strongly recommend https://projectreactor.io/learn[learning] a little of this library first, and the following examples will assume basic familiarity with Reactor.
 
 [NOTE]
-You'll see both `reactor.core.scala.publisher` and `reactor.core.publisher` imports available for Reactor.  Use the former, it is the Scala-optimized variant.
+You'll see both `reactor.core.scala.publisher` and `reactor.core.publisher` imports available for Reactor.  Use the former, it is the Scala-optimized variant that the Scala SDK will return.
 
 Here's how to perform a query and stream the results using the reactive API:
 
