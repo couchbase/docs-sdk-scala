@@ -27,6 +27,27 @@ dependencies {
 }
 ----
 
+Or into your Maven pom.xml:
+
+[source,xml]
+----
+<repositories>
+    <repository>
+      <id>couchbase</id>
+      <name>Couchbase Preview Repository</name>
+      <url>http://files.couchbase.com/maven2</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.couchbase.client</groupId>
+        <artifactId>scala-client_2.12</artifactId>
+        <version>1.0.0-alpha.1</version>
+    </dependency>
+</dependencies>
+---
+
 == Connecting to a Cluster
 
 Now you have the Scala client installed, try out the following to connect to a Couchbase cluster.
