@@ -1,10 +1,8 @@
 // #tag::imports[]
 import com.couchbase.client.scala._
-import com.couchbase.client.scala.codec.Conversions.Codec
-import com.couchbase.client.scala.implicits.Codecs
 import com.couchbase.client.scala.json._
-import com.couchbase.client.scala.query.{QueryOptions, QueryResult, ReactiveQueryResult, ScanConsistency}
-import reactor.core.scala.publisher.{Flux, Mono}
+import com.couchbase.client.scala.query._
+import reactor.core.scala.publisher._
 
 import scala.concurrent.Future
 import scala.util.{Failure, Success, Try}
@@ -16,6 +14,7 @@ object Queries {
 
 // #tag::cluster[]
 val cluster = Cluster.connect("localhost", "username", "password")
+val bucket = cluster.bucket("travel-sample")
 // #end::cluster[]
 
 def simple() {

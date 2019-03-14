@@ -1,0 +1,25 @@
+// Required attributes:
+// :lang: Java
+// :version: 3.0.0 alpha
+// :example-source: 3.0@java-sdk:howtos:example$Queries.java
+// :example-source-lang: java
+== Placeholder and Named Arguments
+Placeholders allow you to specify variable constraints for a query.
+
+There are two variants of placeholders: positional and named parameters.  Both are used as placeholders for values in the WHERE, LIMIT or OFFSET clause of a query.
+
+Positional parameters use an ordinal placeholder for substitution and can be used like this:
+
+[source,{example-source-lang}]
+----
+include::{example-source}[tag=positional]
+----
+
+Whereas named parameters can be used like this:
+
+[source,{example-source-lang}]
+----
+include::{example-source}[tag=named]
+----
+
+

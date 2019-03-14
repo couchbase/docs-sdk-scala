@@ -1,0 +1,29 @@
+// Required attributes:
+// :lang: Java
+// :version: 3.0.0 alpha
+// :example-source: 3.0@java-sdk:howtos:example$Queries.java
+// :example-source-lang: java
+== Getting Started
+Let's get started by pulling in all the imports needed in the examples below:
+
+[source,{example-source-lang}]
+----
+include::{example-source}[tag=imports]
+----
+
+Then we connect to a Couchbase cluster, as usual (of course, change the address and credentials to match your own cluster's):
+
+[source,{example-source-lang}]
+----
+include::{example-source}[tag=cluster]
+----
+
+The examples below will use the travel-sample example bucket.  This can be installed through the Couchbase Admin UI in Settings -> Sample Buckets.
+
+In order to be able to use query on a bucket, it must have at least a primary index created.  The easiest way to create this is
+through the Couchbase Admin UI.  Simply visit the Query tab then write this in the Query Editor and hit Execute:
+
+[source,n1ql]
+----
+CREATE PRIMARY INDEX ON `travel-sample`
+----

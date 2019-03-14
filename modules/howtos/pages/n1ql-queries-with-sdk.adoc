@@ -2,49 +2,13 @@
 :navtitle: N1QL from the SDK
 :page-topic-type: howto
 :page-aliases: n1ql-query
+:lang: Scala
+:version: 1.0.0 alpha
+:example-source: 1.0@scala-sdk:howtos:example$Queries.scala
+:example-source-lang: scala
 
-[abstract]
-You can query for documents in Couchbase using the N1QL query language, a language based on SQL, but designed for structured and flexible JSON documents.
-
-WARNING: These pages cover the first _Alpha_ of the Couchbase Scala SDK -- 1.0 _alpha_.
-As such they are likely to change without notice.
-The _alpha_ code _should not_ be used in production.
-
-Our query service uses N1QL, which will be fairly familiar to anyone who's used any dialect of SQL.
-<<Additional Resources>> for learning about N1QL are listed at the bottom of the page.
-Before you get started you may wish to checkout the xref:6.0@server:n1ql:n1ql-language-reference/index.adoc[N1QL intro page].
-
-[TIP]
-.N1QL Compared to Key-Value
-====
-N1QL is excellent for performing queries against multiple documents, but if you only need to access or mutate a single document and you know its unique ID, it will be
-much more efficient to use the Key-Value API.  We strongly recommend using both APIs to create a flexible, performant application.
-====
-
-== Getting Started
-Let's get started by pulling in all the imports needed in the examples below:
-
-[source,scala]
-----
-include::example$Queries.scala[tag=imports]
-----
-
-Then we connect to a Couchbase cluster, as usual (of course, change the address and credentials to match your own cluster's):
-
-[source,scala]
-----
-include::example$Queries.scala[tag=cluster]
-----
-
-The examples below will use the travel-sample example bucket.  This can be installed through the Couchbase Admin UI in Settings -> Sample Buckets.
-
-In order to be able to use query on a bucket, it must have at least a primary index created.  The easiest way to create this is
-through the Couchbase Admin UI.  Simply visit the Query tab then write this in the Query Editor and hit Execute:
-
-[source,n1ql]
-----
-CREATE PRIMARY INDEX ON `travel-sample`
-----
+include::1.0@scala-sdk:howtos:partial$n1ql-intro.adoc[]
+include::1.0@scala-sdk:howtos:partial$n1ql-getting-started.adoc[]
 
 == A Simple Query
 Here's the basics of how to run a simple query to fetch 10 random rows from travel-sample and print the results:
@@ -93,46 +57,8 @@ Most of the examples here use the simplest of the three APIs provided by the Sca
 streaming reactive API, for which we'll see an example later.
 =====
 
-== Placeholder and Named Arguments
-Placeholders allow you to specify variable constraints for a query.
-
-There are two variants of placeholders: positional and named parameters.  Both are used as placeholders for values in the WHERE, LIMIT or OFFSET clause of a query.
-
-Positional parameters use an ordinal placeholder for substitution and can be used like this:
-
-[source,scala]
-----
-include::example$Queries.scala[tag=positional]
-----
-
-Whereas named parameters can be used like this:
-
-[source,scala]
-----
-include::example$Queries.scala[tag=named]
-----
-
-(In both examples, the result should be handled as above.)
-
-== Scan Consistency
-Queries take an optional `scanConsistency` parameter that enables a tradeoff between latency and (eventual) consistency.
-
-* A N1QL query using the default `NotBounded` scan consistency will not wait for any indexes to finish updating before running the query and returning results, meaning that results are returned quickly, but the query will not return any documents that are yet to be indexed.
-
-* With scan consistency set to `RequestPlus`, all outstanding document changes and index updates are processed before the query is run.
-Select this when consistency is always more important than performance.
-
-* For a middle ground, `AtPlus` is a "read your own write" (RYOW) option, which means it just waits for the documents that you specify to be indexed.
-
-[NOTE]
-AtPlus is not supported in Developer Preview 1 (1.0alpha), but will be available in the next release.
-
-Here's how to specify the `RequestPlus` scan consistency level:
-
-[source,scala]
-----
-include::example$Queries.scala[tag=request-plus]
-----
+include::1.0@scala-sdk:howtos:partial$n1ql-placeholders.adoc[]
+include::1.0@scala-sdk:howtos:partial$n1ql-scan-consistency.adoc[]
 
 == Streaming Large Result Sets
 As mentioned earlier, the Scala SDK provides three SDKs:
@@ -164,5 +90,4 @@ Here's how to perform a query and stream the results using the reactive API:
 include::example$Queries.scala[tag=reactive]
 ----
 
-== Additional Resources
-The http://query.pub.couchbase.com/tutorial/#1[N1QL interactive tutorial] is a good introduction to the basics of N1QL use.
+include::1.0@scala-sdk:howtos:partial$n1ql-additional-resources.adoc[]

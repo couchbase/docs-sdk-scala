@@ -1,0 +1,24 @@
+// Required attributes:
+// :lang: Java
+// :version: 3.0.0 alpha
+// :example-source: 3.0@java-sdk:howtos:example$Queries.java
+// :example-source-lang: java
+== Scan Consistency
+Queries take an optional `scanConsistency` parameter that enables a tradeoff between latency and (eventual) consistency.
+
+* A N1QL query using the default `NotBounded` scan consistency will not wait for any indexes to finish updating before running the query and returning results, meaning that results are returned quickly, but the query will not return any documents that are yet to be indexed.
+
+* With scan consistency set to `RequestPlus`, all outstanding document changes and index updates are processed before the query is run.
+Select this when consistency is always more important than performance.
+
+* For a middle ground, `AtPlus` is a "read your own write" (RYOW) option, which means it just waits for the documents that you specify to be indexed.
+
+[NOTE]
+AtPlus is not supported in this initial alpha release, but will be available in the next release.
+
+Here's how to specify the `RequestPlus` scan consistency level:
+
+[source,{example-source-lang}]
+----
+include::{example-source}[tag=request-plus]
+----
