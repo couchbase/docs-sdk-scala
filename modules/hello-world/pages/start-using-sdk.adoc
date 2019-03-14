@@ -46,7 +46,7 @@ Or into your Maven pom.xml:
         <version>1.0.0-alpha.1</version>
     </dependency>
 </dependencies>
----
+----
 
 == Connecting to a Cluster
 
