@@ -4,6 +4,7 @@
 
 .Working with Data
 * xref:howtos:kv-operations.adoc[Key Value Operations]
+// * xref:howtos:json-libraries.adoc[Choosing & Using JSON Libraries]
 // * xref:howtos:subdocument-operations.adoc[Sub-Document Operations]
 //  ** xref:howtos:sdk-xattr-example.adoc[Extended Attributes]
 * xref:howtos:n1ql-queries-with-sdk.adoc[N1QL from the SDK]
@@ -33,6 +34,7 @@
 ////
 * xref:project-docs:relnotes-scala-sdk.adoc[Release Notes]
 * xref:project-docs:compatibility-versions-features.adoc[Compatibility]
+// *xref:project-docs:integrations.adoc[Integrations]]
  ** xref:project-docs:migrating-sdk-code-to-3.n.adoc[Migrating to SDK 3 API]
 ////
 * xref:project-docs:sdk-licenses.adoc[Licenses]
