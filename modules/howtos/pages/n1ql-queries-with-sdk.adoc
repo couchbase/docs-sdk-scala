@@ -60,6 +60,24 @@ streaming reactive API, for which we'll see an example later.
 include::1.0@scala-sdk:howtos:partial$n1ql-placeholders.adoc[]
 include::1.0@scala-sdk:howtos:partial$n1ql-scan-consistency.adoc[]
 
+== Returning Results as Case Classes
+The Scala SDK supports returning N1QL results directly as a Scala case class.
+
+A small amount of boilerplate is required to tell the SDK how to convert your case class to/from JSON.  There are more details
+available on the xref:kv-operations.adoc[Key-Value Operations] page, but the short version is to add a `Codec` in the case class's companion object like this:
+
+[source,scala]
+----
+include::example$Queries.scala[tag=codec]
+----
+
+Now you're free to pull out the results directly as your case class:
+
+[source,scala]
+----
+include::example$Queries.scala[tag=case-classes]
+----
+
 == Streaming Large Result Sets
 As mentioned earlier, the Scala SDK provides three SDKs:
 

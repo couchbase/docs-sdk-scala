@@ -49,6 +49,14 @@ Or into your Maven pom.xml:
 </dependencies>
 ----
 
+Or for SBT:
+
+[source,sbt]
+----
+resolvers += "Couchbase Snapshots" at "http://files.couchbase.com/maven2"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.0-alpha.1"
+----
+
 == Connecting to a Cluster
 
 Now you have the Scala client installed, try out the following to connect to a Couchbase cluster.

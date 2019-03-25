@@ -1,5 +1,7 @@
 // #tag::imports[]
 import com.couchbase.client.scala._
+import com.couchbase.client.scala.codec.Conversions.Codec
+import com.couchbase.client.scala.implicits.Codecs
 import com.couchbase.client.scala.json._
 import com.couchbase.client.scala.query._
 import reactor.core.scala.publisher._
@@ -58,6 +60,33 @@ cluster.query("""select * from `travel-sample` limit 10;""")
     println(s"Error: $err")
 }
 // #end::get-rows[]
+}
+
+def caseClasses() {
+// #tag::codec[]
+case class Address(line1: String)
+case class User(name: String, age: Int, addresses: Seq[Address])
+object User {
+  implicit val codec: Codec[User] = Codecs.codec[User]
+}
+// #end::codec[]
+
+// #tag::case-classes[]
+
+val statement = """select * from `travel-sample` limit 10;"""
+
+val rows: Try[Seq[User]] = cluster.query(statement)
+  .map(result => result
+    .rows.flatMap(row =>
+      row.contentAs[User].toOption))
+
+rows match {
+  case Success(rows: Seq[User]) =>
+    rows.foreach(row => println(row))
+  case Failure(err) =>
+    println(s"Error: $err")
+}
+// #end::case-classes[]
 }
 
 def positional() {
