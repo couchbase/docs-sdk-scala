@@ -1,0 +1,8 @@
+= Couchbase Scala SDK Release Notes and Archives
+:navtitle: Release Notes
+:page-topic-type: project-doc
+:page-aliases: relnotes-scala-sdk
+
+== Installation
+
+== Version 1.0.0-alpha2 (date)
