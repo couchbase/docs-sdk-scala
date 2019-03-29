@@ -2,7 +2,7 @@ name: scala-sdk
 version: '1.0'
 prerelease: ALPHA
 title: Scala SDK
-start_page: hello-world:start-using-sdk.adoc
+start_page: start-using-sdk.adoc
 nav:
 - modules/ROOT/nav.adoc
 server_version: '6.5'
