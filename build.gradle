@@ -26,7 +26,8 @@ sourceSets {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
 
-    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.0-alpha.1'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.0-alpha.2'
+    compile group: 'com.couchbase.client', name: 'java-client', version: '3.0.0-alpha.2'
 }

@@ -5,4 +5,55 @@
 
 == Installation
 
-== Version 1.0.0-alpha2 (date)
+The Couchbase Scala SDK is available on the Couchbase Maven repository and can be included in your `build.gradle`
+like this:
+
+[source,groovy]
+----
+repositories {
+    maven {
+        url 'http://files.couchbase.com/maven2'
+    }
+}
+
+dependencies {
+    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.0-alpha.2'
+}
+----
+
+Or into your Maven pom.xml:
+
+[source,xml]
+----
+<repositories>
+    <repository>
+      <id>couchbase</id>
+      <name>Couchbase Preview Repository</name>
+      <url>http://files.couchbase.com/maven2</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.couchbase.client</groupId>
+        <artifactId>scala-client_2.12</artifactId>
+        <version>1.0.0-alpha.2</version>
+    </dependency>
+</dependencies>
+----
+
+Or for SBT:
+
+[source,sbt]
+----
+resolvers += "Couchbase Snapshots" at "http://files.couchbase.com/maven2"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.0-alpha.2"
+----
+
+== Version 1.0.0-alpha2 (4th April 2019)
+
+- SCBC-5, SCBC-6, SCBC-14: Significant updates for the subdoc API
+- SCBC-8:  Get ops in the reactive API now return Mono<Optional>
+- SCBC-16: Added support for View queries
+- SCBC-14: Added support for Analytics queries
+
