@@ -6,4 +6,4 @@ Install Antora 2, then:
 
 ```antora staging-antora-playbook.yml```
 
-The generated HTML is written to `public`.ublis
+The generated HTML is written to `public`.
