@@ -14,7 +14,7 @@ A document has an ID (_primary key_ in other databases), which is unique to the 
 The document also has a value which contains the actual application data.
 See xref:concept-docs:documents.adoc[the concept guide to _Documents_] for a deeper dive into documents in the Couchbase Data Platform.
 
-Before proceeding, make sure you're familiar with the basics of authorization and connecting to a Cluster from the xref::start-using-sdk.adoc[Start Using the SDK] section.
+Before proceeding, make sure you're familiar with the basics of authorization and connecting to a Cluster from the xref:1.0@scala-sdk::start-using-sdk.adoc[Start Using the SDK] section.
 
 The code samples below will use these imports:
 
