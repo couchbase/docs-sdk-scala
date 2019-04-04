@@ -52,8 +52,16 @@ libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.0-alpha.2
 
 == Version 1.0.0-alpha2 (4th April 2019)
 
-- SCBC-5, SCBC-6, SCBC-14: Significant updates for the subdoc API
-- SCBC-8:  Get ops in the reactive API now return Mono<Optional>
-- SCBC-16: Added support for View queries
-- SCBC-14: Added support for Analytics queries
+This is the second pre-release of the new Couchbase Scala SDK.
+
+=== New Features & Enhancements
+
+* https://issues.couchbase.com/browse/SCBC-5[SCBC-5], https://issues.couchbase.com/browse/SCBC-6[SCBC-6]: 
+Significant updates for the subdoc API
+* https://issues.couchbase.com/browse/SCBC-8[SCBC-8]: 
+Get ops in the reactive API now return Mono<Optional>
+* https://issues.couchbase.com/browse/SCBC-16[SCBC-16]: 
+Added support for View queries
+* https://issues.couchbase.com/browse/SCBC-14[SCBC-14]: 
+Added support for Analytics queries
 
