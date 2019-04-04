@@ -5,4 +5,10 @@
 
 == Installation
 
-== Version 1.0.0-alpha2 (date)
+== Version 1.0.0-alpha2 (4th April 2019)
+
+- SCBC-5, SCBC-6, SCBC-14: Significant updates for the subdoc API
+- SCBC-8:  Get ops in the reactive API now return Mono<Optional>
+- SCBC-16: Added support for View queries
+- SCBC-14: Added support for Analytics queries
+
