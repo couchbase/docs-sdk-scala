@@ -6,4 +6,3 @@ start_page: start-using-sdk.adoc
 nav:
 - modules/ROOT/nav.adoc
 server_version: '6.5'
-
