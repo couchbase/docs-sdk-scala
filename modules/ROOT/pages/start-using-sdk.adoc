@@ -129,7 +129,7 @@ Now let's get the data back (this example will look a little messy, but we'll se
 include::example$Cluster.scala[tag=get]
 ----
 
-Here we're fetching the value for the key `docId`, converting that value to a `JsonObjectSafe` (a simple wrapper around `JsonObject` that returns `Try` rather than throwing exceptions - see xref:howtos:json.adoc#error-handling[here] for details), and then accessing the value of the *status* key as a String.
+Here we're fetching the value for the key `docId`, converting that value to a `JsonObjectSafe` (a simple wrapper around `JsonObject` that returns `Try` rather than throwing exceptions - see xref:howtos:json.adoc#error-handling-and-jsonobjectsafe[here] for details), and then accessing the value of the *status* key as a String.
 
 == Better Error Handling
 All three of these operations could fail, so there's quite a lot of error handling code here to do something quite simple.

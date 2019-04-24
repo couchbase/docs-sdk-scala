@@ -62,10 +62,13 @@ include::example$JSON.scala[tag=upickle,indent=0]
 The SDK includes a built-in JSON library, JsonObject.  Its main goals are:
 
 * Convenience.  Not everyone wants to evaluate multiple JSON libraries before getting started.  JsonObject is a decent default choice.
-* Speed.  Our internal benchmarking indicates JsonObject is 20-30 times faster than the nearest Scala JSON library on some operations.  It achieves this mostly by being built around simple, but very fast, mutable JVM data structures.
-* Ease-of-use.   We find ourselves in agreement with http://www.lihaoyi.com/post/uJsonfastflexibleandintuitiveJSONforScala.html[the author of µJson] that immutability provides a lot of complexity for dealing with deeply nested JSON, for very little gain, as JSON is most often dealt with in a limited scope (e.g. getting and modifying a document).
+* Speed.  Our internal benchmarking indicates JsonObject is up to 20 times faster than the nearest Scala JSON library on some important operations.  It achieves this mostly by being built around simple, but very fast, mutable JVM data structures.  Unlike the rest of the SDK it also throws exceptions rather than incur the small cost of functional-style error handling (e.g. `Try`) - though there is an optional alternative <<error-handling-and-jsonobjectsafe,`JsonObjectSafe`>> interface that does provide `Try`.
+* Ease-of-use and mutability.   We find ourselves in agreement with http://www.lihaoyi.com/post/uJsonfastflexibleandintuitiveJSONforScala.html[the author of µJson] that though
+ immutability is usually desirable, it's actually not always the best choice for JSON.  Dealing with deeply nested JSON requires
+ functional tools such as lenses which are rarely easy to read, not to mention incurring a performance penalty.  And JSON is most often dealt with briefly and
+ in a limited scope (e.g. getting and modifying a document), so rarely benefits from the safety of immutability.  So JsonObject presents a simple mutable API.
 
-Of course, if you'd rather have an immutable JSON library with immutable
+Of course, if you'd rather have a JSON library with immutable
 data, lenses, cursors and other functional goodies, then one of the other options on this page may be a better choice.
 
 === Creating
@@ -100,15 +103,15 @@ include::example$JSON.scala[tag=json3,indent=0]
 
 === Using with Key-Value Operations
 
-As with the other supported JSON libraries, JsonObject (and JsonArray) can easily be
+As with the other supported JSON libraries, JsonObject (and JsonArray) can easily be used directly with any SDK operation:
 
 [source,scala]
 ----
 include::example$JSON.scala[tag=jsonObject,indent=0]
 ----
 
-=== Error Handling
-The majority of the Scala SDK will not throw exceptions.  Methods on `JsonObject` are, well, an exception to this general rule.  If a field does not exist a `NoSuchElementException` will be thrown.
+=== Error Handling and JsonObjectSafe
+The majority of the Scala SDK will not throw exceptions.  Methods on `JsonObject` are, well, an exception to this general rule.  If a requested field does not exist a `NoSuchElementException` will be thrown.
 
 If you'd rather not deal with exceptions, `JsonObject` comes with a counterpart `JsonObjectSafe` that provides an alternative interface in which all methods return Scala `Try` rather than throwing:
 
@@ -126,7 +129,7 @@ If you're walking through JSON it can be useful to use flatMap or for-comprehens
 include::example$JSON.scala[tag=json5,indent=0]
 ----
 
-or use the support for `Dynamic`:
+or use the support for `Dynamic` to combine brevity with safety:
 
 [source,scala]
 ----
@@ -136,7 +139,7 @@ include::example$JSON.scala[tag=json6,indent=0]
 Note that `JsonObjectSafe`, though presenting a more functional interface, is still mutable.
 
 == Case Classes
-It can be very useful to deal directly with Scala case classes, that is to send and retrieve them directly, and the Scala SDK includes built-in support for this.
+It can be very useful to deal directly with Scala case classes, that is to send and retrieve them directly rather than via some interim type, and the Scala SDK includes built-in support for this.
 
 It's necessary to write a small amount of boilerplate code first.  If you try and insert a case class directly, you'll get an error.  E.g. this won't work:
 
@@ -175,12 +178,7 @@ include::example$KvOperations.scala[tag=cc-get]
 
 [NOTE]
 ====
-There are other ways to handle case classes.  Most of the previously mentioned supported JSON libraries have a method to encode and decode case classes, and these can be used with the Scala SDK.
-
-For example, you could use `asJson` from the library https://circe.github.io/circe/[Circe] to convert the User into Circe's JSON representation.  The Scala SDK has an `Encodable[io.circe.Json]` built-in for this, so it will work.  Similar
-`Encodable` exist for the other supported JSON libraries.
-
-Or you could use https://github.com/plokhotnyuk/jsoniter-scala[Jsoniter] or a similar library to convert the User into an `Array[Byte]` or `String`, and provide that.  An `Encodable` also exists for these.
+There are other ways to handle case classes.  Many of the supported JSON libraries have some method to encode and decode case classes into an interim type, as in the <<circe,Circe example>>.
 ====
 
 == Json4s

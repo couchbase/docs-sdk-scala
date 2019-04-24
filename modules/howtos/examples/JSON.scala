@@ -161,11 +161,11 @@ object JSON {
       "addresses" -> JsonArray(JsonObject("address" -> "29 Acacia Road")))
 
     val result: Try[JsonObject] = for {
-      // Can provide upickle types for all mutation operations
+      // Can provide JsonObject for all mutation operations
       _       <- collection.insert("id", json)
       doc     <- collection.get("id")
 
-      // Can retrieve document content as Circe types
+      // Can retrieve document content as JsonOject (and JsonObjectSafe)
       content <- doc.contentAs[JsonObject]
     } yield content
     // #end::jsonObject[]
