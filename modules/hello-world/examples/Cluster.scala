@@ -4,7 +4,7 @@ import java.util.UUID
 import com.couchbase.client.scala.Cluster
 import com.couchbase.client.scala.json.{JsonObject, JsonObjectSafe}
 
-import scala.util.{Failure, Success}
+import scala.util.{Failure, Success, Try}
 // #end::imports[]
 
 object ClusterExample {
@@ -50,24 +50,32 @@ collection.get(docId) match {
 }
 // #end::get[]
 
+def getFor() {
 // #tag::get-for[]
-(for {
+val status: Try[String] = for {
   result <- collection.get(docId)
   json   <- result.contentAs[JsonObjectSafe]
   status <- json.str("status")
-} yield status) match {
-  case Success(status) => println(s"Couchbase is $status")
+} yield status
+
+status match {
+  case Success(stat)   => println(s"Couchbase is $stat")
   case Failure(err)    => println("Error: " + err)
 }
 // #end::get-for[]
+}
 
+def getMap() {
 // #tag::get-map[]
-collection.get(docId)
+val status: Try[String] = collection.get(docId)
   .flatMap(_.contentAs[JsonObjectSafe])
-  .flatMap(_.str("status")) match {
-  case Success(status) => println(s"Couchbase is $status")
+  .flatMap(_.str("status"))
+
+status match {
+  case Success(stat)   => println(s"Couchbase is $stat")
   case Failure(err)    => println("Error: " + err)
 }
 // #end::get-map[]
+}
 }
 }
