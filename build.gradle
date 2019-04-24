@@ -30,4 +30,16 @@ dependencies {
 
     compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.0-alpha.2'
     compile group: 'com.couchbase.client', name: 'java-client', version: '3.0.0-alpha.2'
+
+    compile 'io.circe:circe-core_2.12:0.10.0'
+    compile 'io.circe:circe-generic_2.12:0.10.0'
+    compile 'io.circe:circe-parser_2.12:0.10.0'
+    compile 'org.scalamacros:paradise_2.12.7:2.1.1'
+    compile 'com.github.plokhotnyuk.jsoniter-scala:jsoniter-scala-core_2.12:0.39.0'
+    compile 'com.github.plokhotnyuk.jsoniter-scala:jsoniter-scala-macros_2.12:0.39.0'
+    compile 'com.lihaoyi:upickle_2.12:0.7.1'
+    compile 'com.typesafe.play:play-json_2.12:2.6.7'
+    compile 'org.json4s:json4s-native_2.12:3.6.4'
+    compile 'org.json4s:json4s-jackson_2.12:3.6.4'
+    compile 'org.typelevel:jawn-ast_2.12:0.14.0'
 }
