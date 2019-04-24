@@ -1,4 +1,4 @@
-= Choosing & Using JSON with the Scala SDK
+= Choosing & Using a JSON Library
 :navtitle: JSON Libraries
 :page-topic-type: howto
 :lang: Scala
