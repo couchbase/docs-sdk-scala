@@ -29,9 +29,9 @@ N1QL can also be used to perform many single-document operations but we very str
 == JSON
 The Couchbase Server is a key-value store that's agnostic to what's stored, but it's very common to store JSON so most of the examples below will focus on that use-case.
 
-The Scala SDK provides you with several options for working with JSON.
+The Scala SDK provides you with several options for working with JSON.  They are described in more detail in xref:json.adoc[this guide], and the information below is just a summary of that.
 
-It directly supports several popular JSON libraries: https://github.com/lihaoyi/upickle[uPickle/uJson], https://circe.github.io/circe/[Circe], https://github.com/playframework/play-json[Play Json], https://github.com/typelevel/jawn[Jawn], and https://github.com/json4s/json4s[Json4s].
+The SDK directly supports several popular JSON libraries: https://github.com/lihaoyi/upickle[uPickle/uJson], https://circe.github.io/circe/[Circe], https://github.com/playframework/play-json[Play Json], https://github.com/typelevel/jawn[Jawn], and https://github.com/json4s/json4s[Json4s].
 
 In addition you can supply and receive JSON as a `String` or `Array[Byte]`, opening the door to any JSON library; https://jsoniter.com/[Jsoniter] and https://github.com/FasterXML/jackson[Jackson] have been tested, but any should work.
 
@@ -223,57 +223,7 @@ As an optimization the application may consider using the xref:subdocument-opera
 == Case Classes
 So far we've used JSON directly with `JsonObject` and `JsonObjectSafe`, but it can be very useful to deal with Scala case classes instead.
 
-Let's start by creating a couple of simple case classes:
-
-[source,scala]
-----
-include::example$KvOperations.scala[tag=cc-create]
-----
-
-If we try and insert this case class directly, we'll get an error, e.g. this won't work:
-
-[source,scala]
-----
-include::example$KvOperations.scala[tag=cc-fails]
-----
-
-This is because the Scala SDK does not currently know how to convert a `User` into JSON it can send to the server.
-
-More technically, methods like `insert` that take content of type `T` also take an implicit `Encodable[T]`, which defines how to turn `T` into JSON.  If the Scala compiler cannot find a suitable `Encodable[T]`, then it will report an error.
-
-So, let's provide an `Encodable[User]`.  It's not complicated to create one manually, but the Scala SDK includes a convenient shortcut:
-
-[source,scala]
-----
-include::example$KvOperations.scala[tag=cc-codec]
-----
-
-(As this is a companion object for User, it needs to go in the same file as the `User` case class you added earlier.)
-
-This short line of boilerplate uses Scala macros to, at compile time, provide an `Encodable[User]`.  Note that we don't need one for `Address` too - only the top-level case classes you're dealing with need a `Codec`.
-
-Now we can pass a `User` directly to `insert`, and it will work fine.  The Scala compiler will look for an `Encodable[User]` in a number of places, and find it in the `User` companion object.
-
-Since the encoding logic is generated at compile time it can also be extremely fast - no reflection is used.
-
-The generated JSON will be as you expect, with "name" and "age" fields, and an "addresses" array.
-
-The same `Codec` also generates a `Decodable[User]` which can be used to pull data out as our case class, using `contentAs`:
-
-[source,scala]
-----
-include::example$KvOperations.scala[tag=cc-get]
-----
-
-[NOTE]
-====
-There are other ways to handle case classes.  Most of the previously mentioned supported JSON libraries have a method to encode and decode case classes, and these can be used with the Scala SDK.
-
-For example, you could use `asJson` from the library https://circe.github.io/circe/[Circe] to convert the User into Circe's JSON representation.  The Scala SDK has an `Encodable[io.circe.Json]` built-in for this, so it will work.  Similar
-`Encodable` exist for the other supported JSON libraries.
-
-Or you could use https://github.com/plokhotnyuk/jsoniter-scala[Jsoniter] or a similar library to convert the User into an `Array[Byte]` or `String`, and provide that.  An `Encodable` also exists for these.
-====
+See xref:json.adoc#case-classes[this guide] for details.
 
 == Durability
 Writes in Couchbase are written to a single node, and from there the Couchbase Server will take care of sending that mutation to any configured replicas.

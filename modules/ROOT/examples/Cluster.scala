@@ -51,20 +51,24 @@ collection.get(docId) match {
 // #end::get[]
 
 // #tag::get-for[]
-(for {
+val result: Try[String] = for {
   result <- collection.get(docId)
   json   <- result.contentAs[JsonObjectSafe]
   status <- json.str("status")
-} yield status) match {
+} yield status
+
+result match {
   case Success(status) => println(s"Couchbase is $status")
   case Failure(err)    => println("Error: " + err)
 }
 // #end::get-for[]
 
 // #tag::get-map[]
-collection.get(docId)
+val result: Try[String] = collection.get(docId)
   .flatMap(_.contentAs[JsonObjectSafe])
-  .flatMap(_.str("status")) match {
+  .flatMap(_.str("status"))
+
+result match {
   case Success(status) => println(s"Couchbase is $status")
   case Failure(err)    => println("Error: " + err)
 }
