@@ -42,8 +42,27 @@ Here's an example of how to use Circe with Couchbase:
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=circe,indent=0]
+include::example$JSON.scala[tag=circe2,indent=0]
 ----
+
+That works but it's very verbose to handle all those `Try` one-by-one.  Here's an example of how to do the same thing, but
+chaining all the `Try` together using `flatMap`:
+
+[source,scala]
+----
+include::example$JSON.scala[tag=circe3,indent=0]
+----
+
+And finally the same thing again, but this time using a for-comprehension:
+
+[source,scala]
+----
+include::example$JSON.scala[tag=circe1,indent=0]
+----
+
+If for-comprehensions are unfamiliar then they're essentially syntactic sugar, with each of the `<-` being a `flatMap` call.
+
+The following examples will use the for-comprehension style, for brevity.
 
 == µPickle / µJson
 http://www.lihaoyi.com/upickle/[µPickle] is a serialization library with its own JSON library, µJson.

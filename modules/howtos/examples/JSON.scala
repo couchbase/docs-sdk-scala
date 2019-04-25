@@ -1,6 +1,7 @@
 // #tag::imports[]
 import com.couchbase.client.core.error.subdoc.PathExistsException
 import com.couchbase.client.scala._
+import com.couchbase.client.scala.api.MutationResult
 import com.couchbase.client.scala.codec.Conversions.Codec
 import com.couchbase.client.scala.implicits.Codecs
 import com.couchbase.client.scala.json._
@@ -34,27 +35,72 @@ object JSON {
   }
 
 
-  def circe(): Unit = {
+  def circe1(): Unit = {
     case class Address(address: String)
     case class User(name: String, age: Int, addresses: Seq[Address])
 
     val user = User("John Smith", 29, List(Address("123 Fake Street")))
 
-    // #tag::circe[]
+    // #tag::circe1[]
+    import io.circe._, io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
+
+    val json: io.circe.Json = user.asJson
+
+    val result: Try[io.circe.Json] = for {
+      _       <- collection.insert("id", json)
+      doc     <- collection.get("id")
+      content <- doc.contentAs[io.circe.Json]
+    } yield content
+    // #end::circe1[]
+  }
+
+  def circe3(): Unit = {
+    case class Address(address: String)
+    case class User(name: String, age: Int, addresses: Seq[Address])
+
+    val user = User("John Smith", 29, List(Address("123 Fake Street")))
+
+    // #tag::circe3[]
+    import io.circe._, io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
+
+    val json: io.circe.Json = user.asJson
+
+    val result: Try[io.circe.Json] = collection.insert("id", json)
+        .flatMap(_ => collection.get("id"))
+        .flatMap(doc => doc.contentAs[io.circe.Json])
+    // #end::circe3[]
+  }
+
+  def circe2(): Unit = {
+    case class Address(address: String)
+    case class User(name: String, age: Int, addresses: Seq[Address])
+
+    val user = User("John Smith", 29, List(Address("123 Fake Street")))
+
+    // #tag::circe2[]
     import io.circe._, io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
 
     // Circe can encode case classes directly to its `Json` type, with no codec code required
     val json: io.circe.Json = user.asJson
 
-    val result: Try[io.circe.Json] = for {
-      // Can provide Circe types for all mutation operations
-      _       <- collection.insert("id", json)
-      doc     <- collection.get("id")
+    // Can provide Circe types for all mutation operations
+    val result1: Try[MutationResult] = collection.insert("id", json)
 
-      // Can retrieve document content as Circe types
-      content <- doc.contentAs[io.circe.Json]
-    } yield content
-    // #end::circe[]
+    result1 match {
+      case Success(_) =>
+        val result2: Try[GetResult] = collection.get("id")
+
+        result2 match {
+          case Success(doc) =>
+            // Can retrieve document content as Circe types
+            val content: Try[io.circe.Json] = doc.contentAs[io.circe.Json]
+
+          case Failure(err) => println(s"Error: ${err}")
+        }
+
+      case Failure(err) => println(s"Error: ${err}")
+    }
+    // #end::circe2[]
   }
 
   def upickle(): Unit = {
@@ -235,11 +281,6 @@ object JSON {
       doc   <- collection.get("document-key")
       user  <- doc.contentAs[User]
     } yield user
-
-    r match {
-      case Success(user: User) => println(s"User: ${user}")
-      case Failure(err)        => println("Error: " + err)
-    }
     // #end::cc-get[]
 
   }
