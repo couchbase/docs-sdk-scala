@@ -57,6 +57,27 @@ resolvers += "Couchbase Snapshots" at "http://files.couchbase.com/maven2"
 libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.0-alpha.2"
 ----
 
+== Scala 2.11 Support
+NOTE: The last release of Scala 2.11 was in November 2017, and users are strongly recommended to use Scala 2.12.
+
+There is a Scala 2.11 build of the Couchbase SDK, but due to technical limitations between 2.11 and the optional dependencies
+used by the SDK, the application is required to use one of two workarounds to prevent compilation errors.  Either:
+
+1.  Use Maven.
+
+2.  Or use gradle or SBT and re-declare all optional dependencies of the Scala SDK in your build file:
+
+[source,scala]
+----
+libraryDependencies += "com.lihaoyi" %% "upickle" % "0.7.1" % "optional"
+libraryDependencies += "io.circe" %% "circe-core" % "0.10.0" % "optional"
+libraryDependencies += "com.typesafe.play" %% "play-json" % "2.6.7" % "optional"
+libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.4" % "optional"
+libraryDependencies += "org.typelevel" %% "jawn-ast" % "0.14.0" % "optional"
+----
+
+This workaround is *only* required if you are using Scala 2.11.  Scala 2.12 is unaffected.
+
 == Connecting to a Cluster
 
 Now you have the Scala client installed, try out the following to connect to a Couchbase cluster.

@@ -45,7 +45,7 @@ Here's an example of how to use Circe with Couchbase:
 include::example$JSON.scala[tag=circe2,indent=0]
 ----
 
-That works but it's very verbose to handle all those `Try` one-by-one.  Here's an example of how to do the same thing, but
+That works, but it's very verbose to handle all those `Try` one-by-one.  Here's an example of how to do the same thing, but
 chaining all the `Try` together using `flatMap`:
 
 [source,scala]

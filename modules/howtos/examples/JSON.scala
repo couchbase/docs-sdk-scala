@@ -1,19 +1,11 @@
 // #tag::imports[]
-import com.couchbase.client.core.error.subdoc.PathExistsException
 import com.couchbase.client.scala._
 import com.couchbase.client.scala.api.MutationResult
 import com.couchbase.client.scala.codec.Conversions.Codec
 import com.couchbase.client.scala.implicits.Codecs
 import com.couchbase.client.scala.json._
-import com.couchbase.client.scala.kv.{LookupInResult, LookupInSpec, MutateInSpec}
-import com.couchbase.client.scala.query._
-import reactor.core.scala.publisher._
 import com.couchbase.client.scala.kv._
-import com.couchbase.client.scala.kv.MutateInSpec._
-import com.couchbase.client.scala.kv.LookupInSpec._
 
-import scala.concurrent.duration.Duration
-import scala.concurrent.{Await, Future}
 import scala.util.{Failure, Success, Try}
 // #end::imports[]
 
@@ -42,7 +34,8 @@ object JSON {
     val user = User("John Smith", 29, List(Address("123 Fake Street")))
 
     // #tag::circe1[]
-    import io.circe._, io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
+    import io.circe.generic.auto._
+    import io.circe.syntax._
 
     val json: io.circe.Json = user.asJson
 
@@ -61,7 +54,8 @@ object JSON {
     val user = User("John Smith", 29, List(Address("123 Fake Street")))
 
     // #tag::circe3[]
-    import io.circe._, io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
+    import io.circe.generic.auto._
+    import io.circe.syntax._
 
     val json: io.circe.Json = user.asJson
 
@@ -78,7 +72,8 @@ object JSON {
     val user = User("John Smith", 29, List(Address("123 Fake Street")))
 
     // #tag::circe2[]
-    import io.circe._, io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
+    import io.circe.generic.auto._
+    import io.circe.syntax._
 
     // Circe can encode case classes directly to its `Json` type, with no codec code required
     val json: io.circe.Json = user.asJson
