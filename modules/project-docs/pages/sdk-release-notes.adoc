@@ -52,20 +52,20 @@ libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.0-alpha.3
 
 == Version 1.0.0-alpha3 (14th May 2019)
 
-This is the second pre-release of the new Couchbase Scala SDK.
+This is the third pre-release of the new Couchbase Scala SDK.
 
 === New Features & Enhancements
 
-* https://issues.couchbase.com/browse/SCBC-15
-Support for Full Text Search (FTS)
-* https://issues.couchbase.com/browse/SCBC-12
-Simplify the results of the query API, moving QueryAdditional to QueryMeta, and putting all non-results into QueryMeta
-* https://issues.couchbase.com/browse/SCBC-13
-Further Query API simplifications, allowing all rows to be converted into the target type with rowsAs[T]
-* https://issues.couchbase.com/browse/SCBC-22
-A 2.11 build of the library is now provided
-* https://issues.couchbase.com/browse/SCBC-11
-Environment construction is now done with native Scala objects
+* https://issues.couchbase.com/browse/SCBC-15[SCBC-15]: 
+Support for Full Text Search (FTS).
+* https://issues.couchbase.com/browse/SCBC-12[SCBC-12]: 
+Simplify the results of the query API, moving QueryAdditional to QueryMeta, and putting all non-results into QueryMeta.
+* https://issues.couchbase.com/browse/SCBC-13[SCBC-13]: 
+Further Query API simplifications, allowing all rows to be converted into the target type with rowsAs[T].
+* https://issues.couchbase.com/browse/SCBC-22[SCBC-22]: 
+A 2.11 build of the Scala library is now provided.
+* https://issues.couchbase.com/browse/SCBC-11[SCBC-11]: 
+Environment construction is now done with native Scala objects.
 
 == Version 1.0.0-alpha2 (4th April 2019)
 
@@ -74,11 +74,11 @@ This is the second pre-release of the new Couchbase Scala SDK.
 === New Features & Enhancements
 
 * https://issues.couchbase.com/browse/SCBC-5[SCBC-5], https://issues.couchbase.com/browse/SCBC-6[SCBC-6]: 
-Significant updates for the subdoc API
+Significant updates for the subdoc API.
 * https://issues.couchbase.com/browse/SCBC-8[SCBC-8]: 
-Get ops in the reactive API now return Mono<Optional>
+Get ops in the reactive API now return Mono<Optional>.
 * https://issues.couchbase.com/browse/SCBC-16[SCBC-16]: 
-Added support for View queries
+Added support for View queries.
 * https://issues.couchbase.com/browse/SCBC-14[SCBC-14]: 
-Added support for Analytics queries
+Added support for Analytics queries.
 
