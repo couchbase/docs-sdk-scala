@@ -3,7 +3,7 @@
 :page-topic-type: howto
 :page-aliases: document-operations.adoc
 
-WARNING: These pages cover the second _Alpha_ of the Couchbase Scala SDK -- 1.0 _alpha 2_.
+WARNING: These pages cover the second _Alpha_ of the Couchbase Scala SDK -- 1.0 _alpha 3_.
 As such they are likely to change without notice.
 The _alpha_ code _should not_ be used in production.
 
