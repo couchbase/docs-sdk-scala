@@ -1,15 +1,10 @@
 // #tag::imports[]
 import com.couchbase.client.core.error.subdoc.PathExistsException
 import com.couchbase.client.scala._
-import com.couchbase.client.scala.codec.Conversions.Codec
-import com.couchbase.client.scala.implicits.Codecs
 import com.couchbase.client.scala.json._
-import com.couchbase.client.scala.kv.{LookupInResult, LookupInSpec, MutateInSpec}
-import com.couchbase.client.scala.query._
-import reactor.core.scala.publisher._
-import com.couchbase.client.scala.kv._
-import com.couchbase.client.scala.kv.MutateInSpec._
 import com.couchbase.client.scala.kv.LookupInSpec._
+import com.couchbase.client.scala.kv.MutateInSpec._
+import com.couchbase.client.scala.kv.{LookupInResult, _}
 
 import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, Future}
@@ -17,9 +12,7 @@ import scala.util.{Failure, Success, Try}
 // #end::imports[]
 
 
-object Queries {
-  def main(args: Array[String]): Unit = {
-
+object SubDocument {
 // #tag::cluster[]
 val cluster = Cluster.connect("localhost", "username", "password")
 val bucket = cluster.bucket("travel-sample")
@@ -44,6 +37,7 @@ result match {
   case Failure(err) => println(s"Error: ${err}")
 }
 // #end::get[]
+}
 
 def getFlatMap() {
 // #tag::get-flatmap[]
@@ -129,7 +123,7 @@ val mono = collection.reactive.lookupIn("customer123", Array(
 
 // Just for example, block on the result - this is not best practice
 val result: Option[LookupInResult] = mono.block()
-  
+
 val str: Option[String] = result.flatMap(r =>
   r.contentAs[String](0).toOption)
 
@@ -162,7 +156,8 @@ val result: Try[MutateInResult] = collection.mutateIn("customer123", Array(
 
 result match {
   case Success(_)                   => println("Unexpected success...")
-  case Failure(PathExistsException) => println(s"Error, path already exists")
+  case Failure(err: PathExistsException) =>
+    println(s"Error, path already exists")
   case Failure(err)                 => println(s"Error: ${err}")
 }
 // #end::insert[]
@@ -236,7 +231,8 @@ val result2 = collection.mutateIn("customer123", Array(
 
 result2 match {
   case Success(_)                   => println("Unexpected success...")
-  case Failure(PathExistsException) => println(s"Error, path already exists")
+  case Failure(err: PathExistsException) =>
+    sc  println(s"Error, path already exists")
   case Failure(err)                 => println(s"Error: ${err}")
 }
 // #end::array-unique[]
@@ -312,5 +308,4 @@ val result = collection.get("player432")
   ), cas = doc.cas))
   // #end::cas[]
 }
-
 }

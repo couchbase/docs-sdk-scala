@@ -15,7 +15,7 @@ Here's the basics of how to run a simple query to fetch 10 random rows from trav
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=simple]
+include::example$Queries.scala[tag=simple,indent=0]
 ----
 
 (Note that we won't be covering the N1QL language itself in any detail here, but if you're familiar with SQL you'll see it's very similar.)
@@ -24,19 +24,13 @@ The Scala SDK returns `Try` rather than throwing exceptions, to allow you to han
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=simple-results]
+include::example$Queries.scala[tag=simple-results,indent=0]
 ----
 
-The returned `QueryResult` contains a `rows: Seq[QueryRow]` field.  A `QueryRow` can be converted into many forms using `contentAs`.  This is an example of converting into `JsonObject`, the simple JSON library included with the Scala SDK:
+The returned `QueryResult` contains an `allRowsAs[T]` method, allowing the results to be converted into something useful.  The above
+example demonstrates returning the results as `JsonObject`, the JSON library built-in to the Scala SDK.
 
-[source,scala]
-----
-include::example$Queries.scala[tag=simple-results-full]
-----
-
-Note that contentAs also returns Try, so we use pattern matching again to check if it was successful.
-
-Other things contentAs can convert to are:
+Other things allRowsAs can convert to are:
 
 * `io.circe.Json` from the popular Scala JSON library https://circe.github.io/circe/[Circe]
 * Similar support is included for other excellent JSON libraries: https://github.com/lihaoyi/upickle[uPickle/uJson], https://github.com/playframework/play-json[Play Json], https://github.com/typelevel/jawn[Jawn], and https://github.com/json4s/json4s[Json4s].
@@ -50,7 +44,7 @@ Of course, it wouldn't be Scala if we couldn't elegantly combine the operations 
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=get-rows]
+include::example$Queries.scala[tag=get-rows,indent=0]
 ----
 
 [NOTE]
@@ -71,14 +65,14 @@ available xref:json.adoc#case-classes[here], but the short version is to add a `
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=codec]
+include::example$Queries.scala[tag=codec,indent=0]
 ----
 
 Now you're free to pull out the results directly as your case class:
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=case-classes]
+include::example$Queries.scala[tag=case-classes,indent=0]
 ----
 
 == Streaming Large Result Sets
@@ -90,7 +84,7 @@ As mentioned earlier, the Scala SDK provides three SDKs:
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=async]
+include::example$Queries.scala[tag=async,indent=0]
 ----
 
 * A reactive API, that can be used to stream rows.
@@ -108,7 +102,7 @@ Here's how to perform a query and stream the results using the reactive API:
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=reactive]
+include::example$Queries.scala[tag=reactive,indent=0]
 ----
 
 include::1.0@scala-sdk:howtos:partial$n1ql-additional-resources.adoc[]

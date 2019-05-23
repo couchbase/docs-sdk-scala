@@ -28,32 +28,20 @@ val result: Try[QueryResult] = cluster.query(statement)
 // #tag::simple-results[]
 result match {
   case Success(result: QueryResult) =>
-    println(s"Got ${result.rows.size} rows")
+    result.allRowsAs[JsonObject] match {
+      case Success(rows) =>
+        println(s"Got ${rows} rows")
+      case Failure(err) => println(s"Error: $err")
+    }
   case Failure(err) => println(s"Error: $err")
 }
 // #end::simple-results[]
-
-result match {
-  case Success(result: QueryResult) =>
-// #tag::simple-results-full[]
-result.rows.foreach(row => {
-  row.contentAs[JsonObject] match {
-    case Success(content) => println(content)
-    case Failure(err)     => println(s"Error: $err")
-  }
-})
-// #end::simple-results-full[]
-  case Failure(err)    => println(s"Error: $err")
-}
-
-  assert(result.get.rows.size == 10)
 }
 
 def getRows() {
 // #tag::get-rows[]
 cluster.query("""select * from `travel-sample` limit 10;""")
-  // Drop any rows that fail to convert
-  .map(_.rows.flatMap(_.contentAs[JsonObject].toOption)) match {
+  .flatMap(_.allRowsAs[JsonObject]) match {
   case Success(rows: Seq[JsonObject]) =>
     rows.foreach(row => println(row))
   case Failure(err) =>
@@ -75,12 +63,8 @@ object User {
 
 val statement = """select * from `travel-sample` limit 10;"""
 
-val rows: Try[Seq[User]] = cluster.query(statement)
-  .map(result => result
-    .rows.flatMap(row =>
-      row.contentAs[User].toOption))
-
-rows match {
+cluster.query(statement)
+  .flatMap(_.allRowsAs[User]) match {
   case Success(rows: Seq[User]) =>
     rows.foreach(row => println(row))
   case Failure(err) =>
@@ -95,9 +79,6 @@ val stmt = """select * from `travel-sample` where type=$1 and country=$2 limit 1
 val result = cluster.query(stmt,
   QueryOptions().positionalParameters("airline", "United States"))
 // #end::positional[]
-
-  assert(cluster.query("""select * from `travel-sample` where type=$1 and country=$2 limit 10;""",
-    QueryOptions().positionalParameters("airline", "United States")).get.rows.size == 10)
 }
 
 def named() {
@@ -106,9 +87,6 @@ val stmt = """select * from `travel-sample` where type=$type and country=$countr
 val result = cluster.query(stmt,
   QueryOptions().namedParameters("type" -> "airline", "country" -> "United States"))
 // #end::named[]
-
-  assert(cluster.query("""select * from `travel-sample` where type=$type and country=$country limit 10;""",
-    QueryOptions().namedParameters("type" -> "airline", "country" -> "United States")).get.rows.size == 10)
 }
 
 def requestPlus() {
@@ -116,9 +94,6 @@ def requestPlus() {
 val result = cluster.query("""select * from `travel-sample` limit 10;""",
   QueryOptions().scanConsistency(ScanConsistency.RequestPlus()))
 // #end::request-plus[]
-
-  assert(cluster.query("""select * from `travel-sample` where type=$type and country=$country limit 10;""",
-    QueryOptions().namedParameters("type" -> "airline", "country" -> "United States")).get.rows.size == 10)
 }
 
 def async() {
@@ -132,13 +107,13 @@ val future: Future[QueryResult] = cluster.async.query(stmt)
 
 future onComplete {
   case Success(result) =>
-    result.rows.foreach(row => println(row.contentAs[JsonObject]))
+    result.allRowsAs[JsonObject] match {
+      case Success(rows) => rows.foreach(println(_))
+      case Failure(err) => println(s"Error: $err")
+    }
   case Failure(err)    => println(s"Error: $err")
 }
 // #end::async[]
-
-  assert(cluster.query("""select * from `travel-sample` where type=$type and country=$country limit 10;""",
-    QueryOptions().namedParameters("type" -> "airline", "country" -> "United States")).get.rows.size == 10)
 }
 
 def reactive() {
@@ -148,10 +123,7 @@ val mono: Mono[ReactiveQueryResult] = cluster.reactive.query(stmt)
 
 val rows: Flux[JsonObject] = mono
   // ReactiveQueryResult contains a rows: Flux[QueryRow]
-  .flatMapMany(result => result.rows)
-  // contentAs[T] returns Try[T]. Try.get will throw an exception on failure,
-  // which is exactly what we want as Reactor will map this to a Reactor error
-  .map(row => row.contentAs[JsonObject].get)
+  .flatMapMany(result => result.rowsAs[JsonObject])
 
 // Just for example, block on the rows.  This is not best practice and apps
 // should generally not block.
@@ -162,7 +134,6 @@ val allRows: Seq[JsonObject] = rows
   .block()
 
 // #end::reactive[]
-  assert(allRows.size == 10)
 }
 
 }
