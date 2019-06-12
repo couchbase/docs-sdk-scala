@@ -123,7 +123,7 @@ collection.insert("document-key", json) match {
 collection.get("document-key") match {
   case Success(result) =>
 
-    // Convert the content to a JsonObject
+    // Convert the content to a JsonObjectSafe
     result.contentAs[JsonObjectSafe] match {
       case Success(json) =>
 
