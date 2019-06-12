@@ -78,6 +78,8 @@ libraryDependencies += "org.typelevel" %% "jawn-ast" % "0.14.0" % "optional"
 
 This workaround is *only* required if you are using Scala 2.11.  Scala 2.12 is unaffected.
 
+NOTE: The most recent version of the SDK with 2.11 support is "1.0.0-alpha.3".
+
 == Connecting to a Cluster
 
 Now you have the Scala client installed, try out the following to connect to a Couchbase cluster.
