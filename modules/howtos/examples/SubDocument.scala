@@ -232,7 +232,7 @@ val result2 = collection.mutateIn("customer123", Array(
 result2 match {
   case Success(_)                   => println("Unexpected success...")
   case Failure(err: PathExistsException) =>
-    sc  println(s"Error, path already exists")
+    println(s"Error, path already exists")
   case Failure(err)                 => println(s"Error: ${err}")
 }
 // #end::array-unique[]

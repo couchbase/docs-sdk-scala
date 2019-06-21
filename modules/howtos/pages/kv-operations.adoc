@@ -2,10 +2,10 @@
 :navtitle: KV Operations
 :page-topic-type: howto
 :page-aliases: document-operations.adoc
+:lang: Scala
+:version: 1.0.0 alpha.4
 
-WARNING: These pages cover the second _Alpha_ of the Couchbase Scala SDK -- 1.0 _alpha 3_.
-As such they are likely to change without notice.
-The _alpha_ code _should not_ be used in production.
+include::partial$alpha-warning.adoc[]
 
 At its heart Couchbase Server is a high-performance key-value store, and the key-value interface outlined below is the fastest and best method to perform operations involving single documents.
 
@@ -128,7 +128,7 @@ Insert works very similarly to upsert, but will fail if the document already exi
 include::example$KvOperations.scala[tag=insert]
 ----
 
-Note that a `Try` lets us check for a particular sort of error.  The case clauses are tried in order from the top: if it is not a `Success`, and not a `Failure` containing a `DocumentAlreadyExistsException`, it will drop to the default `Failure(err)` case. 
+Note that a `Try` lets us check for a particular sort of error.  The case clauses are tried in order from the top: if it is not a `Success`, and not a `Failure` containing a `KeyExistsException`, it will drop to the default `Failure(err)` case.
 
 == Retrieving Documents
 

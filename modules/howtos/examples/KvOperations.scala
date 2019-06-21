@@ -94,7 +94,7 @@ def insert() {
 // #tag::insert[]
 collection.insert("document-key", json) match {
   case Success(result) =>
-  case Failure(err: DocumentAlreadyExistsException) =>
+  case Failure(err: KeyExistsException) =>
     println("The document already exists")
   case Failure(err) => println("Error: " + err)
 }
@@ -244,7 +244,7 @@ def remove() {
 // #tag::remove[]
 collection.remove("document-key") match {
   case Success(result) =>
-  case Failure(err: DocumentDoesNotExistException) =>
+  case Failure(err: KeyNotFoundException) =>
     println("The document does not exist")
   case Failure(err) => println("Error: " + err)
 }
@@ -256,7 +256,7 @@ def durability() {
 collection.remove("document-key", durability = Durability.Majority) match {
   case Success(result) =>
   // The mutation is available in-memory on at least a majority of replicas
-  case Failure(err: DocumentDoesNotExistException) =>
+  case Failure(err: KeyNotFoundException) =>
     println("The document does not exist")
   case Failure(err)    => println("Error: " + err)
 }
@@ -267,7 +267,7 @@ collection.remove("document-key",
   durability = Durability.ClientVerified(ReplicateTo.Two, PersistTo.None)) match {
   case Success(result) =>
   // The mutation is available in-memory on at least two replicas
-  case Failure(err: DocumentDoesNotExistException) =>
+  case Failure(err: KeyNotFoundException) =>
     println("The document does not exist")
   case Failure(err)    => println("Error: " + err)
 }
