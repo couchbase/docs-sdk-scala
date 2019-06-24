@@ -47,6 +47,8 @@ Rows can be returned as JSON representations from multiple third party Scala lib
 Please see xref:howtos:json.adoc[JSON Libraries] for full details.
 
 Finally, we pattern match on the `rows` to find whether the operations were successful.
+We check explicitly for `AnalyticsError` which indicates an error from the analytics service.
+There can be other errors returned, please see xref:howtos:error-handling.adoc[Error Handling] for details.
 
 We can write that example more concisely, like this:
 
