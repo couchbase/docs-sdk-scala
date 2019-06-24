@@ -1,9 +1,8 @@
 // Required attributes:
 // :lang: Java
-// :version: 3.0.0 alpha
 [WARNING]
 ====
-These pages cover the alpha release of the Couchbase {lang} SDK -- {version}.
+These pages cover the fourth alpha release of the Couchbase {lang} SDK -- 1.0.0-alpha.4.
 As such they are likely to change without notice.
 This alpha code _should not_ be used in production.
 

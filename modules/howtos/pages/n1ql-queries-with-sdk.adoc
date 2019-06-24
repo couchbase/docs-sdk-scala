@@ -20,7 +20,7 @@ include::example$Queries.scala[tag=simple,indent=0]
 
 (Note that we won't be covering the N1QL language itself in any detail here, but if you're familiar with SQL you'll see it's very similar.)
 
-The Scala SDK returns `Try` rather than throwing exceptions, to allow you to handle errors in a functional way.  A `Try` can either be a `Success(QueryResult)` if the N1QL statement was successfully execute, or `Failure(Throwable)` if something went wrong.  It can be pattern matched on like this:
+The Scala SDK returns `Try` rather than throwing exceptions, to allow you to handle errors in a functional way.  A `Try` can either be a `Success(QueryResult)` if the N1QL statement was successfully executed, or `Failure(Throwable)` if something went wrong.  It can be pattern matched on like this:
 
 [source,scala]
 ----
@@ -76,7 +76,7 @@ include::example$Queries.scala[tag=case-classes,indent=0]
 ----
 
 == Streaming Large Result Sets
-As mentioned earlier, the Scala SDK provides three SDKs:
+As mentioned earlier, the Scala SDK provides three SDKs (documented further on xref:howtos:multiple-apis.adoc[Choosing an API]):
 
 * The blocking API you've seen so far, that returns a `QueryResult` containing all rows.
 
