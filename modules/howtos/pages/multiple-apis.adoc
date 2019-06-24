@@ -8,6 +8,9 @@
 
 include::partial$alpha-warning.adoc[]
 
+[abstract]
+The Couchbase Scala SDK allows the use, and mixing, of three distinct APIs: blocking, asynchronous, and reactive.
+
 The Scala SDK provides three APIs, which can be freely mixed:
 
 * A simple blocking one, that returns `Try`.
