@@ -16,7 +16,7 @@
 * xref:howtos:view-queries-with-sdk.adoc[MapReduce Views]
 
 ////
-.Advanced Topics
+.Advanced Data Operations
 * xref:howtos:multiple-apis.adoc[Choosing an API]
 //* xref:howtos:durability.adoc[Durability]
 // ** * xref:howtos:transactions.adoc[ACID Transactions]
