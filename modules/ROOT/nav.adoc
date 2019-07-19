@@ -1,5 +1,5 @@
-.Hello World!
-* xref::start-using-sdk.adoc[Start Using the SDK]
+.Getting Started
+* xref::start-using-sdk.adoc[Start Using the Scala SDK]
 //* xref:hello-world:start-using-sdk.adoc[Start Using the SDK]
 // * xref:hello-world:sample-application.adoc[Sample Application]
 
@@ -8,18 +8,17 @@
 * xref:howtos:json.adoc[JSON Libraries]
 * xref:howtos:subdocument-operations.adoc[Sub-Document Operations]
 //  ** xref:howtos:sdk-xattr-example.adoc[Extended Attributes]
-* xref:howtos:n1ql-queries-with-sdk.adoc[N1QL from the SDK]
-* xref:howtos:analytics-using-sdk.adoc[Analytics from the SDK]
+* xref:howtos:n1ql-queries-with-sdk.adoc[Query]
+* xref:howtos:analytics-using-sdk.adoc[Analytics]
 ////
  ** xref:howtos:advanced-analytics-querying.adoc[Advanced Analytics Querying]
-* xref:howtos:full-text-searching-with-sdk.adoc[Full Text Search from the SDK]
+* xref:howtos:full-text-searching-with-sdk.adoc[Full Text Search]
 * xref:howtos:view-queries-with-sdk.adoc[MapReduce Views]
 
 ////
 .Advanced Data Operations
 * xref:howtos:multiple-apis.adoc[Choosing an API]
 //* xref:howtos:durability.adoc[Durability]
-// ** * xref:howtos:transactions.adoc[ACID Transactions]
 ////
 .Managing Couchbase
 * User Management
@@ -29,10 +28,14 @@
 * xref:howtos:error-handling.adoc[Handling Errors]
 * xref:howtos:health-check.adoc[Health Check]
 
-.Concepts
-* xref:concept-docs:concepts.adoc[Concepts]
- ** xref:concept-docs:documents.adoc[Documents & Doc Ops]
-// ** xref:concept-docs:collections.adoc[Collections]
+.Learn
+* xref:concept-docs:concepts.adoc[Overview]
+// ** xref:concept-docs:collections.adoc[Collections & Scope]
+* xref:concept-docs:data-model.adoc[Data Model]
+* xref:concept-docs:encryption.adoc[Field Level Encryption]
+* xref:concept-docs:http-services.adoc[Service Selection]
+
+.References
 
 .Project Docs
 * xref:project-docs:sdk-release-notes.adoc[Release Notes]
