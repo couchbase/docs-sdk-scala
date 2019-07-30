@@ -1,6 +1,7 @@
 // #tag::imports[]
 import com.couchbase.client.core.error.subdoc.PathExistsException
 import com.couchbase.client.scala._
+import com.couchbase.client.scala.durability.{Durability, PersistTo, ReplicateTo}
 import com.couchbase.client.scala.json._
 import com.couchbase.client.scala.kv.LookupInSpec._
 import com.couchbase.client.scala.kv.MutateInSpec._
@@ -308,4 +309,21 @@ val result = collection.get("player432")
   ), cas = doc.cas))
   // #end::cas[]
 }
+
+  def durability() {
+    // #tag::durability[]
+    val result = collection.mutateIn("key", Array(
+      insert("name", "andy")
+    ), durability = Durability.ClientVerified(ReplicateTo.One, PersistTo.One))
+    // #end::durability[]
+  }
+
+  def syncDurability() {
+    // #tag::sync-durability[]
+    val result = collection.mutateIn("key", Array(
+      insert("name", "andy")
+    ), durability = Durability.Majority)
+    // #end::sync-durability[]
+  }
+
 }

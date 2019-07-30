@@ -334,6 +334,22 @@ If CAS is required then it can be provided like this:
 include::example$SubDocument.scala[tag=cas]
 ----
 
+== Durability
+Couchbase's xref:2.7@dotnet-sdk::durability.adoc[traditional durability], using `PersistTo` and `ReplicateTo`, is still available, particuarly for talking to Couchbase Server 6.0 and earlier:
+
+[source,scala]
+----
+include::example$SubDocument.scala[tag=durability,indent=0]
+----
+
+In Couchbase Server 6.5 and up, this is built upon with xref:concept-docs:durability.adoc#synchronous-durability[Synchronous Replication],
+which uses the concept of xref:6.5@server:learn:data/durability.adoc#majority[majority] to indicate the number of configured Data Service nodes to which commitment is required:
+
+[source,scala]
+----
+include::example$SubDocument.scala[tag=sync-durability,indent=0]
+----
+
 == Error Handling
 
 Sub-Document operations have their own set of errors.
