@@ -4,7 +4,7 @@
 :source-language: scala
 :lang: Scala
 :version: 1.0.0 alpha.4
-:page-aliases: async-programming
+:page-aliases: ROOT:async-programming,multiple-apis,ROOT:batching-operations
 
 include::partial$alpha-warning.adoc[]
 
