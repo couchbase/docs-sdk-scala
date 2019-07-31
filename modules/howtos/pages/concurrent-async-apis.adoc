@@ -18,14 +18,18 @@ The Scala SDK provides three APIs, which can be freely mixed:
 * A reactive one, that returns reactive primitives from the https://projectreactor.io/[Project Reactor] library, e.g. `Mono` and `Flux`.
 
 == Using the Blocking API
-This is the simplest API, in which all operations are synchronous and blocking.  A simple upsert example looks like this:
+
+This is the simplest API, in which all operations are synchronous and blocking.  
+A simple upsert example looks like this:
 
 [source,scala]
 ----
 include::example$MultipleAPIs.scala[tag=upsert-simple,indent=0]
 ----
 
-Methods in the blocking API that can error will return a Scala `Try` object, which can either be a `Success` containing the result, or a `Failure` containing a _Throwable_ exception that derives from `CouchbaseException`.
+Methods in the blocking API that can error will return a Scala `Try` object, 
+which can either be a `Success` containing the result, 
+or a `Failure` containing a _Throwable_ exception that derives from `CouchbaseException`.
 
 This can be pattern matched on, like this:
 
@@ -41,8 +45,8 @@ Simple pattern matching like this works fine for simple examples, but starts to 
 include::example$MultipleAPIs.scala[tag=get,indent=0]
 ----
 
-Developers may prefer to use `flatMap`, which lets all the `Try` be checked in one place.  Here, the call to `collection.get`
-will only be attempted if the call to `collection.upsert` was successful - that is, returned `Success`.
+Developers may prefer to use `flatMap`, which lets all the `Try` be checked in one place.
+Here, the call to `collection.get` will only be attempted if the call to `collection.upsert` was successful -- that is, returned `Success`.
 
 [source,scala]
 ----
@@ -53,7 +57,8 @@ include::example$MultipleAPIs.scala[tag=get-map,indent=0]
 
 The asynchronous API returns Scala `Future`, representing the execution of an asynchronous task and the promise of a future result.
 
-Here's what a simple upsert looks like, handling `Success` or `Failure` (note we are not actually blocking on the result here - if you need that then you can use the methods in Scala's `Await`, or simply use the blocking Couchbase API):
+Here's what a simple upsert looks like, handling `Success` or `Failure` 
+(note we are not actually blocking on the result here -- if you need that then you can use the methods in Scala's `Await`, or simply use the blocking Couchbase API):
 
 [source,scala]
 ----
@@ -62,8 +67,8 @@ include::example$MultipleAPIs.scala[tag=upsert-async,indent=0]
 
 But, the compiler will fail to compile this, reporting that an implicit `ExecutionContext` cannot be found for onComplete.
 
-As you may know, to do anything with a `Future` - including `onComplete`, `map` and `flatMap` - an `ExecutionContext` is required.  Here's how to create one that creates
-an unlimited thread-pool with named threads:
+As you may know, to do anything with a `Future` -- including `onComplete`, `map` and `flatMap` -- an `ExecutionContext` is required.
+Here's how to create one that creates an unlimited thread-pool with named threads:
 
 [source,scala]
 ----
@@ -72,15 +77,17 @@ include::example$MultipleAPIs.scala[tag=async-import,indent=0]
 
 Now there's an implicit ExecutionContext available, the upsert example will compile.
 
-Let's see a more complex example combining operations together.  `Future` compose well, with `flatMap` being the most common tool:
+Let's see a more complex example combining operations together.
+`Future` compose well, with `flatMap` being the most common tool:
 
 [source,scala]
 ----
 include::example$MultipleAPIs.scala[tag=get-async,indent=0]
 ----
 
-Interestingly, you'll see a couple of calls to `Try.get()` here.  These throw exceptions if the Try is `Failure`, and exceptions
-are usually something we try to avoid in Scala.  But here there's no problem as the `Future` will capture the exception,
+Interestingly, you'll see a couple of calls to `Try.get()` here.
+These throw exceptions if the Try is `Failure`, and exceptions are usually something we try to avoid in Scala.
+But here there's no problem as the `Future` will capture the exception,
 and raise in so it can be handled in a `Failure`, as in the example.
 
 == Using the Reactive API
@@ -119,7 +126,7 @@ include::example$MultipleAPIs.scala[tag=get-reactive,indent=0]
 ----
 
 Similar to the `Future` example, you'll note some calls to .get, on `Option` and `Try` that will throw exceptions if they do not contain `Some` or `Success` respectively.
-This is fine - the reactive code will capture it, and raise it in the standard reactive way - e.g. through `doOnError` and similar operators.
+This is fine -- the reactive code will capture it, and raise it in the standard reactive way -- e.g. through `doOnError` and similar operators.
 
 While it's beyond the scope of this guide to teach reactive programming, it's important to touch on a handful of golden rules:
 
@@ -130,8 +137,14 @@ While it's beyond the scope of this guide to teach reactive programming, it's im
 == Choosing an API
 So which API should you choose?
 
-It's really down to you and the needs of your application.  If you're already writing code in a synchronous way already then it may make sense to continue that way.  If you're writing a web application that supports reactive streams, it may make sense to use the reactive API.  And you use different APIs at different times.
+It's really down to you and the needs of your application.  
+If you're already writing code in a synchronous way already then it may make sense to continue that way.  
+If you're writing a web application that supports reactive streams, it may make sense to use the reactive API.  
+And you can use different APIs at different times.
 
-The most important thing to consider is when streaming back large queries from N1QL, Full Text Search and Analytics.
-Here, the reactive API will provide full backpressure: that is, if your application is processing rows slower than the service is returning them, then automatically less rows will be requested from the service to give the application time to catch up.   The upshot of this is that few rows are ever buffered in-memory, and the application shouldn't get out-of-memory exceptions.
+The most important thing to consider is when streaming back large queries from N1QL, Full Text Search, and Analytics.
+Here, the reactive API will provide full backpressure: 
+that is, if your application is processing rows slower than the service is returning them, then automatically fewer rows will be requested from the service to give the application time to catch up.
+The upshot of this is that few rows are ever buffered in-memory, and the application shouldn't get out-of-memory exceptions.
+
 By contrast, the blocking and asynchronous APIs will buffer all rows in-memory before returning them to the application.  This will generally be fine, but if you're doing any large queries then you may want to consider the reactive API.
