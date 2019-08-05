@@ -19,7 +19,7 @@
 
 ////
 .Advanced Data Operations
-* xref:howtos:multiple-apis.adoc[Choosing an API]
+* xref:howtos:concurrent-async-apis.adoc[Choosing an API]
 //* xref:howtos:durability.adoc[Durability]
 ////
 .Managing Couchbase
