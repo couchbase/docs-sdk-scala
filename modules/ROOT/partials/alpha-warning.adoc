@@ -1,6 +1,6 @@
 [WARNING]
 ====
-These pages cover the fourth alpha release of the Couchbase Scala SDK.
+These pages cover the alpha release of the Couchbase Scala SDK.
 As such they are likely to change without notice.
 This alpha code _should not_ be used in production.
 
