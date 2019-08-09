@@ -20,7 +20,8 @@
 ////
 .Advanced Data Operations
 * xref:howtos:concurrent-async-apis.adoc[Choosing an API]
-//* xref:howtos:durability.adoc[Durability]
+* xref:concept-docs:durability-replication-failure-considerations.adoc[Failure Considerations]
+
 ////
 .Managing Couchbase
 * User Management
