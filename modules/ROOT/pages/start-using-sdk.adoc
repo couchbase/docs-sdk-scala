@@ -2,11 +2,12 @@
 :navtitle: Start Using the SDK
 :page-topic-type: howto
 :page-aliases: hello-world:start-using-sdk
+:lang: Scala
 
 [abstract]
 The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster from the Scala language.
 
-include::partial$alpha-warning.adoc[]
+include::1.0@scala-sdk:howtos:partial$alpha-warning.adoc[]
 
 == Installing the SDK
 

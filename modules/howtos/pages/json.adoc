@@ -81,7 +81,7 @@ include::example$JSON.scala[tag=upickle,indent=0]
 The SDK includes a built-in JSON library, JsonObject.  Its main goals are:
 
 * Convenience.  Not everyone wants to evaluate multiple JSON libraries before getting started.  JsonObject is a decent default choice.
-* Speed.  Our internal benchmarking indicates JsonObject is up to 20 times faster than the nearest Scala JSON library on some important operations.  It achieves this mostly by being built around simple, but very fast, mutable JVM data structures.  Unlike the rest of the SDK it also throws exceptions rather than incur the small cost of functional-style error handling (e.g. `Try`) - though there is an optional alternative <<error-handling-and-jsonobjectsafe,`JsonObjectSafe`>> interface that does provide `Try`.
+* Speed.  Our internal benchmarking indicates JsonObject is up to 20 times faster than the nearest Scala JSON library on some important operations.  It achieves this mostly by being built around simple, but very fast, mutable JVM data structures.  Unlike the rest of the SDK it also throws exceptions rather than incur the small cost on the good path of functional-style error handling (e.g. `Try`) - though there is an optional alternative <<error-handling-and-jsonobjectsafe,`JsonObjectSafe`>> interface that does provide `Try`.
 * Ease-of-use and mutability.   We find ourselves in agreement with http://www.lihaoyi.com/post/uJsonfastflexibleandintuitiveJSONforScala.html[the author of µJson] that though
  immutability is usually desirable, it's actually not always the best choice for JSON.  Dealing with deeply nested JSON requires
  functional tools such as lenses which are rarely easy to read, not to mention incurring a performance penalty.  And JSON is most often dealt with briefly and
@@ -225,6 +225,24 @@ Here's an example of how to use https://github.com/playframework/play-json[Play 
 ----
 include::example$JSON.scala[tag=playJson,indent=0]
 ----
+
+== Strings
+It's possible to send and receive JVM `String` directly:
+
+[source,scala]
+----
+include::example$JSON.scala[tag=string,indent=0]
+----
+
+== Array[Byte]
+And an `Array[Byte]` can be used directly:
+
+[source,scala]
+----
+include::example$JSON.scala[tag=bytes,indent=0]
+----
+
+With the support for `String` and `Array[Byte]`, the Scala SDK can be used with any JSON library that can import and export those formats.
 
 == Adding Another Type
 As alluded to above, when inserting a `T`, the Scala SDK looks for an `Encodable[T]` in implicit scope.  Similar for `contentAs` and `Decodable[T]`.

@@ -1,4 +1,6 @@
 // #tag::imports[]
+import java.nio.charset.{Charset, StandardCharsets}
+
 import com.couchbase.client.scala._
 import com.couchbase.client.scala.api.MutationResult
 import com.couchbase.client.scala.codec.Conversions.Codec
@@ -249,6 +251,36 @@ object JSON {
       content <- doc.contentAs[JsValue]
     } yield content
     // #end::playJson[]
+  }
+
+  def string(): Unit = {
+    // #tag::string[]
+    val json = """{"hello":"world"}"""
+
+    val result: Try[String] = for {
+      // Can provide Play JSON types for all mutation operations
+      _       <- collection.insert("id", json)
+      doc     <- collection.get("id")
+
+      // Can retrieve document content as String
+      content <- doc.contentAs[String]
+    } yield content
+    // #end::string[]
+  }
+
+  def bytes(): Unit = {
+    // #tag::bytes[]
+    val json: Array[Byte] = """{"hello":"world"}""".getBytes(StandardCharsets.UTF_8)
+
+    val result: Try[Array[Byte]] = for {
+      // Can provide Play JSON types for all mutation operations
+      _       <- collection.insert("id", json)
+      doc     <- collection.get("id")
+
+      // Can retrieve document content as String
+      content <- doc.contentAs[Array[Byte]]
+    } yield content
+    // #end::bytes[]
   }
 
   def caseClasses() = {
