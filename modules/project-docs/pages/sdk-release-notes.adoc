@@ -50,6 +50,26 @@ resolvers += "Couchbase Snapshots" at "http://files.couchbase.com/maven2"
 libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.0-alpha.6"
 ----
 
+== Version 1.0.0-alpha6 (5th August 2019)
+
+This is the sixth pre-release of the new Couchbase Scala SDK.
+
+There are no new features, but improvements to the underlying core-io library provide increased stability and performance.
+
+=== Deprecations and Removals
+
+* https://issues.couchbase.com/browse/SCBC-50[SCBC-50]:	OpenTracing removed from API, as it is transitioning to OpenTelemetry currently.
+Support for OpenTelemetry may be added at a later date.
+
+== Version 1.0.0-alpha5 (5th July 2019)
+
+This is the fifth pre-release of the new Couchbase Scala SDK.
+
+=== New Features & Enhancements
+
+* https://issues.couchbase.com/browse/SCBC-26[SCBC-26]:	Support consistentWith for query
+* https://issues.couchbase.com/browse/SCBC-38[SCBC-38]:	Add prepared statement support
+
 == Version 1.0.0-alpha4 (12th June 2019)
 
 This is the fourth pre-release of the new Couchbase Scala SDK.

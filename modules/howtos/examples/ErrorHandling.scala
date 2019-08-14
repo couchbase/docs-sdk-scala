@@ -156,7 +156,7 @@ object ErrorHandling {
              // These transient errors won't be returned on an insert, but can be used
              // when writing similar wrappers for other mutation operations
              | Failure(_: CASMismatchException)
-             | Failure(_: TemporaryLockFailureException) =>
+             | Failure(_: LockException) =>
 
           // Retry the operation.  Our retry strategy is very simple here, and a
           // production application may want to try something more sophisticated,

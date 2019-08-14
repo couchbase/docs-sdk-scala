@@ -3,7 +3,7 @@
 :page-topic-type: howto
 include::partial$attributes.adoc[]
 :lang: Scala
-:version: 1.0.0 alpha.4
+:version: 1.0.0 alpha.6
 
 [abstract]
 Sub-Document operations can be used to efficiently access and change parts of documents.
