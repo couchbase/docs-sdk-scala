@@ -1,6 +1,6 @@
 // #tag::imports[]
 import java.util.NoSuchElementException
-import java.util.concurrent.{Executors, ThreadFactory}
+import java.util.concurrent.{Executors, ThreadFactory, TimeUnit}
 
 import com.couchbase.client.core.error._
 import com.couchbase.client.scala._
@@ -131,7 +131,10 @@ object ErrorHandling {
     val InitialGuard = 3
 
     // #tag::insert-real[]
-    def doInsert(docId: String, json: JsonObject, guard: Int = InitialGuard): Try[String] = {
+    def doInsert(docId: String,
+                 json: JsonObject,
+                 guard: Int = InitialGuard,
+                 delay: Duration = Duration(10, TimeUnit.MILLISECONDS)): Try[String] = {
       val result = collection.insert(docId, json, durability = Durability.Majority)
 
       result match {
@@ -145,25 +148,31 @@ object ErrorHandling {
           if (guard == InitialGuard) Failure(err)
           else Success("ok!")
 
-        // Ambiguous errors
+        // Ambiguous errors.  The operation may or may not have succeeded.  For inserts,
+        // the insert can be retried, and a KeyExistsException indicates it was
+        // successful.
         case Failure(_: DurabilityAmbiguousException)
              | Failure(_: RequestTimeoutException)
 
              // Temporary/transient errors that are likely to be resolved
              // on a retry
              | Failure(_: TemporaryFailureException)
+             | Failure(_: DurableWriteInProgressException)
+             | Failure(_: DurableWriteReCommitInProgressException)
 
              // These transient errors won't be returned on an insert, but can be used
              // when writing similar wrappers for other mutation operations
              | Failure(_: CASMismatchException)
              | Failure(_: LockException) =>
 
-          // Retry the operation.  Our retry strategy is very simple here, and a
-          // production application may want to try something more sophisticated,
-          // such as exponential back-off.
-          if (guard != 0) doInsert(docId, json, guard - 1)
-          // Replace this RuntimeException with your own
-          else Failure(new RuntimeException("Failed to insert " + docId))
+          if (guard != 0) {
+            // Retry the operation after a sleep (which increases on each failure),
+            // to avoid potentially further overloading an already failing server.
+            Thread.sleep(delay.toMillis)
+            doInsert(docId, json, guard - 1, delay * 2)
+          }
+          // Replace this CouchbaseException with your own
+          else Failure(new CouchbaseException("Failed to insert " + docId))
 
         // Other errors, propagate up
         case Failure(err) => Failure(err)
