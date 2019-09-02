@@ -61,7 +61,7 @@ object User {
 
 // #tag::case-classes[]
 
-val statement = """select * from `travel-sample` limit 10;"""
+val statement = """select `travel-sample`.* from `travel-sample` limit 10;"""
 
 cluster.query(statement)
   .flatMap(_.allRowsAs[User]) match {
@@ -75,7 +75,7 @@ cluster.query(statement)
 
 def positional() {
 // #tag::positional[]
-val stmt = """select * from `travel-sample` where type=$1 and country=$2 limit 10;"""
+val stmt = """select `travel-sample`.* from `travel-sample` where type=$1 and country=$2 limit 10;"""
 val result = cluster.query(stmt,
   QueryOptions().positionalParameters("airline", "United States"))
 // #end::positional[]
@@ -83,7 +83,7 @@ val result = cluster.query(stmt,
 
 def named() {
 // #tag::named[]
-val stmt = """select * from `travel-sample` where type=$type and country=$country limit 10;"""
+val stmt = """select `travel-sample`.* from `travel-sample` where type=$type and country=$country limit 10;"""
 val result = cluster.query(stmt,
   QueryOptions().namedParameters("type" -> "airline", "country" -> "United States"))
 // #end::named[]
@@ -91,7 +91,7 @@ val result = cluster.query(stmt,
 
 def requestPlus() {
 // #tag::request-plus[]
-val result = cluster.query("""select * from `travel-sample` limit 10;""",
+val result = cluster.query("""select `travel-sample`.* from `travel-sample` limit 10;""",
   QueryOptions().scanConsistency(ScanConsistency.RequestPlus()))
 // #end::request-plus[]
 }
@@ -102,7 +102,7 @@ def async() {
 // For this example we'll just use the global default
 import scala.concurrent.ExecutionContext.Implicits.global
 
-val stmt = """select * from `travel-sample` limit 10;"""
+val stmt = """select `travel-sample`.* from `travel-sample` limit 10;"""
 val future: Future[QueryResult] = cluster.async.query(stmt)
 
 future onComplete {
@@ -118,7 +118,7 @@ future onComplete {
 
 def reactive() {
 // #tag::reactive[]
-val stmt = """select * from `travel-sample`;"""
+val stmt = """select `travel-sample`.* from `travel-sample`;"""
 val mono: Mono[ReactiveQueryResult] = cluster.reactive.query(stmt)
 
 val rows: Flux[JsonObject] = mono

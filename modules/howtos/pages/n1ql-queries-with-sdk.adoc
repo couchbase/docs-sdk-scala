@@ -57,7 +57,6 @@ include::1.0@scala-sdk:howtos:partial$n1ql-placeholders.adoc[]
 include::1.0@scala-sdk:howtos:partial$n1ql-scan-consistency.adoc[]
 
 == Returning Results as Case Classes
-// TODO test this
 The Scala SDK supports returning N1QL results directly as Scala case classes.
 
 A small amount of boilerplate is required to tell the SDK how to convert your case class to/from JSON.  There are more details
