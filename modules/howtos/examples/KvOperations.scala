@@ -2,10 +2,10 @@
 import com.couchbase.client.core.error._
 import com.couchbase.client.scala._
 import com.couchbase.client.scala.api.MutationResult
-import com.couchbase.client.scala.codec.Conversions.Codec
 import com.couchbase.client.scala.durability._
-import com.couchbase.client.scala.implicits.Codecs
+import com.couchbase.client.scala.implicits.Codec
 import com.couchbase.client.scala.json._
+
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 // #end::imports[]
@@ -17,7 +17,7 @@ case class User(name: String, age: Int, addresses: Seq[Address])
 
 // #tag::cc-codec[]
 object User {
-  implicit val codec: Codec[User] = Codecs.codec[User]
+  implicit val codec: Codec[User] = Codec.codec[User]
 }
 // #end::cc-codec[]
 
@@ -67,7 +67,7 @@ r match {
 }
 
 // #tag::cluster[]
-val cluster = Cluster.connect("localhost", "username", "password")
+val cluster = Cluster.connect("localhost", "username", "password").get
 // #end::cluster[]
 
 // #tag::resources[]

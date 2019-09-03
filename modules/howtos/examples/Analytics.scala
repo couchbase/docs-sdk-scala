@@ -13,7 +13,7 @@ import scala.util.{Failure, Success, Try}
 object Analytics {
 
   // #tag::cluster[]
-  val cluster = Cluster.connect("localhost", "username", "password")
+  val cluster = Cluster.connect("localhost", "username", "password").get
   // #end::cluster[]
 
   // #tag::resources[]

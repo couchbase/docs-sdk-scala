@@ -3,7 +3,6 @@
 :page-topic-type: howto
 :source-language: scala
 :lang: Scala
-:version: 1.0.0 alpha.6
 :page-aliases: ROOT:async-programming,multiple-apis,ROOT:batching-operations
 
 include::partial$alpha-warning.adoc[]

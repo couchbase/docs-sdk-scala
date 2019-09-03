@@ -2,7 +2,6 @@
 :navtitle: JSON Libraries
 :page-topic-type: howto
 :lang: Scala
-:version: 1.0.0 alpha.6
 
 [abstract]
 The Scala SDK supports multiple options for working with JSON.

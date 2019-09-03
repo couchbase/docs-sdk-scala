@@ -1,20 +1,13 @@
 // #tag::imports[]
-import java.util.NoSuchElementException
-import java.util.concurrent.{Executors, ThreadFactory, TimeUnit}
+import java.util.concurrent.TimeUnit
 
 import com.couchbase.client.core.error._
 import com.couchbase.client.scala._
 import com.couchbase.client.scala.api.MutationResult
-import com.couchbase.client.scala.codec.Conversions.Codec
-import com.couchbase.client.scala.durability.Durability.Majority
 import com.couchbase.client.scala.durability._
-import com.couchbase.client.scala.implicits.Codecs
 import com.couchbase.client.scala.json._
 import com.couchbase.client.scala.query.QueryError
-import reactor.core.scala.publisher.Mono
-import reactor.core.scala.scheduler.ExecutionContextScheduler
 
-import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 // #end::imports[]
@@ -23,7 +16,7 @@ import scala.util.{Failure, Success, Try}
 object ErrorHandling {
 
   // #tag::cluster[]
-  val cluster = Cluster.connect("localhost", "username", "password")
+  val cluster = Cluster.connect("localhost", "username", "password").get
   // #end::cluster[]
 
   // #tag::resources[]

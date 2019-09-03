@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.0-alpha.6'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.0-alpha.7'
 }
 ----
 
@@ -43,7 +43,7 @@ Or into your Maven pom.xml:
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_2.12</artifactId>
-        <version>1.0.0-alpha.6</version>
+        <version>1.0.0-alpha.7</version>
     </dependency>
 </dependencies>
 ----
@@ -53,7 +53,7 @@ Or for SBT:
 [source,sbt]
 ----
 resolvers += "Couchbase Snapshots" at "http://files.couchbase.com/maven2"
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.0-alpha.6"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.0-alpha.7"
 ----
 
 == Scala 2.11 Support
@@ -86,17 +86,20 @@ Now you have the Scala client installed, try out the following to connect to a C
 First pull in all the imports we'll be using:
 [source,scala]
 ----
-include::example$Cluster.scala[tag=imports]
+include::example$Cluster.scala[tag=imports,indent=0]
 ----
 
 Now we can connect to the cluster:
 
 [source,scala]
 ----
-include::example$Cluster.scala[tag=cluster]
+include::example$Cluster.scala[tag=cluster,indent=0]
 ----
 
 Of course, you'll need to change the IP address to match your own cluster's.
+
+NOTE: `Cluster.connect` actually returns a `Try[Cluster]`, as the Scala client uses functional error handling and does not throw exceptions.
+You'll see examples later of how to better handle a `Try`, but for simplicity here we'll assume the operation succeeded and get the result as a `Cluster` using `.get`.
 
 Couchbase uses xref:6.0@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources, so specify the username and password of a user you've setup during installation of the Couchbase Data Platform.
 
@@ -104,7 +107,7 @@ Now we can open a Couchbase bucket, and its default collection:
 
 [source,scala]
 ----
-include::example$Cluster.scala[tag=resources]
+include::example$Cluster.scala[tag=resources,indent=0]
 ----
 
 The Scala SDK is forwards-looking to future releases of Couchbase Server which will support the new features of _scopes_ and
@@ -127,7 +130,7 @@ These options are described in detail xref:howtos:json.adoc[here], but to get us
 
 [source,scala]
 ----
-include::example$Cluster.scala[tag=json]
+include::example$Cluster.scala[tag=json,indent=0]
 ----
 
 == Key-Value Operations
@@ -136,7 +139,7 @@ We need to provide a unique ID for the JSON, and we'll use a UUID here:
 
 [source,scala]
 ----
-include::example$Cluster.scala[tag=upsert]
+include::example$Cluster.scala[tag=upsert,indent=0]
 ----
 
 [NOTE]
@@ -148,7 +151,7 @@ Now let's get the data back (this example will look a little messy, but we'll se
 
 [source,scala]
 ----
-include::example$Cluster.scala[tag=get]
+include::example$Cluster.scala[tag=get,indent=0]
 ----
 
 Here we're fetching the value for the key `docId`, converting that value to a `JsonObjectSafe` (a simple wrapper around `JsonObject` that returns `Try` rather than throwing exceptions - see xref:howtos:json.adoc#error-handling-and-jsonobjectsafe[here] for details), and then accessing the value of the *status* key as a String.
@@ -159,14 +162,14 @@ One way to improve on this is by using flatMap, like this:
 
 [source,scala]
 ----
-include::example$Cluster.scala[tag=get-map]
+include::example$Cluster.scala[tag=get-map,indent=0]
 ----
 
 Alternatively, you can use a for-comprehension, like so:
 
 [source,scala]
 ----
-include::example$Cluster.scala[tag=get-for]
+include::example$Cluster.scala[tag=get-for,indent=0]
 ----
 
 == Next Steps

@@ -1,10 +1,9 @@
 // #tag::imports[]
-import java.nio.charset.{Charset, StandardCharsets}
+import java.nio.charset.StandardCharsets
 
 import com.couchbase.client.scala._
 import com.couchbase.client.scala.api.MutationResult
-import com.couchbase.client.scala.codec.Conversions.Codec
-import com.couchbase.client.scala.implicits.Codecs
+import com.couchbase.client.scala.implicits.Codec
 import com.couchbase.client.scala.json._
 import com.couchbase.client.scala.kv._
 
@@ -14,7 +13,7 @@ import scala.util.{Failure, Success, Try}
 
 object JSON {
   // #tag::cluster[]
-  val cluster = Cluster.connect("localhost", "username", "password")
+  val cluster = Cluster.connect("localhost", "username", "password").get
   val bucket = cluster.bucket("travel-sample")
   val collection = bucket.defaultCollection
   // #end::cluster[]
@@ -291,7 +290,7 @@ object JSON {
 
     // #tag::cc-codec[]
     object User {
-      implicit val codec: Codec[User] = Codecs.codec[User]
+      implicit val codec: Codec[User] = Codec.codec[User]
     }
     // #end::cc-codec[]
 

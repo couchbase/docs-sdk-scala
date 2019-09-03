@@ -1,7 +1,6 @@
 // #tag::imports[]
 import com.couchbase.client.scala._
-import com.couchbase.client.scala.codec.Conversions.Codec
-import com.couchbase.client.scala.implicits.Codecs
+import com.couchbase.client.scala.implicits.Codec
 import com.couchbase.client.scala.json._
 import com.couchbase.client.scala.query._
 import reactor.core.scala.publisher._
@@ -15,7 +14,7 @@ object Queries {
   def main(args: Array[String]): Unit = {
 
 // #tag::cluster[]
-val cluster = Cluster.connect("localhost", "username", "password")
+val cluster = Cluster.connect("localhost", "username", "password").get
 val bucket = cluster.bucket("travel-sample")
 // #end::cluster[]
 
@@ -55,7 +54,7 @@ def caseClasses() {
 case class Address(line1: String)
 case class User(name: String, age: Int, addresses: Seq[Address])
 object User {
-  implicit val codec: Codec[User] = Codecs.codec[User]
+  implicit val codec: Codec[User] = Codec.codec[User]
 }
 // #end::codec[]
 
