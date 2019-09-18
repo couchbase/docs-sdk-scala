@@ -94,7 +94,7 @@ include::example$Analytics.scala[tag=metrics,indent=0]
 For a full listing of available `Metrics` in `Metadata`, see the xref:concept-docs:analytics-for-SDK-users.adoc[Understanding Analytics] documentation.
 
 == Streaming Large Result Sets
-The Scala SDK provides three SDKs (documented further on xref:howtos:multiple-apis.adoc[Choosing an API]):
+The Scala SDK provides three SDKs (documented further on xref:howtos:concurrent-async-apis.adoc[Choosing an API]):
 
 * The blocking API you've seen so far, that returns an `AnalyticsResult` containing all rows.
 
