@@ -3,7 +3,6 @@
 :page-topic-type: howto
 :page-aliases: document-operations.adoc
 :lang: Scala
-:version: 1.0.0 alpha.4
 
 include::partial$alpha-warning.adoc[]
 

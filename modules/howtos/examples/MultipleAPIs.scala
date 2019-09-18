@@ -5,12 +5,9 @@ import java.util.concurrent.{Executors, ThreadFactory}
 import com.couchbase.client.core.error._
 import com.couchbase.client.scala._
 import com.couchbase.client.scala.api.MutationResult
-import com.couchbase.client.scala.durability._
 import com.couchbase.client.scala.json._
 import com.couchbase.client.scala.kv.GetResult
-import reactor.core.scala.publisher.Mono
 
-import scala.concurrent.duration._
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success, Try}
 // #end::imports[]
@@ -19,7 +16,7 @@ import scala.util.{Failure, Success, Try}
 object MultipleAPIs {
 
   // #tag::cluster[]
-  val cluster = Cluster.connect("localhost", "username", "password")
+  val cluster = Cluster.connect("localhost", "username", "password").get
   // #end::cluster[]
 
   // #tag::resources[]

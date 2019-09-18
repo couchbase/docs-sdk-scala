@@ -10,10 +10,10 @@ import scala.util.{Failure, Success, Try}
 // #end::imports[]
 
 
-object ErrorHandling {
+object Analytics {
 
   // #tag::cluster[]
-  val cluster = Cluster.connect("localhost", "username", "password")
+  val cluster = Cluster.connect("localhost", "username", "password").get
   // #end::cluster[]
 
   // #tag::resources[]

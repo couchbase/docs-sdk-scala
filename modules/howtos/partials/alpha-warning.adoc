@@ -1,6 +1,8 @@
+// Required attributes:
+// :lang: Java
 [WARNING]
 ====
-These pages cover the fourth alpha release of the Couchbase Scala SDK.
+These pages cover the seventh alpha release of the Couchbase {lang} SDK -- 1.0.0-alpha.7.
 As such they are likely to change without notice.
 This alpha code _should not_ be used in production.
 

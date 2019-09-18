@@ -15,7 +15,7 @@ import scala.util.{Failure, Success, Try}
 
 object SubDocument {
 // #tag::cluster[]
-val cluster = Cluster.connect("localhost", "username", "password")
+val cluster = Cluster.connect("localhost", "username", "password").get
 val bucket = cluster.bucket("travel-sample")
 val collection = bucket.defaultCollection
 // #end::cluster[]

@@ -1,8 +1,9 @@
 // #tag::imports[]
+import java.nio.charset.StandardCharsets
+
 import com.couchbase.client.scala._
 import com.couchbase.client.scala.api.MutationResult
-import com.couchbase.client.scala.codec.Conversions.Codec
-import com.couchbase.client.scala.implicits.Codecs
+import com.couchbase.client.scala.implicits.Codec
 import com.couchbase.client.scala.json._
 import com.couchbase.client.scala.kv._
 
@@ -12,7 +13,7 @@ import scala.util.{Failure, Success, Try}
 
 object JSON {
   // #tag::cluster[]
-  val cluster = Cluster.connect("localhost", "username", "password")
+  val cluster = Cluster.connect("localhost", "username", "password").get
   val bucket = cluster.bucket("travel-sample")
   val collection = bucket.defaultCollection
   // #end::cluster[]
@@ -251,6 +252,36 @@ object JSON {
     // #end::playJson[]
   }
 
+  def string(): Unit = {
+    // #tag::string[]
+    val json = """{"hello":"world"}"""
+
+    val result: Try[String] = for {
+      // Can provide Play JSON types for all mutation operations
+      _       <- collection.insert("id", json)
+      doc     <- collection.get("id")
+
+      // Can retrieve document content as String
+      content <- doc.contentAs[String]
+    } yield content
+    // #end::string[]
+  }
+
+  def bytes(): Unit = {
+    // #tag::bytes[]
+    val json: Array[Byte] = """{"hello":"world"}""".getBytes(StandardCharsets.UTF_8)
+
+    val result: Try[Array[Byte]] = for {
+      // Can provide Play JSON types for all mutation operations
+      _       <- collection.insert("id", json)
+      doc     <- collection.get("id")
+
+      // Can retrieve document content as String
+      content <- doc.contentAs[Array[Byte]]
+    } yield content
+    // #end::bytes[]
+  }
+
   def caseClasses() = {
     // #tag::cc-create[]
     case class Address(line1: String)
@@ -259,7 +290,7 @@ object JSON {
 
     // #tag::cc-codec[]
     object User {
-      implicit val codec: Codec[User] = Codecs.codec[User]
+      implicit val codec: Codec[User] = Codec.codec[User]
     }
     // #end::cc-codec[]
 

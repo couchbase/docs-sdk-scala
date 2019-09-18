@@ -3,7 +3,6 @@
 :page-topic-type: howto
 :source-language: scala
 :lang: Scala
-:version: 1.0.0 alpha.4
 :page-aliases: ROOT:async-programming,multiple-apis,ROOT:batching-operations
 
 include::partial$alpha-warning.adoc[]
@@ -19,7 +18,7 @@ The Scala SDK provides three APIs, which can be freely mixed:
 
 == Using the Blocking API
 
-This is the simplest API, in which all operations are synchronous and blocking.  
+This is the simplest API, in which all operations are synchronous and blocking.
 A simple upsert example looks like this:
 
 [source,scala]
@@ -27,8 +26,8 @@ A simple upsert example looks like this:
 include::example$MultipleAPIs.scala[tag=upsert-simple,indent=0]
 ----
 
-Methods in the blocking API that can error will return a Scala `Try` object, 
-which can either be a `Success` containing the result, 
+Methods in the blocking API that can error will return a Scala `Try` object,
+which can either be a `Success` containing the result,
 or a `Failure` containing a _Throwable_ exception that derives from `CouchbaseException`.
 
 This can be pattern matched on, like this:
@@ -57,7 +56,7 @@ include::example$MultipleAPIs.scala[tag=get-map,indent=0]
 
 The asynchronous API returns Scala `Future`, representing the execution of an asynchronous task and the promise of a future result.
 
-Here's what a simple upsert looks like, handling `Success` or `Failure` 
+Here's what a simple upsert looks like, handling `Success` or `Failure`
 (note we are not actually blocking on the result here -- if you need that then you can use the methods in Scala's `Await`, or simply use the blocking Couchbase API):
 
 [source,scala]
@@ -137,13 +136,13 @@ While it's beyond the scope of this guide to teach reactive programming, it's im
 == Choosing an API
 So which API should you choose?
 
-It's really down to you and the needs of your application.  
-If you're already writing code in a synchronous way already then it may make sense to continue that way.  
-If you're writing a web application that supports reactive streams, it may make sense to use the reactive API.  
+It's really down to you and the needs of your application.
+If you're already writing code in a synchronous way already then it may make sense to continue that way.
+If you're writing a web application that supports reactive streams, it may make sense to use the reactive API.
 And you can use different APIs at different times.
 
 The most important thing to consider is when streaming back large queries from N1QL, Full Text Search, and Analytics.
-Here, the reactive API will provide full backpressure: 
+Here, the reactive API will provide full backpressure:
 that is, if your application is processing rows slower than the service is returning them, then automatically fewer rows will be requested from the service to give the application time to catch up.
 The upshot of this is that few rows are ever buffered in-memory, and the application shouldn't get out-of-memory exceptions.
 

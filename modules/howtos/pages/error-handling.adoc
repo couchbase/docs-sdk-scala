@@ -4,7 +4,6 @@
 :page-aliases: handling-error-conditions.adoc
 :source-language: scala
 :lang: Scala
-:version: 1.0.0 alpha.4
 
 include::partial$alpha-warning.adoc[]
 
