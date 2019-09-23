@@ -19,7 +19,7 @@
 
 ////
 .Advanced Data Operations
-* xref:howtos:concurrent-async-apis.adoc[Choosing an API]
+* xref:howtos:concurrent-async-apis.adoc[Async & React APIs]
 * xref:concept-docs:durability-replication-failure-considerations.adoc[Failure Considerations]
 
 ////
