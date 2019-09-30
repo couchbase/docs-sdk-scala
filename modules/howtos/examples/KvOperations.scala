@@ -276,7 +276,7 @@ collection.remove("document-key",
 
 def expiryInsert() {
 // #tag::expiry-insert[]
-collection.insert("document-key", json, expiration = 2.hours) match {
+collection.insert("document-key", json, expiry = 2.hours) match {
   case Success(result) =>
   case Failure(err)    => println("Error: " + err)
 }
@@ -285,10 +285,10 @@ collection.insert("document-key", json, expiration = 2.hours) match {
 
 def expiryGet() {
 // #tag::expiry-get[]
-collection.get("document-key", withExpiration = true) match {
+collection.get("document-key", withExpiry = true) match {
   case Success(result) =>
 
-    result.expiration match {
+    result.expiry match {
       case Some(expiry) => print(s"Got expiry: $expiry")
       case _            => println("Err: no expiration field")
     }
@@ -301,13 +301,13 @@ collection.get("document-key", withExpiration = true) match {
 def expiryReplace() {
 // #tag::expiry-replace[]
 val r: Try[MutationResult] = for {
-  doc    <- collection.get("document-key", withExpiration = true)
-  expiry <- Try(doc.expiration.get)
+  doc    <- collection.get("document-key", withExpiry = true)
+  expiry <- Try(doc.expiry.get)
             // ^^ doc.expiration is an Option, but we can't mix Try and
             // Option inside the same for-comprehension, so convert here
   json   <- doc.contentAs[JsonObjectSafe]
   _      <- json.put("foo", "bar")
-  result <- collection.replace("document-key", json, expiration = expiry)
+  result <- collection.replace("document-key", json, expiry = expiry)
 } yield result
 
 r match {
@@ -319,7 +319,7 @@ r match {
 
 def expiryTouch() {
 // #tag::expiry-touch[]
-collection.getAndTouch("document-key", expiration = 4.hours) match {
+collection.getAndTouch("document-key", expiry = 4.hours) match {
   case Success(result) =>
   case Failure(err)    => println("Error: " + err)
 }
