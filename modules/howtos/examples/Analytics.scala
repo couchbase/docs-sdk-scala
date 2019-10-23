@@ -2,7 +2,7 @@
 import com.couchbase.client.scala._
 import com.couchbase.client.scala.analytics.{AnalyticsError, AnalyticsOptions, AnalyticsResult, ReactiveAnalyticsResult}
 import com.couchbase.client.scala.json._
-import reactor.core.scala.publisher.{Flux, Mono}
+import reactor.core.scala.publisher.{SFlux, SMono}
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
@@ -145,9 +145,9 @@ object Analytics {
     // #tag::reactive[]
     val stmt =
       """select airportname, country from airports where country = "France";"""
-    val mono: Mono[ReactiveAnalyticsResult] = cluster.reactive.analyticsQuery(stmt)
+    val mono: SMono[ReactiveAnalyticsResult] = cluster.reactive.analyticsQuery(stmt)
 
-    val rows: Flux[JsonObject] = mono
+    val rows: SFlux[JsonObject] = mono
       // ReactiveQueryResult contains a rows: Flux[AnalyticsRow]
       .flatMapMany(result => result.rowsAs[JsonObject])
 

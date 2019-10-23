@@ -77,7 +77,7 @@ object ErrorHandling {
 
         case Failure(err: CASMismatchException) =>
           // Simply recursively retry until guard is hit
-          if (guard == 0) doOperation(guard - 1)
+          if (guard != 0) doOperation(guard - 1)
           else Failure(err)
 
         case Failure(exception) => Failure(exception)
@@ -179,7 +179,7 @@ object ErrorHandling {
     val stmt =
       """select * from `travel-sample` limit 10;"""
     cluster.query(stmt)
-      .map(_.allRowsAs[JsonObject]) match {
+      .map(_.rowsAs[JsonObject]) match {
       case Success(rows) =>
       case Failure(err: QueryError) => println(s"Query error: ${err.msg}")
       case Failure(err) => println(s"Error: ${err}")
