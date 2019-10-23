@@ -104,7 +104,7 @@ Analytics works in an identical fashion, raising an `AnalyticsError`.
 == Additional Resources
 Errors & Exception handling is an expansive topic.
 Here, we have covered examples of the kinds of exception scenarios that you are most likely to face.
-More fundamentally, you also need to weigh up xref:concept-docs:durability-error-handling-from-the-sdk.adoc[concepts of durability].
+More fundamentally, you also need to weigh up xref:concept-docs:durability-replication-failure-considerations.adoc[concepts of durability].
 
 Diagnostic methods are available to check on the xref:health-check.adoc[health of the cluster], and the xref:tracing-from-the-sdk.adoc[health of the network].
 
