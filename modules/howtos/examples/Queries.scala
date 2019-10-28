@@ -76,7 +76,7 @@ def positional() {
 // #tag::positional[]
 val stmt = """select `travel-sample`.* from `travel-sample` where type=$1 and country=$2 limit 10;"""
 val result = cluster.query(stmt,
-  QueryOptions().positionalParameters(Seq("airline", "United States")))
+  QueryOptions().parameters(Seq("airline", "United States")))
 // #end::positional[]
 }
 
@@ -84,7 +84,7 @@ def named() {
 // #tag::named[]
 val stmt = """select `travel-sample`.* from `travel-sample` where type=$type and country=$country limit 10;"""
 val result = cluster.query(stmt,
-  QueryOptions().namedParameters(Map("type" -> "airline", "country" -> "United States")))
+  QueryOptions().parameters(Map("type" -> "airline", "country" -> "United States")))
 // #end::named[]
 }
 

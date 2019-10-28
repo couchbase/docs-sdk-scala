@@ -1,6 +1,6 @@
 // #tag::imports[]
 import com.couchbase.client.scala._
-import com.couchbase.client.scala.analytics.{AnalyticsError, AnalyticsOptions, AnalyticsResult, ReactiveAnalyticsResult}
+import com.couchbase.client.scala.analytics.{AnalyticsOptions, AnalyticsResult, ReactiveAnalyticsResult}
 import com.couchbase.client.scala.json._
 import reactor.core.scala.publisher.{SFlux, SMono}
 
@@ -31,11 +31,10 @@ object Analytics {
     // #tag::simple[]
     val query = """select "hello" as greeting;"""
     val result: Try[AnalyticsResult] = cluster.analyticsQuery(query)
-    val rows: Try[Seq[JsonObject]] = result.flatMap(_.allRowsAs[JsonObject])
+    val rows: Try[Seq[JsonObject]] = result.flatMap(_.rowsAs[JsonObject])
 
     rows match {
       case Success(r: Seq[JsonObject]) => println(s"Row: ${r.head}")
-      case Failure(err: AnalyticsError) => println(s"Failure ${err}")
       case Failure(err) => println(s"Failure ${err}")
     }
     // #end::simple[]
@@ -44,9 +43,8 @@ object Analytics {
   def simpleBetter() {
     // #tag::simple-better[]
     cluster.analyticsQuery("""select "hello" as greeting;""")
-      .flatMap(_.allRowsAs[JsonObject]) match {
+      .flatMap(_.rowsAs[JsonObject]) match {
       case Success(r)   => println(s"Row: ${r.head}")
-      case Failure(err: AnalyticsError) => println(s"Failure ${err}")
       case Failure(err) => println(s"Failure ${err}")
     }
     // #end::simple-better[]
@@ -56,10 +54,9 @@ object Analytics {
     // #tag::parameterised[]
     cluster.analyticsQuery(
       """select airportname, country from airports where country = ?;""",
-      AnalyticsOptions().positionalParameters("France"))
-      .flatMap(_.allRowsAs[JsonObject]) match {
+      AnalyticsOptions().parameters(Seq("France")))
+      .flatMap(_.rowsAs[JsonObject]) match {
       case Success(r)   => r.foreach(row => println(s"Row: ${row}"))
-      case Failure(err: AnalyticsError) => println(s"Failure ${err}")
       case Failure(err) => println(s"Failure ${err}")
     }
     // #end::parameterised[]
@@ -69,10 +66,9 @@ object Analytics {
     // #tag::named[]
     cluster.analyticsQuery(
       """select airportname, country from airports where country = $country;""",
-      AnalyticsOptions().namedParameters("country" -> "France"))
-      .flatMap(_.allRowsAs[JsonObject]) match {
+      AnalyticsOptions().parameters(Map("country" -> "France")))
+      .flatMap(_.rowsAs[JsonObject]) match {
       case Success(r)   => r.foreach(row => println(s"Row: ${row}"))
-      case Failure(err: AnalyticsError) => println(s"Failure ${err}")
       case Failure(err) => println(s"Failure ${err}")
     }
     // #end::named[]
@@ -94,8 +90,7 @@ object Analytics {
         .timeout(90.seconds)
     ) match {
       case Success(r: AnalyticsResult) =>
-        assert(r.meta.clientContextId.contains("my-id"))
-      case Failure(err: AnalyticsError) => println(s"Failure ${err}")
+        assert(r.metaData.clientContextId.contains("my-id"))
       case Failure(err) => println(s"Failure ${err}")
     }
   }
@@ -107,12 +102,10 @@ object Analytics {
       """select airportname, country from airports where country = "France";"""
     cluster.analyticsQuery(stmt) match {
       case Success(result) =>
-        result.meta.metrics.foreach(metrics => {
-          println(s"Elapsed: ${metrics.elapsedTime}")
-          println(s"Results: ${metrics.resultCount}")
-          println(s"Errors:  ${metrics.errorCount}")
-        })
-      case Failure(err: AnalyticsError) => println(s"Failure ${err}")
+        val metrics = result.metaData.metrics
+        println(s"Elapsed: ${metrics.elapsedTime}")
+        println(s"Results: ${metrics.resultCount}")
+        println(s"Errors:  ${metrics.errorCount}")
       case Failure(err) => println(s"Failure ${err}")
     }
     // #end::metrics[]
@@ -131,11 +124,10 @@ object Analytics {
 
     future onComplete {
       case Success(result) =>
-        result.allRowsAs[JsonObject] match {
+        result.rowsAs[JsonObject] match {
           case Success(rows) => rows.foreach(println(_))
           case Failure(err) => println(s"Error: $err")
         }
-      case Failure(err: AnalyticsError) => println(s"Failure ${err}")
       case Failure(err) => println(s"Error: $err")
     }
     // #end::async[]

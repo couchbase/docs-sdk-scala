@@ -15,17 +15,10 @@
  */
 
 // #tag::imports[]
-import java.util.NoSuchElementException
-import java.util.concurrent.{Executors, ThreadFactory}
-
-import com.couchbase.client.core.error._
 import com.couchbase.client.scala._
-import com.couchbase.client.scala.api.MutationResult
 import com.couchbase.client.scala.json._
-import com.couchbase.client.scala.kv.GetResult
 import com.couchbase.client.scala.view.{ViewOptions, ViewResult}
 
-import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success, Try}
 // #end::imports[]
 
