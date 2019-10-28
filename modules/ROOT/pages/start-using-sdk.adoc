@@ -7,7 +7,7 @@
 [abstract]
 The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster from the Scala language.
 
-include::1.0@scala-sdk:howtos:partial$alpha-warning.adoc[]
+include::1.0@scala-sdk:ROOT:partial$beta-warning.adoc[]
 
 == Installing the SDK
 
@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.0-alpha.8'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.0-beta.1'
 }
 ----
 
@@ -43,7 +43,7 @@ Or into your Maven pom.xml:
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_2.12</artifactId>
-        <version>1.0.0-alpha.8</version>
+        <version>1.0.0-beta.1</version>
     </dependency>
 </dependencies>
 ----
@@ -53,7 +53,7 @@ Or for SBT:
 [source,sbt]
 ----
 resolvers += "Couchbase Snapshots" at "http://files.couchbase.com/maven2"
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.0-alpha.8"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.0-beta.1"
 ----
 
 == Scala 2.11 Support
