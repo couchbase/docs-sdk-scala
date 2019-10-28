@@ -123,8 +123,9 @@ Here's how to perform a query and stream the results using the reactive API:
 include::example$Analytics.scala[tag=reactive,indent=0]
 ----
 
-
+////
 == Additional Resources 
 
 To learn more about using N1QL for Analytics -- the first commercial implementation of SQL++ -- see our https://sqlplusplus-tutorial.couchbase.com/tutorial/#1[Tutorial Introduction to SQL++ for SQL users].
 
+////
