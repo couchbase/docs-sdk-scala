@@ -94,7 +94,7 @@ def insert() {
 // #tag::insert[]
 collection.insert("document-key", json) match {
   case Success(result) =>
-  case Failure(err: KeyExistsException) =>
+  case Failure(err: DocumentExistsException) =>
     println("The document already exists")
   case Failure(err) => println("Error: " + err)
 }
@@ -193,7 +193,7 @@ val r: Try[MutationResult] = for {
 
 r match {
   case Success(result) =>
-  case Failure(err: CASMismatchException) =>
+  case Failure(err: CasMismatchException) =>
     println("Could not write as another agent has concurrently modified the document")
   case Failure(err) => println("Error: " + err)
 }
@@ -223,14 +223,14 @@ collection.insert("document-key", json) match {
   case Failure(err) => println("Error: " + err)
 }
 
-// Try the provided operation, retrying on CASMismatchException
+// Try the provided operation, retrying on CasMismatchException
 def retryOnCASMismatch(op: () => Try[MutationResult]): Try[MutationResult] = {
   // Perform the operation
   val result = op()
 
   result match {
-    // Retry on any CASMismatchException errors
-    case Failure(err: CASMismatchException) =>
+    // Retry on any CasMismatchException errors
+    case Failure(err: CasMismatchException) =>
       retryOnCASMismatch(op)
 
     // If Success or any other Failure, return it
@@ -244,7 +244,7 @@ def remove() {
 // #tag::remove[]
 collection.remove("document-key") match {
   case Success(result) =>
-  case Failure(err: KeyNotFoundException) =>
+  case Failure(err: DocumentNotFoundException) =>
     println("The document does not exist")
   case Failure(err) => println("Error: " + err)
 }
@@ -256,7 +256,7 @@ def durability() {
 collection.remove("document-key", durability = Durability.Majority) match {
   case Success(result) =>
   // The mutation is available in-memory on at least a majority of replicas
-  case Failure(err: KeyNotFoundException) =>
+  case Failure(err: DocumentNotFoundException) =>
     println("The document does not exist")
   case Failure(err)    => println("Error: " + err)
 }
@@ -267,7 +267,7 @@ collection.remove("document-key",
   durability = Durability.ClientVerified(ReplicateTo.Two, PersistTo.None)) match {
   case Success(result) =>
   // The mutation is available in-memory on at least two replicas
-  case Failure(err: KeyNotFoundException) =>
+  case Failure(err: DocumentNotFoundException) =>
     println("The document does not exist")
   case Failure(err)    => println("Error: " + err)
 }

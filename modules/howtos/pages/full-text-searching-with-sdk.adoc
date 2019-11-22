@@ -1,4 +1,56 @@
-= Full Text Search from the SDK
+= Full Text Search (FTS)
+:navtitle: Searching from the SDK
+:page-topic-type: howto
 
-(FTS)
 
+[abstract]
+You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server.
+
+include::1.0@scala-sdk:ROOT:partial$beta-warning.adoc[]
+
+Full Text Search or FTS allows you to create, manage, and query full text indexes on JSON documents stored in Couchbase buckets.
+It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches.
+Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries.
+The Scala SDK exposes an API for performing FTS queries which abstracts some of the complexity of using the underlying REST API.
+
+== Examples
+The examples below use these imports:
+
+[source.scala]
+----
+include::example$FTS.scala[tag=imports,indent=0]
+----
+
+Search queries are executed at Cluster level (not bucket or collection).
+Here is a simple MatchQuery that looks for the text “swanky” using a defined index:
+
+[source.scala]
+----
+include::example$FTS.scala[tag=basic,indent=0]
+----
+
+All simple query types are created in the same manner.
+Some have additional properties, which can be seen in common query type descriptions.
+Couchbase FTS's xref:6.5@server:fts:fts-query-types.adoc[range of query types] enable powerful searching using multiple options, to ensure results are just within the range wanted.
+
+== Working with Results
+
+The result of a search query has three components: rows, facets, and metadata.
+Rows are the documents that match the query.
+Facets allow the aggregation of information collected on a particular result set.
+Metadata holds additional information not directly related to your query, such as total rows and how long the query took to execute in the cluster.
+
+[source.scala]
+----
+include::example$FTS.scala[tag=results,indent=0]
+----
+
+
+== Consistency
+
+Like the Couchbase Query Service, FTS allows provides optional _Read-Your-Own-Writes (RYOW)_ consistency, ensuring results contain information from updated indexes:
+
+[source.scala]
+----
+include::example$FTS.scala[tag=consistency,indent=0]
+----

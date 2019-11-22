@@ -36,7 +36,7 @@ object ErrorHandling {
 
     collection.replace("does-not-exist", json) match {
       case Success(_) => println("Successful")
-      case Failure(err: KeyNotFoundException) => println("Key not found")
+      case Failure(err: DocumentNotFoundException) => println("Key not found")
       case Failure(exception) => println("Error: " + exception)
     }
     // #end::key-not-found[]
@@ -48,7 +48,7 @@ object ErrorHandling {
 
     collection.insert("does-already-exist", json) match {
       case Success(_) => println("Successful")
-      case Failure(err: KeyExistsException) => println("Key already exists")
+      case Failure(err: DocumentExistsException) => println("Key already exists")
       case Failure(exception) => println("Error: " + exception)
     }
     // #end::key-exists[]
@@ -58,7 +58,7 @@ object ErrorHandling {
     // #tag::get[]
     collection.get("document-key") match {
       case Success(result) =>
-      case Failure(err: KeyNotFoundException) => println("Key not found")
+      case Failure(err: DocumentNotFoundException) => println("Key not found")
       case Failure(err) => println("Error getting document: " + err)
     }
     // #end::get[]
@@ -75,9 +75,9 @@ object ErrorHandling {
 
         case Success(value) => Success(value)
 
-        case Failure(err: CASMismatchException) =>
+        case Failure(err: CasMismatchException) =>
           // Simply recursively retry until guard is hit
-          if (guard == 0) doOperation(guard - 1)
+          if (guard != 0) doOperation(guard - 1)
           else Failure(err)
 
         case Failure(exception) => Failure(exception)
@@ -98,7 +98,7 @@ object ErrorHandling {
 
         case Success(value) => Success("ok!")
 
-        case Failure(err: KeyExistsException) =>
+        case Failure(err: DocumentExistsException) =>
           // The logic here is that if we failed to insert on the first attempt then
           // it's a true error, otherwise we retried due to an ambiguous error, and
           // it's ok to continue as the operation was actually successful
@@ -110,7 +110,7 @@ object ErrorHandling {
           if (guard != 0) doInsert(docId, json, guard - 1)
           else Failure(err)
 
-        case Failure(err: RequestTimeoutException) =>
+        case Failure(err: TimeoutException) =>
           if (guard != 0) doInsert(docId, json, guard - 1)
           else Failure(err)
 
@@ -134,7 +134,7 @@ object ErrorHandling {
 
         case Success(value) => Success("ok!")
 
-        case Failure(err: KeyExistsException) =>
+        case Failure(err: DocumentExistsException) =>
           // The logic here is that if we failed to insert on the first attempt then
           // it's a true error, otherwise we retried due to an ambiguous error, and
           // it's ok to continue as the operation was actually successful
@@ -142,10 +142,10 @@ object ErrorHandling {
           else Success("ok!")
 
         // Ambiguous errors.  The operation may or may not have succeeded.  For inserts,
-        // the insert can be retried, and a KeyExistsException indicates it was
+        // the insert can be retried, and a DocumentExistsException indicates it was
         // successful.
         case Failure(_: DurabilityAmbiguousException)
-             | Failure(_: RequestTimeoutException)
+             | Failure(_: TimeoutException)
 
              // Temporary/transient errors that are likely to be resolved
              // on a retry
@@ -155,8 +155,7 @@ object ErrorHandling {
 
              // These transient errors won't be returned on an insert, but can be used
              // when writing similar wrappers for other mutation operations
-             | Failure(_: CASMismatchException)
-             | Failure(_: LockException) =>
+             | Failure(_: CasMismatchException) =>
 
           if (guard != 0) {
             // Retry the operation after a sleep (which increases on each failure),
@@ -179,7 +178,7 @@ object ErrorHandling {
     val stmt =
       """select * from `travel-sample` limit 10;"""
     cluster.query(stmt)
-      .map(_.allRowsAs[JsonObject]) match {
+      .map(_.rowsAs[JsonObject]) match {
       case Success(rows) =>
       case Failure(err: QueryError) => println(s"Query error: ${err.msg}")
       case Failure(err) => println(s"Error: ${err}")

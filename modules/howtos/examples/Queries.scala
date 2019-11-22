@@ -27,7 +27,7 @@ val result: Try[QueryResult] = cluster.query(statement)
 // #tag::simple-results[]
 result match {
   case Success(result: QueryResult) =>
-    result.allRowsAs[JsonObject] match {
+    result.rowsAs[JsonObject] match {
       case Success(rows) =>
         println(s"Got ${rows} rows")
       case Failure(err) => println(s"Error: $err")
@@ -40,7 +40,7 @@ result match {
 def getRows() {
 // #tag::get-rows[]
 cluster.query("""select * from `travel-sample` limit 10;""")
-  .flatMap(_.allRowsAs[JsonObject]) match {
+  .flatMap(_.rowsAs[JsonObject]) match {
   case Success(rows: Seq[JsonObject]) =>
     rows.foreach(row => println(row))
   case Failure(err) =>
@@ -63,7 +63,7 @@ object User {
 val statement = """select `travel-sample`.* from `travel-sample` limit 10;"""
 
 cluster.query(statement)
-  .flatMap(_.allRowsAs[User]) match {
+  .flatMap(_.rowsAs[User]) match {
   case Success(rows: Seq[User]) =>
     rows.foreach(row => println(row))
   case Failure(err) =>
@@ -76,7 +76,7 @@ def positional() {
 // #tag::positional[]
 val stmt = """select `travel-sample`.* from `travel-sample` where type=$1 and country=$2 limit 10;"""
 val result = cluster.query(stmt,
-  QueryOptions().positionalParameters("airline", "United States"))
+  QueryOptions().parameters(Seq("airline", "United States")))
 // #end::positional[]
 }
 
@@ -84,14 +84,14 @@ def named() {
 // #tag::named[]
 val stmt = """select `travel-sample`.* from `travel-sample` where type=$type and country=$country limit 10;"""
 val result = cluster.query(stmt,
-  QueryOptions().namedParameters("type" -> "airline", "country" -> "United States"))
+  QueryOptions().parameters(Map("type" -> "airline", "country" -> "United States")))
 // #end::named[]
 }
 
 def requestPlus() {
 // #tag::request-plus[]
 val result = cluster.query("""select `travel-sample`.* from `travel-sample` limit 10;""",
-  QueryOptions().scanConsistency(ScanConsistency.RequestPlus()))
+  QueryOptions().scanConsistency(QueryScanConsistency.RequestPlus()))
 // #end::request-plus[]
 }
 
@@ -106,7 +106,7 @@ val future: Future[QueryResult] = cluster.async.query(stmt)
 
 future onComplete {
   case Success(result) =>
-    result.allRowsAs[JsonObject] match {
+    result.rowsAs[JsonObject] match {
       case Success(rows) => rows.foreach(println(_))
       case Failure(err) => println(s"Error: $err")
     }
@@ -118,9 +118,9 @@ future onComplete {
 def reactive() {
 // #tag::reactive[]
 val stmt = """select `travel-sample`.* from `travel-sample`;"""
-val mono: Mono[ReactiveQueryResult] = cluster.reactive.query(stmt)
+val mono: SMono[ReactiveQueryResult] = cluster.reactive.query(stmt)
 
-val rows: Flux[JsonObject] = mono
+val rows: SFlux[JsonObject] = mono
   // ReactiveQueryResult contains a rows: Flux[QueryRow]
   .flatMapMany(result => result.rowsAs[JsonObject])
 

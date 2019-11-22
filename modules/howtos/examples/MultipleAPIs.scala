@@ -135,7 +135,7 @@ object MultipleAPIs {
 
     result onComplete {
       case Success(status) => println(s"Status ${status}")
-      case Failure(err: KeyNotFoundException) => println("Doc not found")
+      case Failure(err: DocumentNotFoundException) => println("Doc not found")
       case Failure(err: NoSuchElementException) => println("JSON not in expected format")
       case Failure(exception) => println("Error: " + exception)
     }
@@ -177,7 +177,7 @@ object MultipleAPIs {
       .map((v: JsonObject)        => v.str("status"))
 
       .doOnError {
-        case err: KeyNotFoundException => println("Doc not found")
+        case err: DocumentNotFoundException => println("Doc not found")
         case err: NoSuchElementException => println("JSON not in expected format")
         case err => println(s"Error: ${err}")
       }

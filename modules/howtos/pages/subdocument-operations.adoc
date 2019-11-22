@@ -7,7 +7,7 @@ include::partial$attributes.adoc[]
 [abstract]
 Sub-Document operations can be used to efficiently access and change parts of documents.
 
-include::partial$alpha-warning.adoc[]
+include::1.0@scala-sdk:ROOT:partial$beta-warning.adoc[]
 
 Sub-Document operations may be quicker and more network-efficient than _full-document_ operations such as _upsert_, _replace_ and _get_ because they only transmit the accessed sections of the document over the network.
 
@@ -352,7 +352,7 @@ include::example$SubDocument.scala[tag=sync-durability,indent=0]
 == Error Handling
 
 Sub-Document operations have their own set of errors.
-When programming with Sub-Document, be prepared for any of the full-document errors (such as _KeyNotFoundException_) as well as
+When programming with Sub-Document, be prepared for any of the full-document errors (such as _DocumentNotFoundException_) as well as
 special Sub-Document errors which are received when certain constraints are not satisfied.
 Some of the errors include:
 

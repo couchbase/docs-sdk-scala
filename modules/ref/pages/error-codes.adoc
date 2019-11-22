@@ -5,4 +5,4 @@
 [abstract]
 The standardized error codes returned by the Couchbase Scala SDK.
 
-include::partial$alpha-warning.adoc[]
+include::1.0@scala-sdk:ROOT:partial$beta-warning.adoc[]
