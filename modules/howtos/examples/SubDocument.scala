@@ -123,13 +123,12 @@ val mono = collection.reactive.lookupIn("customer123", Array(
 ))
 
 // Just for example, block on the result - this is not best practice
-val result: Option[LookupInResult] = mono.block()
+val result: LookupInResult = mono.block()
 
-val str: Option[String] = result.flatMap(r =>
-  r.contentAs[String](0).toOption)
+val str: Option[String] = result.contentAs[String](0).toOption
 
 str match {
-  case Some(str) => println(s"Country: ${str}")
+  case Some(s)   => println(s"Country: ${s}")
   case _         => println(s"Error")
 }
 // #end::get-reactive[]
@@ -179,7 +178,7 @@ val result = collection.mutateIn("customer123", Array(
 def arrayAppendFunc() {
 // #tag::array-append[]
 val result = collection.mutateIn("customer123", Array(
-  arrayAppend("purchases.complete", 777)
+  arrayAppend("purchases.complete", Seq(777))
 ))
 
 // purchases.complete is now [339, 976, 442, 666, 777]
@@ -189,7 +188,7 @@ val result = collection.mutateIn("customer123", Array(
 def arrayPrependFunc() {
 // #tag::array-prepend[]
 val result = collection.mutateIn("customer123", Array(
-  arrayPrepend("purchases.abandoned", 18)
+  arrayPrepend("purchases.abandoned", Seq(18))
 ))
 
 // purchases.abandoned is now [18, 157, 49, 999]
@@ -201,7 +200,7 @@ def createAndPopulateArray() {
 val result = collection.upsert("my_array", JsonArray.create)
     .flatMap(r =>
       collection.mutateIn("my_array", Array(
-        arrayAppend("", "some element")
+        arrayAppend("", Seq("some element"))
       ))
     )
 
@@ -212,7 +211,7 @@ val result = collection.upsert("my_array", JsonArray.create)
 def arrayCreate() {
 // #tag::array-upsert[]
 val result = collection.mutateIn("some_doc", Array(
-  arrayAppend("some.array", "hello world").createPath
+  arrayAppend("some.array", Seq("hello world")).createPath
 ))
 // #end::array-upsert[]
 }
@@ -242,7 +241,7 @@ result2 match {
 def arrayInsertFunc() {
 // #tag::array-insert[]
 val result = collection.mutateIn("some_doc", Array(
-  arrayInsert("foo.bar[1]", "cruel")
+  arrayInsert("foo.bar[1]", Seq("cruel"))
 ))
 // #end::array-insert[]
 }
@@ -289,12 +288,12 @@ def concurrent() {
 // #tag::concurrent[]
 // Thread 1
 collection.mutateIn("customer123", Array(
-  arrayAppend("purchases.complete", 99)
+  arrayAppend("purchases.complete", Seq(99))
 ))
 
 // Thread 2
 collection.mutateIn("customer123", Array(
-  arrayAppend("purchases.abandoned", 101)
+  arrayAppend("purchases.abandoned", Seq(101))
 ))
 // #end::concurrent[]
 

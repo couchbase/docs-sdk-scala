@@ -69,7 +69,7 @@ class FTS {
 
         // MetaData
         val maxScore: Double = res.metaData.metrics.maxScore
-        val successCount: Long = res.metaData.status.successCount
+        val successCount: Long = res.metaData.metrics.successPartitionCount
 
       case Failure(err) => println(s"Failure: ${err}")
     }

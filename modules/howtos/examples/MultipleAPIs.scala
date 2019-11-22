@@ -171,7 +171,6 @@ object MultipleAPIs {
     // This example is written in a verbose style for clarity
     collection.reactive.upsert("document-key", json)
       .flatMap(_                  => collection.reactive.get("document-key"))
-      .map((v: Option[GetResult]) => v.get)
       .map((v: GetResult)         => v.contentAs[JsonObject])
       .map((v: Try[JsonObject])   => v.get)
       .map((v: JsonObject)        => v.str("status"))
