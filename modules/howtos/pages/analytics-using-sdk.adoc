@@ -91,7 +91,7 @@ include::example$Analytics.scala[tag=parameters,indent=0]
 include::example$Analytics.scala[tag=metrics,indent=0]
 ----
 
-For a full listing of available `Metrics` in `Metadata`, see the xref:concept-docs:analytics-for-SDK-users.adoc[Understanding Analytics] documentation.
+For a full listing of available `Metrics` in `Metadata`, see the xref:concept-docs:analytics-for-sdk-users.adoc[Understanding Analytics] documentation.
 
 == Streaming Large Result Sets
 The Scala SDK provides three SDKs (documented further on xref:howtos:concurrent-async-apis.adoc[Choosing an API]):
@@ -122,3 +122,10 @@ Here's how to perform a query and stream the results using the reactive API:
 ----
 include::example$Analytics.scala[tag=reactive,indent=0]
 ----
+
+////
+== Additional Resources 
+
+To learn more about using N1QL for Analytics -- the first commercial implementation of SQL++ -- see our https://sqlplusplus-tutorial.couchbase.com/tutorial/#1[Tutorial Introduction to SQL++ for SQL users].
+
+////

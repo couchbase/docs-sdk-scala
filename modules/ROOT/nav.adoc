@@ -36,7 +36,7 @@
 * xref:concept-docs:collections.adoc[Collections & Scope]
 * xref:concept-docs:data-model.adoc[Data Model]
 * xref:concept-docs:encryption.adoc[Field Level Encryption]
-* xref:concept-docs:http-services.adoc[Service Selection]
+* xref:concept-docs:data-services.adoc[Service Selection]
 
 .References
 

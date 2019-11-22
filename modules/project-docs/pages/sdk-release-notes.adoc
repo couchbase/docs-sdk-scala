@@ -153,6 +153,8 @@ To permit Cluster opening to return errors (for example, on a badly constructed 
 You can now write `implicit val codec: Codec[User] = Codec.codec[User]` without having to import both Codec and Codecs.
 * https://issues.couchbase.com/browse/SCBC-28[SCBC-28]: Track RFC changes on getFromReplica
 
+
+[#latest-release]
 == Version 1.0.0-alpha6 (5th August 2019)
 
 This is the sixth pre-release of the new Couchbase Scala SDK.

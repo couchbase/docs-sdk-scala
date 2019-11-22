@@ -21,7 +21,7 @@ var result = bucket.ViewQuery<Type>(“design-doc”, “view-name”, options =
     options.WithLimit
 ----
 
-include::6.5@sdk:shared:partial$views.adoc[tag=example-beer]
+
 
 [source,scala]
 ----
