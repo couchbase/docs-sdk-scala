@@ -240,7 +240,7 @@ The default is `Durability.Disabled`, in which the SDK will return as soon as Co
 
 However, we recognize that there are times when the application needs that extra certainty that especially vital mutations have been successfully replicated, and the other durability options provide the means to achieve this.
 
-The options differ depend on what Couchbase Server version is in use.  If 6.5 or above is being used, you can take advantage of the 'Durable Write' feature, in which Couchbase Server will only return success to the SDK after the requested replication level has been achieved.  The three replication levels are:
+The options differ depend on what Couchbase Server version is in use.  If 6.5 or above is being used, you can take advantage of the xref:concept-docs:durability-replication-failure-considerations.adoc#durable-writes[Durable Write] feature, in which Couchbase Server will only return success to the SDK after the requested replication level has been achieved.  The three replication levels are:
 
 `Majority` - The server will ensure that the change is available in memory on the majority of configured replicas.
 
