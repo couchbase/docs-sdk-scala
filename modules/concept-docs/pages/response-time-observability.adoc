@@ -3,6 +3,8 @@
 :page-topic-type: concept
 
 [abstract]
-RTO - open tracing using the Open Telemetry API.
+RTO - Observability using the Open Telemetry API.
 
-include::1.0@scala-sdk:ROOT:partial$beta-warning.adoc[]
+include::partial$beta-warning.adoc[]
+
+include::6.5@sdk:pages:partial$rto.adoc[tag=placeholder]
