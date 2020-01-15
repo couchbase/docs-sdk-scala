@@ -18,7 +18,6 @@
 
 .Advanced Data Operations
 * xref:howtos:concurrent-async-apis.adoc[Async & React APIs]
-* xref:concept-docs:durability-replication-failure-considerations.adoc[Failure Considerations]
 
 ////
 .Managing Couchbase
@@ -35,6 +34,7 @@
 * xref:concept-docs:data-model.adoc[Data Model]
 * xref:concept-docs:errors.adoc[Errors and Diagnostics]
 ** xref:concept-docs:health-check.adoc[Health Check]
+* xref:concept-docs:durability-replication-failure-considerations.adoc[Failure Considerations]
 * xref:concept-docs:encryption.adoc[Field Level Encryption]
 * xref:concept-docs:data-services.adoc[Service Selection]
 
