@@ -11,16 +11,13 @@
 * xref:howtos:subdocument-operations.adoc[Sub-Document Operations]
 //  ** xref:howtos:sdk-xattr-example.adoc[Extended Attributes]
 * xref:howtos:n1ql-queries-with-sdk.adoc[Query]
+* xref:howtos:full-text-searching-with-sdk.adoc[Search]
 * xref:howtos:analytics-using-sdk.adoc[Analytics]
+//  ** xref:howtos:advanced-analytics-querying.adoc[Advanced Analytics Querying]
 * xref:howtos:view-queries-with-sdk.adoc[MapReduce Views]
-* xref:howtos:full-text-searching-with-sdk.adoc[Full Text Search]
-////
- ** xref:howtos:advanced-analytics-querying.adoc[Advanced Analytics Querying]
 
-////
 .Advanced Data Operations
 * xref:howtos:concurrent-async-apis.adoc[Async & React APIs]
-* xref:concept-docs:durability-replication-failure-considerations.adoc[Failure Considerations]
 
 .Managing Couchbase
 * xref:howtos:managing-connections.adoc[Managing Connections]
@@ -35,6 +32,9 @@
 * xref:concept-docs:concepts.adoc[Overview]
 * xref:concept-docs:collections.adoc[Collections & Scope]
 * xref:concept-docs:data-model.adoc[Data Model]
+* xref:concept-docs:errors.adoc[Errors and Diagnostics]
+** xref:concept-docs:health-check.adoc[Health Check]
+* xref:concept-docs:durability-replication-failure-considerations.adoc[Failure Considerations]
 * xref:concept-docs:encryption.adoc[Field Level Encryption]
 * xref:concept-docs:data-services.adoc[Service Selection]
 

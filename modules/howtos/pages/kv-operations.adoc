@@ -234,19 +234,21 @@ It can be used like this:
 include::example$KvOperations.scala[tag=durability]
 ----
 
-The default is `Durability.Disabled`, in which the SDK will return as soon as Couchbase Server has the mutation available in-memory on the master node.  This is the default for a reason: it's the fastest mode, and the majority of the time is all the application needs.  Couchbase Server is designed, after all, to preserve your data in the advent of node and network failures.
+The default is `Durability.Disabled`, in which the SDK will return as soon as Couchbase Server has the mutation available in-memory on the active node.  This is the default for a reason: it's the fastest mode, and the majority of the time is all the application needs.  Couchbase Server is designed, after all, to preserve your data in the advent of node and network failures.
 
 However, we recognize that there are times when the application needs that extra certainty that especially vital mutations have been successfully replicated, and the other durability options provide the means to achieve this.
 
-The options differ depend on what Couchbase Server version is in use.  If 6.5 or above is being used, you can take advantage of the 'synchronous replication' feature, in which Couchbase Server will only return success to the SDK after the requested replication level has been achieved.  The three replication levels are:
+The options differ depend on what Couchbase Server version is in use.  If 6.5 or above is being used, you can take advantage of the xref:concept-docs:durability-replication-failure-considerations.adoc#durable-writes[Durable Write] feature, in which Couchbase Server will only return success to the SDK after the requested replication level has been achieved.  The three replication levels are:
 
 `Majority` - The server will ensure that the change is available in memory on the majority of configured replicas.
 
-`MajorityAndPersistOnMaster` - Majority level, plus persisted to disk on the master node.
+`MajorityAndPersistToActive` - Majority level, plus persisted to disk on the active node.
 
 `PersistToMajority` - Majority level, plus persisted to disk on the majority of configured replicas.
 
 The options are in increasing levels of safety.  Note that nothing comes for free - for a given node, waiting for writes to storage is considerably slower than waiting for it to be available in-memory.
+These trade offs, as well as which settings may be tuned, are discussed in the xref:concept-docs:durability-replication-failure-considerations.adoc#durable-writes[durability page].
+
 
 In a version of Couchbase Server lower than 6.5 is being used then the application can fall-back to 'client verified' durability.  Here the SDK will do a simple poll of the replicas and only return once the requested durability level is achieved.  This can be achieved like this:
 
