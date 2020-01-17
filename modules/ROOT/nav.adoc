@@ -19,11 +19,11 @@
 .Advanced Data Operations
 * xref:howtos:concurrent-async-apis.adoc[Async & React APIs]
 
-////
 .Managing Couchbase
-* User Management
- ** xref:howtos:sdk-authentication-overview.adoc[Authentication]
-////
+* xref:howtos:managing-connections.adoc[Managing Connections]
+//* User Management
+// ** xref:howtos:sdk-authentication-overview.adoc[Authentication]
+
 .Errors & Diagnostics
 * xref:howtos:error-handling.adoc[Handling Errors]
 * xref:howtos:health-check.adoc[Health Check]

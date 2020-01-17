@@ -6,8 +6,6 @@
 [abstract]
 This is the first release of the Couchbase Scala SDK -- you will not have any code based upon older API versions.
 
-include::partial$beta-warning.adoc[]
-
 Couchbase Scala SDK 1.0 implements the Couchbase SDK 3.0 API.
 It it the first release of the Couchbase Scala SDK, there are no releases implementing older APIs.
 Migration will only be a concern if you are mixing code from different JVM SDKs in your application
