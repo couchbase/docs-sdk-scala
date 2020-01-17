@@ -1,6 +1,5 @@
 name: scala-sdk
 version: '1.0'
-prerelease: BETA
 title: Scala SDK
 start_page: start-using-sdk.adoc
 nav:
