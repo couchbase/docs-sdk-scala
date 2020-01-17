@@ -6,8 +6,6 @@
 [abstract]
 The Scala SDK supports multiple options for working with JSON.
 
-include::1.0@scala-sdk:ROOT:partial$beta-warning.adoc[]
-
 == Philosophy
 The Couchbase Server is a key-value store that's agnostic to what's stored, but it's very common to store JSON.
 

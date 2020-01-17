@@ -5,4 +5,3 @@
 [abstract]
 MapReduce Views.
 
-include::1.0@scala-sdk:ROOT:partial$beta-warning.adoc[]

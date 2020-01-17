@@ -5,8 +5,6 @@
 :source-language: scala
 :lang: Scala
 
-include::1.0@scala-sdk:ROOT:partial$beta-warning.adoc[]
-
 Errors are inevitable.
 The developer’s job is to be prepared for whatever is likely to come up -- and to try and be prepared for anything that conceivably could come up.
 Couchbase gives you a lot of flexibility, but it is recommended that you equip yourself with an understanding of the possibilities.

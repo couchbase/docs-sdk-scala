@@ -3,52 +3,82 @@
 :page-topic-type: project-doc
 :page-aliases: relnotes-scala-sdk
 
-== Installation
+== Version 1.0.0 (17th January 2020)
 
-The Couchbase Scala SDK is available on the Couchbase Maven repository and can be included in your `build.gradle`
-like this:
+This is the first General Availability (GA) release of the new Couchbase Scala SDK.
+It brings a large number of improvements, bug-fixes and API changes from the previous beta release.
 
-[source,groovy]
-----
-repositories {
-    maven {
-        url 'http://files.couchbase.com/maven2'
-    }
-}
+=== Stability Enhancements & Bug Fixes
+* https://issues.couchbase.com/browse/SCBC-147[SCBC-147]:
+QueryIndexManager should return only GSI indexes
+* https://issues.couchbase.com/browse/SCBC-151[SCBC-151]:
+Make sure all reactive ops are deferred; this ensures that `collection.reactive.remove(...)` won't perform a remove until the SMono is subscribed to
+* https://issues.couchbase.com/browse/SCBC-154[SCBC-154]:
+Make UserManager handle pre-LDAP clusters
+* https://issues.couchbase.com/browse/SCBC-157[SCBC-157]:
+Handle projections of objects inside arrays correctly
+* https://issues.couchbase.com/browse/SCBC-158[SCBC-158]:
+Handle 'too many set inserts' internal error while converting JSON to case classes
+* https://issues.couchbase.com/browse/SCBC-163[SCBC-163]:
+ViewQuery does not send request
+* https://issues.couchbase.com/browse/SCBC-167[SCBC-167]:
+Fix FTS consistentWith
+* https://issues.couchbase.com/browse/SCBC-174[SCBC-174]:
+ReactiveCollection KV operations now do ClientVerified Observe check
+* https://issues.couchbase.com/browse/SCBC-182[SCBC-182]:
+QueryOptions missing setters
 
-dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.0-beta.1'
-}
-----
+=== New Features & Enhancements
+* https://issues.couchbase.com/browse/SCBC-148[SCBC-148]:
+Support maxTTL and compressionMode when creating buckets
+* https://issues.couchbase.com/browse/SCBC-114[SCBC-114]:
+Add support for FTS facets
+* https://issues.couchbase.com/browse/SCBC-135[SCBC-135]:
+Add waitUntilReady on Cluster and Bucket
+* https://issues.couchbase.com/browse/SCBC-137[SCBC-137]:
+Add kvDurableTimeout, a new default timeout used for persistent durable ops
+* https://issues.couchbase.com/browse/SCBC-141[SCBC-141]:
+Add Response Time Observability support
+* https://issues.couchbase.com/browse/SCBC-150[SCBC-150]:
+Add default transcoder to environment
+* https://issues.couchbase.com/browse/SCBC-166[SCBC-166]:
+Add raw options to all services
+* https://issues.couchbase.com/browse/SCBC-170[SCBC-170]:
+Add ping and diagnostics to Bucket and Cluster
+* https://issues.couchbase.com/browse/SCBC-175[SCBC-175]:
+Add connect overload that takes set of SeedNode
+* https://issues.couchbase.com/browse/SCBC-176[SCBC-176]:
+Add custom timeout for disconnect
+* https://issues.couchbase.com/browse/SCBC-177[SCBC-177]:
+Add PingOptions and overload
+* https://issues.couchbase.com/browse/SCBC-178[SCBC-178]:
+Add DiagnosticsOption and overload
+* https://issues.couchbase.com/browse/SCBC-179[SCBC-179]:
+Add WaitUntilReady options and overload
+* https://issues.couchbase.com/browse/SCBC-180[SCBC-180]:
+AnalyticsScanConsistency added to AnalyticsOptions
+* https://issues.couchbase.com/browse/SCBC-183[SCBC-183]:
+QueryMetaData now exposes requestId
 
-Or into your Maven pom.xml:
-
-[source,xml]
-----
-<repositories>
-    <repository>
-      <id>couchbase</id>
-      <name>Couchbase Preview Repository</name>
-      <url>http://files.couchbase.com/maven2</url>
-    </repository>
-</repositories>
-
-<dependencies>
-    <dependency>
-        <groupId>com.couchbase.client</groupId>
-        <artifactId>scala-client_2.12</artifactId>
-        <version>1.0.0-beta.1</version>
-    </dependency>
-</dependencies>
-----
-
-Or for SBT:
-
-[source,sbt]
-----
-resolvers += "Couchbase Snapshots" at "http://files.couchbase.com/maven2"
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.0-beta.1"
-----
+=== API Changes
+* https://issues.couchbase.com/browse/SCBC-159[SCBC-159]:
+Fix semantics of datastructures so they behave more like Scala collections
+* https://issues.couchbase.com/browse/SCBC-162[SCBC-162]:
+All ReactiveBinaryCollection methods should return SMono
+* https://issues.couchbase.com/browse/SCBC-164[SCBC-164]:
+Align with latest view RFC
+* https://issues.couchbase.com/browse/SCBC-136[SCBC-136]:
+Track all Java environment changes
+* https://issues.couchbase.com/browse/SCBC-138[SCBC-138]:
+Replace management API Scala exceptions with core ones
+* https://issues.couchbase.com/browse/SCBC-139[SCBC-139]:
+GetSelecter is using incorrect exceptions
+* https://issues.couchbase.com/browse/SCBC-155[SCBC-155]:
+Rename *master to *active throughout
+* https://issues.couchbase.com/browse/SCBC-187[SCBC-187]:
+Remove scopeExists and collectionExists from CollectionManager
+* https://issues.couchbase.com/browse/SCBC-188[SCBC-188]:
+Align UserAndMetadata with latest RFC
 
 == Version 1.0.0-beta.1 (22nd November 2019)
 

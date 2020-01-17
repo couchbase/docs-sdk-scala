@@ -1,8 +1,0 @@
-[WARNING]
-====
-These pages cover the beta release of the Couchbase Scala SDK.
-As such they are likely to change without notice.
-This beta code _should not_ be used in production.
-
-Documentation is incomplete, subject to change, and likely to contain broken links.
-====

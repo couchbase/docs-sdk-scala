@@ -4,8 +4,6 @@
 :page-aliases: document-operations.adoc
 :lang: Scala
 
-include::1.0@scala-sdk:ROOT:partial$beta-warning.adoc[]
-
 At its heart Couchbase Server is a high-performance key-value store, and the key-value interface outlined below is the fastest and best method to perform operations involving single documents.
 
 A _document_ refers to an entry in the database (other databases may refer to the same concept as a _row_).

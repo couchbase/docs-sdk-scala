@@ -5,8 +5,6 @@
 :lang: Scala
 :page-aliases: ROOT:async-programming,multiple-apis,ROOT:batching-operations
 
-include::1.0@scala-sdk:ROOT:partial$beta-warning.adoc[]
-
 [abstract]
 The Couchbase Scala SDK allows the use, and mixing, of three distinct APIs: blocking, asynchronous, and reactive.
 
