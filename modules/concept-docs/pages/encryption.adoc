@@ -1,2 +1,1 @@
-:lang: Scala
-
+include::6.5@sdk:pages:partial$encryption.adoc[]
