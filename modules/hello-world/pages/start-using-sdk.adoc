@@ -1,7 +1,7 @@
 = Install and Start Using the Scala SDK with Couchbase Server
 :navtitle: Start Using the SDK
 :page-topic-type: howto
-:page-aliases: hello-world:start-using-sdk
+:page-aliases: ROOT:getting-started,ROOT:start-using,ROOT:hello-couchbase,ROOT:start-using-sdk
 :lang: Scala
 
 [abstract]
