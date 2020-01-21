@@ -1,8 +1,8 @@
 .Couchbase Scala SDK
 
 .Getting Started
-* xref::start-using-sdk.adoc[Start Using the Scala SDK]
-//* xref:hello-world:start-using-sdk.adoc[Start Using the SDK]
+//* xref::start-using-sdk.adoc[Start Using the Scala SDK]
+* xref:hello-world:start-using-sdk.adoc[Start Using the SDK]
 // * xref:hello-world:sample-application.adoc[Sample Application]
 
 .Working with Data
