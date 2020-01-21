@@ -1,0 +1,89 @@
+= Compatibility of Couchbase Features, Couchbase Server Versions, and the Couchbase Scala SDK
+:navtitle: Compatibility
+:page-aliases: ROOT:overview,ROOT:compatibility-versions-features,compatibility-versions-features
+
+[abstract]
+Features available in different SDK versions, and compatibility between Server and SDK.
+
+The Couchbase Scala SDK 1.0 Client supports Scala 2.12
+// and 2.13.
+
+== Couchbase Version/SDK Version Matrix
+
+Couchbase SDKs are tested against a variety of different environments to ensure both backward and forward compatibility with different versions of Couchbase Server.
+The matrix below denotes the version of Couchbase Server, the version of the .NET SDK and whether the SDK is:
+
+* ✖ *Unsupported*: This combination is not tested, and is not within the scope of technical support if you have purchased a support agreement.
+* ◎ *Compatible*: This combination has been tested previously, and should be compatible.
+This combination is not recommended by our technical support organization.
+It is best to upgrade either the SDK or the Couchbase version you are using.
+* ✔ *Supported*:This combination is subject to ongoing quality assurance, and is fully supported by our technical support organization.
+
+.Recommended SDK per Server Version Matrix
+[#table_sdk_versions]
+[cols="40,25,20,20,25"]
+|===
+| | SDK 1.0 
+
+| *Server 5.0-5.5*
+| *◎*
+
+| *Server 6.0*
+| *✔*
+
+
+| *Server 6.5*
+| *✔*
+|===
+
+Note the https://www.couchbase.com/support-policy[End of Life dates^] for Couchbase Server and SDK versions.
+See the notes there for Support details.
+
+
+[#jdk-compat]
+== JDK Version Compatibility
+
+The Scala SDK is tested with Oracle JDK and OpenJDK.
+Other JDK implementations might work but are not tested and are unsupported.
+We recommend running the latest LTS version (i.e. at the time of writing JDK 11) with the highest patch version available.
+
+The following JDK releases are supported:
+
+* OpenJDK 11 with HotSpot JVM (recommended)
+* Oracle JDK 11 (recommended)
+* OpenJDK 1.8 with HotSpot JVM
+* Oracle JDK 1.8
+
+Please make sure you run on one of the latest patch releases, since they provide stability improvements and security fixes in general.
+
+
+== Couchbase New Feature Availability Matrix
+
+.Couchbase Server and SDK Supported Version Matrix
+|===
+| | Server 5.0, 5.1, & 5.5 | Server 6.0 | Server 6.5
+
+| Enhanced Durability
+| Not Supported
+2+| Since 1.0
+
+| Durable Writes 
+2+| Not Supported
+| Since 1.0
+
+| Analytics
+| Not Supported
+2+| Since 1.0
+
+| Distributed ACID Transactions
+2+| Not Supported
+| Since 1.0
+
+| Collections
+2+| Not Supported
+| Developer Preview in 6.5, SDK 1.0
+
+|===
+
+
+include::6.5@sdk:shared:partial$interface-stability-pars.adoc[tag=interface-stability-section]
