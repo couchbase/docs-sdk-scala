@@ -74,10 +74,6 @@ Please make sure you run on one of the latest patch releases, since they provide
 | Not Supported
 2+| Since 1.0
 
-| Distributed ACID Transactions
-2+| Not Supported
-| Since 1.0
-
 | Collections
 2+| Not Supported
 | Developer Preview in 6.5, SDK 1.0
