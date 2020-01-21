@@ -11,7 +11,7 @@ The Couchbase Scala SDK 1.0 Client supports Scala 2.12
 == Couchbase Version/SDK Version Matrix
 
 Couchbase SDKs are tested against a variety of different environments to ensure both backward and forward compatibility with different versions of Couchbase Server.
-The matrix below denotes the version of Couchbase Server, the version of the .NET SDK and whether the SDK is:
+The matrix below denotes the version of Couchbase Server, the version of the Scala SDK and whether the SDK is:
 
 * ✖ *Unsupported*: This combination is not tested, and is not within the scope of technical support if you have purchased a support agreement.
 * ◎ *Compatible*: This combination has been tested previously, and should be compatible.
@@ -21,7 +21,6 @@ It is best to upgrade either the SDK or the Couchbase version you are using.
 
 .Recommended SDK per Server Version Matrix
 [#table_sdk_versions]
-[cols="40,25,20,20,25"]
 |===
 | | SDK 1.0 
 
