@@ -2,7 +2,6 @@
 import java.nio.charset.StandardCharsets
 
 import com.couchbase.client.scala._
-import com.couchbase.client.scala.api.MutationResult
 import com.couchbase.client.scala.implicits.Codec
 import com.couchbase.client.scala.json._
 import com.couchbase.client.scala.kv._

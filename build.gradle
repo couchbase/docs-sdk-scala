@@ -21,10 +21,10 @@ repositories {
 
 sourceSets {
     main {
-        java {
-            srcDirs 'modules/hello-world/examples'
-            srcDirs 'modules/howtos/examples'
-            srcDirs 'modules/ROOT/examples'
+        scala {
+            srcDirs = ['modules/hello-world/examples',
+                       'modules/howtos/examples',
+                       'modules/ROOT/examples']
         }
     }
 }
