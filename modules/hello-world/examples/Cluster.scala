@@ -2,9 +2,12 @@
 import java.util.UUID
 
 import com.couchbase.client.scala.Cluster
+import com.couchbase.client.scala.durability.Durability
 import com.couchbase.client.scala.json.{JsonObject, JsonObjectSafe}
+import com.couchbase.client.scala.kv.ReplaceOptions
 
 import scala.util.{Failure, Success, Try}
+import concurrent.duration._
 // #end::imports[]
 
 object ClusterExample {
@@ -25,7 +28,7 @@ object ClusterExample {
     // #tag::upsert[]
     val docId = UUID.randomUUID().toString
     collection.upsert(docId, json) match {
-      case Success(result) =>
+      case Success(result)    =>
       case Failure(exception) => println("Error: " + exception)
     }
     // #end::upsert[]
@@ -34,15 +37,13 @@ object ClusterExample {
     // Get a document
     collection.get(docId) match {
       case Success(result) =>
-
         // Convert the content to a JsonObjectSafe
         result.contentAs[JsonObjectSafe] match {
           case Success(json) =>
-
             // Pull out the JSON's status field, if it exists
             json.str("status") match {
               case Success(hello) => println(s"Couchbase is $hello")
-              case _ => println("Field 'status' did not exist")
+              case _              => println("Field 'status' did not exist")
             }
           case Failure(err) => println("Error decoding result: " + err)
         }
@@ -60,22 +61,45 @@ object ClusterExample {
 
       result match {
         case Success(status) => println(s"Couchbase is $status")
-        case Failure(err) => println("Error: " + err)
+        case Failure(err)    => println("Error: " + err)
       }
       // #end::get-for[]
     }
 
     def getMap() {
       // #tag::get-map[]
-      val result: Try[String] = collection.get(docId)
+      val result: Try[String] = collection
+        .get(docId)
         .flatMap(_.contentAs[JsonObjectSafe])
         .flatMap(_.str("status"))
 
       result match {
         case Success(status) => println(s"Couchbase is $status")
-        case Failure(err) => println("Error: " + err)
+        case Failure(err)    => println("Error: " + err)
       }
       // #end::get-map[]
     }
+
+    def replaceOptions() {
+      // #tag::replace-options[]
+      collection
+        .replace(docId, json, ReplaceOptions()
+          .expiry(10.seconds)
+          .durability(Durability.Majority)) match {
+        case Success(status) =>
+        case Failure(err)    => println("Error: " + err)
+      }
+      // #end::replace-options[]
+    }
+
+    def replaceNamed() {
+      // #tag::replace-named[]
+      collection.replace(docId, json, durability = Durability.Majority) match {
+        case Success(status) =>
+        case Failure(err)    => println("Error: " + err)
+      }
+      // #end::replace-named[]
+    }
+
   }
 }

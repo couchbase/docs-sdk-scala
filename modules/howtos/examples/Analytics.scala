@@ -1,6 +1,6 @@
 // #tag::imports[]
 import com.couchbase.client.scala._
-import com.couchbase.client.scala.analytics.{AnalyticsOptions, AnalyticsResult, ReactiveAnalyticsResult}
+import com.couchbase.client.scala.analytics.{AnalyticsOptions, AnalyticsParameters, AnalyticsResult, ReactiveAnalyticsResult}
 import com.couchbase.client.scala.json._
 import reactor.core.scala.publisher.{SFlux, SMono}
 
@@ -54,7 +54,7 @@ object Analytics {
     // #tag::parameterised[]
     cluster.analyticsQuery(
       """select airportname, country from airports where country = ?;""",
-      AnalyticsOptions().parameters(Seq("France")))
+      AnalyticsOptions().parameters(AnalyticsParameters.Positional("France")))
       .flatMap(_.rowsAs[JsonObject]) match {
       case Success(r)   => r.foreach(row => println(s"Row: ${row}"))
       case Failure(err) => println(s"Failure ${err}")
@@ -66,7 +66,7 @@ object Analytics {
     // #tag::named[]
     cluster.analyticsQuery(
       """select airportname, country from airports where country = $country;""",
-      AnalyticsOptions().parameters(Map("country" -> "France")))
+      AnalyticsOptions().parameters(AnalyticsParameters.Named(Map("country" -> "France"))))
       .flatMap(_.rowsAs[JsonObject]) match {
       case Success(r)   => r.foreach(row => println(s"Row: ${row}"))
       case Failure(err) => println(s"Failure ${err}")

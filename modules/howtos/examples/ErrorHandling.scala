@@ -3,10 +3,9 @@ import java.util.concurrent.TimeUnit
 
 import com.couchbase.client.core.error._
 import com.couchbase.client.scala._
-import com.couchbase.client.scala.api.MutationResult
 import com.couchbase.client.scala.durability._
 import com.couchbase.client.scala.json._
-import com.couchbase.client.scala.query.QueryError
+import com.couchbase.client.scala.kv.MutationResult
 
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
@@ -180,7 +179,6 @@ object ErrorHandling {
     cluster.query(stmt)
       .map(_.rowsAs[JsonObject]) match {
       case Success(rows) =>
-      case Failure(err: QueryError) => println(s"Query error: ${err.msg}")
       case Failure(err) => println(s"Error: ${err}")
     }
     // #end::query[]

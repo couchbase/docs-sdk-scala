@@ -112,8 +112,8 @@ class ManagingConnections {
 
       result <- doSomethingWithClusters(clusterA, clusterB)
 
-      _ <- clusterA.disconnect()
-      _ <- clusterB.disconnect()
+      _ <- Success(clusterA.disconnect())
+      _ <- Success(clusterB.disconnect())
       _ <- Success(env.shutdown())
     } yield result
 
@@ -133,7 +133,7 @@ class ManagingConnections {
       SeedNode("127.0.0.1", Some(customKvPort), Some(customManagerPort))
     )
 
-    val cluster = Cluster.connect(seedNodes, "username", "password")
+    val cluster = Cluster.connect(seedNodes, ClusterOptions.create("username", "password"))
     // #end::seed-nodes[]
   }
 
