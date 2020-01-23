@@ -19,7 +19,7 @@ The Scala SDK has these main objectives for JSON:
 Dependencies on third-party JSON libraries are performed with Maven's `optional` scope.  This means that if you have the Circe dependency in your _own_ project (be it SBT, Gradle or Maven based), then you will be able to use the Circe types with the Scala SDK.  But the SDK will not pull in the dependency itself, to stay lean and mean.
 
 == Getting Started
-The examples below assume you're familiar with connecting to a Couchbase cluster using the Scala SDK, and opening resources.  Please check out xref:start-using-sdk[the Getting Started guide] for help with this.
+The examples below assume you're familiar with connecting to a Couchbase cluster using the Scala SDK, and opening resources.  Please check out xref:hello-world:start-using-sdk[the Getting Started guide] for help with this.
 
 In the examples below we'll use the following case classes:
 
