@@ -39,6 +39,7 @@
 * xref:concept-docs:data-services.adoc[Service Selection]
 
 .References
+* xref:ref:client-setting.adoc[Client Settings]
 
 .Project Docs
 * xref:project-docs:sdk-release-notes.adoc[Release Notes]
