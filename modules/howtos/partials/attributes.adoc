@@ -1,2 +1,3 @@
 :scala-api-link: http://docs.couchbase.com/sdk-api/couchbase-scala-client-1.0.0/files/couchbase.html
 :scala-current-version: 1.0.0
+:version-server: 6.5
