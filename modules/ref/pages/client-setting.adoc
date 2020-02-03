@@ -16,7 +16,7 @@ It is designed to apply the builder arguments in a fluent fashion and then creat
 .Creating a cluster with custom settings
 [source,scala]
 ----
-include::example$ClientSettings.scala[tag=create-env,indent=0]
+include::example$ClientSettings.scala[tag=create-env-simple,indent=0]
 ----
 
 == Config Builders

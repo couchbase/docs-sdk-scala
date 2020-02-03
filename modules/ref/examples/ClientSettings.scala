@@ -67,8 +67,7 @@ object ClusterExample {
 
         // Shutdown gracefully
         cluster.disconnect()
-      // TODO needs SCBC-198
-      //cluster.env.shutdown()
+        cluster.env.shutdown()
 
       case Failure(err) => println(s"Failure: $err")
     }

@@ -1,7 +1,6 @@
 .Couchbase Scala SDK
 
 .Getting Started
-//* xref::start-using-sdk.adoc[Start Using the Scala SDK]
 * xref:hello-world:start-using-sdk.adoc[Start Using the SDK]
 // * xref:hello-world:sample-application.adoc[Sample Application]
 
@@ -25,15 +24,14 @@
 // ** xref:howtos:sdk-authentication-overview.adoc[Authentication]
 
 .Errors & Diagnostics
+* xref:howtos:collecting-information-and-logging.adoc[Logging]
 * xref:howtos:error-handling.adoc[Handling Errors]
-* xref:howtos:health-check.adoc[Health Check]
+// * xref:howtos:health-check.adoc[Health Check]
 
 .Learn
 * xref:concept-docs:concepts.adoc[Overview]
 * xref:concept-docs:collections.adoc[Collections & Scope]
 * xref:concept-docs:data-model.adoc[Data Model]
-* xref:concept-docs:errors.adoc[Errors and Diagnostics]
-** xref:concept-docs:health-check.adoc[Health Check]
 * xref:concept-docs:durability-replication-failure-considerations.adoc[Failure Considerations]
 * xref:concept-docs:encryption.adoc[Field Level Encryption]
 * xref:concept-docs:data-services.adoc[Service Selection]
