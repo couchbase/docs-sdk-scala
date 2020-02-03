@@ -1,7 +1,6 @@
 .Couchbase Scala SDK
 
 .Getting Started
-//* xref::start-using-sdk.adoc[Start Using the Scala SDK]
 * xref:hello-world:start-using-sdk.adoc[Start Using the SDK]
 // * xref:hello-world:sample-application.adoc[Sample Application]
 
@@ -25,6 +24,7 @@
 // ** xref:howtos:sdk-authentication-overview.adoc[Authentication]
 
 .Errors & Diagnostics
+* xref:howtos:collecting-information-and-logging.adoc[Logging]
 * xref:howtos:error-handling.adoc[Handling Errors]
 // * xref:howtos:health-check.adoc[Health Check]
 
