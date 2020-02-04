@@ -7,6 +7,8 @@
 [abstract]
 The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster from the Scala language.
 
+Our new Scala SDK offers functional programming-friendly ways of working with Couchbase; interoperability with the Java SDK; first class integration with the _akka_ stack; and native _Spark_ integration.
+
 == Installing the SDK
 
 The Couchbase Scala SDK is available on the Maven repository and can be included in your `build.gradle`
