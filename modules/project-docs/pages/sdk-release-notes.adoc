@@ -5,21 +5,24 @@
 
 == Version 1.0.1 (5th February 2020)
 
+Version 1.0.1 is the second release of the 1.0 series, bringing new features, enhancements, and bugfixes over the last stable release.
+
 === Stability Enhancements & Bug Fixes
 * https://issues.couchbase.com/browse/SCBC-192[SCBC-192]:
-All scaladoc warnings fixed
+All scaladoc warnings fixed.
 * https://issues.couchbase.com/browse/SCBC-193[SCBC-193]:
-When creating buckets, numReplicas can now be specified
+When creating buckets, numReplicas can now be specified.
 
 === New Features & Enhancements
 * https://issues.couchbase.com/browse/SCBC-190[SCBC-190]:
-Expose enableDnsSrv parameter on `IoConfig()`, allowing DNS SRV to be used
+Exposed enableDnsSrv parameter on `IoConfig()`, allowing DNS SRV to be used.
 * https://issues.couchbase.com/browse/SCBC-204[SCBC-204]:
-Add support for new server flag `createAsDeleted`, for internal use only
+Added support for new server flag `createAsDeleted` -- for internal use only.
 * https://issues.couchbase.com/browse/SCBC-201[SCBC-201]:
-Expose Java core environment through Scala ClusterEnvironment, allowing the event-bus to be accessed
+Exposed Java core environment through Scala ClusterEnvironment, allowing the event-bus to be accessed.
 * https://issues.couchbase.com/browse/SCBC-198[SCBC-198]:
-Expose environment getter through cluster.  Allows a constructed environment to be shutdown without having to maintain a reference to it
+Exposed environment getter through cluster. 
+This allows a constructed environment to be shutdown without having to maintain a reference to it.
 
 == Version 1.0.0 (17th January 2020)
 
