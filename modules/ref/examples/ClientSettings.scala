@@ -13,7 +13,7 @@ import scala.util.{Failure, Success, Try}
 import concurrent.duration._
 // #end::imports[]
 
-object ClusterExample {
+object ClusterSettings {
   def createEnv() {
 // #tag::create-env[]
     val envTry: Try[ClusterEnvironment] = ClusterEnvironment.builder
