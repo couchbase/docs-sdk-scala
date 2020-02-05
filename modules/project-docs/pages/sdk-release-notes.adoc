@@ -3,6 +3,27 @@
 :page-topic-type: project-doc
 :page-aliases: relnotes-scala-sdk
 
+== Version 1.0.1 (5th February 2020)
+
+Version 1.0.1 is the second release of the 1.0 series, bringing new features, enhancements, and bugfixes over the last stable release.
+
+=== Stability Enhancements & Bug Fixes
+* https://issues.couchbase.com/browse/SCBC-192[SCBC-192]:
+All scaladoc warnings fixed.
+* https://issues.couchbase.com/browse/SCBC-193[SCBC-193]:
+When creating buckets, numReplicas can now be specified.
+
+=== New Features & Enhancements
+* https://issues.couchbase.com/browse/SCBC-190[SCBC-190]:
+Exposed enableDnsSrv parameter on `IoConfig()`, allowing DNS SRV to be used.
+* https://issues.couchbase.com/browse/SCBC-204[SCBC-204]:
+Added support for new server flag `createAsDeleted` -- for internal use only.
+* https://issues.couchbase.com/browse/SCBC-201[SCBC-201]:
+Exposed Java core environment through Scala ClusterEnvironment, allowing the event-bus to be accessed.
+* https://issues.couchbase.com/browse/SCBC-198[SCBC-198]:
+Exposed environment getter through cluster. 
+This allows a constructed environment to be shutdown without having to maintain a reference to it.
+
 == Version 1.0.0 (17th January 2020)
 
 This is the first General Availability (GA) release of the new Couchbase Scala SDK.
@@ -29,36 +50,12 @@ ReactiveCollection KV operations now do ClientVerified Observe check
 QueryOptions missing setters
 
 === New Features & Enhancements
-* https://issues.couchbase.com/browse/SCBC-148[SCBC-148]:
-Support maxTTL and compressionMode when creating buckets
-* https://issues.couchbase.com/browse/SCBC-114[SCBC-114]:
-Add support for FTS facets
-* https://issues.couchbase.com/browse/SCBC-135[SCBC-135]:
-Add waitUntilReady on Cluster and Bucket
-* https://issues.couchbase.com/browse/SCBC-137[SCBC-137]:
-Add kvDurableTimeout, a new default timeout used for persistent durable ops
-* https://issues.couchbase.com/browse/SCBC-141[SCBC-141]:
-Add Response Time Observability support
-* https://issues.couchbase.com/browse/SCBC-150[SCBC-150]:
-Add default transcoder to environment
-* https://issues.couchbase.com/browse/SCBC-166[SCBC-166]:
-Add raw options to all services
-* https://issues.couchbase.com/browse/SCBC-170[SCBC-170]:
-Add ping and diagnostics to Bucket and Cluster
-* https://issues.couchbase.com/browse/SCBC-175[SCBC-175]:
-Add connect overload that takes set of SeedNode
-* https://issues.couchbase.com/browse/SCBC-176[SCBC-176]:
-Add custom timeout for disconnect
-* https://issues.couchbase.com/browse/SCBC-177[SCBC-177]:
-Add PingOptions and overload
-* https://issues.couchbase.com/browse/SCBC-178[SCBC-178]:
-Add DiagnosticsOption and overload
-* https://issues.couchbase.com/browse/SCBC-179[SCBC-179]:
-Add WaitUntilReady options and overload
-* https://issues.couchbase.com/browse/SCBC-180[SCBC-180]:
-AnalyticsScanConsistency added to AnalyticsOptions
-* https://issues.couchbase.com/browse/SCBC-183[SCBC-183]:
-QueryMetaData now exposes requestId
+* https://issues.couchbase.com/browse/SCBC-190[SCBC-190]:
+Expose enableDnsSrv parameter on `IoConfig()`, allowing DNS SRV to be used
+* https://issues.couchbase.com/browse/SCBC-192[SCBC-192]:
+All scaladoc warnings fixed
+* https://issues.couchbase.com/browse/SCBC-204[SCBC-204]:
+Add support for new server flag `createAsDeleted`, for internal use only
 
 === API Changes
 * https://issues.couchbase.com/browse/SCBC-159[SCBC-159]:
