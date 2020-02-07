@@ -200,6 +200,35 @@ E.....@.@.............+....Z.'yZ..#........
 .%v.....4....m*...A.2I.1.&.*,6+..#..#.5
 ----
 
+////
+include::6.5@sdk:shared:partial$dnssrv-pars.adoc[tag=dnssrv]
+
+DNS SRV bootstrapping is available in the Java SDK from version 2.1.0.
+In order to make the SDK actually use the SRV records, you need to enable DNS SRV on the environment and pass in the host name from your records (here `example.com`):
+
+[source,java]
+----
+include::example$ManagingConnections.scala[tag=dnssrv,indent=0]
+----
+
+If the DNS SRV records could not be loaded properly you'll get the exception logged and the given host name will be used as a A record lookup.
+
+----
+WARNING: DNS SRV lookup failed, proceeding with normal bootstrap.
+javax.naming.NameNotFoundException: DNS name not found [response code 3];
+   remaining name '_couchbase._tcp.example.com'
+	at com.sun.jndi.dns.DnsClient.checkResponseCode(DnsClient.java:651)
+	at com.sun.jndi.dns.DnsClient.isMatchResponse(DnsClient.java:569)
+----
+
+Also, if you pass in more than one node, DNS SRV bootstrap will not be initiated:
+
+----
+INFO: DNS SRV enabled, but less or more than one seed node given.
+Proceeding with normal bootstrap.
+----
+////
+
 == Async and Reactive APIs
 
 The Couchbase Scala SDK provides first-class support for asynchronous and reactive programming.
