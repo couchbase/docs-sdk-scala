@@ -203,8 +203,8 @@ E.....@.@.............+....Z.'yZ..#........
 ////
 include::6.5@sdk:shared:partial$dnssrv-pars.adoc[tag=dnssrv]
 
-DNS SRV bootstrapping is available in the Java SDK from version 2.1.0.
-In order to make the SDK actually use the SRV records, you need to enable DNS SRV on the environment and pass in the host name from your records (here `example.com`):
+DNS SRV bootstrapping is available in the Scala SDK from version 1.0.1.
+In order to make the SDK use the SRV records, you need to enable DNS SRV on the environment and pass in the hostname from your records (here `example.com`):
 
 [source,java]
 ----
