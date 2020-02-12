@@ -3,6 +3,12 @@
 :page-topic-type: project-doc
 :page-aliases: relnotes-scala-sdk
 
+[abstract]
+Release notes, installation instructions, and download archive for the Couchbase Scala Client.
+
+These pages cover the 1.0 releases of the Couchbase Scala SDK, which follows the Couchbase 3.0 SDK API. 
+
+
 == Version 1.0.1 (5th February 2020)
 
 Version 1.0.1 is the second release of the 1.0 series, bringing new features, enhancements, and bugfixes over the last stable release.
@@ -77,170 +83,7 @@ Remove scopeExists and collectionExists from CollectionManager
 * https://issues.couchbase.com/browse/SCBC-188[SCBC-188]:
 Align UserAndMetadata with latest RFC
 
-== Version 1.0.0-beta.1 (22nd November 2019)
 
-This is the first beta release of the new Couchbase Scala SDK.
-It brings a large number of improvements, bug-fixes and API changes from the previous alpha release.
-The intent is that the API will now remain as unchanged as possible.
+== Pre-releases
 
-=== New Features & Enhancements
-* https://issues.couchbase.com/browse/SCBC-52[SCBC-52]: Add GCCCP support
-* https://issues.couchbase.com/browse/SCBC-37[SCBC-37]: Defer error handling during resource opening
-* https://issues.couchbase.com/browse/SCBC-60[SCBC-60]: Add view index manager API
-* https://issues.couchbase.com/browse/SCBC-62[SCBC-62]: Add search index manager API
-* https://issues.couchbase.com/browse/SCBC-63[SCBC-63]: Add analytics index manager API
-* https://issues.couchbase.com/browse/SCBC-65[SCBC-65]: Add collections manager API
-* https://issues.couchbase.com/browse/SCBC-97[SCBC-97]: Added Collection#touch method
-* https://issues.couchbase.com/browse/SCBC-99[SCBC-99]: Remove timeout on blocking
-* https://issues.couchbase.com/browse/SCBC-104[SCBC-104]: Add query index manager API
-* https://issues.couchbase.com/browse/SCBC-107[SCBC-107]: Upgrade to latest reactive-scala-extensions
-* https://issues.couchbase.com/browse/SCBC-109[SCBC-109]: Update to jsoniter 1.0
-* https://issues.couchbase.com/browse/SCBC-115[SCBC-115]: Add additional testing for FTS
-* https://issues.couchbase.com/browse/SCBC-116[SCBC-116]: Subdoc needs to reorder operations
-* https://issues.couchbase.com/browse/SCBC-124[SCBC-124]: Change TypeTag to WeakTypeTag
-* https://issues.couchbase.com/browse/SCBC-125[SCBC-125]: Make jsoniter a non-provided transitive dependency
-* https://issues.couchbase.com/browse/SCBC-131[SCBC-131]: Add LookupIn macros
-* https://issues.couchbase.com/browse/SCBC-84[SCBC-84]: Implement diagnostics methods.
-* https://issues.couchbase.com/browse/SCBC-85[SCBC-85]: Mark all methods with appropriate stability levels
-
-=== API Changes
-This release contains a large number of breaking API changes, as we seek to settle the API into the best possible form before GA.
-The intent is that the API should remain as stable as possible, going forwards.
-
-* https://issues.couchbase.com/browse/SCBC-100[SCBC-100]: Align API with CRUD SDK3 RFC revision 4
-* https://issues.couchbase.com/browse/SCBC-101[SCBC-101]: Align API with Views SDK3 RFC revision 2
-* https://issues.couchbase.com/browse/SCBC-102[SCBC-102]: Align API with Query SDK3 RFC revision 4
-* https://issues.couchbase.com/browse/SCBC-103[SCBC-103]: Align API with Foundation RFC Revision 2
-* https://issues.couchbase.com/browse/SCBC-113[SCBC-113]: Change Query signature: QuerySignature to be signatureAs[T]
-* https://issues.couchbase.com/browse/SCBC-40[SCBC-40]: Search fields can contain JSON object and array, which are currently returned as String
-* https://issues.couchbase.com/browse/SCBC-45[SCBC-45]: Make AnalyticsMeta match RFC
-* https://issues.couchbase.com/browse/SCBC-92[SCBC-92]: Remove FullDocument SubDoc spec
-* https://issues.couchbase.com/browse/SCBC-98[SCBC-98]: Track transcoding changes from RFC
-* https://issues.couchbase.com/browse/SCBC-110[SCBC-110]: Align API with Search SDK3 RFC
-* https://issues.couchbase.com/browse/SCBC-111[SCBC-111]: Align API with Analytics SDK3 RFC
-* https://issues.couchbase.com/browse/SCBC-122[SCBC-122]: SDK3: Replace Date with LocalDate
-* https://issues.couchbase.com/browse/SCBC-127[SCBC-127]: Subdoc mutateIn arrayAppend and similar should take Seq
-* https://issues.couchbase.com/browse/SCBC-132[SCBC-132]: Track recent search RFC changes
-* https://issues.couchbase.com/browse/SCBC-134[SCBC-134]: Reactive KV get should not return Option
-* https://issues.couchbase.com/browse/SCBC-73[SCBC-73]: Async chaining methods return futures which prevents chaining
-
-=== Stability Enhancements & Bug Fixes
-* https://issues.couchbase.com/browse/SCBC-123[SCBC-123]: FTS consistency not encoded correctly
-
-In addition, a number of changes are inherited from the JVM core that the Scala client is built upon.
-Please see the Java client release notes for details on these.
-
-== Version 1.0.0-alpha8 (30th September 2019)
-
-This is the eighth pre-release of the new Couchbase Scala SDK.
-
-=== New Features & Enhancements
-
-* https://issues.couchbase.com/browse/SCBC-86[SCBC-86]:
-Add Collection accessors for the data structures
-
-=== API Changes
-
-* https://issues.couchbase.com/browse/SCBC-91[SCBC-91]:
-Rename expiration to expiry
-* https://issues.couchbase.com/browse/SCBC-93[SCBC-93]:
-Renamed GetFromReplicaResult to GetReplicaResult
-* https://issues.couchbase.com/browse/SCBC-94[SCBC-94]:
-Remove LookupInSpec.getFullDocument per RFC change.  Use `get("")` instead.
-* https://issues.couchbase.com/browse/SCBC-96[SCBC-96]:
-Rename shutdown to disconnect on *Cluster
-
-== Version 1.0.0-alpha7 (2nd September 2019)
-
-This is the seventh pre-release of the new Couchbase Scala SDK.
-
-=== New Features & Enhancements
-
-* https://issues.couchbase.com/browse/SCBC-59[SCBC-59]: Add user and groups management API
-* https://issues.couchbase.com/browse/SCBC-31[SCBC-31]: Provide auto-generated clientContextId if not provided
-* https://issues.couchbase.com/browse/SCBC-54[SCBC-54]: Make collections and scopes volatile
-* https://issues.couchbase.com/browse/SCBC-25[SCBC-25]: Support multiple-value variants of arrayAppend et al. with Sub-Document
-* https://issues.couchbase.com/browse/SCBC-72[SCBC-72]: Lookupin missing expiration option
-* https://issues.couchbase.com/browse/SCBC-59[SCBC-59]: Add user and groups management API
-* https://issues.couchbase.com/browse/SCBC-68[SCBC-68]: Add query service fast prepare support
-* https://issues.couchbase.com/browse/SCBC-67[SCBC-67]: Add Datastructures v2 for "SDK3"
-* https://issues.couchbase.com/browse/SCBC-64[SCBC-64]: Add bucket manager API
-
-=== Deprecations and Removals
-
-* https://issues.couchbase.com/browse/SCBC-57[SCBC-57]: Remove defaultCollection from scope
-
-=== API Changes
-
-During the alpha period we will where necessary make breaking changes to the API to enhance and improve it.
-
-* https://issues.couchbase.com/browse/SCBC-35[SCBC-35]: Change Cluster.connect to return Try[Cluster].
-To permit Cluster opening to return errors (for example, on a badly constructed connection string), now operations return a Try[Cluster].
-* https://issues.couchbase.com/browse/SCBC-71[SCBC-71]: Remove either Codec or Codecs.
-You can now write `implicit val codec: Codec[User] = Codec.codec[User]` without having to import both Codec and Codecs.
-* https://issues.couchbase.com/browse/SCBC-28[SCBC-28]: Track RFC changes on getFromReplica
-
-
-[#latest-release]
-== Version 1.0.0-alpha6 (5th August 2019)
-
-This is the sixth pre-release of the new Couchbase Scala SDK.
-
-There are no new features, but improvements to the underlying core-io library provide increased stability and performance.
-
-=== Deprecations and Removals
-
-* https://issues.couchbase.com/browse/SCBC-50[SCBC-50]:	OpenTracing removed from API, as it is transitioning to OpenTelemetry currently.
-Support for OpenTelemetry may be added at a later date.
-
-== Version 1.0.0-alpha5 (5th July 2019)
-
-This is the fifth pre-release of the new Couchbase Scala SDK.
-
-=== New Features & Enhancements
-
-* https://issues.couchbase.com/browse/SCBC-26[SCBC-26]:	Support consistentWith for query
-* https://issues.couchbase.com/browse/SCBC-38[SCBC-38]:	Add prepared statement support
-
-== Version 1.0.0-alpha4 (12th June 2019)
-
-This is the fourth pre-release of the new Couchbase Scala SDK.
-
-There are no new features, but improvements to the underlying core-io library provide increased stability and performance.
-
-=== Deprecations and Removals
-
-* https://issues.couchbase.com/browse/SCBC-41[SCBC-41]: Spatial Views are no longer supported, so the API is removed.
-
-== Version 1.0.0-alpha3 (14th May 2019)
-
-This is the third pre-release of the new Couchbase Scala SDK.
-
-=== New Features & Enhancements
-
-* https://issues.couchbase.com/browse/SCBC-15[SCBC-15]: 
-Support for Full Text Search (FTS).
-* https://issues.couchbase.com/browse/SCBC-12[SCBC-12]: 
-Simplify the results of the query API, moving QueryAdditional to QueryMeta, and putting all non-results into QueryMeta.
-* https://issues.couchbase.com/browse/SCBC-13[SCBC-13]: 
-Further Query API simplifications, allowing all rows to be converted into the target type with rowsAs[T].
-* https://issues.couchbase.com/browse/SCBC-22[SCBC-22]: 
-A 2.11 build of the Scala library is now provided.
-* https://issues.couchbase.com/browse/SCBC-11[SCBC-11]: 
-Environment construction is now done with native Scala objects.
-
-== Version 1.0.0-alpha2 (4th April 2019)
-
-This is the second pre-release of the new Couchbase Scala SDK.
-
-=== New Features & Enhancements
-
-* https://issues.couchbase.com/browse/SCBC-5[SCBC-5], https://issues.couchbase.com/browse/SCBC-6[SCBC-6]: 
-Significant updates for the subdoc API.
-* https://issues.couchbase.com/browse/SCBC-8[SCBC-8]: 
-Get ops in the reactive API now return Mono<Optional>.
-* https://issues.couchbase.com/browse/SCBC-16[SCBC-16]: 
-Added support for View queries.
-* https://issues.couchbase.com/browse/SCBC-14[SCBC-14]: 
-Added support for Analytics queries.
-
+Numerous _Alpha_ and _Beta_ releases were made in the run-up to the 1.0 release, and although unsupported, the release notes and download links are retained for archive purposes xref:3.0-pre-release-notes.adoc[here].
