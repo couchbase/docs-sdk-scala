@@ -17,6 +17,7 @@
 
 .Advanced Data Operations
 * xref:howtos:concurrent-async-apis.adoc[Async & Reactive APIs]
+// * xref:howtos:concurrent-document-mutations.adoc[Concurrent Document Mutations]
 
 .Managing Couchbase
 * xref:howtos:managing-connections.adoc[Managing Connections]
