@@ -13,7 +13,7 @@ Our xref:hello-world:start-using-sdk.adoc[Gettint Started] guide covered the bas
 == RBAC
 
 
-Our xref:hello-world:start-using-sdk.adoc[Gettint Started] guide introduced basic authentication against a Couchbase cluster:
+Our xref:hello-world:start-using-sdk.adoc[Getting Started] guide introduced basic authentication against a Couchbase cluster:
 
 [source,scala]
 ----
