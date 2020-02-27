@@ -1,5 +1,88 @@
 = Authenticating against Couchbase Server
-
-
-
+:page-topic-type: howto
+:page-edition: Enterprise Edition
 :page-aliases: sdk-authentication-overview
+
+[abstract]
+As well as Role-Based Access Control (RBAC), Couchbase offers connection with Certificate Authentication, and works transparently with LDAP.
+
+
+Our xref:hello-world:start-using-sdk.adoc[Gettint Started] guide covered the basics for authorizing against a Couchbase cluster, but you may need to use alternative authentication methods such as Certification.
+
+
+== RBAC
+
+
+Our xref:hello-world:start-using-sdk.adoc[Gettint Started] guide introduced basic authentication against a Couchbase cluster:
+
+[source,scala]
+----
+val cluster = Cluster.connect("10.112.180.101", "username", "password").get
+----
+
+Couchbase uses Role Base Access Control (RABC), and has since Server 5.0 was released. 
+For a general overview of Couchbase-Server authorization, see xref:6.5@server:learn:security/authorization-overview.adoc[Authorization].
+For a list of available roles and corresponding privileges, see xref:6.5@server:learn:security/roles.adoc[Roles].
+
+In the SDK docs, many examples will use the full _Administrator_ role for convenience, but this is rarely a good idea on a production machine, so reference the above links to find best practice for the needs of your application.
+RBAC is also implemented by the Community Edition of Couchbase Server, but with fewer roles -- see the xref:6.5@server:learn:security/roles.adoc[Roles overview].
+
+
+== Certificate Authentication
+
+
+Couchbase Server supports the use of X.509 certificates to authenticate clients (only available in the Enterprise Edition, not the Community Edition).
+This allows authenticated users to access specific resources by means of the data service, in Couchbase Server 5.1 and up, and all other services in more recent releases of Couchbase Data Platform.
+
+The process relies on a certificate authority, for the issuing of certificates that validate identities.
+A certificate includes information such as the name of the entity it identifies, an expiration date, the name of the authority that issued the certificate, and the digital signature of the authority.
+A client attempting to access Couchbase Server can present a certificate to the server, allowing the server to check the validity of the certificate.
+If the certificate is valid, the user under whose identity the client is running, and the roles assigned that user, are verified.
+If the assigned roles are appropriate for the level of access requested to the specified resource, access is granted.
+
+Note that this means that the explicit authentication process otherwise required by Couchbase _Role-Based Access Control_ — whereby, in Scala, username and password are passed by means of the `authenticate` method on the `Cluster` object — must not be used (instead the _CertAuthenticator_ is passed in).
+
+For a more detailed conceptual description of using certificates, see xref:6.5@server:learn:security/certificates.adoc[Certificates].
+
+For sample procedures whereby certificates can be generated and deployed, see xref:6.5@server:manage:manage-security/manage-certificates.adoc[Manage Certificates].
+Note that this section includes the steps whereby a Java keystore is created, to enable certificate-based authentication by a Scala client.
+
+== Authenticating a Java Client by Certificate
+
+To authenticate with Couchbase Server by means of a client certificate, a Java application must have access to an appropriate _keystore_ or _truststore_.
+A procedure for the creation of such a keystore is provided in xref:6.5@server:manage:manage-security/manage-certificates.adoc[Manage Certificates].
+The following Scala code assumes that this procedure has been followed.
+// The procedure's resulting keystore assigns the `travel-sample` user-identity to the client.
+// The Couchbase Server-node that is accessed is expected to feature a user-definition where the username is indeed `travel-sample`, and where the *Bucket Full Access* role has been granted to that user for the _travel-sample_ bucket.
+
+[source,scala]
+----
+// Open the keystore using standard Java classes
+final char[] keystorePassword = new String("storepass").toCharArray();
+final String keystoreFilename = "my.keystore";
+final String hostname = "ec2-18-130-37-57.eu-west-2.compute.amazonaws.com";
+// The format to use here depends on the format of the keystore.  PKCS12 is what JDK 9+ create by default,
+// with "JKS" the previous default.
+KeyStore keystore = KeyStore.getInstance("PKCS12");
+InputStream keystoreStream = CertAuth.class.getClassLoader().getResourceAsStream(keystoreFilename);
+keystore.load(keystoreStream, keystorePassword);
+keystoreStream.close();
+KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+kmf.init(keystore, keystorePassword);
+TrustManagerFactory trustMan = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+trustMan.init(keystore);
+// Create a Couchbase CertificateAuthenticate that will use that keystore
+CertificateAuthenticator auth = CertificateAuthenticator.fromKeyManagerFactory(() -> kmf);
+// Create a Couchbase ClusterEnvironment to enable TLS (required)
+ClusterEnvironment env = ClusterEnvironment.builder().securityConfig(SecurityConfig.builder()
+    .enableTls(true)
+    .trustManagerFactory(trustMan))
+    .build();
+Cluster cluster = Cluster.connect(hostname, ClusterOptions.clusterOptions(auth).environment(env));
+----
+
+
+== LDAP
+
+If you are on a network where access is controolled by LDAP, the SDK will work transparently with it.
+No special configuration is needed.
