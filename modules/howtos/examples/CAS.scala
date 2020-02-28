@@ -51,7 +51,7 @@ object CAS {
       case Success(_) => mutateResult
 
       // Failed on CAS
-      case Failure(CasMismatchException) =>
+      case Failure(err: CasMismatchException) =>
         if (guard > 0) casLoop(collection, docId, guard - 1)
         else mutateResult
 
@@ -66,6 +66,7 @@ object CAS {
     collection.getAndLock("key", 10.seconds) match {
       case Success(lockedDoc) =>
         collection.unlock("key", lockedDoc.cas) match {
+          case Success(_) =>
           case Failure(err) => println(s"Failed to unlock doc: $err")
         }
       case Failure(err) => println(s"Failed to get doc: $err")
