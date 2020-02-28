@@ -18,6 +18,7 @@
 .Advanced Data Operations
 * xref:howtos:concurrent-async-apis.adoc[Async & Reactive APIs]
 * xref:howtos:concurrent-document-mutations.adoc[Concurrent Document Mutations]
+* xref:howtos:transcoders-nonjson.adoc[Transcoders & Non-JSON]
 
 .Managing Couchbase
 * xref:howtos:managing-connections.adoc[Managing Connections]
@@ -51,7 +52,7 @@
 ** xref:concept-docs:full-text-search-overview.adoc[Search]
 // * xref:concept-docs:sdk-user-management-overview.adoc[User Management]
 // ** xref:concept-docs:sdk-authentication-overview.adoc[Authentication]
-// *or* certificate-based-authentication.adoc[Cert Auth]
+certificate-based-authentication.adoc[Cert Auth]
 // ** xref:concept-docs:rbac.adoc[RBAC]
 
 .References
