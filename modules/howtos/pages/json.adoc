@@ -166,9 +166,9 @@ include::example$KvOperations.scala[tag=cc-fails]
 
 This is because the Scala SDK does not currently know how to convert a `User` into JSON it can send to the server.
 
-More technically, methods like `insert` that take content of type `T` also take an implicit `Encodable[T]`, which defines how to turn `T` into JSON.  If the Scala compiler cannot find a suitable `Encodable[T]`, then it will report an error.
+More technically, methods like `insert` that take content of type `T` also take an implicit `JsonSerializer[T]`, which defines how to turn `T` into JSON.  If the Scala compiler cannot find a suitable `JsonSerializer[T]`, then it will report an error.
 
-So, let's provide an `Encodable[User]`.  It's possible to create one manually, but the Scala SDK includes a convenient shortcut:
+So, let's provide an `JsonSerializer[User]`.  It's possible to create one manually, but the Scala SDK includes a convenient shortcut:
 
 [source,scala]
 ----
@@ -177,15 +177,15 @@ include::example$KvOperations.scala[tag=cc-codec]
 
 (As this is a companion object for User, it needs to go in the same file as the `User` case class you added earlier.)
 
-This short line of boilerplate uses Scala macros to, at compile time, provide an `Encodable[User]`.  Note that we don't need one for `Address` too - only the top-level case classes you're dealing with need a `Codec`.
+This short line of boilerplate uses Scala macros to, at compile time, provide an `JsonSerializer[User]`.  Note that we don't need one for `Address` too - only the top-level case classes you're dealing with need a `Codec`.
 
-Now we can pass a `User` directly to `insert`, and it will work fine.  The Scala compiler will look for an `Encodable[User]` in a number of places, and find it in the `User` companion object.
+Now we can pass a `User` directly to `insert`, and it will work fine.  The Scala compiler will look for an `JsonSerializer[User]` in a number of places, and find it in the `User` companion object.
 
 Since the encoding logic is generated at compile time it can also be extremely fast - no reflection is used.
 
 The generated JSON will be as you expect, with "name" and "age" fields, and an "addresses" array.
 
-The same `Codec` also generates a `Decodable[User]` which can be used to pull data out as our case class, using `contentAs`:
+The same `Codec` also generates a `JsonDeserializer[User]` which can be used to pull data out as our case class, using `contentAs`:
 
 [source,scala]
 ----
@@ -242,9 +242,9 @@ include::example$JSON.scala[tag=bytes,indent=0]
 With the support for `String` and `Array[Byte]`, the Scala SDK can be used with any JSON library that can import and export those formats.
 
 == Adding Another Type
-As alluded to above, when inserting a `T`, the Scala SDK looks for an `Encodable[T]` in implicit scope.  Similar for `contentAs` and `Decodable[T]`.
+As alluded to above, when inserting a `T`, the Scala SDK looks for an `JsonSerializer[T]` in implicit scope.  Similar for `contentAs` and `JsonDeserializer[T]`.
 
-For advanced users it's possible to support any type desired by simply writing an `Encodable` and/or `Decodable` for that type.  Please see the
+For advanced users it's possible to support any type desired by simply writing an `JsonSerializer` and/or `JsonDeserializer` for that type.  Please see the
 code for those interfaces for details.
 
 == Choosing a Library
