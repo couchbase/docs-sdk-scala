@@ -12,13 +12,13 @@ Our xref:hello-world:start-using-sdk.adoc[Getting Started] guide covered the bas
 
 == RBAC
 
-
 Our xref:hello-world:start-using-sdk.adoc[Getting Started] guide introduced basic authentication against a Couchbase cluster:
 
 [source,scala]
 ----
 include::example$Auth.scala[tag=basic,indent=0]
 ----
+
 
 == Authenticating a Scala Client by Certificate
 
@@ -34,6 +34,7 @@ include::example$Auth.scala[tag=auth,indent=0]
 include::6.5@sdk:shared:partial$auth-overview.adoc[tag=rbac]
 
 include::6.5@sdk:shared:partial$suth-overview.adoc[tag=cert-auth]
+
 
 == LDAP
 
