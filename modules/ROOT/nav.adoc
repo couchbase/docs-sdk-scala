@@ -52,7 +52,7 @@
 ** xref:concept-docs:full-text-search-overview.adoc[Search]
 // * xref:concept-docs:sdk-user-management-overview.adoc[User Management]
 // ** xref:concept-docs:sdk-authentication-overview.adoc[Authentication]
-certificate-based-authentication.adoc[Cert Auth]
+* xref:concept-docs:certificate-based-authentication.adoc[Cert Auth]
 // ** xref:concept-docs:rbac.adoc[RBAC]
 
 .References
