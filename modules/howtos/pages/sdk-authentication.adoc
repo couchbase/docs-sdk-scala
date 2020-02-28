@@ -19,6 +19,10 @@ Our xref:hello-world:start-using-sdk.adoc[Getting Started] guide introduced basi
 include::example$Auth.scala[tag=basic,indent=0]
 ----
 
+include::6.5@sdk:shared:partial$auth-overview.adoc[tag=rbac]
+
+include::6.5@sdk:shared:partial$auth-overview.adoc[tag=cert-auth]
+
 
 == Authenticating a Scala Client by Certificate
 
@@ -30,10 +34,6 @@ That is, a cluster certificate has been created and installed on the server, a c
 ----
 include::example$Auth.scala[tag=auth,indent=0]
 ----
-
-include::6.5@sdk:shared:partial$auth-overview.adoc[tag=rbac]
-
-include::6.5@sdk:shared:partial$auth-overview.adoc[tag=cert-auth]
 
 
 == LDAP
