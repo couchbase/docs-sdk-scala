@@ -21,8 +21,8 @@
 
 .Managing Couchbase
 * xref:howtos:managing-connections.adoc[Managing Connections]
+** xref:howtos:sdk-authentication.adoc[Authentication]
 //* User Management
-// ** xref:howtos:sdk-authentication-overview.adoc[Authentication]
 
 .Errors & Diagnostics
 * xref:howtos:collecting-information-and-logging.adoc[Logging]
@@ -50,7 +50,8 @@
 ** xref:concept-docs:n1ql-query.adoc[Query]
 ** xref:concept-docs:full-text-search-overview.adoc[Search]
 // * xref:concept-docs:sdk-user-management-overview.adoc[User Management]
-// ** xref:concept-docs:certificate-based-authentication.adoc[Cert Auth]
+// ** xref:concept-docs:sdk-authentication-overview.adoc[Authentication]
+// *or* certificate-based-authentication.adoc[Cert Auth]
 // ** xref:concept-docs:rbac.adoc[RBAC]
 
 .References
