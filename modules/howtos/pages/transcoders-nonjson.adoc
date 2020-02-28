@@ -105,7 +105,7 @@ The default `JsonSerializer` and `JsonDeserializer` provided handle objects of t
 |Into/from JSON with a small amount of boilerplate to automatically generate a JsonSerializer
 |===
 
-There are concrete examples of using these on xref:howtos:json.adoc[JSON Libraries].  
+There are concrete examples of using these on the xref:json.adoc[JSON Libraries] page.  
 Note that the Scala SDK only has an optional dependency on Circe, Json4s, et al, so those libraries not be pulled into your application.
 
 == RawJsonTranscoder
