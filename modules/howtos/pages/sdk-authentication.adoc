@@ -33,7 +33,7 @@ include::example$Auth.scala[tag=auth,indent=0]
 
 include::6.5@sdk:shared:partial$auth-overview.adoc[tag=rbac]
 
-include::6.5@sdk:shared:partial$suth-overview.adoc[tag=cert-auth]
+include::6.5@sdk:shared:partial$auth-overview.adoc[tag=cert-auth]
 
 
 == LDAP
