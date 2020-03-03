@@ -8,6 +8,48 @@ Release notes, installation instructions, and download archive for the Couchbase
 
 These pages cover the 1.0 releases of the Couchbase Scala SDK, which follows the Couchbase 3.0 SDK API. 
 
+== Version 1.0.2 (3 March 2020)
+
+Version 1.0.2 is the third release of the Scala SDK, bringing enhancements and bugfixes over the last stable release.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.0.2/scaladocs/com/couchbase/client/scala/index.html[API Reference] |
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.0.3/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.0.2**
+* com.couchbase.client:**core-io:2.0.3**
+* io.projectreactor:**reactor-core:3.3.1.RELEASE**
+* org.reactivestreams:**reactive-streams:1.0.2**
+
+=== Enhancements
+
+* http://issues.couchbase.com/browse/JVMCBC-813[JVMCBC-813]:
+Improve error message if bucket is missing
+* http://issues.couchbase.com/browse/JVMCBC-815[JVMCBC-815]:
+Check if key exceeds size limits
+* http://issues.couchbase.com/browse/JVMCBC-818[JVMCBC-818]:
+Trim netty stack in connect failures for more readable output
+* http://issues.couchbase.com/browse/JVMCBC-819[JVMCBC-819]:
+Distinguish bucket not found in select bucket failures
+* http://issues.couchbase.com/browse/JVMCBC-823[JVMCBC-823]:
+Add a global component to the core id
+* http://issues.couchbase.com/browse/JVMCBC-825[JVMCBC-825]:
+Support new VATTR HELLO flag
+* http://issues.couchbase.com/browse/SCBC-43[SCBC-43]:
+With huge thanks to our community, who submitted the patch, it is now possible to build versions of the SDK for 2.11 and 2.13.
+Couchbase only officially provides, tests and supports a Scala 2.12 build currently, but users are welcome to build their own jars for 2.11 or 2.13 following the https://github.com/couchbase/couchbase-jvm-clients[README instructions].
+
+=== Bug Fixes
+
+* http://issues.couchbase.com/browse/SCBC-200[SCBC-200]:
+Correctly shade dependencies
+* http://issues.couchbase.com/browse/SCBC-207[SCBC-207]:
+Exists returns wrong value if executed right after remove
+* http://issues.couchbase.com/browse/SCBC-216[SCBC-216]:
+Properly clear cache when repreparing/retrying query
+* http://issues.couchbase.com/browse/JVMCBC-824[JVMCBC-824]:
+Native Netty transports not included, resulting in fallback to default implementation.  This was a regression in the 2.0.2 core-io release.
 
 == Version 1.0.1 (5th February 2020)
 
