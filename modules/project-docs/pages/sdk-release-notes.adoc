@@ -50,6 +50,8 @@ Exists returns wrong value if executed right after remove
 Properly clear cache when repreparing/retrying query
 * http://issues.couchbase.com/browse/JVMCBC-824[JVMCBC-824]:
 Native Netty transports not included, resulting in fallback to default implementation.  This was a regression in the 2.0.2 core-io release.
+* http://issues.couchbase.com/browse/JCBC-1600[JCBC-1600]:
+Using expiry together with document flags on a Sub-Document mutateIn causes an incorrect flags field to be sent.
 
 == Version 1.0.1 (5th February 2020)
 
