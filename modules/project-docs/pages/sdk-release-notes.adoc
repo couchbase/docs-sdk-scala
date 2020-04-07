@@ -8,6 +8,55 @@ Release notes, installation instructions, and download archive for the Couchbase
 
 These pages cover the 1.0 releases of the Couchbase Scala SDK, which follows the Couchbase 3.0 SDK API. 
 
+
+== Version 1.0.3 (7 April 2020)
+
+Version 1.0.3 is the fourth release of the Scala SDK.
+It brings no new changes to the Scala client itself, but inherits enhancements and bugfixes over the last stable release from the core-io dependency.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.0.3/scaladocs/com/couchbase/client/scala/index.html[API Reference] |
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.0.4/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.0.3**
+* com.couchbase.client:**core-io:2.0.4**
+* io.projectreactor:**reactor-core:3.3.1.RELEASE**
+* org.reactivestreams:**reactive-streams:1.0.2**
+
+=== Enhancements
+
+* http://issues.couchbase.com/browse/JVMCBC-830[JVMCBC-830]:
+Added more convenient overloads for SecurityConfig and CertAuth. 
+These overloads initialize both the SecurityConfig and the CertificateAuthenticator directly from a KeyStore or TrustStore. 
+* http://issues.couchbase.com/browse/JVMCBC-831[JVMCBC-831]:
+Improves timeout for waitUntilReady -- the `waitUntilReady` helper should now throw a proper timeout exception. 
+* http://issues.couchbase.com/browse/JVMCBC-832[JVMCBC-832]:
+Added support for multiple ports per hostname in the connection string -- without having to use the explicit SeedNode set overload.
+* http://issues.couchbase.com/browse/JVMCBC-835[JVMCBC-835]:
+Using "localhost:8091" as a connection string would set the kv bootstrap port to 8091, which is not desired behavior.
+To prevent this from happening again, the code now checks for this condition, fails fast, and also provides guidance on what the connection string should look like instead.
+* http://issues.couchbase.com/browse/JVMCBC-836[JVMCBC-836]:
+Enabled Unordered Execution by Default.
+* http://issues.couchbase.com/browse/JVMCBC-837[JVMCBC-837]:
+Updates OpenTelemetry to 0.3 (beta).
+* http://issues.couchbase.com/browse/JVMCBC-839[JVMCBC-839]:
+Bootstrap will now correctly use the mapped port if alternate addr is present.
+
+=== Bug Fixes
+
+* http://issues.couchbase.com/browse/JVMCBC-834[JVMCBC-834]:
+'CollectionNotFoundException' now triggers a retry, and if no collection refresh is currently in progress it will proactively trigger a new one.
+Now Docs created under custom collection should no longer raise an exception when a collection has been created in the meantime, but the collection is not found as no refresh is in progress.
+* http://issues.couchbase.com/browse/JVMCBC-826[JVMCBC-826]:
+A NullPointerException was occuring when LDAP is enabled.
+The code now explicitly fails the connection with a descriptive error message instructing the user what to do next (either use TLS which is preferred) or enable PLAIN on the password authenticator (insecure).
+* http://issues.couchbase.com/browse/JVMCBC-827[JVMCBC-827]:
+Search query results row_hit typo resulted in 0 being returned for total rows. 
+This has now been fixed. 
+* http://issues.couchbase.com/browse/JVMCBC-828[JVMCBC-828]:
+Omit internal config request in orphan reporting.
+
 == Version 1.0.2 (3 March 2020)
 
 Version 1.0.2 is the third release of the Scala SDK, bringing enhancements and bugfixes over the last stable release.
