@@ -1,7 +1,7 @@
 = Document 
 :nav-title: Documents & Doc Ops
 :page-topic-type: concept
-:page-aliases: ROOT:documents,ROOT:documents-basics,ROOT:documents-atomic
+:page-aliases: ROOT:core-operations,ROOT:documents,ROOT:documents-basics,ROOT:documents-atomic
 
 [abstract]
 Couchbase supports CRUD operations, various data structures, and binary documents.
@@ -82,10 +82,13 @@ You can also retrieve _parts_ of documents using xref:subdocument-operations.ado
 ----
 name, email = cb.retrieve_in('user:kingarthur', 'contact.name', 'contact.email')
 ----
+
+include::6.5@sdk:shared:partial$documents.adoc[tag=expiration]
+
+
 ////
 include::6.5@sdk:shared:partial$documents.adoc[tag=]
 
-include::6.5@sdk:shared:partial$documents.adoc[tag=]
 
 include::6.5@sdk:shared:partial$documents.adoc[tag=]
 
