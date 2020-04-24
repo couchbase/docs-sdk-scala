@@ -283,6 +283,8 @@ Some applications may find `getAndTouch` useful, which fetches a document while 
 include::example$KvOperations.scala[indent=0,tag=expiry-touch]
 ----
 
+include::6.5@sdk:shared:partial$documents.adoc[tag=exp-note]
+
 == Counter Operations
 To support counter use-cases, a Couchbase document can be treated as an integer counter and adjusted or created atomically like this:
 
