@@ -56,7 +56,7 @@
 // ** xref:concept-docs:rbac.adoc[RBAC]
 
 .References
-* xref:ref:client-setting.adoc[Client Settings]
+* xref:ref:client-settings.adoc[Client Settings]
 
 .Project Docs
 * xref:project-docs:sdk-release-notes.adoc[Release Notes]
