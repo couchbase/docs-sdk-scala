@@ -74,7 +74,7 @@ include::example$Queries.scala[tag=case-classes,indent=0]
 ----
 
 == Streaming Large Result Sets
-As mentioned earlier, the Scala SDK provides three SDKs (documented further on xref:howtos:concurrent-async-apis.adoc.adoc[Choosing an API]):
+As mentioned earlier, the Scala SDK provides three SDKs (documented further on xref:howtos:concurrent-async-apis.adoc[Choosing an API]):
 
 * The blocking API you've seen so far, that returns a `QueryResult` containing all rows.
 
