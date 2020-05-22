@@ -1,8 +1,6 @@
 = Travel App Data Model
 :nav-title: Travel Sample App
-:content-type: tutorial
-:page-topic-type: tutorial
-:page-aliases: ROOT:sample-application,ROOT:tutorial4,ROOT:sample-app-backend
+:page-topic-type: reference
 
 [abstract]
 The Travel Sample Application is currently available in 6 of our SDKs.
