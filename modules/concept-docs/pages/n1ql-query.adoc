@@ -122,12 +122,12 @@ Here's how to specify the `RequestPlus` scan consistency level:
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=request-plus,indent=0]
+include::howtos:example$Queries.scala[tag=request-plus,indent=0]
 ----
 
 And the `AtPlus` level is represented with `QueryScanConsistency.ConsistentWith`:
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=at-plus,indent=0]
+include::howtos:example$Queries.scala[tag=at-plus,indent=0]
 ----
