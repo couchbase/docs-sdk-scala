@@ -32,7 +32,7 @@ include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=update-bucket-warning]
 Here is the list of parameters available for `CreateBucketSettings` and `BucketSettings`.
 The "Updatable" column indicates whether the parameter may only be specified when creating a bucket, or whether it may be updated after creation.
 
-[cols="32,32,24,12"]
+[cols="30,30,28,12"]
 |====
 | Name | Type | Description | Updatable
 
