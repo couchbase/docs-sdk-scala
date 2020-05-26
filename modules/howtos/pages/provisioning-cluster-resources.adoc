@@ -132,7 +132,7 @@ We've created the design document using `DesignDocumentNamespace.Development` an
 
 [source,scala]
 ----
-include::example$ClusterResources.scala[tag=view-publish,indent=0]
+include::example$ClusterResources.scala[tag=view-push,indent=0]
 ----
 
 To remove this design document:
