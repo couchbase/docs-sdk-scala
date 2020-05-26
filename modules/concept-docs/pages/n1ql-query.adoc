@@ -56,14 +56,10 @@ For more information, see xref:6.5@server:n1ql:n1ql-language-reference/covering-
 
 You can also create and define indexes in the SDK using:
 
-[source,csharp]
+[source,scala]
 ----
-var bucketManager = bucket.CreateManager();
-await bucketManager.CreateN1qlPrimaryIndexAsync();
-await bucketManager.CreateN1qlIndexAsync("index_name", new string[] { "name" })
-await bucketManager.CreateN1qlIndexAsync("index_emai", new string[] { "email" })
+include::example$N1qlQuery.scala[tag=create-index,indent=0]
 ----
-
 
 == Index Building
 
@@ -85,16 +81,13 @@ and indexes it for all of the applicable indexes (in this case, those that have 
 
 Building deferred indexes can also be done via the SDK:
 
-[source,csharp]
+[source,scala]
 ----
-var bucketManager = bucket.CreateManager();
-await bucketManager.CreateN1qlPrimaryIndexAsync(defer = true);
-await bucketManager.CreateN1qlIndexAsync("ix_name", defer = true, new string[] { "name" });
-await bucketManager.CreateN1qlIndexAsync("ix_email", defer = true, new string[] { "email" });
-await bucketManager.BuildN1qlDeferredIndexesAsync();
-await bucketManager.WatchN1qlIndexes(new List<string> { "ix_name", "ix_email", "#primary"}, TimeSpan.FromSeconds(2));
+include::example$N1qlQuery.scala[tag=build-index,indent=0]
 ----
 
+Note that the build step is still asynchronous, so `watchIndexes` is used to wait for the indexes to be completed.
+"#primary" is the primary index.
 
 == Index Consistency
 
@@ -115,89 +108,26 @@ ensuring that indexes are synchronized with the data service before querying.
 The following options are available:
 
 include::6.5@server:learn:page$services-and-indexes/indexes/index-replication.adoc[tag=scan_consistency]
-////
-* `not_bounded`: Executes the query immediately, without requiring any consistency for the query.
-If index-maintenance is running behind, out-of-date results may be returned.
-* `at_plus`: Executes the query, requiring indexes first to be updated to the timestamp of the last update.
-If index-maintenance is running behind, the query waits for it to catch up.
-* `request_plus`: Executes the query, requiring the indexes first to be updated to the timestamp of the current query-request.
-If index-maintenance is running behind, the query waits for it to catch up.
+
+* A N1QL query using the default `NotBounded` scan consistency will not wait for any indexes to finish updating before running the query and returning results, meaning that results are returned quickly, but the query will not return any documents that are yet to be indexed.
+
+* With scan consistency set to `RequestPlus`, all outstanding document changes and index updates are processed before the query is run.
+Select this when consistency is always more important than performance.
+
+* For a middle ground, `AtPlus` is a "read your own write" (RYOW) option, which means it just waits for the documents that you specify to be indexed.
 
 For N1QL, the default consistency is `not_bounded`.
-////
-Consider the following snippet:
 
-[source,csharp]
+Here's how to specify the `RequestPlus` scan consistency level:
+
+[source,scala]
+----
+include::example$Queries.scala[tag=request-plus,indent=0]
 ----
 
-var randomNumber = new Random().Next(0, 10000000);
+And the `AtPlus` level is represented with `QueryScanConsistency.ConsistentWith`:
 
-bucket.Upsert($"user:{randomNumber}", new {
-    name = "Brass Doorknob",
-    email = "brass.doorknob@juno.com",
-    random = randomNumber
-});
-
-var query = new QueryRequest("SELECT name, email, random, META(default).id FROM default WHERE $1 IN name'")
-    .AddPositionalParamter("Brass");
-
-var result = bucket.Query<dynamic>(query);
+[source,scala]
 ----
-
-The above query may not return the newly inserted document because it has not yet been indexed.
-The query is issued immediately after document creation, and in this case the query engine may process the query before the index has been updated.
-
-If the above code is modified to use _RequestPlus_, query processing will wait until all updates have been processed and recalculated into the index from the point in time the query was received:
-
-[source,csharp]
+include::example$Queries.scala[tag=at-plus,indent=0]
 ----
-var query = new QueryRequest("SELECT name, email, random, META(default).id FROM default WHERE $1 IN name'")
-    .AddPositionalParamter("Brass")
-    // If this line is removed, the latest 'random' field might not be present
-    .ScanConsistency(ScanConsistency.RequestPlus);
-
-var result = bucket.Query<dynamic>(query);
-----
-
-This gives the application developer more control over the balance between performance (latency) and consistency,
-and allows optimization on a case-by-case basis.
-
-
-
-
-////
-** Awaiting LINQ updates **
-
-== Building Statements with LINQ
-
-[NOTE]
-LINQ is a community project.
-Although it works well with Couchbase, it is not part of the officially-supported product.
-
-LINQ (Language Integrated Query), is a powerful way to guide you in building your statements: 
-you obtain Type safety and auto completion of relevant methods and N1QL clauses. 
-It implements https://msdn.microsoft.com/en-us/library/mt693024.aspx[Microsoft’s language integrated query extensions to the C# language], 
-and is similar to other LINQ providers like Linq2SQL, Entity Framework and NHibernate. 
-The difference is that it emits N1QL in place of SQL. 
-If you have used any other LINQ provider, you will find its familiarity and consistency make it an easy transition.
-
-_Linq2Couchbase_, the LINQ provider for the Couchbase .NET SDK, is a stand-alone project which depends on Couchbase .NET SDK 
-and can be found on https://www.nuget.org/packages/linq2Couchbase[NuGet] -- and by using the NuGet package manager to include the dependency:
-
-[source]
-----
-PM> Install-Package Linq2Couchbase
-----
-
-Once you have included the dependency, you can construct queries just like any other LINQ provider in a SQL-like fashion. Nearly all N1QL statements and functions are supported, for example:
-
-* INNER, LEFT Outer, and Index JOINs
-* Math and Date functions
-* Filtering, projections and sorting
-* Grouping and aggregations
-* META keyword, NEST and UNNEST
-* Etc.
-
-In addition to N1QL language features, Linq2Coucbase supports ORM features like Change-tracking, and mapping of JSON fields to keys and other POCO properties. 
-The provider’s core object is the `BucketContext`, which is a Unit of Work (UoW) type object for performing querying and mutations on a per request basis. 
-////

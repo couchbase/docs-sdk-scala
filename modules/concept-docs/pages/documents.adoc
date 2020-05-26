@@ -48,11 +48,11 @@ include::6.5@sdk:shared:partial$documents.adoc[tag=store-update]
 
 [NOTE]
 ====
-If you wish to only modify certain parts of a document, you can use xref:subdocument-operations.adoc[sub-document] operations which operate on specific subsets of documents:
+If you wish to only modify certain parts of a document, you can use xref:subdocument-operations.adoc[Sub-Document] operations which operate on specific subsets of documents:
 
-[source,python]
+[source,scala]
 ----
-collection.mutate_in("customer123", [SD.upsert("fax", "311-555-0151")])
+include::1.0@scala-sdk:howtos:example$SubDocument.scala[tag=upsert,indent=0]
 ----
 
 or xref:6.0@server:n1ql:n1ql-language-reference/update.adoc[N1QL UPDATE] to update documents based on specific query criteria:
@@ -77,29 +77,11 @@ or
 SELECT * FROM default WHERE META(default).id = "docid";
 ----
 
-You can also retrieve _parts_ of documents using xref:subdocument-operations.adoc[sub-document operations], by specifying one or more sections of the document to be retrieved
+You can also retrieve _parts_ of documents using xref:subdocument-operations.adoc[Sub-Document operations], by specifying one or more sections of the document to be retrieved
 
-[source,python]
+[source,scala]
 ----
-name, email = cb.retrieve_in('user:kingarthur', 'contact.name', 'contact.email')
+include::1.0@scala-sdk:howtos:example$SubDocument.scala[tag=combine,indent=0]
 ----
 
 include::6.5@sdk:shared:partial$documents.adoc[tag=expiration]
-
-
-////
-include::6.5@sdk:shared:partial$documents.adoc[tag=]
-
-
-include::6.5@sdk:shared:partial$documents.adoc[tag=]
-
-include::6.5@sdk:shared:partial$documents.adoc[tag=]
-
-include::6.5@sdk:shared:partial$documents.adoc[tag=]
-
-include::6.5@sdk:shared:partial$documents.adoc[tag=]
-
-include::6.5@sdk:shared:partial$documents.adoc[tag=]
-
-include::6.5@sdk:shared:partial$documents.adoc[tag=]
-////

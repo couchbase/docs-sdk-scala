@@ -13,9 +13,6 @@ Select this when consistency is always more important than performance.
 
 * For a middle ground, `AtPlus` is a "read your own write" (RYOW) option, which means it just waits for the documents that you specify to be indexed.
 
-[NOTE]
-AtPlus is not supported in this initial alpha release, but will be available in the next release.
-
 Here's how to specify the `RequestPlus` scan consistency level:
 
 [source,{example-source-lang}]
