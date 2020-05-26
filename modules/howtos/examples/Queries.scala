@@ -18,6 +18,7 @@
 import com.couchbase.client.scala._
 import com.couchbase.client.scala.implicits.Codec
 import com.couchbase.client.scala.json._
+import com.couchbase.client.scala.kv.MutationState
 import com.couchbase.client.scala.query._
 import reactor.core.scala.publisher._
 
@@ -31,6 +32,7 @@ object Queries {
 // #tag::cluster[]
     val cluster = Cluster.connect("localhost", "username", "password").get
     val bucket = cluster.bucket("travel-sample")
+    val collection = bucket.defaultCollection
 // #end::cluster[]
 
     def simple() {
@@ -117,10 +119,30 @@ object Queries {
     def requestPlus() {
 // #tag::request-plus[]
       val result = cluster.query(
-        """select `travel-sample`.* from `travel-sample` limit 10;""",
+        "select `travel-sample`.* from `travel-sample` limit 10;",
         QueryOptions().scanConsistency(QueryScanConsistency.RequestPlus())
       )
 // #end::request-plus[]
+    }
+
+    def atPlus() {
+      val content = JsonObject.create
+      // #tag::at-plus[]
+      val result = collection.upsert("id", content)
+        .flatMap(upsertResult => {
+          val ms = MutationState.from(upsertResult)
+
+          cluster.query(
+            "select `travel-sample`.* from `travel-sample` limit 10;",
+              QueryOptions().scanConsistency(QueryScanConsistency.ConsistentWith(ms))
+          )
+        })
+
+      result match {
+        case Success(_) =>
+        case Failure(err) => println(s"Operation failed with error $err")
+      }
+      // #end::at-plus[]
     }
 
     def async() {

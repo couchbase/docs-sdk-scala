@@ -37,7 +37,7 @@
 * xref:concept-docs:compression.adoc[Compression]
 * xref:concept-docs:data-model.adoc[Data Model]
 ** xref:concept-docs:documents.adoc[Documents]
-** xref:concept-docs:nonjson.adoc[Non-json Docs]
+** xref:concept-docs:nonjson.adoc[Non-JSON Docs]
 ** xref:concept-docs:subdocument-operations.adoc[Sub-Documents]
 ** xref:concept-docs:xattr.adoc[XATTR & Virtual XATTR]
 * xref:concept-docs:errors.adoc[Errors and Diagnostics]
