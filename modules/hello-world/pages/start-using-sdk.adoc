@@ -9,13 +9,15 @@ The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster 
 
 == Installing the SDK
 
-The Couchbase Scala SDK is available on the Maven repository and can be included in your `build.gradle`
-like this:
+The Couchbase Scala SDK is available on the Maven repository.
+The latest version, as of June 2020, is 1.0.5.
+
+It can be included in your `build.gradle` like this:
 
 [source,groovy]
 ----
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.4'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.5'
 }
 ----
 
@@ -27,7 +29,7 @@ Or into your Maven pom.xml:
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_2.12</artifactId>
-        <version>1.0.4</version>
+        <version>1.0.5</version>
     </dependency>
 </dependencies>
 ----
@@ -36,7 +38,7 @@ Or for SBT:
 
 [source,sbt]
 ----
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.4"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.5"
 ----
 
 == Connecting to a Cluster
