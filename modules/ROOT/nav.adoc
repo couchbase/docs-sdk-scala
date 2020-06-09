@@ -52,9 +52,9 @@
 ** xref:concept-docs:n1ql-query.adoc[Query]
 ** xref:concept-docs:full-text-search-overview.adoc[Search]
 // * xref:concept-docs:sdk-user-management-overview.adoc[User Management]
-// ** xref:concept-docs:sdk-authentication-overview.adoc[Authentication]
+** xref:concept-docs:sdk-authentication-overview.adoc[Authentication]
 * xref:concept-docs:certificate-based-authentication.adoc[Cert Auth]
-// ** xref:concept-docs:rbac.adoc[RBAC]
+** xref:concept-docs:rbac.adoc[RBAC]
 
 .References
 * https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/index.html[API Reference]
