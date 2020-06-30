@@ -273,6 +273,9 @@ Proceeding with normal bootstrap.
 ----
 ////
 
+include::6.5@sdk:shared:partial$managing-connections.adoc[tag=cloud]
+
+
 == Async and Reactive APIs
 
 The Couchbase Scala SDK provides first-class support for asynchronous and reactive programming.
