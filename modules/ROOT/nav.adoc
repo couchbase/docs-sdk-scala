@@ -23,6 +23,7 @@
 .Managing Couchbase
 * xref:howtos:managing-connections.adoc[Managing Connections]
 ** xref:howtos:sdk-authentication.adoc[Authentication]
+** xref:howtos:troubleshooting-cloud-connections.adoc[Troubleshooting Cloud Connections]
 * xref:howtos:provisioning-cluster-resources.adoc[Provisioning Cluster Resources]
 //* User Management
 
@@ -58,6 +59,8 @@
 .References
 * https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/index.html[API Reference]
 * xref:ref:client-settings.adoc[Client Settings]
+// * xref:ref:error-codes.adoc[Error Messages]
+// * xref:ref:travel-app-data-model.adoc[Travel Sample Data Model]
 
 .Project Docs
 * xref:project-docs:sdk-release-notes.adoc[Release Notes]
