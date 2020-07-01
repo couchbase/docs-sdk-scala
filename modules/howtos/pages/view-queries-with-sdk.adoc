@@ -17,7 +17,7 @@ Here is an example:
 [source,scala]
 ----
 include::example$Views.scala[tag=basic,indent=0]
-var result = bucket.ViewQuery<Type>(“design-doc”, “view-name”, options =>
+var result = bucket.ViewQuery<Type>("design-doc", "view-name", options =>
     options.WithLimit
 ----
 
