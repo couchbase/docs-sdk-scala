@@ -78,7 +78,7 @@ will just open the 'default collection', which includes all documents in a bucke
 with all supported versions of Couchbase Server.
 
 `waitUntilReady` is an optional call.
-Opening resources such as buckets is asynchronous - that is, the `cluster.bucket` call returns immediately and proceeds in the background.
+Opening resources such as buckets is asynchronous -- that is, the `cluster.bucket` call returns immediately and proceeds in the background.
 `waitUntilReady` ensures that the bucket resource is fully loaded before proceeding.
 If not present, then the first Key Value (KV) operation on the bucket will wait for it to be ready.
 As with `Cluster.connect`, we use `.get` on the result here for simplicity: see the xref:howtos:managing-connections.adoc[Managing Connections] page for a more complete example including functional error-handling.
