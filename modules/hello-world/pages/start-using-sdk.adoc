@@ -77,8 +77,14 @@ _collections_. These will allow documents to be grouped in a more granular way t
 will just open the 'default collection', which includes all documents in a bucket, and is forwards and backwards compatible
 with all supported versions of Couchbase Server.
 
+`waitUntilReady` is an optional call.
+Opening resources such as buckets is asynchronous - that is, the `cluster.bucket` call returns immediately and proceeds in the background.
+`waitUntilReady` ensures that the bucket resource is fully loaded before proceeding.
+If not present, then the first Key Value (KV) operation on the bucket will wait for it to be ready.
+As with `Cluster.connect`, we use `.get` on the result here for simplicity: see the xref:howtos:managing-connections.adoc[Managing Connections] page for a more complete example including functional error-handling.
+
 == JSON
-Now we can do some simple Key Value (KV) operations.  First, let's create some JSON.
+Now we can do some simple Key Value operations.  First, let's create some JSON.
 
 The Scala SDK directly supports several popular JSON libraries, including https://github.com/lihaoyi/upickle[uPickle/uJson], https://circe.github.io/circe/[Circe], https://github.com/playframework/play-json[Play Json], https://github.com/typelevel/jawn[Jawn], and https://github.com/json4s/json4s[Json4s] (if you'd like to see your favourite supported, please let us know).
 In addition you can supply JSON encoded into a `String` or `Array[Byte]`, opening the door to any JSON library; https://jsoniter.com/[Jsoniter] and https://github.com/FasterXML/jackson[Jackson] have been tested this way, but any should work.
