@@ -17,11 +17,13 @@
 // #tag::imports[]
 import java.util.UUID
 
+import com.couchbase.client.core.error.{CouchbaseException, DocumentNotFoundException}
 import com.couchbase.client.scala.Cluster
 import com.couchbase.client.scala.durability.Durability
 import com.couchbase.client.scala.json.{JsonObject, JsonObjectSafe}
 import com.couchbase.client.scala.kv.ReplaceOptions
 
+import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 import concurrent.duration._
 // #end::imports[]
@@ -34,6 +36,7 @@ object ClusterExample {
 
     // #tag::resources[]
     val bucket = cluster.bucket("bucket-name")
+    bucket.waitUntilReady(30.seconds).get
     val collection = bucket.defaultCollection
     // #end::resources[]
 

@@ -37,6 +37,20 @@ include::example$ManagingConnections.scala[tag=multiple,indent=0]
 TIP: You don't need to include the address of every node in the cluster.
 The client fetches the full address list from the first node it is able to contact.
 
+== WaitUntilReady
+Opening resources is asynchronous.
+That is, the call to `cluster.bucket` or `Cluster.connect` will complete instantly, and opening that resource will continue in the background.
+
+You can force waiting for the resource to be opened with a call to `waitUntilReady`, which is available on both the `Cluster` and `Bucket`.
+Here is an example of using it on the bucket:
+
+[source,scala]
+----
+include::example$ManagingConnections.scala[tag=wait-until-ready,indent=0]
+----
+
+If not present, then the first Key Value (KV) operation on the bucket will wait for it to be ready.
+Any issues opening that bucket (for instance, if it does not exist), will result in an error being raised from that KV operation.
 
 [#cluster-environment]
 == Cluster Environment

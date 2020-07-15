@@ -45,6 +45,34 @@ class ManagingConnections {
     // #end::initial[]
   }
 
+  def waitUntilReady(): Unit = {
+    // #tag::wait-until-ready[]
+    val clusterTry: Try[Cluster] =
+      Cluster.connect("127.0.0.1", "username", "password")
+
+    clusterTry match {
+
+      case Success(cluster) =>
+        val bucket = cluster.bucket("beer-sample")
+
+        bucket.waitUntilReady(30.seconds) match {
+          case Success(_) =>
+            val collection = bucket.defaultCollection
+            // ... continue to use collection as normal ...
+
+          case Failure(err) =>
+            println(s"Failed to open bucket: $err")
+        }
+
+        cluster.disconnect()
+
+      case Failure(err) =>
+        println(s"Failed to open cluster: $err")
+    }
+    // #end::wait-until-ready[]
+  }
+
+
   def multiple(): Unit = {
     // #tag::multiple[]
     val connectionString = "192.168.56.101,192.168.56.102"
