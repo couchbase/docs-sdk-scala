@@ -299,9 +299,7 @@ Note that a counter cannot be below 0.
 
 Working on just a specific path within a JSON document will reduce network bandwidth requirements - see the xref:subdocument-operations.adoc[Sub-Document] pages.
 
-For working with metadata on a document, reference our xref:sdk-xattr-example.adoc[Extended Attributes] pages.
-
-As well as various xref:concept-docs:data-model.adoc[Formats] of JSON, Couchbase can work directly with xref:concept-docs:non-json.adoc[arbitrary bytes, or binary format].
+As well as various xref:concept-docs:data-model.adoc[Formats] of JSON, Couchbase can work directly with xref:concept-docs:nonjson.adoc[arbitrary bytes, or binary format].
 
 Our xref:n1ql-queries-with-sdk.adoc[Query Engine] enables retrieval of information using the SQL-like syntax of N1QL.
 
