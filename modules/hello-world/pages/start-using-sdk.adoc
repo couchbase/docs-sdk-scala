@@ -10,14 +10,14 @@ The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster 
 == Installing the SDK
 
 The Couchbase Scala SDK is available on the Maven repository.
-The latest version, as of July 2020, is 1.0.6.
+The latest version, as of August 2020, is 1.0.7.
 
 It can be included in your `build.gradle` like this:
 
 [source,groovy]
 ----
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.6'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.7'
 }
 ----
 
@@ -29,7 +29,7 @@ Or into your Maven pom.xml:
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_2.12</artifactId>
-        <version>1.0.6</version>
+        <version>1.0.7</version>
     </dependency>
 </dependencies>
 ----
@@ -38,7 +38,7 @@ Or for SBT:
 
 [source,sbt]
 ----
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.6"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.7"
 ----
 
 == Connecting to a Cluster
@@ -143,7 +143,7 @@ Either of these methods will stop on the first failed operation.  So the final r
 
 == Overloads
 You'll notice that most operations in the Scala SDK have two overloads.
-One will take an Options class, which provides all possible options that operation takes.
+One will take an Options builder, which provides all possible options that operation takes.
 For instance:
 [source,scala]
 ----
@@ -151,14 +151,14 @@ include::example$Cluster.scala[tag=replace-options,indent=0]
 ----
 These options blocks are implemented as Scala case classes, e.g. they are immutable data objects that return a copy of themselves on each change.
 
-The other overload is provided purely for convenience.  It takes named arguments instead of an Options object, but provides only the most commonly used options:
+The other overload is provided purely for convenience.  It takes named arguments instead of an Options object, and provides only the most commonly used options:
 [source,scala]
 ----
 include::example$Cluster.scala[tag=replace-named,indent=0]
 ----
 
 == Next Steps
-You now know the basics of connecting to a Couchbase cluster, creating some JSON, and performing Key-Value operations.
+You now know the basics of connecting to a Couchbase cluster, creating some JSON, and performing Key-Value operations, using the Scala SDK.
 
 Key-Value operations are described in detail xref:scala-sdk:howtos:kv-operations.adoc[here].
 
