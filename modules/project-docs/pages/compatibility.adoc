@@ -33,7 +33,7 @@ It is best to upgrade either the SDK or the Couchbase version you are using.
 | *✔*
 
 
-| *Server 6.5*
+| *Server 6.5-6.6*
 | *✔*
 |===
 
@@ -62,7 +62,7 @@ Please make sure you run on one of the latest patch releases, since they provide
 
 .Couchbase Server and SDK Supported Version Matrix
 |===
-| | Server 5.0, 5.1, & 5.5 | Server 6.0 | Server 6.5
+| | Server 5.0, 5.1, & 5.5 | Server 6.0 | Server 6.5 & 6.6
 
 | Enhanced Durability
 | Not Supported
@@ -78,7 +78,7 @@ Please make sure you run on one of the latest patch releases, since they provide
 
 | Collections
 2+| Not Supported
-| Developer Preview in 6.5, SDK 1.0
+| Developer Preview in 6.5-6.6, SDK 1.0
 
 |===
 
