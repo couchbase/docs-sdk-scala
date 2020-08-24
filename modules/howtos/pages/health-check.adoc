@@ -14,6 +14,10 @@ More extensive discussion of the uses of Health Check can be found in the xref:c
 
 == Ping
 
+For use of `ping()`, refer to https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/Cluster.html#ping(options:com.couchbase.client.scala.diagnostics.PingOptions):scala.util.Try%5Bcom.couchbase.client.core.diagnostics.PingResult%5D[the API docs].
+See also the https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/diagnostics/PingOptions.html[PingOptions].
+
+////
 At its simplest, `ping` provides information about the current state of the connections in the Couchbase Cluster, by actively polling:
 
 // 2.7 SDK
@@ -83,7 +87,7 @@ boolean allEndpointsConnected(DiagnosticsReport report) {
 }
 ----
 
-
+////
 
 
 == Diagnostics
@@ -93,6 +97,10 @@ boolean allEndpointsConnected(DiagnosticsReport report) {
 However this call _does not_ actively poll the nodes, reporting instead the state the last time it tried to access each node.
 If you want the _current_ status, then use xref:#ping[Ping].
 
+For specifics, refer to the https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/Cluster.html#diagnostics(options:com.couchbase.client.scala.diagnostics.DiagnosticsOptions):scala.util.Try%5Bcom.couchbase.client.core.diagnostics.DiagnosticsResult%5D[API docs] -- 
+including https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/diagnostics/DiagnosticsOptions.html[DiagnosticsOptions].
+
+////
 [source,javascript]
 ----
 bucket.diagnostics((err, res) => {
@@ -128,3 +136,4 @@ bucket.diagnostics((err, res) => {
 }
 */
 ----
+////
