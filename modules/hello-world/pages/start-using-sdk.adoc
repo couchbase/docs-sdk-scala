@@ -10,14 +10,14 @@ The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster 
 == Installing the SDK
 
 The Couchbase Scala SDK is available on the Maven repository.
-The latest version, as of August 2020, is 1.0.7.
+The latest version, as of September 2020, is 1.0.8.
 
 It can be included in your `build.gradle` like this:
 
 [source,groovy]
 ----
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.7'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.8'
 }
 ----
 
@@ -29,7 +29,7 @@ Or into your Maven pom.xml:
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_2.12</artifactId>
-        <version>1.0.7</version>
+        <version>1.0.8</version>
     </dependency>
 </dependencies>
 ----
@@ -38,7 +38,7 @@ Or for SBT:
 
 [source,sbt]
 ----
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.7"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.0.8"
 ----
 
 == Connecting to a Cluster
