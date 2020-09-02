@@ -6,9 +6,10 @@
 [abstract]
 Release notes, installation instructions, and download archive for the Couchbase Scala Client.
 
+
 == Version 1.0.8 (1 September 2020)
 
-Version 1.0.8 is a bugfix release of the Scala SDK, bringing enhancements, and bugfixes over the last stable release.
+Version 1.0.8 is the ninth release of the Scala SDK, bringing enhancements and bugfixes over the last stable release.
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.0.8/com/couchbase/client/scala/index.html[API Reference]
 
@@ -44,6 +45,7 @@ Updated internal and external dependencies to their latest maintenance releases.
 When dealing with unknown collections, the SDK now returns a more user friendly retry reason when it can (outdated manifest vs. collection not found).
 * https://issues.couchbase.com/browse/JVMCBC-875[JVMCBC-875]:
 On the request timeout exception, the retry reasons are now accessible directly.
+
 
 == Version 1.0.7 (4 August 2020)
 
