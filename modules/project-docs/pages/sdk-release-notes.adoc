@@ -6,6 +6,47 @@
 [abstract]
 Release notes, installation instructions, and download archive for the Couchbase Scala Client.
 
+
+== Version 1.0.8 (1 September 2020)
+
+Version 1.0.8 is the ninth release of the Scala SDK, bringing enhancements and bugfixes over the last stable release.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.0.8/com/couchbase/client/scala/index.html[API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.0.8**
+* com.couchbase.client:**core-io:2.0.9**
+* io.projectreactor:**reactor-core:3.3.9.RELEASE**
+* org.reactivestreams:**reactive-streams:1.0.3**
+
+=== Bug Fixes
+
+* https://issues.couchbase.com/browse/JVMCBC-805[JVMCBC-805]:
+The client now handles bootstrapping against nodes much better which do not have the data service enabled (in an MDS setup).
+* https://issues.couchbase.com/browse/JVMCBC-882[JVMCBC-882]:
+A bug has been fixed where when bootstrapping against a node with no data service enabled, the endpoint would not be cleaned up and would keep trying to reconnect.
+* https://issues.couchbase.com/browse/JVMCBC-872[JVMCBC-872]:
+The client now more explicitly handles an error response code (`NO_ACCESS`) when a subdocument request is performed against a system xattr.
+* https://issues.couchbase.com/browse/JVMCBC-873[JVMCBC-873]:
+Durability information is now properly unwrapped from an optional when exported and dumped (for example as part of an exception).
+* https://issues.couchbase.com/browse/JVMCBC-880[JVMCBC-880]:
+The client now trackes multiple parallel bucket open attempts (against different buckets) in a better way, making sure that an internal state is only switched when all those bucket open attempts have completed (and not just the first one).
+* https://issues.couchbase.com/browse/JVMCBC-878[JVMCBC-878]:
+`EndpointDiagnostics` had the local and remote hostnames mixed up, they now show up in the correct order.
+
+=== Enhancements
+
+* https://issues.couchbase.com/browse/JVMCBC-883[JVMCBC-883]:
+The client is now a little less verbose when performing a DNS SRV request and the underlying JDK operation times out.
+* https://issues.couchbase.com/browse/JVMCBC-879[JVMCBC-879]:
+Updated internal and external dependencies to their latest maintenance releases.
+* https://issues.couchbase.com/browse/JVMCBC-874[JVMCBC-874]:
+When dealing with unknown collections, the SDK now returns a more user friendly retry reason when it can (outdated manifest vs. collection not found).
+* https://issues.couchbase.com/browse/JVMCBC-875[JVMCBC-875]:
+On the request timeout exception, the retry reasons are now accessible directly.
+
+
 == Version 1.0.7 (4 August 2020)
 
 Version 1.0.7 is the eighth release of the Scala SDK, bringing enhancements, and bugfixes over the last stable release.
