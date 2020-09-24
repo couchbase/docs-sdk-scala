@@ -307,6 +307,7 @@ In this case, the _createPath_ option may be used.
 include::example$SubDocument.scala[tag=create-path]
 ----
 
+
 == Concurrent Modifications
 
 Concurrent Sub-Document operations on different parts of a document will not conflict.
@@ -331,8 +332,11 @@ If CAS is required then it can be provided like this:
 include::example$SubDocument.scala[tag=cas]
 ----
 
+
 == Durability
-Couchbase's xref:2.7@dotnet-sdk::durability.adoc[traditional durability], using `PersistTo` and `ReplicateTo`, is still available, particuarly for talking to Couchbase Server 6.0 and earlier:
+
+Couchbase's xref:2.7@dotnet-sdk::durability.adoc[traditional durability], using `PersistTo` and `ReplicateTo`, is 
+xref:concept-docs:durability-replication-failure-considerations.adoc#older-server-versions[still available], particularly for talking to Couchbase Server 6.0 and earlier:
 
 [source,scala]
 ----
@@ -346,6 +350,7 @@ which uses the concept of xref:6.5@server:learn:data/durability.adoc#majority[ma
 ----
 include::example$SubDocument.scala[tag=sync-durability,indent=0]
 ----
+
 
 == Error Handling
 
