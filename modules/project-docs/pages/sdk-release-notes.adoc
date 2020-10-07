@@ -7,6 +7,39 @@
 Release notes, installation instructions, and download archive for the Couchbase Scala Client.
 
 
+== Version 1.0.9 (7 October 2020)
+Version 1.0.9 is a maintenance release, bringing enhancements and bugfixes over the last stable release.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.0.9/com/couchbase/client/scala/index.html[API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.0.9**
+* com.couchbase.client:**core-io:2.0.10**
+* io.projectreactor:**reactor-core:3.3.9.RELEASE**
+* org.reactivestreams:**reactive-streams:1.0.3**
+
+
+=== Bug Fixes
+* https://issues.couchbase.com/browse/SCBC-254[SCBC-254]: Fix a decode error (allocstall) on BucketSettings sent from particular server versions.
+* https://issues.couchbase.com/browse/SCBC-257[SCBC-257]: Fix FTS serialization issues.
+* https://issues.couchbase.com/browse/JVMCBC-885[JVMCBC-885]: Allow overriding BestEffortRetryStrategy.
+* https://issues.couchbase.com/browse/JVMCBC-889[JVMCBC-889]: Make sure WaitUntilReady always times out.
+* https://issues.couchbase.com/browse/JVMCBC-890[JVMCBC-890]: Only negotiate PLAIN when using TLS with PasswordAuthenticator.
+* https://issues.couchbase.com/browse/JVMCBC-892[JVMCBC-892]: Service pool idle time check must happen more often.
+* https://issues.couchbase.com/browse/JVMCBC-894[JVMCBC-894]: BatchHelper: handle success case with no body gracefully.
+* https://issues.couchbase.com/browse/JVMCBC-872[JVMCBC-872]: Subdoc 'no access' error code is now reported correctly.
+
+=== Enhancements
+* https://issues.couchbase.com/browse/SCBC-233[SCBC-233]: Geopolygon search support.
+* https://issues.couchbase.com/browse/SCBC-234[SCBC-234]: Add support for FTS hints (flex index).
+* https://issues.couchbase.com/browse/SCBC-236[SCBC-236]: Add ephemeral bucket management support.
+* https://issues.couchbase.com/browse/SCBC-238[SCBC-238]: Add N1QL support for collections, via new `Scope.query` method.
+* https://issues.couchbase.com/browse/SCBC-249[SCBC-249]: Add GetResult.expiryTime(), which returns an Instant vs GetResult.expiry()'s Duration.
+* https://issues.couchbase.com/browse/JVMCBC-888[JVMCBC-888], https://issues.couchbase.com/browse/JVMCBC-893[JVMCBC-893]: Dependency bumps: Netty to 4.1.52.Final, OpenTelemetry to 0.8
+* https://issues.couchbase.com/browse/JVMCBC-886[JVMCBC-886]: Improve LDAP auth failure handling.
+* https://issues.couchbase.com/browse/JVMCBC-896[JVMCBC-896]: Fast dispatch pooled requests.
+
 == Version 1.0.8 (1 September 2020)
 
 Version 1.0.8 is the ninth release of the Scala SDK, bringing enhancements and bugfixes over the last stable release.
