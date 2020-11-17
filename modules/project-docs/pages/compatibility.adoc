@@ -68,15 +68,15 @@ Please make sure you run on one of the latest patch releases, since they provide
 
 | Enhanced Durability
 | Not Supported
-2+| Since 1.0
+3+| Since 1.0
 
 | Durable Writes 
 2+| Not Supported
-| Since 1.0
+2+| Since 1.0
 
 | Analytics
 | Not Supported
-2+| Since 1.0
+3+| Since 1.0
 
 | Collections
 2+| Not Supported
