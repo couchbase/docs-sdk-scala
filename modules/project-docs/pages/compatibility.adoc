@@ -62,8 +62,9 @@ Please make sure you run on one of the latest patch releases, since they provide
 
 .Couchbase Server and SDK Supported Version Matrix
 [.table-merge-cells] 
+[cols="4,4,2,4,3"]
 |===
-| | Server 5.0, 5.1, & 5.5 | Server 6.0 | Server 6.5 & 6.6
+| | Server 5.0, 5.1, & 5.5 | Server 6.0 | Server 6.5 & 6.6 | Server 7.0β
 
 | Enhanced Durability
 | Not Supported
@@ -80,7 +81,11 @@ Please make sure you run on one of the latest patch releases, since they provide
 | Collections
 2+| Not Supported
 | Developer Preview in 6.5-6.6, SDK 1.0
+| Since 1.0
 
+| Scope-Level N1QL Queries
+3+| Not Supported
+| Developer Preview in 7.0β, SDK 1.0.9
 |===
 
 include::6.5@sdk:shared:partial$network-requirements.adoc[]
