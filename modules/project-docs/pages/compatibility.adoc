@@ -62,7 +62,7 @@ Please make sure you run on one of the latest patch releases, since they provide
 
 .Couchbase Server and SDK Supported Version Matrix
 [.table-merge-cells] 
-[cols="4,4,2,4,3"]
+[cols="7,7,5,6,5"]
 |===
 | | Server 5.0, 5.1, & 5.5 | Server 6.0 | Server 6.5 & 6.6 | Server 7.0β
 
