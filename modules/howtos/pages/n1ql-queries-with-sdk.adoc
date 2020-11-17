@@ -110,7 +110,7 @@ Here's how to perform a query and stream the results using the reactive API:
 include::example$Queries.scala[tag=reactive,indent=0]
 ----
 
-////
+
 == Querying at Scope level
 
 From version 1.0.9 of the Scala SDK, it is possible to query off the xref:7.0@server:learn:data/scopes-and-collections.adoc[`Scope` level] _with the beta version of the next Couchbase Server release, 7.0β_,
@@ -136,7 +136,6 @@ scope
 ----
 
 A complete list of `QueryOptions` can be found in the https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/query/QueryOptions.html[API docs].
-////
 
 
 include::1.0@scala-sdk:howtos:partial$n1ql-additional-resources.adoc[]
