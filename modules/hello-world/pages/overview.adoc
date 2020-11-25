@@ -1,4 +1,4 @@
-= Couchbase Node.js SDK 3.0
+= Couchbase Scala SDK 1.0
 :page-type: landing-page
 :page-layout: landing-page-top-level-sdk
 :page-role: tiles
@@ -13,18 +13,20 @@
 [.column]
 ====== {empty}
 [.content]
-The Node.js SDK allows you to connect to a Couchbase Server cluster from Node.js. 
-The Node.js SDK is a native Node.js module that uses the very fast libcouchbase library to handle communicating with the cluster over the Couchbase binary protocol.
+The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster from the Scala language.
 
 
 [.column]
 [.content]
-[source,javascript]
+[source,xml]
 ----
-const queryResult = await cluster.query("SELECT * FROM `travel-sample` WHERE city=$1 LIMIT 10", { parameters: ['Paris']});
-queryResult.rows.forEach((row)=>{
-   console.log(row);
-});
+<dependencies>
+    <dependency>
+        <groupId>com.couchbase.client</groupId>
+        <artifactId>scala-client_2.12</artifactId>
+        <version>1.0.10</version>
+    </dependency>
+</dependencies>
 ----
 
 
@@ -35,7 +37,7 @@ queryResult.rows.forEach((row)=>{
 [.column]
 ====== {empty}
 
-== Couchbase Node.js SDK 3.0
+== Couchbase Scala SDK 1.0
 
 ++++
 <div class="card-row three-column-row">
@@ -48,8 +50,8 @@ queryResult.rows.forEach((row)=>{
 
 [.content]
 Dive right in with a xref:start-using-sdk.adoc[quick install and Hello World].
-Try out our xref:sample-application.adoc[Travel Sample Application].
-And take a look at the xref:howtos:working-with-collections.adoc[developer preview of Collections].
+// Try out our xref:sample-application.adoc[Travel Sample Application].
+// And take a look at the xref:howtos:working-with-collections.adoc[developer preview of Collections].
 
 
 [.column]
@@ -71,7 +73,7 @@ and the xref:howtos:subdocument-operations.adoc[Sub-Document API].
 [.content]
 The documentation supplements the practical Howto docs with references and xref:concept-docs:concepts.adoc[concept guides], for those who prefer a broader understanding before diving in and coding.
 []
-https://docs.couchbase.com/sdk-api/couchbase-node-client[API Docs^]
+https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/index.html[API Docs^]
 
 
 [.column]
@@ -79,9 +81,11 @@ https://docs.couchbase.com/sdk-api/couchbase-node-client[API Docs^]
 .What's Hot?
 
 [.content]
-The Couchbase Node.js SDK 3.0 is a complete rewrite of the API, reducing the number of overloads to present a simplified surface area
--- and introducing a xref:howtos:concurrent-async-apis.adoc[promises API] to reduce the complexity of asynchronous JavaScript in client apps.
-It can be paired with the 3.0-compatible https://v2.ottomanjs.com/#introduction[updated Ottoman ODM^] for speedier, scalable development.
+The Scala 1.0 SDK is a fully-native Scala API.
+Named and default parameters are both supported in an elegant simple API.
+Powerful functional error handling is based on Scala Try.
+The SDK supports many popular JSON libraries for easy integration into your existing project.
+
 
 [.column]
 ====== {empty}
@@ -99,8 +103,8 @@ xref:project-docs:migrating-sdk-code-to-3.n.adoc[migration guide] for moving to 
 .Community
 
 [.content]
-For community help, visit the https://forums.couchbase.com/c/node-js-sdk/12[Couchbase forums^].
-The Node.js SDK can be combined with many other projects in the broader JavaScript ecosystem and beyond -- in the https://blog.couchbase.com/?s=Node.js[Couchbase Blog^] there are examples covering everything from Apache OpenWhisk to Vue.js.
+For community help, visit the https://forums.couchbase.com/c/scala-sdk/37[Couchbase forums^].
+The Scala SDK can be combined with many other projects in the broader Scala and JVM ecosystem and beyond.
 
 ++++
 </div>
