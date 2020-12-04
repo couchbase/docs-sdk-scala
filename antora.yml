@@ -1,7 +1,6 @@
 name: scala-sdk
 version: '1.1'
 title: Scala SDK
-prerelease: BETA
 start_page: hello-world:overview.adoc
 nav:
 - modules/ROOT/nav.adoc
