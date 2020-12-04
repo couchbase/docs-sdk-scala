@@ -3,6 +3,7 @@
 :page-topic-type: project-doc
 :page-aliases: relnotes-scala-sdk
 
+// tag::all[]
 [abstract]
 Release notes, installation instructions, and download archive for the Couchbase Scala Client.
 
@@ -436,3 +437,4 @@ Align UserAndMetadata with latest RFC
 == Pre-releases
 
 Numerous _Alpha_ and _Beta_ releases were made in the run-up to the 1.0 release, and although unsupported, the release notes and download links are retained for archive purposes xref:3.0-pre-release-notes.adoc[here].
+// enc::all[]
