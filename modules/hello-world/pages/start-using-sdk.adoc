@@ -10,7 +10,7 @@ The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster 
 == Installing the SDK
 
 The Couchbase Scala SDK is available on the Maven repository.
-The latest version, as of November 2020, is 1.0.10.
+The last 1.0.n version was 1.0.10 (xref:1.1@scala-sdk:project-docs:sdk-release-notes.adoc[1.1.n versions of the SDK are now available], with better compatibility witm new features in Couchbase 6.6 and 7.0β).
 
 It can be included in your `build.gradle` like this:
 
@@ -170,6 +170,7 @@ For developing on Couchbase Cloud, if you are not working from the same _Availab
 
 
 == Next Steps
+
 You now know the basics of connecting to a Couchbase cluster, creating some JSON, and performing Key-Value operations, using the Scala SDK.
 
 Key-Value operations are described in detail xref:scala-sdk:howtos:kv-operations.adoc[here].
