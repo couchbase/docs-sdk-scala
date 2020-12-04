@@ -1,4 +1,4 @@
-= Couchbase Scala SDK 1.0
+= Couchbase Scala SDK 1.1
 :page-type: landing-page
 :page-layout: landing-page-top-level-sdk
 :page-role: tiles
@@ -37,7 +37,7 @@ The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster 
 [.column]
 ====== {empty}
 
-== Couchbase Scala SDK 1.0
+== Couchbase Scala SDK 1.1
 
 ++++
 <div class="card-row three-column-row">
