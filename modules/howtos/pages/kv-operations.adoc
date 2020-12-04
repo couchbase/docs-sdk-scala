@@ -291,7 +291,7 @@ Some applications may find `getAndTouch` useful, which fetches a document while 
 include::example$KvOperations.scala[indent=0,tag=expiry-touch]
 ----
 
-include::6.5@sdk:shared:partial$documents.adoc[tag=exp-note]
+include::6.6@sdk:shared:partial$documents.adoc[tag=exp-note]
 
 == Atomic Counter Operations
 

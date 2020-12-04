@@ -7,6 +7,29 @@
 Release notes, installation instructions, and download archive for the Couchbase Scala Client.
 
 
+== Version 1.1.0 (2 December 2020)
+
+Version 1.1.0 is the first GA release of the 1.1 series, bringing stabilizations and enhancements over 1.0.10 and the 1.0 SDK, and adding features to support Couchbase Server 6.6 and 7.0β.
+
+http://docs.couchbase.com/sdk-api/couchbase-scala-client-1.1.0/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.1.0**
+* com.couchbase.client:**core-io:2.1.0**
+* io.projectreactor:**reactor-core:3.4.0**
+* org.reactivestreams:**reactive-streams:1.0.3**
+
+=== Enhancements
+
+* https://issues.couchbase.com/browse/SCBC-241[SCBC-241]:
+Refactored Document Expiry Duration.
+* https://issues.couchbase.com/browse/SCBC-253[SCBC-253]:
+Added disableScoring parameter for Search.
+* https://issues.couchbase.com/browse/SCBC-229[SCBC-229]:
+The minimum durability level can now be configured on the `BucketManager`.
+
+
 == Version 1.0.10 (3 November 2020)
 
 Version 1.0.10 is a maintenance release, bringing enhancements over the last stable release.
@@ -28,6 +51,8 @@ Added fallback for lastDispatchedTo in context, to improve debuggability.
 Updated OpenTelemetry to 0.9.1.
 * https://issues.couchbase.com/browse/SCBC-252[SCBC-252]:
 Enhanced user management for collections/RBAC, to support future 7.0 release.
+
+
 
 
 == Version 1.0.9 (7 October 2020)
