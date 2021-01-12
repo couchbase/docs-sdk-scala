@@ -7,7 +7,9 @@
 [abstract]
 Release notes, installation instructions, and download archive for the Couchbase Scala Client.
 
+
 == Version 1.1.1 (12 January 2020)
+
 Version 1.1.1 is the second release of the 1.1 series, bringing stabilizations and enhancements over 1.1.
 
 http://docs.couchbase.com/sdk-api/couchbase-scala-client-1.1.1/[API Reference]
@@ -21,17 +23,18 @@ The supported and tested dependencies for this release are:
 
 === Bugs
 * https://issues.couchbase.com/browse/JVMCBC-909[JVMCBC-909]:
-Retry opening the bucket until timeout when it is not found, to allow it to created after.
+Retry opening the bucket until timeout when it is not found, to allow for it not yet being created.
 * https://issues.couchbase.com/browse/JVMCBC-910[JVMCBC-910]:
-WaitUntilReady needs to wait if bucket not present yet.
+WaitUntilReady will now wait if bucket not present yet, before it starts to time out.
 * https://issues.couchbase.com/browse/SCBC-274[SCBC-274]:
-Prepared queries on scopes fail.
+Prepared non-adhoc queries on scopes were failing, as query_context was not being passed to the individual prepare and/or execute statements.
+This has now been fixed, and scope-level queries are working as expected. 
 
 === Enhancements
 * https://issues.couchbase.com/browse/SCBC-273[SCBC-273]:
-Expose partition information from the query management API.
+Exposed partition information from the query management API on `QueryIndex` class.
 * https://issues.couchbase.com/browse/SCBC-275[SCBC-275]:
-Escape the scope for scope-level queries.
+Escape the scope for scope-level queries now enabled, as a fix in the server means that this works.
 
 == Version 1.1.0 (2 December 2020)
 
