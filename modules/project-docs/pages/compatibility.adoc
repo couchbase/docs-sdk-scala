@@ -7,7 +7,8 @@ Features available in different SDK versions, and compatibility between Server a
 Plus notes on Cloud, networks, and AWS Lambda.
 
 
-1// and 2.13.
+The Couchbase Scala SDK 1.1 Client supports Scala 2.12	
+// and 2.13.
 
 == Couchbase Version/SDK Version Matrix
 
