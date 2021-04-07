@@ -7,6 +7,31 @@
 [abstract]
 Release notes, installation instructions, and download archive for the Couchbase Scala Client.
 
+== Version 1.1.4 (7 April 2021)
+
+While there are no changes specific to the Scala SDK in this release, it does inherit fixes from the underlying core-io release.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.1.4/com/couchbase/client/scala/index.html[API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.1.4**
+* com.couchbase.client:**core-io:2.1.4**
+* io.projectreactor:**reactor-core:3.4.4**
+* org.reactivestreams:**reactive-streams:1.0.3**
+
+=== Bug Fixes
+* https://issues.couchbase.com/browse/JCBC-1798[JCBC-1798]:
+Fixes ViewResult.metaData() throwing Exception when debug=true.
+
+=== Improvements
+* https://issues.couchbase.com/browse/JCBC-1786[JCBC-1786]:
+Transcoders now allow contentAs(Object.class).
+Java Map and List collections are used to represent JSON objects and arrays.
+* https://issues.couchbase.com/browse/JCBC-1795[JCBC-1795]:
+Allow `MutateInSpec.remove("")`, which removes the entire document.
+
+
 == Version 1.1.3 (2 March 2021)
 
 Version 1.1.3 is the fourth release of the 1.1 series, bringing stabilizations and enhancements over 1.1.2.

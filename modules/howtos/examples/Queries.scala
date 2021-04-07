@@ -79,9 +79,9 @@ object Queries {
 // #tag::case-classes[]
 
       val statement =
-        """select `travel-sample`.* from `travel-sample` limit 10;"""
+        """select `users`.* from `users` limit 10;"""
 
-      cluster
+      val users = cluster
         .query(statement)
         .flatMap(_.rowsAs[User]) match {
         case Success(rows: Seq[User]) =>
