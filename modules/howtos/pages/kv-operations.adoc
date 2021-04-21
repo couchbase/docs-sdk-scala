@@ -1,10 +1,11 @@
 = Key Value Operations
+:description: At its heart Couchbase Server is a high-performance key-value store, and the key-value interface outlined below is the fastest and best method to perform operations involving single documents.
 :navtitle: KV Operations
 :page-topic-type: howto
 :page-aliases: document-operations.adoc
 :lang: Scala
 
-At its heart Couchbase Server is a high-performance key-value store, and the key-value interface outlined below is the fastest and best method to perform operations involving single documents.
+{description}
 
 A _document_ refers to an entry in the database (other databases may refer to the same concept as a _row_).
 A document has an ID (_primary key_ in other databases), which is unique to the document and by which it can be located.
