@@ -29,9 +29,12 @@
 
 .Errors & Diagnostics
 * xref:howtos:collecting-information-and-logging.adoc[Logging]
-** xref:howtos:slow-operations-logging.adoc[Slow Operations Logging]
 * xref:howtos:error-handling.adoc[Handling Errors]
 * xref:howtos:health-check.adoc[Health Check]
+* Observability
+** xref:howtos:observability-tracing.adoc[Request Tracing]
+** xref:howtos:slow-operations-logging.adoc[Slow Operations Logging]
+** xref:howtos:observability-metrics.adoc[Metrics Reporting]
 
 .Learn
 * xref:concept-docs:concepts.adoc[Overview]
