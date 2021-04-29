@@ -14,9 +14,9 @@ Metrics broadly fall into the following categories:
 
 * Request/Response Metrics (such as requests per second).
 * SDK Metrics (such as how many open collections, various queue lengths).
-* System Metrics (such as cpu usage or garbage collection performance).
+* System Metrics (such as CPU usage or garbage collection performance).
 
-Right now only the first category is implemented by the SDK, more are planned.
+Right now only the first category is implemented by the SDK; more are planned.
 
 
 == The Default AggregatingMeter
@@ -44,7 +44,8 @@ By default the metrics will be emitted every 10 minutes, but you can customize t
 include::example$Metrics.scala[tag=metrics-enable-custom,indent=0]
 ----
 
-Once enabled, there is no further configuration needed. The `AggregatingMeter` will emit the collected request statistics every interval. 
+Once enabled, there is no further configuration needed. 
+The `AggregatingMeter` will emit the collected request statistics every interval. 
 A possible report looks like this (prettified for better readability):
 
 [source,json]
@@ -83,18 +84,21 @@ A possible report looks like this (prettified for better readability):
 Each report contains one object for each service that got used and is further separated on a per-node basis so they can be analyzed in isolation.
 
 For each service / host combination, a total amount of recorded requests is reported, as well as percentiles from a histogram in microseconds. 
-The meta section on top contains information such as the emit interval in seconds so tooling can later calculate numbers like requests per second.
+The meta section on top contains information such as the emit interval in seconds, so tooling can later calculate numbers like requests per second.
 
 The `AggregatingMeter` can be configured on the environment as shown above.
 The following table shows the currently available properties:
 
 .AggregatingMeterConfig Properties 
 [options="header"]
-|====
+[cols="4,3,8"]
+|===
 | Property       | Default | Description
+
 | `enabled`   | false | If the `AggregatingMeter` should be enabled.
+
 | `emitInterval` | 600 seconds | The interval where found orphans are emitted.
-|====
+|===
 
 
 == OpenTelemetry Integration
@@ -114,6 +118,7 @@ Now you can initialise the SDK with OpenTelemetry:
 ----
 include::example$Metrics.scala[tag=metrics-otel,indent=0]
 ----
+
 
 == Micrometer Integration
 [.status]#Developer Preview#
