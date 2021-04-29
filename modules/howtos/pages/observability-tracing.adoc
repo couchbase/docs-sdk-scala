@@ -10,7 +10,7 @@ To give insight into a request/response flow, the SDK provides a `RequestTracer`
 == The Default ThresholdRequestTracer
 
 By default, the SDK will emit information about requests that are over a configurable threshold every 10 seconds. 
-Note that if no requests are over the threshold no event / log will be emitted.
+Note that if no requests are over the threshold then no event / log will be emitted.
 
 It is possible to customize this behavior by modifying the configuration:
 
@@ -55,9 +55,9 @@ The JSON blob emitted looks similar to the following (prettified here for readab
 ]
 ----
 
-For each service (e.g. Key/Value or Query) an entry exists in the outer JSON array. 
+For each service (e.g. Key-Value or Query), an entry exists in the outer JSON array. 
 The top N (10 by default) slowest operations are collected and displayed, sorted by the total duration. 
-This promotes quick visibility of the "worst offenders" and more efficient troubleshooting.
+This promotes quick visibility of the "worst offenders", and more efficient troubleshooting.
 
 Please note that in future releases this format is planned to change for easier readability, 
 so we do not provide any stability guarantees on the logging output format and it might change between minor versions.
@@ -78,6 +78,7 @@ They can be sent directly to a tracing tool like Zipkin or Jaegar.
 But a popular choice is to instead send to the https://opentelemetry.io/docs/collector/getting-started/[OpenTelemetry collector], which can perform some span processing (such as batching) before sending on to your tracing tool.
 
 This minimal OpenTelemetry Collector configuration file will simply log all spans to console, to sanity check that your application is outputting spans to the collector:
+
 [source,yaml]
 ----
 receivers:
@@ -103,9 +104,13 @@ service:
 
 Save this to a file `config.yaml` and run the collector with:
 
-`otelcol --config config.yaml`
+[source,console]
+----
+`otelcol --config config.yaml
+----
 
 === Application Setup
+
 Include an additional dependency which provides the interoperability code:
 
 [source,sbt]
@@ -125,7 +130,8 @@ Before starting, here are all imports used in the following examples:
 include::example$Tracing.scala[tag=imports,indent=0]
 ----
 
-Now, you can configure an OpenTelemetry `TracerProvider`.  We are using the OTLP GRPC exporter, which the OpenTelemetry Collector is configured to listen for:
+Now, you can configure an OpenTelemetry `TracerProvider`.  
+We are using the OTLP GRPC exporter, which the OpenTelemetry Collector is configured to listen for:
 
 [source,scala]
 ----
@@ -139,7 +145,8 @@ Once the OpenTelemetry `TracerProvider` is set up, it can be wrapped into a Couc
 include::example$Tracing.scala[tag=otel-use,indent=0]
 ----
 
-At this point, all spans will be sent into the OpenTelemetry collector.  Once you are performing operations, you should see the collector (if it's using the configuration above) outputting spans to console:
+At this point, all spans will be sent into the OpenTelemetry collector.  
+Once you are performing operations, you should see the collector (if it's using the configuration above) outputting spans to console:
 ```
 Span #510
     Trace ID       : 3a2e0be43ba961d0fa5220aa4e198a6c
@@ -161,6 +168,7 @@ Attributes:
 ```
 
 === Parent Spans
+
 If you want to set a parent for an SDK request, you can do it in the respective `*Options` for any operation.
 Just call `OpenTelemetryRequestSpan.wrap` to wrap your OpenTelemetry span into a Couchbase span:
 
