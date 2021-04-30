@@ -31,10 +31,7 @@ sourceSets {
 }
 
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.1.5-SNAPSHOT'
-    compile group: 'com.couchbase.client', name: 'tracing-opentelemetry', version: '0.3.4'
-    compile group: 'com.couchbase.client', name: 'metrics-opentelemetry', version: '0.1.4'
-    compile group: 'com.couchbase.client', name: 'metrics-micrometer', version: '0.1.4'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.0.6'
 
     compile "org.scalatest:scalatest_2.12:3.1.1"
 
@@ -44,18 +41,11 @@ dependencies {
     compile 'io.circe:circe-generic_2.12:0.10.0'
     compile 'io.circe:circe-parser_2.12:0.10.0'
     compile 'org.scalamacros:paradise_2.12.7:2.1.1'
+//    compile 'com.github.plokhotnyuk.jsoniter-scala:jsoniter-scala-core_2.12:0.39.0'
+//    compile 'com.github.plokhotnyuk.jsoniter-scala:jsoniter-scala-macros_2.12:0.39.0'
     compile 'com.lihaoyi:upickle_2.12:0.7.1'
     compile 'com.typesafe.play:play-json_2.12:2.6.7'
     compile 'org.json4s:json4s-native_2.12:3.6.4'
     compile 'org.json4s:json4s-jackson_2.12:3.6.4'
     compile 'org.typelevel:jawn-ast_2.12:0.14.0'
-
-    compile 'io.opentelemetry:opentelemetry-sdk:1.1.0'
-    compile 'io.opentelemetry:opentelemetry-exporter-zipkin:1.1.0'
-    compile 'io.opentelemetry:opentelemetry-exporter-otlp:1.1.0'
-    compile 'io.grpc:grpc-netty:1.35.0'
-    runtimeOnly group: 'io.opentelemetry', name: 'opentelemetry-api-metrics', version: '1.1.0-alpha'
-    implementation group: 'io.opentelemetry', name: 'opentelemetry-sdk-metrics', version: '1.1.0-alpha'
-    compile 'io.opentelemetry:opentelemetry-exporter-prometheus:1.1.0-alpha'
-    compile 'io.prometheus:simpleclient_httpserver:0.9.0'
 }
