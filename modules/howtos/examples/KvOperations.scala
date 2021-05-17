@@ -55,7 +55,7 @@ object KvOperations {
     val reactiveApi: ReactiveCollection = collection.reactive
     // end::apis[]
 
-    json1
+    json1()
     upsert(collection)
     namedCollectionUpsert(bucket)
     insert(collection)
