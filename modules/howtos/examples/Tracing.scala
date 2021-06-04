@@ -38,7 +38,7 @@ object Tracing {
     // Alternative configuration for Honeycomb, for local testing
 //    val spanExporter = OtlpGrpcSpanExporter.builder()
 //      .setEndpoint("https://api.honeycomb.io:443")
-//      .addHeader("x-honeycomb-team", "8dcf47e3a07c257ccd066d95f4c71f1a")
+//      .addHeader("x-honeycomb-team", "HONEYCOMB_API_HERE")
 //      .addHeader("x-honeycomb-dataset", "sdk")
 //      .build()
 //    val tracerProvider = SdkTracerProvider.builder
