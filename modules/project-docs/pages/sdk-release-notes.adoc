@@ -7,6 +7,50 @@
 [abstract]
 Release notes, installation instructions, and download archive for the Couchbase Scala Client.
 
+== Version 1.1.6 (4 June 2021)
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.1.6/com/couchbase/client/scala/index.html[API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.1.6**
+* com.couchbase.client:**core-io:2.1.6**
+* io.projectreactor:**reactor-core:3.4.6**
+* org.reactivestreams:**reactive-streams:1.0.3**
+
+=== Bug Fixes
+* https://issues.couchbase.com/browse/JVMCBC-972[JVMCBC-972]:
+Only open one GCCCP connection per node.
+
+=== Improvements
+* https://issues.couchbase.com/browse/SCBC-237[SCBC-237]:
+Added `ThresholdRequestTracerConfig` and support for it in `ClusterEnvironment`.
+* https://issues.couchbase.com/browse/SCBC-286[SCBC-286]:
+Added `AggregatingMeterConfig`, and allow the core `meter` property to be customized via `ClusterEnvironment`.
+* https://issues.couchbase.com/browse/JVMCBC-939[JVMCBC-939]:
+Improve no collection access handling.
+* https://issues.couchbase.com/browse/JVMCBC-974[JVMCBC-974]:
+Restructure AggregatingMeter output format.
+* https://issues.couchbase.com/browse/JVMCBC-975[JVMCBC-975]:
+Further improve wait until ready diagnostics.
+* https://issues.couchbase.com/browse/JVMCBC-977[JVMCBC-977]:
+Improve bucket configuration handling (revEpoch).
+
+== Version 1.1.5 (6 May 2021)
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.1.5/com/couchbase/client/scala/index.html[API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.1.5**
+* com.couchbase.client:**core-io:2.1.5**
+* io.projectreactor:**reactor-core:3.4.5**
+* org.reactivestreams:**reactive-streams:1.0.3**
+
+=== Improvements
+* https://issues.couchbase.com/browse/SCBC-266[SCBC-266]:
+Add FTS support for collections.
+* https://issues.couchbase.com/browse/SCBC-281[SCBC-281]:
+Add Support to Preserve TTL.
+
 == Version 1.1.4 (7 April 2021)
 
 While there are no changes specific to the Scala SDK in this release, it does inherit fixes from the underlying core-io release.
