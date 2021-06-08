@@ -1,7 +1,7 @@
 name: scala-sdk
-version: '1.1'
+version: '1.2'
 title: Scala SDK
 start_page: hello-world:overview.adoc
 nav:
 - modules/ROOT/nav.adoc
-server_version: '6.6'
+server_version: '7.0'
