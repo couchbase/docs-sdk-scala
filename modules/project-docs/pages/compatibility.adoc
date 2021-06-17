@@ -7,7 +7,7 @@ Features available in different SDK versions, and compatibility between Server a
 Plus notes on Cloud, networks, and AWS Lambda.
 
 
-The Couchbase Scala SDK 1.1 Client supports Scala 2.12	
+The Couchbase Scala SDK 1.x Client supports Scala 2.12
 // and 2.13.
 
 == Couchbase Version/SDK Version Matrix
@@ -24,7 +24,7 @@ It is best to upgrade either the SDK or the Couchbase version you are using.
 .Recommended SDK per Server Version Matrix
 [#table_sdk_versions]
 |===
-| | SDK 1.0, 1.1 
+| | SDK 1.0, 1.1
 
 | *Server 5.0-5.5*
 | *◎*
@@ -37,8 +37,17 @@ It is best to upgrade either the SDK or the Couchbase version you are using.
 | *✔*
 
 | *Server 7.0β*
-| *✔*
+| *◎* _(see below)_
 |===
+
+[IMPORTANT]
+====
+An API change in the planned release version of Couchbase Server 7.0 means changes in the latest versions of the SDK which render these new SDK versions incompatible with the beta versions of 7.0.
+
+Scala SDK *1.1.3* is the latest version compatible with Server 7.0β.
+
+Later SDK 1.x releases will be limited to the Default Scope and Collection with the beta 7.0 server, and will only be fully compatible with the full release version.
+====
 
 Note the https://www.couchbase.com/support-policy[End of Life dates^] for Couchbase Server and SDK versions.
 See the notes there for Support details.
@@ -64,7 +73,7 @@ Please make sure you run on one of the latest patch releases, since they provide
 == Couchbase New Feature Availability Matrix
 
 .Couchbase Server and SDK Supported Version Matrix
-[.table-merge-cells] 
+[.table-merge-cells]
 [cols="7,7,5,6,5"]
 |===
 | | Server 5.0, 5.1, & 5.5 | Server 6.0 | Server 6.5 & 6.6 | Server 7.0β
@@ -73,7 +82,7 @@ Please make sure you run on one of the latest patch releases, since they provide
 | Not Supported
 3+| Since 1.0
 
-| Durable Writes 
+| Durable Writes
 2+| Not Supported
 2+| Since 1.0
 
@@ -91,7 +100,7 @@ Please make sure you run on one of the latest patch releases, since they provide
 | Developer Preview in 7.0β, SDK 1.0.9
 |===
 
-include::6.5@sdk:shared:partial$network-requirements.adoc[]
+include::6.6@sdk:shared:partial$network-requirements.adoc[]
 
 
-include::6.5@sdk:shared:partial$interface-stability-pars.adoc[tag=interface-stability-section]
+include::6.6@sdk:shared:partial$interface-stability-pars.adoc[tag=interface-stability-section]
