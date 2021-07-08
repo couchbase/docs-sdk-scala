@@ -1,10 +1,11 @@
 = Choosing & Using a JSON Library
+:description: The Scala SDK supports multiple options for working with JSON.
 :navtitle: JSON Libraries
 :page-topic-type: howto
 :lang: Scala
 
 [abstract]
-The Scala SDK supports multiple options for working with JSON.
+{description}
 
 == Philosophy
 The Couchbase Server is a key-value store that's agnostic to what's stored, but it's very common to store JSON.

@@ -1,11 +1,12 @@
 = Analytics using the Scala SDK
+:description: Parallel data management for complex queries over many records, using a familiar N1QL-like syntax.
 :page-topic-type: howto
 :page-edition: Enterprise Edition:
 :lang: Scala
 :source-language: scala
 
 [abstract]
-Parallel data management for complex queries over many records, using a familiar N1QL-like syntax.
+{description}
 
 
 For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the xref:6.6@server:analytics:introduction.adoc[Couchbase Analytics Service (CBAS)].
