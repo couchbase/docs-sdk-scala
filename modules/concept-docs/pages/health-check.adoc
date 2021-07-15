@@ -3,15 +3,17 @@
 :page-topic-type: concept
 :page-aliases: ROOT:health-check
 
+include::partial$attributes.adoc[]
+
 [abstract]
 Health Check provides ping() and diagnostics() tests for the health of the network and the cluster.
 
 
-include::6.5@sdk:pages:partial$health-check.adoc[tag="intro"]
+include::{version-server}@sdk:pages:partial$health-check.adoc[tag="intro"]
 
-include::6.5@sdk:pages:partial$health-check.adoc[tag="users"]
+include::{version-server}@sdk:pages:partial$health-check.adoc[tag="users"]
 
-include::6.5@sdk:pages:partial$health-check.adoc[tag="ping"]
+include::{version-server}@sdk:pages:partial$health-check.adoc[tag="ping"]
 
 [source,javascript]
 ----
@@ -80,7 +82,7 @@ bucket.ping(services, (err, res) => {
 */
 ----
 
-include::6.5@sdk:pages:partial$health-check.adoc[tag="diag"]
+include::{version-server}@sdk:pages:partial$health-check.adoc[tag="diag"]
 
 
 [source,javascript]

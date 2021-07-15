@@ -3,5 +3,7 @@
 :page-topic-type: landing-page
 :lang: Scala
 
-include::6.5@sdk:shared:partial$concepts.adoc[tag=concepts]
+include::partial$attributes.adoc[]
+
+include::{version-server}@sdk:shared:partial$concepts.adoc[tag=concepts]
 

@@ -30,7 +30,7 @@ object Queries {
   def main(args: Array[String]): Unit = {
 
 // #tag::cluster[]
-    val cluster = Cluster.connect("localhost", "username", "password").get
+    val cluster = Cluster.connect("localhost", "Administrator", "password").get
     val bucket = cluster.bucket("travel-sample")
     val collection = bucket.defaultCollection
 // #end::cluster[]
@@ -93,14 +93,20 @@ object Queries {
     }
 
     def positional() {
-// #tag::positional[]
+      // also demonstrates adhoc as per usage from concept-docs page
+      // #tag::positional[]
       val stmt =
-        """select `travel-sample`.* from `travel-sample` where type=$1 and country=$2 limit 10;"""
+        """select count(*)
+        from `travel-sample`.inventory.airport
+        where country=$1;"""
       val result = cluster.query(
         stmt,
-        QueryOptions().parameters(QueryParameters.Positional("airline", "United States"))
+        QueryOptions()
+          .adhoc(false)
+          .parameters(QueryParameters.Positional("United States"))
       )
-// #end::positional[]
+      // #end::positional[]
+      println(result)
     }
 
     def named() {
@@ -184,6 +190,12 @@ object Queries {
 
 // #end::reactive[]
     }
+
+    println("Running examples...")
+
+    positional()
+
+    println("DONE")
 
   }
 }

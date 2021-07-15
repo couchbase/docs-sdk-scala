@@ -1,8 +1,10 @@
-= Document 
+= Document
 :nav-title: Documents & Doc Ops
 :page-topic-type: concept
 //:page-aliases: ROOT:core-operations
 :page-aliases: ROOT:documents,ROOT:documents-basics,ROOT:documents-atomic
+
+include::partial$attributes.adoc[]
 
 [abstract]
 Couchbase supports CRUD operations, various data structures, and binary documents.
@@ -26,10 +28,7 @@ Although query and path-based (Sub-Document) services are available, the simplic
 ////
 
 
-
-
-
-include::6.5@sdk:shared:partial$documents.adoc[tag=document]
+include::{version-server}@sdk:shared:partial$documents.adoc[tag=document]
 
 == Primitive Key-Value Operations
 
@@ -42,9 +41,9 @@ get(docid)
 remove(docid)
 ----
 
-include::6.5@sdk:shared:partial$documents.adoc[tag=crud-overview]
+include::{version-server}@sdk:shared:partial$documents.adoc[tag=crud-overview]
 
-include::6.5@sdk:shared:partial$documents.adoc[tag=store-update]
+include::{version-server}@sdk:shared:partial$documents.adoc[tag=store-update]
 
 [NOTE]
 ====
@@ -52,27 +51,27 @@ If you wish to only modify certain parts of a document, you can use xref:subdocu
 
 [source,scala]
 ----
-include::1.0@scala-sdk:howtos:example$SubDocument.scala[tag=upsert,indent=0]
+include::howtos:example$SubDocument.scala[tag=upsert,indent=0]
 ----
 
-or xref:6.0@server:n1ql:n1ql-language-reference/update.adoc[N1QL UPDATE] to update documents based on specific query criteria:
+or xref:{version-server}@server:n1ql:n1ql-language-reference/update.adoc[N1QL UPDATE] to update documents based on specific query criteria:
 
-[source,sql]
+[source,n1ql]
 ----
 update `default` SET sale_price = msrp * 0.75 WHERE msrp < 19.95;
 ----
 ====
 
-include::6.5@sdk:shared:partial$documents.adoc[tag=get_generic]
+include::{version-server}@sdk:shared:partial$documents.adoc[tag=get_generic]
 
-[source,sql]
+[source,n1ql]
 ----
 SELECT * FROM default USE KEYS ["docid"];
 ----
 
 or
 
-[source,sql]
+[source,n1ql]
 ----
 SELECT * FROM default WHERE META(default).id = "docid";
 ----
@@ -81,12 +80,12 @@ You can also retrieve _parts_ of documents using xref:subdocument-operations.ado
 
 [source,scala]
 ----
-include::1.0@scala-sdk:howtos:example$SubDocument.scala[tag=combine,indent=0]
+include::howtos:example$SubDocument.scala[tag=combine,indent=0]
 ----
 
 // Counters
 
-include::6.5@sdk:shared:partial$documents.adoc[tag=counters1]
+include::{version-server}@sdk:shared:partial$documents.adoc[tag=counters1]
 
 [source,java]
 ----
@@ -101,7 +100,7 @@ collection.binary().decrement(counterDocId,
 DecrementOptions.decrementOptions().delta(5));
 ----
 
-include::6.5@sdk:shared:partial$documents.adoc[tag=counters2]
+include::{version-server}@sdk:shared:partial$documents.adoc[tag=counters2]
 
 [source,python]
 ----
@@ -112,14 +111,14 @@ if should_increment_value(value):
   cb.upsert('counter_id', value + increment_amount, cas=cas)
 ----
 
-include::6.5@sdk:shared:partial$documents.adoc[tag=counters3]
+include::{version-server}@sdk:shared:partial$documents.adoc[tag=counters3]
 
 
 === Use Cases
 
-The SDK provides a high-level abstraction over the simple `incr()`/`decr()` of Couchbase Server's memcached binary protocol, using `collections.binary()`. 
+The SDK provides a high-level abstraction over the simple `incr()`/`decr()` of Couchbase Server's memcached binary protocol, using `collections.binary()`.
 This enables you to work with counters using `get()` and `upsert()` operations -- allowing, _inter alia_, the use of durability options with the operations.
 You will find several ways of working with counters https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/AsyncBinaryCollection.html[in the API docs].
 
 // Expiry
-include::6.5@sdk:shared:partial$documents.adoc[tag=expiration]
+include::{version-server}@sdk:shared:partial$documents.adoc[tag=expiration]
