@@ -18,13 +18,13 @@ Access a non-default collection, in the default scope, with:
 
 [source,scala]
 ----
-include::example$CollectionsExample.java[tag=collections_1,indent=0]
+include::example$CollectionsExample.scala[tag=collections_1,indent=0]
 ----
 
 And for a non-default scope:
 [source,scala]
 ----
-include::example$CollectionsExample.java[tag=collections_2,indent=0]
+include::example$CollectionsExample.scala[tag=collections_2,indent=0]
 ----
 
 
