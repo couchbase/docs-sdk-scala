@@ -4,18 +4,20 @@
 :lang: Scala
 :source-language: scala
 
+include::partial$attributes.adoc[]
+
 [abstract]
 Parallel data management for complex queries over many records, using a familiar N1QL-like syntax.
 
 
-For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the xref:6.6@server:analytics:introduction.adoc[Couchbase Analytics Service (CBAS)].
+For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the xref:{version-server}@server:analytics:introduction.adoc[Couchbase Analytics Service (CBAS)].
 This is the analytic counterpart to our xref:n1ql-queries-with-sdk.adoc[operational data focussed Query Service].
 The analytics service is available in Couchbase Data Platform 6.0 and later (developer preview in 5.5).
 
 
 == Getting Started
 
-After familiarizing yourself with our xref:6.6@server:analytics:primer-beer.adoc[introductory primer],
+After familiarizing yourself with our xref:{version-server}@server:analytics:primer-beer.adoc[introductory primer],
 in particular creating a dataset and linking it to a bucket to shadow the operational data,
 try Couchbase Analytics using the Scala SDK.
 Intentionally, the API for analytics is very similar to that of the query service.
@@ -122,7 +124,7 @@ include::example$Analytics.scala[tag=reactive,indent=0]
 ----
 
 ////
-== Additional Resources 
+== Additional Resources
 
 To learn more about using N1QL for Analytics -- the first commercial implementation of SQL++ -- see our https://sqlplusplus-tutorial.couchbase.com/tutorial/#1[Tutorial Introduction to SQL++ for SQL users].
 

@@ -3,10 +3,12 @@
 :page-topic-type: howto
 :page-aliases: ROOT:view-queries-with-sdk
 
+include::partial$attributes.adoc[]
+
 [abstract]
 You can use MapReduce views to create queryable indexes in Couchbase Data Platform.
 
-include::6.6@sdk:shared:partial$views.adoc[tag=views-intro]
+include::{version-server}@sdk:shared:partial$views.adoc[tag=views-intro]
 
 
 == Querying Views
@@ -28,6 +30,6 @@ var result = bucket.ViewQuery<Type>("design-doc", "view-name", options =>
 include::example$Views.scala[tag=byName,indent=0]
 ----
 
-include::6.6@sdk:shared:partial$views.adoc[tag=example-travel]
+include::{version-server}@sdk:shared:partial$views.adoc[tag=example-travel]
 
 

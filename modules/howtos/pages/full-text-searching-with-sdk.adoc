@@ -2,6 +2,7 @@
 :navtitle: Searching from the SDK
 :page-topic-type: howto
 
+include::partial$attributes.adoc[]
 
 [abstract]
 You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server.
@@ -29,7 +30,7 @@ include::example$FTS.scala[tag=basic,indent=0]
 
 All simple query types are created in the same manner.
 Some have additional properties, which can be seen in common query type descriptions.
-Couchbase FTS's xref:6.5@server:fts:fts-query-types.adoc[range of query types] enable powerful searching using multiple options, to ensure results are just within the range wanted.
+Couchbase FTS's xref:{version-server}@server:fts:fts-query-types.adoc[range of query types] enable powerful searching using multiple options, to ensure results are just within the range wanted.
 
 == Working with Results
 
