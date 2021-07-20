@@ -50,7 +50,7 @@ The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster 
 
 [.content]
 Dive right in with a xref:start-using-sdk.adoc[quick install and Hello World].
-// Try out our xref:sample-application.adoc[Travel Sample Application].
+Try out our xref:sample-application.adoc[Travel Sample Application].
 And take a look at the xref:howtos:working-with-collections.adoc[new Collections feature].
 
 

@@ -1,10 +1,32 @@
 = Sample Application
+:description: Discover how to program interactions with the Couchbase Server via the data, query, and search services -- using the Travel Sample Application with the built-in Travel Sample data Bucket.
 :nav-title: Travel Sample App
 :content-type: tutorial
 :page-topic-type: tutorial
 :page-aliases: ROOT:sample-application,ROOT:tutorial4,ROOT:sample-app-backend
 
-[abstract]
-The Travel Sample Application is currently available in 6 of our SDKs.
+:travel-sample-git-project: try-cb-scala
 
-The Travel Sample application is available for the xref:3.1@dotnet-sdk:hello-world:sample-application.adoc[.NET]; xref:2.1@go-sdk:hello-world:sample-application.adoc[Go]; xref:3.1@java-sdk:hello-world:sample-application.adoc[Java]; xref:3.1@nodejs-sdk:hello-world:sample-application.adoc[Node.js]; xref:3.0@php-sdk:hello-world:sample-application.adoc[PHP]; and xref:3.0@python-sdk:hello-world:sample-application.adoc[Python] SDKs.
+include::project-docs:partial$attributes.adoc[]
+
+include::{version-server}@sdk:shared:partial$sample-application.adoc[tag=abstract]
+
+include::{version-server}@sdk:shared:partial$sample-application.adoc[tag=quick-start]
+
+include::{version-server}@sdk:shared:partial$sample-application.adoc[tag=bring-your-own]
+
+include::{version-server}@sdk:shared:partial$sample-application.adoc[tag=using]
+
+
+== Sample App Backend
+
+The backend code shows Couchbase {name-sdk} in action with Query and Search,
+but also how to plug together all of the elements and build an application with Couchbase Server and the {name-sdk}.
+
+The https://github.com/couchbaselabs/{travel-sample-git-project}/tree/HEAD/app[`app` directory] contains the various components, classes and functions for handling users, registration, and N1QL queries.
+
+
+include::{version-server}@sdk:shared:partial$sample-application.adoc[tag=data-model]
+
+include::{version-server}@sdk:shared:partial$sample-application.adoc[tag=rest-api]
+
