@@ -1,10 +1,12 @@
 = Get Involved
 :navtitle: Get Involved
 
+include::partial$attributes.adoc[]
+
 == Contributing
 
 Couchbase welcomes community contributions to the Scala SDK.
 The https://github.com/couchbase/couchbase-jvm-clients/tree/master/scala-client[Scala SDK source code^] is available on GitHub.
 Please see the https://github.com/couchbase/couchbase-jvm-clients/blob/master/README.md[README^] file for further information.
 
-include::6.5@sdk:shared:partial$contrib.adoc[tag=contrib]
+include::{version-server}@sdk:shared:partial$contrib.adoc[tag=contrib]

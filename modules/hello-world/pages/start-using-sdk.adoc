@@ -4,6 +4,8 @@
 :page-aliases: ROOT:getting-started,ROOT:start-using,ROOT:hello-couchbase,ROOT:start-using-sdk
 :lang: Scala
 
+include::project-docs:partial$attributes.adoc[]
+
 [abstract]
 The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster from the Scala language.
 
@@ -65,7 +67,7 @@ You'll see examples later of how to better handle a `Try`, but for simplicity he
 
 If you are connecting to Couchbase Cloud rather than a local Couchbase Server, then also refer to the <<cloud-connections, Cloud section>>, below.
 
-Couchbase uses xref:6.0@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources, so specify the username and password of a user you've setup during installation of the Couchbase Data Platform.
+Couchbase uses xref:{version-server}@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources, so specify the username and password of a user you've setup during installation of the Couchbase Data Platform.
 
 Now we can open a Couchbase bucket, and its default collection:
 
@@ -74,9 +76,10 @@ Now we can open a Couchbase bucket, and its default collection:
 include::example$Cluster.scala[tag=resources,indent=0]
 ----
 
-The Scala SDK is forwards-looking to future releases of Couchbase Server which will support the new features of _scopes_ and
-_collections_. These will allow documents to be grouped in a more granular way than buckets allow.  For now, we
-will just open the 'default collection', which includes all documents in a bucket, and is forwards and backwards compatible
+The Scala SDK supports the new features of _scopes_ and
+_collections_ in Couchbase Server 7.0. These allow documents to be grouped in a more granular way than buckets.
+
+If you do not refer to a named collection, you can access the 'default collection', which includes all documents in a bucket, and is forwards and backwards compatible
 with all supported versions of Couchbase Server.
 
 `waitUntilReady` is an optional call.
@@ -104,7 +107,7 @@ include::example$Cluster.scala[tag=json,indent=0]
 ----
 
 == Key-Value Operations
-And now let's upsert it into Couchbase (upsert is an operation that will insert the document if it does not exist, or replace it if it does).  
+And now let's upsert it into Couchbase (upsert is an operation that will insert the document if it does not exist, or replace it if it does).
 We need to provide a unique ID for the JSON, and we'll use a UUID here:
 
 [source,scala]
@@ -164,8 +167,8 @@ include::example$Cluster.scala[tag=replace-named,indent=0]
 
 For developing on Couchbase Cloud, if you are not working from the same _Availability Zone_ as your Couchbase Cloud, refer to the following:
 
-* Notes on xref:ref:client-settings.adoc#constrained-network-environments[Constrained Network Environments], 
-* xref:project-docs:compatibility.adoc#network-requirements[Network Requirements], 
+* Notes on xref:ref:client-settings.adoc#constrained-network-environments[Constrained Network Environments],
+* xref:project-docs:compatibility.adoc#network-requirements[Network Requirements],
 * If you have a consumer-grade router which has problems with DNS-SRV records review our xref:howtos:troubleshooting-cloud-connections.adoc#troubleshooting-host-not-found[Troubleshooting Guide].
 
 

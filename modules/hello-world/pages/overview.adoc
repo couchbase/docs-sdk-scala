@@ -59,11 +59,11 @@ Dive right in with a xref:start-using-sdk.adoc[quick install and Hello World].
 .Practical Howto Docs
 
 [.content]
-Connect to our services -- xref:howtos:kv-operations.adoc[data (KV)]; 
-xref:howtos:n1ql-queries-with-sdk.adoc[Query]; 
-xref:howtos:full-text-searching-with-sdk.adoc[Search]; 
-xref:howtos:analytics-using-sdk.adoc[Analytics]; 
-xref:howtos:view-queries-with-sdk.adoc[Views] -- 
+Connect to our services -- xref:howtos:kv-operations.adoc[data (KV)];
+xref:howtos:n1ql-queries-with-sdk.adoc[Query];
+xref:howtos:full-text-searching-with-sdk.adoc[Search];
+xref:howtos:analytics-using-sdk.adoc[Analytics];
+xref:howtos:view-queries-with-sdk.adoc[Views] --
 and the xref:howtos:subdocument-operations.adoc[Sub-Document API].
 
 [.column]
@@ -81,7 +81,7 @@ https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/s
 .What's Hot?
 
 [.content]
-The Scala 1.0 SDK is a fully-native Scala API.
+The Scala 1.x SDK is a fully-native Scala API.
 Named and default parameters are both supported in an elegant simple API.
 Powerful functional error handling is based on Scala Try.
 The SDK supports many popular JSON libraries for easy integration into your existing project.
@@ -92,10 +92,10 @@ The SDK supports many popular JSON libraries for easy integration into your exis
 .About
 
 [.content]
-Those useful nuts-and-bolts guides to 
-xref:project-docs:compatibility.adoc[compatibility tables]; 
-xref:project-docs:sdk-release-notes.adoc[release notes]; 
-xref:project-docs:get-involved.adoc[contribution guide]; and the 
+Those useful nuts-and-bolts guides to
+xref:project-docs:compatibility.adoc[compatibility tables];
+xref:project-docs:sdk-release-notes.adoc[release notes];
+xref:project-docs:get-involved.adoc[contribution guide]; and the
 xref:project-docs:migrating-sdk-code-to-3.n.adoc[migration guide] for moving to the 3.0 API.
 
 [.column]
