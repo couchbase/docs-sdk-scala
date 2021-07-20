@@ -2,12 +2,14 @@
 :navtitle: Compatibility
 :page-aliases: ROOT:overview,ROOT:compatibility-versions-features,compatibility-versions-features
 
+include::project-docs:partial$attributes.adoc[]
+
 [abstract]
 Features available in different SDK versions, and compatibility between Server and SDK.
 Plus notes on Cloud, networks, and AWS Lambda.
 
 
-The Couchbase Scala SDK 1.1 Client supports Scala 2.12	
+The Couchbase Scala SDK 1.1 Client supports Scala 2.12
 // and 2.13.
 
 == Couchbase Version/SDK Version Matrix
@@ -24,7 +26,7 @@ It is best to upgrade either the SDK or the Couchbase version you are using.
 .Recommended SDK per Server Version Matrix
 [#table_sdk_versions]
 |===
-| | SDK 1.0, 1.1 
+| | SDK 1.0, 1.1
 
 | *Server 5.0-5.5*
 | *◎*
@@ -64,7 +66,7 @@ Please make sure you run on one of the latest patch releases, since they provide
 == Couchbase New Feature Availability Matrix
 
 .Couchbase Server and SDK Supported Version Matrix
-[.table-merge-cells] 
+[.table-merge-cells]
 [cols="7,7,5,6,5"]
 |===
 | | Server 5.0, 5.1, & 5.5 | Server 6.0 | Server 6.5 & 6.6 | Server 7.0β
@@ -73,7 +75,7 @@ Please make sure you run on one of the latest patch releases, since they provide
 | Not Supported
 3+| Since 1.0
 
-| Durable Writes 
+| Durable Writes
 2+| Not Supported
 2+| Since 1.0
 
@@ -91,7 +93,7 @@ Please make sure you run on one of the latest patch releases, since they provide
 | Developer Preview in 7.0β, SDK 1.0.9
 |===
 
-include::6.5@sdk:shared:partial$network-requirements.adoc[]
+include::{version-server}@sdk:shared:partial$network-requirements.adoc[]
 
 
-include::6.5@sdk:shared:partial$interface-stability-pars.adoc[tag=interface-stability-section]
+include::{version-server}@sdk:shared:partial$interface-stability-pars.adoc[tag=interface-stability-section]
