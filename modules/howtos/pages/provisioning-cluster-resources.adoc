@@ -97,21 +97,21 @@ include::example$CollectionManagerExample.scala[tag=create-collection-manager,in
 
 You can create a scope:
 
-[source,csharp]
+[source,scala]
 ----
 include::example$CollectionManagerExample.scala[tag=create-scope,indent=0]
 ----
 
 You can then create a collection within that scope:
 
-[source,csharp]
+[source,scala]
 ----
 include::example$CollectionManagerExample.scala[tag=create-collection,indent=0]
 ----
 
 Finally, you can drop unneeded collections and scopes:
 
-[source,csharp]
+[source,scala]
 ----
 include::example$CollectionManagerExample.scala[tag=drop-collection,indent=0]
 
@@ -124,7 +124,7 @@ along with xref:server:learn:security/roles.adoc#data-reader[Data Reader].
 
 You can create users with the appropriate RBAC programmatically:
 
-[source,csharp]
+[source,scala]
 ----
 include::example$CollectionManagerExample.scala[tag=scopeAdmin, indent=0]
 ----
