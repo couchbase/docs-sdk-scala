@@ -2,11 +2,13 @@
 :navtitle: Provisioning Cluster Resources
 :page-aliases: ROOT:managing-clusters
 
+include::partial$attributes.adoc[]
+
 [abstract]
 Provisioning cluster resources is managed at the collection or bucket level, depending upon the service affected.
 Common use cases are outlined here, more recherché use cases are covered in the https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.0.4/com/couchbase/client/scala/index.html[API docs].
 
-include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=management-intro]
+include::{version-server}@sdk:shared:partial$flush-info-pars.adoc[tag=management-intro]
 
 The Scala SDK also comes with some convenience functionality for common Couchbase management requests.
 
@@ -27,7 +29,7 @@ The `BucketManager` interface may be used to create and delete buckets from the 
 The `CreateBucketSettings` and `BucketSettings` classes are used for creating and updating buckets.
 `BucketSettings` is also used for exposing information about existing buckets.
 
-include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=update-bucket-warning]
+include::{version-server}@sdk:shared:partial$flush-info-pars.adoc[tag=update-bucket-warning]
 
 Here is the list of parameters available for `CreateBucketSettings` and `BucketSettings`.
 The "Updatable" column indicates whether the parameter may only be specified when creating a bucket, or whether it may be updated after creation.
@@ -72,7 +74,7 @@ include::example$ClusterResources.scala[tag=drop,indent=0]
 [#flushing]
 == Flushing Buckets
 
-include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=flush-intro]
+include::{version-server}@sdk:shared:partial$flush-info-pars.adoc[tag=flush-intro]
 
 You can flush a bucket in the SDK by using the `Flush` method:
 
@@ -83,7 +85,49 @@ include::example$ClusterResources.scala[tag=flush-real,indent=0]
 
 == Collection Management
 
-This is a xref:6.5@server:developer-preview:collections/collections-overview.adoc[Developer Preview feature], see the https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.0.4/com/couchbase/client/scala/index.html[API doc].
+The CollectionManager interface may be used to create and delete scopes and collections from the Couchbase cluster.
+It is instantiated through the `Bucket.collections()` method.
+Refer to the https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/manager/collection/index.html[`CollectionManager` and `AsyncCollectionManager` API documentation]
+for further details.
+
+[source,scala]
+----
+include::example$CollectionManagerExample.scala[tag=create-collection-manager,indent=0]
+----
+
+You can create a scope:
+
+[source,scala]
+----
+include::example$CollectionManagerExample.scala[tag=create-scope,indent=0]
+----
+
+You can then create a collection within that scope:
+
+[source,scala]
+----
+include::example$CollectionManagerExample.scala[tag=create-collection,indent=0]
+----
+
+Finally, you can drop unneeded collections and scopes:
+
+[source,scala]
+----
+include::example$CollectionManagerExample.scala[tag=drop-collection,indent=0]
+
+include::example$CollectionManagerExample.scala[tag=drop-scope,indent=0]
+----
+
+Note that the most minimal permissions to create and drop a Scope or Collection is
+xref:server:learn:security/roles.adoc#manage-scopes[Manage Scopes]
+along with xref:server:learn:security/roles.adoc#data-reader[Data Reader].
+
+You can create users with the appropriate RBAC programmatically:
+
+[source,scala]
+----
+include::example$CollectionManagerExample.scala[tag=scopeAdmin, indent=0]
+----
 
 == Index Management
 
@@ -101,7 +145,7 @@ include::example$ClusterResources.scala[tag=index-managers,indent=0]
 
 == View Management
 
-include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=view-management]
+include::{version-server}@sdk:shared:partial$flush-info-pars.adoc[tag=view-management]
 
 In the SDK, design documents are represented by the `DesignDocument` and `View` structs.
 All operations on design documents are performed on the `ViewIndexManager` instance:
@@ -118,7 +162,7 @@ The following example upserts a design document with two views:
 include::example$ClusterResources.scala[tag=view-upsert,indent=0]
 ----
 
-include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=one-view-update-warning]
+include::{version-server}@sdk:shared:partial$flush-info-pars.adoc[tag=one-view-update-warning]
 
 Note the use of `DesignDocumentNamespace.Development`, the other option is `DesignDocumentNamespace.Production`.
 This parameter specifies whether the design document should be created as development, or as production -- with the former running over only a small fraction of the documents.

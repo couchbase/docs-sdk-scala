@@ -3,11 +3,11 @@
 :page-topic-type: howto
 
 Individual request tracing presents a very specific (though isolated) view of the system.
-In addition, it also makes sense to capture information that aggregates request data (i.e. requests per second), 
+In addition, it also makes sense to capture information that aggregates request data (i.e. requests per second),
 but also data which is not tied to a specific request at all (i.e. resource utilization).
 
-The deployment situation itself is similar to the request tracer: either applications already have a metrics infrastructure in place or they don’t. 
-The difference is that exposing some kind of metrics is much more common than request based tracing, 
+The deployment situation itself is similar to the request tracer: either applications already have a metrics infrastructure in place or they don’t.
+The difference is that exposing some kind of metrics is much more common than request based tracing,
 because most production deployments at least monitor CPU and memory usage (e.g. through JMX).
 
 Metrics broadly fall into the following categories:
@@ -32,20 +32,20 @@ include::example$Metrics.scala[tag=imports,indent=0]
 The default implementation aggregates and logs request and response metrics.
 Since the feature is in developer preview, you need to manually enable it on the environment:
 
-[source,java]
+[source,scala]
 ----
 include::example$Metrics.scala[tag=metrics-enable,indent=0]
 ----
 
 By default the metrics will be emitted every 10 minutes, but you can customize the emit interval as well:
 
-[source,java]
+[source,scala]
 ----
 include::example$Metrics.scala[tag=metrics-enable-custom,indent=0]
 ----
 
-Once enabled, there is no further configuration needed. 
-The `AggregatingMeter` will emit the collected request statistics every interval. 
+Once enabled, there is no further configuration needed.
+The `AggregatingMeter` will emit the collected request statistics every interval.
 A possible report looks like this (prettified for better readability):
 
 [source,json]
@@ -83,13 +83,13 @@ A possible report looks like this (prettified for better readability):
 
 Each report contains one object for each service that got used and is further separated on a per-node basis so they can be analyzed in isolation.
 
-For each service / host combination, a total amount of recorded requests is reported, as well as percentiles from a histogram in microseconds. 
+For each service / host combination, a total amount of recorded requests is reported, as well as percentiles from a histogram in microseconds.
 The meta section on top contains information such as the emit interval in seconds, so tooling can later calculate numbers like requests per second.
 
 The `AggregatingMeter` can be configured on the environment as shown above.
 The following table shows the currently available properties:
 
-.AggregatingMeterConfig Properties 
+.AggregatingMeterConfig Properties
 [options="header"]
 [cols="4,3,8"]
 |===
@@ -123,19 +123,19 @@ include::example$Metrics.scala[tag=metrics-otel,indent=0]
 == Micrometer Integration
 [.status]#Developer Preview#
 
-In addition to OpenTelemetry, we also provide a module so you can hook up the SDK metrics to Micrometer. 
+In addition to OpenTelemetry, we also provide a module so you can hook up the SDK metrics to Micrometer.
 
 [source,xml]
 ----
 libraryDependencies += "com.couchbase.client" % "metrics-micrometer" % "0.1.0"
 ----
 
-In addition to the facade you also need to include your micrometer implementation of choice. 
+In addition to the facade you also need to include your micrometer implementation of choice.
 Once you've created the a Micrometer `MeterRegistry`, you need to wrap it and pass it into the environment:
 
 [source,scala]
 ----
-    val config: Try[ClusterEnvironment] = ClusterEnvironment.builder
+   val config: Try[ClusterEnvironment] = ClusterEnvironment.builder
       .meter(MicrometerMeter.wrap(meterRegistry))
       .build
 ----

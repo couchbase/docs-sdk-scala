@@ -3,6 +3,8 @@
 :page-topic-type: reference
 :page-aliases: ROOT:client-settings, ROOT:env-config
 
+include::partial$attributes.adoc[]
+
 [abstract]
 The `ClusterEnvironment` class enables you to configure Scala SDK options for bootstrapping, timeouts, reliability, and performance.
 
@@ -583,4 +585,4 @@ You are responsible for stopping it after it is no longer needed.
 
 // section on wide area network support
 
-include::6.5@sdk:shared:partial$client-settings-wide-network.adoc[]
+include::{version-server}@sdk:shared:partial$client-settings-wide-network.adoc[]

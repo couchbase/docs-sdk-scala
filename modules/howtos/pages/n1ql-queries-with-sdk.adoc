@@ -3,11 +3,13 @@
 :page-topic-type: howto
 :page-aliases: n1ql-query
 :lang: Scala
-:example-source: 1.1@scala-sdk:howtos:example$Queries.scala
+:example-source: howtos:example$Queries.scala
 :example-source-lang: scala
 
-include::1.1@scala-sdk:howtos:partial$n1ql-intro.adoc[]
-include::1.1@scala-sdk:howtos:partial$n1ql-getting-started.adoc[]
+include::partial$attributes.adoc[]
+
+include::howtos:partial$n1ql-intro.adoc[]
+include::howtos:partial$n1ql-getting-started.adoc[]
 
 == A Simple Query
 Here's the basics of how to run a simple query to fetch 10 random rows from travel-sample and print the results:
@@ -52,8 +54,8 @@ Most of the examples here use the simplest of the three APIs provided by the Sca
 streaming reactive API, for which we'll see an example later.
 =====
 
-include::1.1@scala-sdk:howtos:partial$n1ql-placeholders.adoc[]
-include::1.1@scala-sdk:howtos:partial$n1ql-scan-consistency.adoc[]
+include::howtos:partial$n1ql-placeholders.adoc[]
+include::howtos:partial$n1ql-scan-consistency.adoc[]
 
 And the `AtPlus` level is represented with `QueryScanConsistency.ConsistentWith`:
 
@@ -120,7 +122,7 @@ It takes the statement as a required argument, and then allows additional option
 CAUTION: This feature is marked xref:project-docs:compatibility.adoc#interface-stability[_Uncommitted_].
 Expect a promotion to _Committed_ API in a future release.
 
-The code snippet below shows how to run a simple query to fetch 10 random rows from travel-sample and print the results, 
+The code snippet below shows how to run a simple query to fetch 10 random rows from travel-sample and print the results,
 the assumption is that the `airline` collection exists within a scope `us`.
 
 [source,ruby]
@@ -138,4 +140,4 @@ scope
 A complete list of `QueryOptions` can be found in the https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/query/QueryOptions.html[API docs].
 
 
-include::1.1@scala-sdk:howtos:partial$n1ql-additional-resources.adoc[]
+include::howtos:partial$n1ql-additional-resources.adoc[]

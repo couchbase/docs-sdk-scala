@@ -4,6 +4,8 @@
 :page-aliases: document-operations.adoc
 :lang: Scala
 
+include::partial$attributes.adoc[]
+
 At its heart Couchbase Server is a high-performance key-value store, and the key-value interface outlined below is the fastest and best method to perform operations involving single documents.
 
 A _document_ refers to an entry in the database (other databases may refer to the same concept as a _row_).
@@ -100,9 +102,9 @@ reactive API.  See xref:concurrent-async-apis[Choosing an API] for more details.
 
 == Handling Single Errors
 A note on error handling: the Scala SDK will not throw exceptions.
- 
+
 Instead, methods that can error will return a Scala `Try` object, which can either be a `Success` containing the result, or a `Failure` containing a _Throwable_ exception.
- 
+
 Pattern matching can be used to handle a `Try`, as above.
 
 Don't worry about cluttering up your code with explicit error handling for every operation: Scala provides useful methods to chain multiple `Try` together, and we'll go into these later.
@@ -247,7 +249,7 @@ The options are in increasing levels of failure-resistance.  Note that nothing c
 These trade offs, as well as which settings may be tuned, are discussed in the xref:concept-docs:durability-replication-failure-considerations.adoc#durable-writes[durability page].
 
 
-If a version of Couchbase Server lower than 6.5 is being used then the application can fall-back to xref:concept-docs:durability-replication-failure-considerations.adoc#older-server-versions['client verified' durability]. 
+If a version of Couchbase Server lower than 6.5 is being used then the application can fall-back to xref:concept-docs:durability-replication-failure-considerations.adoc#older-server-versions['client verified' durability].
 Here the SDK will do a simple poll of the replicas and only return once the requested durability level is achieved.  This can be achieved like this:
 
 [source,scala]
@@ -260,7 +262,7 @@ To stress, durability is a useful feature but should not be the default for most
 
 == Expiration/TTL
 
-Couchbase Server includes an option to have particular documents automatically expire after a set time.  
+Couchbase Server includes an option to have particular documents automatically expire after a set time.
 This can be useful for some use-cases, such as user sessions, caches, or other temporary documents.
 
 You can set an expiration value when creating a document:
@@ -291,7 +293,7 @@ Some applications may find `getAndTouch` useful, which fetches a document while 
 include::example$KvOperations.scala[indent=0,tag=expiry-touch]
 ----
 
-include::6.6@sdk:shared:partial$documents.adoc[tag=exp-note]
+include::{version-server}@sdk:shared:partial$documents.adoc[tag=exp-note]
 
 == Atomic Counter Operations
 
@@ -306,11 +308,7 @@ Note that a counter cannot be below 0.
 
 == Scoped KV Operations
 
-It is possible to perform scoped key-value operations on named xref:7.0@server:learn:data/scopes-and-collections.adoc[`Collections`] _with the beta version of the next Couchbase Server release, 7.0β_.
-See the https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/Collection.html[API docs] for more information.
-
-CAUTION: This feature is marked xref:project-docs:compatibility.adoc#interface-stability[_Uncommitted_].
-Expect a promotion to _Committed_ API in a future minor release.
+It is possible to perform scoped key value operations on named xref:{version-server}@server:learn:data/scopes-and-collections.adoc[`Collections`] _with Couchbase Server release, 7.0_.
 
 Here is an example showing an upsert in the `users` collection, which lives in the `travel-sample.tenant_agent_00` keyspace:
 

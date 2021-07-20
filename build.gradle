@@ -28,6 +28,7 @@ sourceSets {
     main {
         scala {
             srcDirs = ['modules/hello-world/examples',
+                       'modules/concept-docs/examples',
                        'modules/howtos/examples',
                        'modules/ref/examples',
                        'modules/ROOT/examples'] 
