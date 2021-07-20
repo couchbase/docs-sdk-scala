@@ -3,14 +3,14 @@
 :page-topic-type: concept
 :page-aliases:
 
-include::partial$attributes.adoc[]
+include::project-docs:partial$attributes.adoc[]
 
 [abstract]
 {description}
 
 The Collections feature in Couchbase Server 7.0 is fully implemented in the Scala SDK version 1.2.
 
-Please see the xref:{version-server}@server:developer-preview:collections/collections-overview.adoc[Collections Overview documents] in the Server docs.
+Please see the xref:{version-server}@server:learn:data/scopes-and-collections.adoc[Scopes and Collections page] in the Server docs.
 
 == Using Collections & Scopes
 
