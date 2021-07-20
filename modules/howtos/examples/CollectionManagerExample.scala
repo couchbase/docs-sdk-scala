@@ -18,9 +18,10 @@ package examples.collectionmanager
 // tag::imports[]
 import com.couchbase.client.scala._
 import com.couchbase.client.scala.env._
-import com.couchbase.client.scala.manager.user.User
-import com.couchbase.client.scala.manager.user.Role
+import com.couchbase.client.scala.manager.user.{User, Role}
 import com.couchbase.client.scala.manager.collection.CollectionSpec
+import com.couchbase.client.core.error.{ScopeExistsException, ScopeNotFoundException}
+import com.couchbase.client.core.error.{CollectionExistsException, CollectionNotFoundException}
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
@@ -63,14 +64,12 @@ object CollectionManagerExample {
 
         println("create-scope")
         // tag::create-scope[]
-        Try {
-          collectionMgr.createScope("example-scope").get
-        }
-        match {
+        collectionMgr.createScope("example-scope") match {
           case Success(_) =>
             println("Created scope OK")
+          case Failure(err: ScopeExistsException) =>
+            println("scope already exists")
           case Failure(err) =>
-            // com.couchbase.client.core.error.ScopeExistsException
             println(err)
         }
         // end::create-scope[]
@@ -79,13 +78,14 @@ object CollectionManagerExample {
         // tag::create-collection[]
         val spec = CollectionSpec("example-collection", "example-scope");
 
-        collectionMgr.createCollection(spec)
-        match {
+        collectionMgr.createCollection(spec)  match {
           case Success(_) =>
             println("Created collection OK")
+          case Failure(err: ScopeNotFoundException) =>
+            println("scope not found")
+          case Failure(err: CollectionExistsException) =>
+            println("collection already exists")
           case Failure(err) =>
-            // com.couchbase.client.core.error.ScopeNotFoundException
-            // com.couchbase.client.core.error.CollectionExistsException
             println(err)
         }
         // end::create-collection[]
@@ -96,9 +96,11 @@ object CollectionManagerExample {
         match {
           case Success(_) =>
             println("Dropped collection OK")
+          case Failure(err: ScopeNotFoundException) =>
+            println("scope not found")
+          case Failure(err: CollectionNotFoundException) =>
+            println("collection not found")
           case Failure(err) =>
-            // com.couchbase.client.core.error.ScopeNotFoundException
-            // com.couchbase.client.core.error.CollectionNotFoundException
             println(err)
         }
         // end::drop-collection[]
@@ -109,8 +111,9 @@ object CollectionManagerExample {
         match {
           case Success(_) =>
             println("Dropped scope OK")
+          case Failure(err: ScopeNotFoundException) =>
+            println("scope not found")
           case Failure(err) =>
-            // com.couchbase.client.core.error.ScopeNotFoundException
             println(err)
         }
         // end::drop-scope[]
