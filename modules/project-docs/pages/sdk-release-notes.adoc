@@ -7,9 +7,12 @@
 [abstract]
 Release notes, installation instructions, and download archive for the Couchbase Scala Client.
 
+
 == Version 1.2.0 (20 July 2021)
+
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.0/com/couchbase/client/scala/index.html[API Reference]
-It promotes to GA support for the scopes and collections provided by Couchbase Server 7.0, and also OpenTelemetry.
+
+Version 1.2.0 is the first GA release of the 1.2 series, promoting to GA support for the scopes and collections provided by Couchbase Server 7.0, and also OpenTelemetry.
 In addition, a support release for Scala 2.13 is now provided.
 
 The supported and tested dependencies for this release are:
@@ -67,7 +70,7 @@ Add support for SDK2-compatible LegacyTranscoder.
 Update OpenTelemetry to 1.3.0.
 
 === Interface Changes
-All interface changes are to interfaces that are currently in beta and marked @Stability.Volatile or @Stability.Uncommitted.
+All interface changes are to interfaces that are currently in beta and marked `@Stability.Volatile` or `@Stability.Uncommitted`.
 
 * https://issues.couchbase.com/browse/JVMCBC-978[JVMCBC-978]:
 Rename AggregatingMeter to LoggingMeter.
