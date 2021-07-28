@@ -19,6 +19,8 @@
 * xref:howtos:concurrent-async-apis.adoc[Async & Reactive APIs]
 * xref:howtos:concurrent-document-mutations.adoc[Concurrent Document Mutations]
 * xref:howtos:transcoders-nonjson.adoc[Transcoders & Non-JSON]
+* xref:howtos:working-with-collections.adoc[Working with Collections]
+
 
 .Managing Couchbase
 * xref:howtos:managing-connections.adoc[Managing Connections]
