@@ -1,8 +1,1 @@
-= Travel App Data Model
-:nav-title: Travel Sample App
-:page-topic-type: reference
-
-[abstract]
-Coming soon
-
-
+include::7.0@sdk:pages:partial$travel-app-data-model.adoc[]
