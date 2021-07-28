@@ -337,7 +337,7 @@ include::example$SubDocument.scala[tag=cas]
 
 == Durability
 
-Couchbase's xref:2.7@dotnet-sdk::durability.adoc[traditional durability], using `PersistTo` and `ReplicateTo`, is
+Couchbase's xref:2.7@java-sdk::durability.adoc[traditional durability], using `PersistTo` and `ReplicateTo`, is
 xref:concept-docs:durability-replication-failure-considerations.adoc#older-server-versions[still available], particularly for talking to Couchbase Server 6.0 and earlier:
 
 [source,scala]
