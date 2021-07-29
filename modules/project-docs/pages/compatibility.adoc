@@ -72,7 +72,7 @@ Please make sure you run on one of the latest patch releases, since they provide
 [.table-merge-cells]
 [cols="7,7,5,6,5"]
 |===
-| | Server 5.0, 5.1, & 5.5 | Server 6.0 | Server 6.5 & 6.6 | Server 7.0β
+| | Server 5.0, 5.1, & 5.5 | Server 6.0 | Server 6.5 & 6.6 | Server 7.0
 
 | Enhanced Durability
 | Not Supported
@@ -86,17 +86,58 @@ Please make sure you run on one of the latest patch releases, since they provide
 | Not Supported
 3+| Since 1.0
 
-| Collections
+| Default Collections
 2+| Not Supported
-| Developer Preview in 6.5-6.6, SDK 1.0
-| Since 1.0
+| Developer Preview in 6.5-6.6, SDK 3.0
+| Since 1.0.10
 
-| Scope-Level N1QL Queries
+| Scope-Level N1QL Queries & all Collections features
 3+| Not Supported
-| Developer Preview in 7.0β, SDK 1.0.9
+| Since SDK 1.2.0
+
+| Request Tracing
+2+| Not Supported
+2+| Since SDK 1.2.0
 |===
 
 include::{version-server}@sdk:shared:partial$network-requirements.adoc[]
+
+
+
+== Spring Data Couchbase Compatibility
+
+https://projects.spring.io/spring-data-couchbase/[Spring Data Couchbase^] uses the Java SDK underneath and as a result is also provides different compatibilities with Couchbase Server.
+The following table provides an overview.
+
+.Recommended Spring Data Couchbase per Server Version Matrix
+[#table_spring_versions]
+|===
+| | SDC 3.x | SDC 4.0 - 4.2
+
+| _Status ->_
+| _SDK 2.x only_
+| _New Features, Active Development_
+
+| *Server 5.x*
+| SDK 2.x
+| *Not Compatible*
+
+| *Server 6.0*
+| SDK 2.x
+| *Recommended*
+
+| *Server 6.5 & 6.6*
+| SDK 2.x
+| *Recommended*
+
+| *Server 7.0*
+| Not Supported
+| *Recommended*
+|===
+
+NOTE: Check the Spring Data Couchbase's compile dependencies -- older versions may link an out-of-date version of the SDK in their dependencies list, although a supported version should be in the `updates`.
+Please make sure that you are using a supported version of the Couchbase Scala SDK, prefereably the latest version, which will contain any available bug fixes.
+Using the latest Spring Data Couchbase should ensure that this is so.
 
 
 include::{version-server}@sdk:shared:partial$interface-stability-pars.adoc[tag=interface-stability-section]
