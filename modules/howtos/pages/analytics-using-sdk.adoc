@@ -4,7 +4,7 @@
 :lang: Scala
 :source-language: scala
 
-include::partial$attributes.adoc[]
+include::project-docs:partial$attributes.adoc[]
 
 [abstract]
 Parallel data management for complex queries over many records, using a familiar N1QL-like syntax.

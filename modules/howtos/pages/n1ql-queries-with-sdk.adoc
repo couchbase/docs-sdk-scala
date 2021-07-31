@@ -6,7 +6,7 @@
 :example-source: howtos:example$Queries.scala
 :example-source-lang: scala
 
-include::partial$attributes.adoc[]
+include::project-docs:partial$attributes.adoc[]
 
 include::howtos:partial$n1ql-intro.adoc[]
 include::howtos:partial$n1ql-getting-started.adoc[]
