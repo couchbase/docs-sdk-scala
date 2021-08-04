@@ -6,7 +6,7 @@ include::project-docs:partial$attributes.adoc[]
 
 [abstract]
 Provisioning cluster resources is managed at the collection or bucket level, depending upon the service affected.
-Common use cases are outlined here, more recherché use cases are covered in the https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.0.4/com/couchbase/client/scala/index.html[API docs].
+Common use cases are outlined here, less common use cases are covered in the https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.0.4/com/couchbase/client/scala/index.html[API docs].
 
 include::{version-server}@sdk:shared:partial$flush-info-pars.adoc[tag=management-intro]
 
