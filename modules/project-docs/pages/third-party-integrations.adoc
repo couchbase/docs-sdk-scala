@@ -10,7 +10,7 @@
 include::7.0@sdk:shared:partial$integrations.adoc[tag=intro]
 
 
-include::7.0 @sdk:shared:partial$integrations.adoc[tag=official]
+include::7.0@sdk:shared:partial$integrations.adoc[tag=official]
 
 The Couchbase Scala SDK is a first class citizen in the https://spring.io/projects/spring-data-couchbase[Spring Data^] world, and the Scala SDK can leverage that through the JVM.
 
