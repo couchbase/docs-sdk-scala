@@ -1,4 +1,5 @@
 = N1QL Queries from the SDK
+:description: link:project-docs:partial$attributes.adoc[]
 :navtitle: N1QL from the SDK
 :page-topic-type: howto
 :page-aliases: n1ql-query
@@ -6,7 +7,7 @@
 :example-source: howtos:example$Queries.scala
 :example-source-lang: scala
 
-include::project-docs:partial$attributes.adoc[]
+{description}
 
 include::howtos:partial$n1ql-intro.adoc[]
 include::howtos:partial$n1ql-getting-started.adoc[]

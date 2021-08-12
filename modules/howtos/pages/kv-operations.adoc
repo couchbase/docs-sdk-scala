@@ -1,10 +1,11 @@
 = Key Value Operations
+:description: link:project-docs:partial$attributes.adoc[]
 :navtitle: KV Operations
 :page-topic-type: howto
 :page-aliases: document-operations.adoc
 :lang: Scala
 
-include::project-docs:partial$attributes.adoc[]
+{description}
 
 At its heart Couchbase Server is a high-performance key-value store, and the key-value interface outlined below is the fastest and best method to perform operations involving single documents.
 

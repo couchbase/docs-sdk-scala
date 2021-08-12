@@ -1,4 +1,5 @@
 = Install and Start Using the Scala SDK with Couchbase Server
+:description: The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster from the Scala language.
 :navtitle: Start Using the SDK
 :page-topic-type: howto
 :page-aliases: ROOT:getting-started,ROOT:start-using,ROOT:hello-couchbase,ROOT:start-using-sdk
@@ -7,7 +8,7 @@
 include::project-docs:partial$attributes.adoc[]
 
 [abstract]
-The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster from the Scala language.
+{description}
 
 == Installing the SDK
 
