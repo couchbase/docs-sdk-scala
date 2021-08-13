@@ -1,7 +1,8 @@
 = Get Involved
+:description: link:project-docs:partial$attributes.adoc[]
 :navtitle: Get Involved
 
-include::project-docs:partial$attributes.adoc[]
+{description}
 
 == Contributing
 

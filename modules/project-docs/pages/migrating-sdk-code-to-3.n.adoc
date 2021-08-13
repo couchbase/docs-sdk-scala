@@ -1,10 +1,11 @@
 = Migrating from SDK2 to SDK3 API
+:description: This is the first release of the Couchbase Scala SDK -- you will not have any code based upon older API versions.
 :nav-title: Migrating to Scala SDK 3.0 API
 :page-topic-type: concept
 :page-aliases: ROOT:migrate
 
 [abstract]
-This is the first release of the Couchbase Scala SDK -- you will not have any code based upon older API versions.
+{description}
 
 Couchbase Scala SDK 1.0 implements the Couchbase SDK 3.0 API.
 It it the first release of the Couchbase Scala SDK, there are no releases implementing older APIs.

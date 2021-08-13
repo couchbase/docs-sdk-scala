@@ -1,11 +1,12 @@
 = Distributed Transactions from the Scala SDK
+:description: Distributed ACID Transactions in Couchbase SDKs
 :navtitle: ACID Transactions
 :page-topic-type: howto
 
 include::project-docs:partial$attributes.adoc[]
 
 [abstract]
-Distributed ACID Transactions in Couchbase SDKs
+{description}
 
 
 Distributed ACID Transactions are not currently available for the Scala SDK.

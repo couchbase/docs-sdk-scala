@@ -1,9 +1,10 @@
 = Collecting Information & Logging
+:description: The Scala SDK logs events and also provides an event bus that transmits information about the behavior of your database system, including system and metric events.
 :nav-title: Logging
 :page-topic-type: howto
 
 [abstract]
-The Scala SDK logs events and also provides an event bus that transmits information about the behavior of your database system, including system and metric events.
+{description}
 It has no hard dependency on a specific logger implementation, but you should add one you are comfortable with.
 
 == Configuring Logging

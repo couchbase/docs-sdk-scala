@@ -1,4 +1,5 @@
 = Client Settings for the Scala SDK
+:description: pass:q[The `ClusterEnvironment` class enables you to configure Scala SDK options for bootstrapping, timeouts, reliability, and performance.]
 :nav-title: Client Settings
 :page-topic-type: reference
 :page-aliases: ROOT:client-settings, ROOT:env-config
@@ -6,7 +7,7 @@
 include::project-docs:partial$attributes.adoc[]
 
 [abstract]
-The `ClusterEnvironment` class enables you to configure Scala SDK options for bootstrapping, timeouts, reliability, and performance.
+{description}
 
 
 == The Environment Builder
