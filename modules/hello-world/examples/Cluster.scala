@@ -16,13 +16,14 @@
 
 // #tag::imports[]
 import java.util.UUID
-
 import com.couchbase.client.core.error.{CouchbaseException, DocumentNotFoundException}
-import com.couchbase.client.scala.Cluster
+import com.couchbase.client.scala.{Cluster, ClusterOptions}
 import com.couchbase.client.scala.durability.Durability
+import com.couchbase.client.scala.env.{ClusterEnvironment, SecurityConfig}
 import com.couchbase.client.scala.json.{JsonObject, JsonObjectSafe}
 import com.couchbase.client.scala.kv.ReplaceOptions
 
+import java.nio.file.Path
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 import concurrent.duration._
@@ -69,6 +70,22 @@ object ClusterExample {
       case Failure(err) => println("Error getting document: " + err)
     }
     // #end::get[]
+
+    def cloudConnect(): Unit = {
+      // #tag::cloud-cluster[]
+      val env: ClusterEnvironment = ClusterEnvironment.builder
+        .securityConfig(SecurityConfig()
+          .enableTls(true)
+          .trustCertificate(Path.of("/path/to/cluster.cert")))
+        .build
+        .get
+
+      val cluster: Cluster = Cluster.connect("hostname",
+        ClusterOptions.create("username", "password")
+          .environment(env))
+        .get
+      // #end::cloud-cluster[]
+    }
 
     def getFor() {
       // #tag::get-for[]
