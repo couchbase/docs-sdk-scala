@@ -15,18 +15,50 @@
  */
 
 // #tag::imports[]
-import java.util.UUID
-
-import com.couchbase.client.core.error.{CouchbaseException, DocumentNotFoundException}
-import com.couchbase.client.scala.Cluster
 import com.couchbase.client.scala.durability.Durability
+import com.couchbase.client.scala.env.{ClusterEnvironment, SecurityConfig}
 import com.couchbase.client.scala.json.{JsonObject, JsonObjectSafe}
 import com.couchbase.client.scala.kv.ReplaceOptions
+import com.couchbase.client.scala.{Cluster, ClusterOptions}
+import io.netty.handler.ssl.util.InsecureTrustManagerFactory
 
+import java.nio.file.Path
+import java.util.UUID
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
-import concurrent.duration._
 // #end::imports[]
+
+object CloudClusterExample {
+  def cloudConnect(): Unit = {
+    // #tag::cloud-cluster[]
+    val env: ClusterEnvironment = ClusterEnvironment.builder
+      .securityConfig(SecurityConfig()
+        .enableTls(true)
+        .trustCertificate(Path.of("/path/to/cluster-root-certificate.pem")))
+      .build
+      .get
+
+    val cluster: Cluster = Cluster.connect("couchbases://428ecdea-c7ca-4a7e-82c6-ef8d927cda0a.dp.cloud.couchbase.com",
+      ClusterOptions.create("username", "password")
+        .environment(env))
+      .get
+    // #end::cloud-cluster[]
+  }
+
+  def cloudConnectInsecure(): Unit = {
+    // #tag::cloud-cluster-insecure[]
+    val env: ClusterEnvironment = ClusterEnvironment.builder
+      .securityConfig(SecurityConfig()
+        .trustManagerFactory(InsecureTrustManagerFactory.INSTANCE))
+      .build
+      .get
+    // #end::cloud-cluster-insecure[]
+  }
+
+  def main(args: Array[String]): Unit = {
+    cloudConnect()
+  }
+}
 
 object ClusterExample {
   def main(args: Array[String]) {
@@ -119,6 +151,5 @@ object ClusterExample {
       }
       // #end::replace-named[]
     }
-
   }
 }

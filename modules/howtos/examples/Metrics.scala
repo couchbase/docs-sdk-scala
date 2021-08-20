@@ -1,7 +1,7 @@
 // tag::imports[]
 
 import com.couchbase.client.metrics.opentelemetry.OpenTelemetryMeter
-import com.couchbase.client.scala.env.{AggregatingMeterConfig, ClusterEnvironment}
+import com.couchbase.client.scala.env.{ClusterEnvironment, LoggingMeterConfig}
 import com.couchbase.client.scala.{Cluster, ClusterOptions}
 import io.opentelemetry.api.metrics.GlobalMeterProvider
 
@@ -13,7 +13,7 @@ object Metrics {
   {
     // tag::metrics-enable[]
     val config: Try[ClusterEnvironment] = ClusterEnvironment.builder
-      .aggregatingMeterConfig(AggregatingMeterConfig()
+      .loggingMeterConfig(LoggingMeterConfig()
         .enabled(true))
       .build
 
@@ -28,7 +28,7 @@ object Metrics {
   {
     // tag::metrics-enable-custom[]
     val config: Try[ClusterEnvironment] = ClusterEnvironment.builder
-      .aggregatingMeterConfig(AggregatingMeterConfig()
+      .loggingMeterConfig(LoggingMeterConfig()
         .enabled(true)
         .emitInterval(10.minutes))
       .build

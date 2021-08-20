@@ -84,7 +84,7 @@ object Tracing {
 
       coll.upsert("test", JsonObject.create, UpsertOptions().parentSpan(span).durability(Durability.Majority)).get
 
-      span.setStatus(StatusCode.ERROR)
+      span.status(StatusCode.ERROR)
 
       span.end()
     })
