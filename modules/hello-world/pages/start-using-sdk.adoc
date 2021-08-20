@@ -15,6 +15,7 @@ include::project-docs:partial$attributes.adoc[]
 The Couchbase Scala SDK is available on the Maven repository, packaged for Scala 2.12 and 2.13.
 The latest version, as of July 2021, is 1.2.0.
 
+=== With SBT Projects
 It can be included in your SBT build like this:
 
 [source,sbt]
@@ -24,7 +25,8 @@ libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.2.0"
 
 This will automatically use the Scala 2.12 or 2.13 builds, as appropriate for your SBT project.
 
-Or in your `build.gradle` like this:
+=== With Gradle Projects
+It can be included in your `build.gradle` like this for 2.12:
 
 [source,groovy]
 ----
@@ -33,7 +35,18 @@ dependencies {
 }
 ----
 
-Or into your Maven `pom.xml`:
+or 2.13:
+
+[source,groovy]
+----
+dependencies {
+    compile group: 'com.couchbase.client', name: 'scala-client_2.13', version: '1.2.0'
+}
+----
+
+=== With Maven Projects
+
+It can be included in your Maven `pom.xml` like this for 2.12:
 
 [source,xml]
 ----
@@ -46,7 +59,18 @@ Or into your Maven `pom.xml`:
 </dependencies>
 ----
 
-With Gradle or Maven, as with most Scala libraries, you must specify "scala-client_2.12" or "scala-client_2.13" as appropriate.
+or 2.13:
+
+[source,xml]
+----
+<dependencies>
+    <dependency>
+        <groupId>com.couchbase.client</groupId>
+        <artifactId>scala-client_2.13</artifactId>
+        <version>1.2.0</version>
+    </dependency>
+</dependencies>
+----
 
 == Connecting to a Cluster
 
@@ -60,6 +84,10 @@ include::example$Cluster.scala[tag=imports,indent=0]
 
 Now we can connect to the cluster:
 
+[{tabs}]
+====
+Local Couchbase Server::
++
 [source,scala]
 ----
 include::example$Cluster.scala[tag=cluster,indent=0]
@@ -67,10 +95,23 @@ include::example$Cluster.scala[tag=cluster,indent=0]
 
 Of course, you'll need to change the IP address to match your own cluster's.
 
-NOTE: `Cluster.connect` actually returns a `Try[Cluster]`, as the Scala client uses functional error handling and does not throw exceptions.
-You'll see examples later of how to better handle a `Try`, but for simplicity here we'll assume the operation succeeded and get the result as a `Cluster` using `.get`.
+Couchbase Cloud::
++
+--
+You connect to a Couchbase Cloud cluster the same as any other cluster, except that the use of TLS and a certificate is mandatory, and the "couchbases://" connection string prefix should be used to allow DNS SRV lookup.
 
 If you are connecting to Couchbase Cloud rather than a local Couchbase Server, then also refer to the <<cloud-connections, Cloud section>>, below.
+
+[source,scala]
+----
+include::example$Cluster.scala[tag=cloud-cluster,indent=0]
+----
+
+--
+====
+
+NOTE: `Cluster.connect` returns a `Try[Cluster]`, as the Scala client uses functional error handling and does not throw exceptions.
+You'll see examples later of how to better handle a `Try`, but for simplicity here we'll assume the operation succeeded and get the result as a `Cluster` using `.get`.
 
 Couchbase uses xref:{version-server}@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources, so specify the username and password of a user you've setup during installation of the Couchbase Data Platform.
 
@@ -187,4 +228,4 @@ For performing operations against multiple documents, check out how to use N1QL 
 The Scala SDK includes three APIs.  The examples above show the simple blocking API, for simplicity, but you can also perform all operations in an async style using Scala `Future`, and a reactive style using Project Reactor `SMono` and `SFlux`.
 Please see xref:concurrent-async-apis[Choosing an API] for more details.
 
-API reference are available in a javadocs jar alongside the release.
+API reference are available in a scaladocs jar alongside the release.
