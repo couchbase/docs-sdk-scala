@@ -2,19 +2,27 @@ include::project-docs:partial$attributes.adoc[]
 
 include::{version-server}@sdk:pages:partial$troubleshooting-cloud-connections.adoc[]
 
+
 == Additional Steps
+
 - Check your IP is whitelisted in the Couchbase Cloud UI as an Allowed IP (make sure to hit Save after adding it).
 - That you are using "couchbases://<hostname>" as your connection string, to allow DNS SRV.
 - That you have downloaded the Couchbase Cloud cluster's Security Certificate and supplied it via `trustCertificate`.
 - That you have enabled TLS via `enableTls(true)`.
 - That the user you are connecting as has been created in the Couchbase Cloud and has correct permissions for the bucket you are connecting to.
-- The SDK logging should give some indication as to what's failing.  In particular, check if the DNS SRV lookup is successful.  It will look something like `[ INFO] (cb-events) [com.couchbase.core][DnsSrvRecordsLoadedEvent][2086ms] Loaded seed hosts from DNS SRV: [cb-0000.<hostname>, cb-0001.<hostname>, cb-0002.<hostname>]`.
-
-You can determine if the certificate is the cause of the connection issues by disabling certificate validation with this alternative `ClusterEnvironment` configuration:
-
-[source,scala]
-----
-include::hello-world:example$Cluster.scala[tag=cloud-cluster-insecure,indent=0]
-----
-This is not a secure connection.
-It is only suitable for debugging purposes, and should not be used in production.
+- The SDK logging should give some indication as to what's failing. 
+  In particular, check if the DNS SRV lookup is successful. 
+  It will look something like:
+  +
+  ----
+  `[ INFO] (cb-events) [com.couchbase.core][DnsSrvRecordsLoadedEvent][2086ms] Loaded seed hosts from DNS SRV: [cb-0000.<hostname>, cb-0001.<hostname>, cb-0002.<hostname>]`.
+  ----
+- You can determine if the certificate is the cause of the connection issues by disabling certificate validation with this alternative `ClusterEnvironment` configuration:
+  +
+  [source,scala]
+  ----
+  include::hello-world:example$Cluster.scala[tag=cloud-cluster-insecure,indent=0]
+  ----
+  +
+  _This is not a secure connection._
+  _It is only suitable for debugging purposes, and should not be used in production._
