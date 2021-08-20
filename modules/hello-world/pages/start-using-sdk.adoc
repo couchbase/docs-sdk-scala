@@ -88,12 +88,14 @@ Now we can connect to the cluster:
 ====
 Local Couchbase Server::
 +
+--
 [source,scala]
 ----
 include::example$Cluster.scala[tag=cluster,indent=0]
 ----
 
 Of course, you'll need to change the IP address to match your own cluster's.
+--
 
 Couchbase Cloud::
 +
@@ -106,7 +108,6 @@ If you are connecting to Couchbase Cloud rather than a local Couchbase Server, t
 ----
 include::example$Cluster.scala[tag=cloud-cluster,indent=0]
 ----
-
 --
 ====
 
