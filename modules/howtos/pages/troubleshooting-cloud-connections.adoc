@@ -13,16 +13,16 @@ include::{version-server}@sdk:pages:partial$troubleshooting-cloud-connections.ad
 * The SDK logging should give some indication as to what's failing. 
   In particular, check if the DNS SRV lookup is successful. 
   It will look something like:
-  +
-  ----
-  [ INFO] (cb-events) [com.couchbase.core][DnsSrvRecordsLoadedEvent][2086ms] Loaded seed hosts from DNS SRV: [cb-0000.<hostname>, cb-0001.<hostname>, cb-0002.<hostname>]
-  ----
++
+----
+[ INFO] (cb-events) [com.couchbase.core][DnsSrvRecordsLoadedEvent][2086ms] Loaded seed hosts from DNS SRV: [cb-0000.<hostname>, cb-0001.<hostname>, cb-0002.<hostname>]
+----
 * You can determine if the certificate is the cause of the connection issues by disabling certificate validation with this alternative `ClusterEnvironment` configuration:
-  +
-  [source,scala]
-  ----
-  include::hello-world:example$Cluster.scala[tag=cloud-cluster-insecure,indent=0]
-  ----
-  +
-  _This is not a secure connection._
-  _It is only suitable for debugging purposes, and should not be used in production._
++
+[source,scala]
+----
+include::hello-world:example$Cluster.scala[tag=cloud-cluster-insecure,indent=0]
+----
++
+_This is not a secure connection._
+_It is only suitable for debugging purposes, and should not be used in production._
