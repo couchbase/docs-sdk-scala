@@ -235,13 +235,12 @@ F4+FjEqAEIr1mQepDaNM0gEfVcgd2SzGhC3yhYFBAH//8W4DUot5ciEhoBs=
 -----END CERTIFICATE-----
 ----
 
-The next step is to enable encryption and pass it the path to the certificate file.
+The next step is to enable encryption and pass it the path to the certificate file:
 
-// todo needs SCBC-189
-//[source,scala]
-//----
-//include::example$ManagingConnections.scala[tag=secure,indent=0]
-//----
+[source,scala]
+----
+include::example$ManagingConnections.scala[tag=secure,indent=0]
+----
 
 Then use this custom `ClusterEnvironment` when opening the connection to the cluster.
 See <<cluster-environment>> for an example of creating a `Cluster` with a custom environment.
