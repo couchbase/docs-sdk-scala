@@ -9,12 +9,48 @@
 {description}
 
 
+== Version 1.2.1 (1 September 2021)
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.1/com/couchbase/client/scala/index.html[API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.2.1**
+* com.couchbase.client:**core-io:2.2.1**
+* io.projectreactor:**reactor-core:3.4.9**
+* org.reactivestreams:**reactive-streams:1.0.3**
+
+=== Improvements
+* https://issues.couchbase.com/browse/SCBC-328[SCBC-328]:
+Update collections compat dependency.
+* https://issues.couchbase.com/browse/SCBC-325[SCBC-325]:
+Add serialization support for Apache Spark.
+* https://issues.couchbase.com/browse/SCBC-329[SCBC-329]:
+Expose all builder methods on SecurityConfig.
+* https://issues.couchbase.com/browse/JVMCBC-1010[JVMCBC-1010]:
+Maintenance dependency bump.
+* https://issues.couchbase.com/browse/JVMCBC-990[JVMCBC-990]:
+WaitUntilReady timing out with 6.0.x and unhealthy seed nodes.
+* https://issues.couchbase.com/browse/JVMCBC-999[JVMCBC-999]:
+Properly map server query timeout while streaming.
+* https://issues.couchbase.com/browse/JVMCBC-1004[JVMCBC-1004]:
+Configure and apply default log level for ConsoleLogger.
+* https://issues.couchbase.com/browse/JVMCBC-1005[JVMCBC-1005]:
+Allow to export Context as Map.
+* https://issues.couchbase.com/browse/JVMCBC-1006[JVMCBC-1006]:
+ErrorContext must be included in message.
+
+=== Bug fixes
+* https://issues.couchbase.com/browse/JVMCBC-1002[JVMCBC-1002]:
+Default log level reverted to INFO.
+* https://issues.couchbase.com/browse/JVMCBC-1007[JVMCBC-1007]:
+LoggingMeter incorrectly marked as Volatile in SDK 3.2.
+
 == Version 1.2.0 (20 July 2021)
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.0/com/couchbase/client/scala/index.html[API Reference]
 
 Version 1.2.0 is the first GA release of the 1.2 series, promoting to GA support for the scopes and collections provided by Couchbase Server 7.0, and also OpenTelemetry.
-In addition, a support release for Scala 2.13 is now provided.
+In addition, a supported release for Scala 2.13 is now provided.
 
 The supported and tested dependencies for this release are:
 
@@ -71,7 +107,7 @@ Add support for SDK2-compatible LegacyTranscoder.
 Update OpenTelemetry to 1.3.0.
 
 === Interface Changes
-All interface changes are to interfaces that are currently in beta and marked `@Stability.Volatile` or `@Stability.Uncommitted`.
+All interface changes are to interfaces that are currently in beta and marked @Stability.Volatile or @Stability.Uncommitted.
 
 * https://issues.couchbase.com/browse/JVMCBC-978[JVMCBC-978]:
 Rename AggregatingMeter to LoggingMeter.
