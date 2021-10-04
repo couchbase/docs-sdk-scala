@@ -16,12 +16,10 @@ include::{version-server}@sdk:pages:partial$health-check.adoc[tag="users"]
 
 include::{version-server}@sdk:pages:partial$health-check.adoc[tag="ping"]
 
-[source,javascript]
+[source,scala]
 ----
-let services = [couchbase.ServiceType.KeyValue, couchbase.ServiceType.Query]
-bucket.ping(services, (err, res) => {
-    console.log(res)
-})
+cluster.ping(PingOptions().serviceTypes(Set(ServiceType.KV, ServiceType.QUERY)))
+    .map(result => System.out.println(result))
 /*
 {
     "config_rev":1822,
@@ -86,11 +84,10 @@ bucket.ping(services, (err, res) => {
 include::{version-server}@sdk:pages:partial$health-check.adoc[tag="diag"]
 
 
-[source,javascript]
+[source,scala]
 ----
-bucket.diagnostics((err, res) => {
-    console.log(res)
-})
+cluster.diagnostics()
+  .map(result => System.out.println(result))
 /*
 {
     "id":"0x10290d100","kv":[
