@@ -12,7 +12,7 @@ repositories {
     mavenCentral()
     mavenLocal()
     maven {
-        url 'http://files.couchbase.com/maven2'
+        url 'https://files.couchbase.com/maven2'
     }
     maven {
         url 'https://oss.sonatype.org/content/repositories/snapshots/'
@@ -31,7 +31,7 @@ sourceSets {
 }
 
 dependencies {
-    implementation group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.2.1-SNAPSHOT'
+    implementation group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.2.1'
     implementation group: 'com.couchbase.client', name: 'tracing-opentelemetry', version: '0.3.4'
     implementation group: 'com.couchbase.client', name: 'metrics-opentelemetry', version: '0.1.4'
     implementation group: 'com.couchbase.client', name: 'metrics-micrometer', version: '0.1.4'
