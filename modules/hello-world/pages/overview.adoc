@@ -18,15 +18,9 @@ The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster 
 
 [.column]
 [.content]
-[source,xml]
+[source,sbt]
 ----
-<dependencies>
-    <dependency>
-        <groupId>com.couchbase.client</groupId>
-        <artifactId>scala-client_2.12</artifactId>
-        <version>1.2.1</version>
-    </dependency>
-</dependencies>
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.2.2"
 ----
 
 
