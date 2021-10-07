@@ -24,29 +24,29 @@ The supported and tested dependencies for this release are:
 * https://issues.couchbase.com/browse/SCBC-265[SCBC-265]:
 Added an eventing management API.
 * https://issues.couchbase.com/browse/SCBC-332[SCBC-332]:
-Improvements to JsonObject/JsonArray.
-* https://issues.couchbase.com/browse/JVMCBC-1013[JVMCBC-1013]:
-Move N1QL prepared statement cache into core-io.
+Fixes to `JsonObject` and `JsonArray`: improvements to the API for Safe transformations, `fromSeq`, fixed some conversion issues.
 * https://issues.couchbase.com/browse/JVMCBC-1015[JVMCBC-1015]:
-Improve client side error message when TLS is enforced on the server side.
+Improved client side error message when TLS is enforced on the server side.
 * https://issues.couchbase.com/browse/JVMCBC-1016[JVMCBC-1016]:
 Gracefully handle more invalid connection string cases.
 * https://issues.couchbase.com/browse/JVMCBC-1022[JVMCBC-1022]:
-Batch-Log overflow messages in the DefaultEventBus.
+Batch-Log messages in DefaultEventBus. Now events which
+are overflowing are not directly logged to stderr but rather
+batched up and logged at interval.
+Note that this implies some "loss of precision", as
+not all dropped events are logged - one event per type is preserved.
 
 === Interface Affecting
 * https://issues.couchbase.com/browse/SCBC-331[SCBC-331]:
-Promote manager interfaces to committed.
+Promoted Manager interfaces to committed.
 
 === Bugs
 * https://issues.couchbase.com/browse/SCBC-330[SCBC-330]:
-JsonObjectSafe should be recursive.
+Ensured that JsonObjectSafe is recursive.
 * https://issues.couchbase.com/browse/JVMCBC-1017[JVMCBC-1017]:
-Threshold Logging Tracing not working due to context not being set.
-* https://issues.couchbase.com/browse/JVMCBC-1019[JVMCBC-1019]:
-CoreQueryAccessor issues redundant query requests.
+Fixed issue with Threshold Logging Tracing not working due to RequestContext not being set.
 * https://issues.couchbase.com/browse/JVMCBC-1020[JVMCBC-1020]:
-If a TargetedQueryRequest is sent and enhancedPreparedEnabled is true, the PREPARE statement should be executed on the same node.
+Added `target` property to QueryRequest and ensured it is honored for prepare and execute, so they are both run on the same node. This fix removes need for `TargetedQueryRequest`.
 
 == Version 1.2.1 (1 September 2021)
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.1/com/couchbase/client/scala/index.html[API Reference]
