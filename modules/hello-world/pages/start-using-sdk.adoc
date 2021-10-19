@@ -97,12 +97,12 @@ include::example$Cluster.scala[tag=cluster,indent=0]
 Of course, you'll need to change the IP address to match your own cluster's.
 --
 
-Couchbase Cloud::
+Couchbase Capella::
 +
 --
-You connect to a Couchbase Cloud cluster the same as any other cluster, except that the use of TLS and a certificate is mandatory, and the "couchbases://" connection string prefix should be used to allow DNS SRV lookup.
+You connect to a https://docs.couchbase.com/cloud/index.html[Couchbase Capella] cluster the same as any other cluster, except that the use of TLS and a certificate is mandatory, and the "couchbases://" connection string prefix should be used to allow DNS SRV lookup.
 
-If you are connecting to Couchbase Cloud rather than a local Couchbase Server, then also refer to the <<cloud-connections, Cloud section>>, below.
+If you are connecting to Capella rather than a local Couchbase Server, then also refer to the <<cloud-connections, Cloud section>>, below.
 
 [source,scala]
 ----
@@ -212,7 +212,7 @@ include::example$Cluster.scala[tag=replace-named,indent=0]
 
 == Cloud Connections
 
-For developing on Couchbase Cloud, if you are not working from the same _Availability Zone_ as your Couchbase Cloud, refer to the following:
+For developing on https://docs.couchbase.com/cloud/index.html[Couchbase Capella], if you are not working from the same _Availability Zone_ as your Capella instance, refer to the following:
 
 * Notes on xref:ref:client-settings.adoc#constrained-network-environments[Constrained Network Environments],
 * xref:project-docs:compatibility.adoc#network-requirements[Network Requirements],

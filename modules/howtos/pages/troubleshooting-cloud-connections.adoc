@@ -5,11 +5,11 @@ include::{version-server}@sdk:pages:partial$troubleshooting-cloud-connections.ad
 
 == Additional Steps
 
-* Check your IP is whitelisted in the Couchbase Cloud UI as an Allowed IP (make sure to hit Save after adding it).
+* Check your IP is whitelisted in the https://docs.couchbase.com/cloud/index.html[Couchbase Capella] UI as an Allowed IP (make sure to hit Save after adding it).
 * That you are using "couchbases://<hostname>" as your connection string, to allow DNS SRV.
-* That you have downloaded the Couchbase Cloud cluster's Security Certificate and supplied it via `trustCertificate`.
+* That you have downloaded the Capella cluster's Security Certificate and supplied it via `trustCertificate`.
 * That you have enabled TLS via `enableTls(true)`.
-* That the user you are connecting as has been created in the Couchbase Cloud and has correct permissions for the bucket you are connecting to.
+* That the user you are connecting as has been created in Capella and has correct permissions for the bucket you are connecting to.
 * The SDK logging should give some indication as to what's failing. 
   In particular, check if the DNS SRV lookup is successful. 
   It will look something like:
