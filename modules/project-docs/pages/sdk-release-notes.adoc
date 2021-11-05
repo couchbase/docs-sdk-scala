@@ -21,12 +21,14 @@ The supported and tested dependencies for this release are:
 
 === Improvements
 * https://issues.couchbase.com/browse/JVMCBC-1026[JVMCBC-1026]:
-Support error map v2.
+Added support for Error Map v2.
+
 * https://issues.couchbase.com/browse/SCBC-326[SCBC-326]:
-Add LookupInResult.contentAsBytes().
-* https://issues.couchbase.com/browse/SCBC-324[SCBC-324],
-* https://issues.couchbase.com/browse/SCBC-337[SCBC-337]
-Update dependencies.
+Added `LookupInResult.contentAsBytes()`.
+
+* https://issues.couchbase.com/browse/SCBC-324[SCBC-324];
+https://issues.couchbase.com/browse/SCBC-337[SCBC-337]
+Updated dependencies.
 
 
 == Version 1.2.2 (6 October 2021)
