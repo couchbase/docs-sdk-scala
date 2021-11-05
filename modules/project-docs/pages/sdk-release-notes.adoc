@@ -8,6 +8,28 @@
 [abstract]
 {description}
 
+== Version 1.2.3 (2 November 2021)
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.3/com/couchbase/client/scala/index.html[API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.3/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.2.3**
+* com.couchbase.client:**core-io:2.2.3**
+* io.projectreactor:**reactor-core:3.4.9**
+* org.reactivestreams:**reactive-streams:1.0.3**
+
+=== Improvements
+* https://issues.couchbase.com/browse/JVMCBC-1026[JVMCBC-1026]:
+Added support for Error Map v2.
+
+* https://issues.couchbase.com/browse/SCBC-326[SCBC-326]:
+Added `LookupInResult.contentAsBytes()`.
+
+* https://issues.couchbase.com/browse/SCBC-324[SCBC-324];
+https://issues.couchbase.com/browse/SCBC-337[SCBC-337]
+Updated dependencies.
+
 
 == Version 1.2.2 (6 October 2021)
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.2/com/couchbase/client/scala/index.html[API Reference]
