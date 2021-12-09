@@ -8,6 +8,29 @@
 [abstract]
 {description}
 
+== Version 1.2.4 (9 December 2021)
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.4/com/couchbase/client/scala/index.html[API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.4/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.2.4**
+* com.couchbase.client:**core-io:2.2.4**
+* io.projectreactor:**reactor-core:3.4.12**
+* org.reactivestreams:**reactive-streams:1.0.3**
+
+=== Improvements
+* https://issues.couchbase.com/browse/SCBC-334[SCBC-334]:
+Bucket Management API - Add Storage Option for Magma.
+* https://issues.couchbase.com/browse/JVMCBC-1033[JVMCBC-1033], https://issues.couchbase.com/browse/JVMCBC-1034[JVMCBC-1034]:
+Updates internal and external dependencies to their latest bugfix versions. This also updates OpenTelemetry to 1.7.x.
+* https://issues.couchbase.com/browse/JVMCBC-1035[JVMCBC-1035]:
+The (internal) subDocumentField is now serializable - this is needed for apache spark integration.
+* https://issues.couchbase.com/browse/JVMCBC-1032[JVMCBC-1032]:
+Adds (volatile) support for Rate/Quota Limits. This is needed for Couchbase Capella.
+* https://issues.couchbase.com/browse/JVMCBC-1039[JVMCBC-1039]:
+Include httpStatus in Query and Analytics Error Context, as well as the vbucket in the KV error context. This helps with debugging.
+
 == Version 1.2.3 (2 November 2021)
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.3/com/couchbase/client/scala/index.html[API Reference]
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.3/[Core API Reference]
