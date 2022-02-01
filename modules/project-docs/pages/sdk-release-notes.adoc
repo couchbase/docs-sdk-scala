@@ -23,7 +23,7 @@ The supported and tested dependencies for this release are:
 
 === Bugs
 * https://issues.couchbase.com/browse/SCBC-339[SCBC-339]:
-``  QueryIndexManager` `watchIndexes` now refreshes on every try.
+` QueryIndexManager` `watchIndexes` now refreshes on every try.
 * https://issues.couchbase.com/browse/JVMCBC-1046[JVMCBC-1046]:
 Do not load global config if node not in seed node list anymore.
 * https://issues.couchbase.com/browse/JVMCBC-1058[JVMCBC-1058]:
