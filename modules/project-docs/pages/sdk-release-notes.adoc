@@ -8,6 +8,59 @@
 [abstract]
 {description}
 
+== Version 1.2.5 (2 February 2021)
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.5/com/couchbase/client/scala/index.html[API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.5/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.2.5**
+* com.couchbase.client:**core-io:2.2.5**
+* io.projectreactor:**reactor-core:3.4.14**
+* org.reactivestreams:**reactive-streams:1.0.3**
+
+=== Bugs
+* https://issues.couchbase.com/browse/SCBC-339[SCBC-339]:
+QueryIndexManager watchIndexes needs to refresh on every try.
+* https://issues.couchbase.com/browse/JVMCBC-1046[JVMCBC-1046]:
+Do not load global config if node not in seed node list anymore.
+* https://issues.couchbase.com/browse/JVMCBC-1058[JVMCBC-1058]:
+Throw FeatureNotAvailableException for scopes and collections on memcached buckets.
+
+=== Improvements
+* https://issues.couchbase.com/browse/SCBC-341[SCBC-341]:
+Removed the Azure link type from the analytics management API, due to a change in the underlying server API.
+(Note that this interface is marked @Stability.Volatile indicating that it can change.)
+* https://issues.couchbase.com/browse/SCBC-315[SCBC-315]:
+Custom conflict resolution added to the bucket management API.
+* https://issues.couchbase.com/browse/SCBC-319[SCBC-319]:
+FTS options now include IncludeLocations and Operator.
+* https://issues.couchbase.com/browse/SCBC-333[SCBC-333]:
+Query API now supports preserving TTL.
+* https://issues.couchbase.com/browse/SCBC-335[SCBC-335]:
+Index management API now supports managing indexes for a collection.
+* https://issues.couchbase.com/browse/SCBC-342[SCBC-342]:
+Send configured user timeout to search.
+* https://issues.couchbase.com/browse/JVMCBC-1037[JVMCBC-1037]:
+Avoid whenComplete closure for timeout cancellation.
+This is a small internal performance optimisation.
+* https://issues.couchbase.com/browse/JVMCBC-1045[JVMCBC-1045]:
+Added an internal watchdog that updates the cluster configuration if the number of nodes changes.
+* https://issues.couchbase.com/browse/JVMCBC-1048[JVMCBC-1048]:
+Always set RequestContext on RequestSpan.
+* https://issues.couchbase.com/browse/JVMCBC-1056[JVMCBC-1056]:
+Log more info on unexpected endpoint disconnect.
+* https://issues.couchbase.com/browse/JVMCBC-1059[JVMCBC-1059]:
+Handles any `retry:true` field in a query error result by retrying it.
+* https://issues.couchbase.com/browse/JVMCBC-1055[JVMCBC-1055],
+https://issues.couchbase.com/browse/JVMCBC-1047[JVMCBC-1047],
+https://issues.couchbase.com/browse/JVMCBC-1051[JVMCBC-1051]:
+Updating dependencies.
+Netty goes from 4.1.72.Final to 4.1.73.Final.
+Jackson from 2.13.0 to 2.13.1.
+Reactor from 3.4.12 to 3.4.14.
+log4j (an optional dependency) from 2.15.0 to 2.17.1.
+
 == Version 1.2.4 (9 December 2021)
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.4/com/couchbase/client/scala/index.html[API Reference]
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.4/[Core API Reference]
