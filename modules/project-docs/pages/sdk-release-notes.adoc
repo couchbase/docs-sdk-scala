@@ -717,7 +717,7 @@ The behavior has now been changed so that the client will try the old and new se
 Version 1.0.3 is the fourth release of the Scala SDK.
 It brings no new changes to the Scala client itself, but inherits enhancements and bugfixes over the last stable release from the core-io dependency.
 
-https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.0.3/scaladocs/com/couchbase/client/scala/index.html[API Reference] |
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.0.3/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.0.4/[Core API Reference]
 
 The supported and tested dependencies for this release are:
