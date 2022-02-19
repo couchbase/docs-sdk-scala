@@ -142,3 +142,5 @@ Using the latest Spring Data Couchbase should ensure that this is so.
 
 
 include::{version-server}@sdk:shared:partial$interface-stability-pars.adoc[tag=interface-stability-section]
+
+include::7.0@sdk:shared:partial$api-version.adoc[tag=api-version]
