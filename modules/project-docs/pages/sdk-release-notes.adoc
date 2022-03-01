@@ -295,11 +295,11 @@ The supported and tested dependencies for this release are:
 == Bug Fixes
 
 * https://issues.couchbase.com/browse/JVMCBC-1067[JVMCBC-1067]:
-Internal and external maintenance dependencies are updated to their latest available bufix releases (including Netty to 4.1.74.Final).
+Internal and external maintenance dependencies are updated to their latest available bugfix releases (including Netty to 4.1.74.Final).
 * https://issues.couchbase.com/browse/JVMCBC-1046[JVMCBC-1046]:
 Added fix to not load the global config if a node is not in the seed node list anymore.
 * https://issues.couchbase.com/browse/JVMCBC-1006[JVMCBC-1006]:
-`ErrorContext` must be included in message.
+`ErrorContext` is now included in the message of a `CouchbaseException`.
 
 == Version 1.1.7 (11 August 2021)
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.1.7/com/couchbase/client/scala/index.html[API Reference]
