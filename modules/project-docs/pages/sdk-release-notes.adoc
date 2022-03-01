@@ -315,11 +315,11 @@ The supported and tested dependencies for this release are:
 * https://issues.couchbase.com/browse/JVMCBC-949[JVMCBC-949]:
 Opening a non-default collection on an memcached bucket now fails fast.
 * https://issues.couchbase.com/browse/JVMCBC-983[JVMCBC-983]:
-Ignore slow subscribers on certain Flux intervals.
+Slow subscribers are now ignored on certain Flux intervals.
 * https://issues.couchbase.com/browse/JVMCBC-990[JVMCBC-990]:
-Gracefully handle cluster-level WaitUntilReady against clusters < 6.5.
+The SDK now gracefully handles cluster-level WaitUntilReady against clusters < 6.5.
 * https://issues.couchbase.com/browse/SCBC-296[SCBC-296]:
-Fixes a JsonArraySafe bug.
+Fixes a `JsonArraySafe` bug.
 
 === Improvements
 
