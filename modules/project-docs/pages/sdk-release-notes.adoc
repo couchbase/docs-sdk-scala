@@ -9,6 +9,42 @@
 {description}
 
 
+== Version 1.2.6 (2 March 2021)
+There are no changes at the Scala SDK layer in this release, but there are bugfixes and improvements in the underlying core-io library.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.6/com/couchbase/client/scala/index.html[API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.6/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.2.6**
+* com.couchbase.client:**core-io:2.2.6**
+* io.projectreactor:**reactor-core:3.4.14**
+* org.reactivestreams:**reactive-streams:1.0.3**
+
+=== Bugs
+* https://issues.couchbase.com/browse/JVMCBC-1060[JVMCBC-1060]:
+Rate limited exceptions not thrown for SearchIndexManager errors.
+* https://issues.couchbase.com/browse/JVMCBC-1071[JVMCBC-1071]:
+Prevent negative value to be sent to ValueRecorder.
+
+=== New Features
+* https://issues.couchbase.com/browse/JVMCBC-1057[JVMCBC-1057]:
+Add core infrastructure for the Backup service.
+* https://issues.couchbase.com/browse/JVMCBC-1064[JVMCBC-1064]:
+When implementing a custom RetryStrategy, a new overload of `RetryAction.noRetry` lets you specify an exception translator for converting the default request cancellation exception into your preferred exception class.
+
+=== Improvements
+* https://issues.couchbase.com/browse/JVMCBC-1065[JVMCBC-1065]:
+RetryReason.allowsNonIdempotentRetry() is now public, so you can call it from a custom RetryStrategy.
+* https://issues.couchbase.com/browse/JVMCBC-1066[JVMCBC-1066]:
+When SecurityConfig.Builder.trustCertificate(Path) is given a file containing more than one certificate, it now trusts all the certificates instead of just the first one.
+Likewise, the result of SecurityConfig.decodeCertificates(List<String>) now includes all certificates in each string, not just the first certificate in each string.
+* https://issues.couchbase.com/browse/JVMCBC-1068[JVMCBC-1068]:
+Explicitly handle FeatureNotAvailable for Magma on CE.
+* https://issues.couchbase.com/browse/JVMCBC-1069[JVMCBC-1069]:
+Explicitly handle FeatureNotAvailable for Query CE.
+
 == Version 1.2.5 (2 February 2021)
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.5/com/couchbase/client/scala/index.html[API Reference]
