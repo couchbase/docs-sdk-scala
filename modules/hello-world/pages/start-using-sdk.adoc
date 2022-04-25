@@ -119,7 +119,7 @@ dependencies {
     compile group: 'com.couchbase.client', name: 'scala-client_2.13', version: '1.3.0'
 }
 ----
-==
+--
 
 Maven::
 +
