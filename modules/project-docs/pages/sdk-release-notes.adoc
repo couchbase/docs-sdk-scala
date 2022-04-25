@@ -8,8 +8,33 @@
 [abstract]
 {description}
 
+== Version 1.2.7 (25 April 2022)
+This bugfix release brings stability to the 1.2.x branch of the SDK.
 
-== Version 1.2.6 (2 March 2021)
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.7/com/couchbase/client/scala/index.html[API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.7/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.2.7**
+* com.couchbase.client:**core-io:2.2.7**
+* io.projectreactor:**reactor-core:3.4.17**
+* org.reactivestreams:**reactive-streams:1.0.3**
+
+=== Bugs
+* https://issues.couchbase.com/browse/SCBC-350[SCBC-350]:
+The KeyValue error code `NOT_STORED` is now properly mapped to `DocumentExistsException` on `insert` and `mutateIn`.
+* https://issues.couchbase.com/browse/JVMCBC-1077[JVMCBC-1077]:
+The environment now properly shuts down the `Meter` if it is owned and not passed in externally.
+
+=== Improvements
+* https://issues.couchbase.com/browse/JVMCBC-1082[JVMCBC-1082]:
+Updated internal and external dependencies.
+ * Netty from 4.1.73 to 4.1.76
+ * Jackson from 2.13.1 to 2.13.2 (and 2.13.2.2)
+ * Reactor from 3.4.14 to 3.4.17 
+
+== Version 1.2.6 (2 March 2022)
 There are no changes at the Scala SDK layer in this release, but there are bugfixes and improvements in the underlying core-io library.
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.6/com/couchbase/client/scala/index.html[API Reference]
@@ -46,7 +71,7 @@ Added explicit handling of `FeatureNotAvailable` for Magma on CE.
 * https://issues.couchbase.com/browse/JVMCBC-1069[JVMCBC-1069]:
 Added explicit handling of `FeatureNotAvailable` for Query CE.
 
-== Version 1.2.5 (2 February 2021)
+== Version 1.2.5 (2 February 2022)
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.5/com/couchbase/client/scala/index.html[API Reference]
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.5/[Core API Reference]
