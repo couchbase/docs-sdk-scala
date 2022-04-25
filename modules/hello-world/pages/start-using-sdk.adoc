@@ -1,65 +1,130 @@
 = Install and Start Using the Scala SDK with Couchbase Server
-:description: The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster from the Scala language.
+:description: Get up and running quickly, installing the Couchbase Scala SDK, and running our Hello World example.
 :navtitle: Start Using the SDK
 :page-topic-type: howto
 :page-aliases: ROOT:getting-started,ROOT:start-using,ROOT:hello-couchbase,ROOT:start-using-sdk
 :lang: Scala
+:page-toclevels: 2
 
 include::project-docs:partial$attributes.adoc[]
 
 [abstract]
 {description}
 
-== Installing the SDK
+The Couchbase Scala SDK allows Scala applications to access a Couchbase cluster.
 
-The Couchbase Scala SDK is available on the Maven repository, packaged for Scala 2.12 and 2.13.
-The latest version, as of March 2022, is 1.2.6.
+== Hello Couchbase
 
-=== With SBT Projects
-It can be included in your SBT build like this:
+On this page we show you how to quickly get up and running -- installing the Couchbase Scala SDK, and trying out the _Hello World_ code example against Couchbase Capella, or against a local Couchbase cluster.
 
+We will go through the code sample step by step, but for those in a hurry to see it, here it is:
+
+[{tabs}] 
+==== 
+Couchbase Capella Sample::
++
+--
+[source,scala]
+----
+include::example$Cluster.scala[tag=imports]
+object CloudClusterExample {
+  def cloudConnect(): Unit = {
+include::example$Cluster.scala[tag=cloud-cluster]
+
+  }
+
+  def main(args: Array[String]): Unit = {
+    cloudConnect()
+  }
+}
+
+object ClusterExample {
+  def main(args: Array[String]) {
+include::example$Cluster.scala[tag=resources]
+include::example$Cluster.scala[tag=json]
+include::example$Cluster.scala[tag=upsert]
+include::example$Cluster.scala[tag=get]
+    def getFor() {
+include::example$Cluster.scala[tag=get-for]
+    def getMap() {
+include::example$Cluster.scala[tag=get-map]
+    def replaceOptions() {
+include::example$Cluster.scala[tag=replace-options]
+    }
+
+    def replaceNamed() {
+include::example$Cluster.scala[tag=replace-named]
+    }
+  }
+}
+----
+--
+
+Local Couchbase Server::
++
+--
+[source,scala]
+----
+include::example$Cluster.scala[tag=imports]
+object ClusterExample {
+  def main(args: Array[String]) {
+include::example$Cluster.scala[tag=cluster]
+include::example$Cluster.scala[tag=resources]
+include::example$Cluster.scala[tag=json]
+include::example$Cluster.scala[tag=upsert]
+include::example$Cluster.scala[tag=get]
+    def getFor() {
+include::example$Cluster.scala[tag=get-for]
+    def getMap() {
+include::example$Cluster.scala[tag=get-map]
+    def replaceOptions() {
+include::example$Cluster.scala[tag=replace-options]
+    }
+
+    def replaceNamed() {
+include::example$Cluster.scala[tag=replace-named]
+    }
+  }
+}
+----
+--
+====
+
+
+== Quick Install
+
+A more detailed guide in our xref:project-docs:sdk-full-installation.adoc[Installation page] covers every supported platform, but this section should be enough to get up and running in most cases.
+
+[{tabs}] 
+==== 
+SBT::
++
+--
 [source,sbt]
 ----
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.2.6"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.3.0"
 ----
 
 This will automatically use the Scala 2.12 or 2.13 builds, as appropriate for your SBT project.
+--
 
-=== With Gradle Projects
-It can be included in your `build.gradle` like this for 2.12:
-
-[source,groovy]
-----
-dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.2.6'
-}
-----
-
-or 2.13:
+Gradle::
++
+--
+It can be included in your `build.gradle` like this for 2.13:
 
 [source,groovy]
 ----
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.13', version: '1.2.6'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.13', version: '1.3.0'
 }
 ----
+==
 
-=== With Maven Projects
-
-It can be included in your Maven `pom.xml` like this for 2.12:
-
-[source,xml]
-----
-<dependencies>
-    <dependency>
-        <groupId>com.couchbase.client</groupId>
-        <artifactId>scala-client_2.12</artifactId>
-        <version>1.2.6</version>
-    </dependency>
-</dependencies>
-----
-
-or 2.13:
+Maven::
++
+--
+It can be included in your Maven `pom.xml` like this for 2.13:
 
 [source,xml]
 ----
@@ -67,12 +132,21 @@ or 2.13:
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_2.13</artifactId>
-        <version>1.2.6</version>
+        <version>1.3.0</version>
     </dependency>
 </dependencies>
 ----
+--
+====
 
-== Connecting to a Cluster
+For Scala 2.12, refer to the full xref:project-docs:sdk-full-installation.adoc[Installation page].
+
+
+== Step by Step
+
+Here's the above Hello World example, broken down into individual actions.
+
+=== Connecting to a Cluster
 
 Now you have the Scala client installed, try out the following to connect to a Couchbase cluster.
 
@@ -135,7 +209,7 @@ Opening resources such as buckets is asynchronous -- that is, the `cluster.bucke
 If not present, then the first Key Value (KV) operation on the bucket will wait for it to be ready.
 As with `Cluster.connect`, we use `.get` on the result here for simplicity: see the xref:howtos:managing-connections.adoc[Managing Connections] page for a more complete example including functional error-handling.
 
-== JSON
+=== JSON
 Now we can do some simple Key Value operations.  First, let's create some JSON.
 
 The Scala SDK directly supports several popular JSON libraries, including https://github.com/lihaoyi/upickle[uPickle/uJson], https://circe.github.io/circe/[Circe], https://github.com/playframework/play-json[Play Json], https://github.com/typelevel/jawn[Jawn], and https://github.com/json4s/json4s[Json4s] (if you'd like to see your favourite supported, please let us know).
@@ -153,7 +227,7 @@ These options are described in detail xref:howtos:json.adoc[here], but to get us
 include::example$Cluster.scala[tag=json,indent=0]
 ----
 
-== Key-Value Operations
+=== Key-Value Operations
 And now let's upsert it into Couchbase (upsert is an operation that will insert the document if it does not exist, or replace it if it does).
 We need to provide a unique ID for the JSON, and we'll use a UUID here:
 
@@ -175,7 +249,7 @@ include::example$Cluster.scala[tag=get,indent=0]
 
 Here we're fetching the value for the key `docId`, converting that value to a `JsonObjectSafe` (a simple wrapper around `JsonObject` that returns `Try` results - see xref:howtos:json.adoc#error-handling-and-jsonobjectsafe[here] for details), and then accessing the value of the *status* key as a String.
 
-== Better Error Handling
+=== Better Error Handling
 All three of these operations could fail, so there's quite a lot of error handling code here to do something quite simple.
 One way to improve on this is by using flatMap, like this:
 
@@ -193,7 +267,7 @@ include::example$Cluster.scala[tag=get-for,indent=0]
 
 Either of these methods will stop on the first failed operation.  So the final returned `Try` contains either a) `Success` and the result of the final operation, indicating that everything was successful, or b) `Failure` with the error returned by the first failing operation.
 
-== Overloads
+=== Overloads
 You'll notice that most operations in the Scala SDK have two overloads.
 One will take an Options builder, which provides all possible options that operation takes.
 For instance:
@@ -208,16 +282,6 @@ The other overload is provided purely for convenience.  It takes named arguments
 ----
 include::example$Cluster.scala[tag=replace-named,indent=0]
 ----
-
-
-== Cloud Connections
-
-For developing on https://docs.couchbase.com/cloud/index.html[Couchbase Capella], if you are not working from the same _Availability Zone_ as your Capella instance, refer to the following:
-
-* Notes on xref:ref:client-settings.adoc#constrained-network-environments[Constrained Network Environments],
-* xref:project-docs:compatibility.adoc#network-requirements[Network Requirements],
-* If you have a consumer-grade router which has problems with DNS-SRV records review our xref:howtos:troubleshooting-cloud-connections.adoc#troubleshooting-host-not-found[Troubleshooting Guide].
-
 
 == Next Steps
 You now know the basics of connecting to a Couchbase cluster, creating some JSON, and performing Key-Value operations, using the Scala SDK.
