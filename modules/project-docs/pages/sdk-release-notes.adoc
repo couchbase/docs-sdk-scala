@@ -8,6 +8,47 @@
 [abstract]
 {description}
 
+== Version 1.3.0 (26 April 2021)
+Version 1.3.0 is the first release of the 1.3 series, codenamed "Eos".
+
+The two headline changes in this release:
+
+* Supports the new functionality of Couchbase Server 7.1.
+* Bundles the public server security certificates for Couchbase Capella, to make it easier for users to get started with Capella.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.3.0/com/couchbase/client/scala/index.html[API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.3.0/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.3.0**
+* com.couchbase.client:**core-io:2.3.0**
+* io.projectreactor:**reactor-core:3.4.17**
+* org.reactivestreams:**reactive-streams:1.0.3**
+
+=== Improvements
+* https://issues.couchbase.com/browse/SCBC-352[SCBC-352]:
+Bundle public Capella CA certificate.
+* https://issues.couchbase.com/browse/JVMCBC-1074[JVMCBC-1074]:
+If you try to connect to Capella without enabling TLS, now you'll get an exception that says TLS is required (instead of an `UnknownHostException`).
+* https://issues.couchbase.com/browse/JVMCBC-1076[JVMCBC-1076]:
+Deprecate `Event.createdAt()` in favor of a version that returns an `Instant`.
+* https://issues.couchbase.com/browse/JVMCBC-1078[JVMCBC-1078]:
+Allow to customize the `schedulerThreadCount`.
+* https://issues.couchbase.com/browse/JVMCBC-1079[JVMCBC-1079]:
+Add ConnectionString SDK 3 compatibility attributes.
+* https://issues.couchbase.com/browse/JVMCBC-1082[JVMCBC-1082]:
+Update maintenance dependencies.
+* https://issues.couchbase.com/browse/JVMCBC-1085[JVMCBC-1085]:
+Store last connect attempt failure and expose through `Diagnostics`.
+
+=== Bugs
+* https://issues.couchbase.com/browse/SCBC-350[SCBC-350]:
+NOT_STORED when inserting a document needs to be handled as DocAlreadyExists
+* https://issues.couchbase.com/browse/SCBC-353[SCBC-353]:
+Incorrect GetAllIndexes response on default collection.
+* https://issues.couchbase.com/browse/JVMCBC-1077[JVMCBC-1077]:
+Shutting down a ClusterEnvironment now correctly stops a `Meter` owned by the cluster. This plugs a resource leak where `LoggingMeter` worker threads would never be stopped.
 
 == Version 1.2.6 (2 March 2021)
 There are no changes at the Scala SDK layer in this release, but there are bugfixes and improvements in the underlying core-io library.
