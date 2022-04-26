@@ -10,8 +10,7 @@ include::project-docs:partial$attributes.adoc[]
 {description}
 
 
-The Couchbase Scala SDK 1.1 Client supports Scala 2.12
-// and 2.13.
+The Couchbase Scala SDK 1.2 Client supports Scala 2.12 and 2.13.
 
 == Couchbase Version/SDK Version Matrix
 
