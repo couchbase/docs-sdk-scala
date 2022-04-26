@@ -1,4 +1,4 @@
-= Couchbase Scalaa SDK Installation
+= Couchbase Scala SDK Installation
 :description: Installation instructions for the Couchbase Scala Client.
 :navtitle: Full Installation
 :page-partial:
