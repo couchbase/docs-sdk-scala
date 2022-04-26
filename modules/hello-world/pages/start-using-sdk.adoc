@@ -163,17 +163,6 @@ Now we can connect to the cluster:
 
 [{tabs}]
 ====
-Local Couchbase Server::
-+
---
-[source,scala]
-----
-include::example$Cluster.scala[tag=cluster,indent=0]
-----
-
-Of course, you'll need to change the IP address to match your own cluster's.
---
-
 Couchbase Capella::
 +
 --
@@ -185,6 +174,17 @@ If you are connecting to Capella rather than a local Couchbase Server, then also
 ----
 include::example$Cluster.scala[tag=cloud-cluster,indent=0]
 ----
+--
+
+Local Couchbase Server::
++
+--
+[source,scala]
+----
+include::example$Cluster.scala[tag=cluster,indent=0]
+----
+
+Of course, you'll need to change the IP address to match your own cluster's.
 --
 ====
 
