@@ -8,7 +8,7 @@
 [abstract]
 {description}
 
-== Version 1.3.0 (26 April 2021)
+== Version 1.3.0 (26 April 2022)
 Version 1.3.0 is the first release of the 1.3 series, codenamed "Eos".
 
 The two headline changes in this release:
@@ -51,7 +51,7 @@ Fixed issue where incorrect `GetAllIndexes` response is returned on the default 
 Shutting down a `ClusterEnvironment` now correctly stops a `Meter` owned by the cluster.
 This plugs a resource leak where `LoggingMeter` worker threads would never be stopped.
 
-== Version 1.2.6 (2 March 2021)
+== Version 1.2.6 (2 March 2022)
 There are no changes at the Scala SDK layer in this release, but there are bugfixes and improvements in the underlying core-io library.
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.6/com/couchbase/client/scala/index.html[API Reference]
@@ -88,7 +88,7 @@ Added explicit handling of `FeatureNotAvailable` for Magma on CE.
 * https://issues.couchbase.com/browse/JVMCBC-1069[JVMCBC-1069]:
 Added explicit handling of `FeatureNotAvailable` for Query CE.
 
-== Version 1.2.5 (2 February 2021)
+== Version 1.2.5 (2 February 2022)
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.5/com/couchbase/client/scala/index.html[API Reference]
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.5/[Core API Reference]
