@@ -177,26 +177,18 @@ The following table provides an overview.
 .Recommended Spring Data Couchbase per Server Version Matrix
 [#table_spring_versions]
 |===
-| | SDC 3.x | SDC 4.0 - 4.2
+|  | SDC 4.0 - 4.2
 
 | _Status ->_
-| _SDK 2.x only_
 | _New Features, Active Development_
 
-| *Server 5.x*
-| SDK 2.x
-| *Not Compatible*
-
 | *Server 6.0*
-| SDK 2.x
 | *Recommended*
 
 | *Server 6.5 & 6.6*
-| SDK 2.x
 | *Recommended*
 
 | *Server 7.0 & 7.1*
-| Not Supported
 | *Recommended*
 |===
 
