@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'scala'
+    id 'application' // required so we can use the `run` task to execute examples.
 }
 
 group 'com.example'
@@ -58,4 +59,14 @@ dependencies {
     implementation group: 'io.opentelemetry', name: 'opentelemetry-sdk-metrics', version: '1.1.0-alpha'
     implementation 'io.opentelemetry:opentelemetry-exporter-prometheus:1.1.0-alpha'
     implementation 'io.prometheus:simpleclient_httpserver:0.9.0'
+}
+
+application {
+    // Ensures we can run an individual class (example).
+    //
+    // From the root directory of the project run: 
+    // gradle clean run -PchooseMain=KvOperations
+    //
+    // Make sure to substitute the main class name.
+    mainClass = project.findProperty("chooseMain").toString()
 }

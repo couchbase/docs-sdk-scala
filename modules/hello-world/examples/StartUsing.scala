@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Couchbase, Inc.
+ * Copyright (c) 2022 Couchbase, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,12 @@
  * limitations under the License.
  */
 
-// #tag::imports[]
 import com.couchbase.client.scala.durability.Durability
-import com.couchbase.client.scala.env.{ClusterEnvironment, SecurityConfig}
+import com.couchbase.client.scala.env.{
+  ClusterEnvironment,
+  SecurityConfig,
+  TimeoutConfig
+}
 import com.couchbase.client.scala.json.{JsonObject, JsonObjectSafe}
 import com.couchbase.client.scala.kv.ReplaceOptions
 import com.couchbase.client.scala.{Cluster, ClusterOptions}
@@ -26,65 +29,52 @@ import java.nio.file.Path
 import java.util.UUID
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
-// #end::imports[]
 
-object CloudClusterExample {
-  def cloudConnect(): Unit = {
-    // #tag::cloud-cluster[]
-    val env: ClusterEnvironment = ClusterEnvironment.builder
-      .securityConfig(SecurityConfig()
-        .enableTls(true)
-        .trustCertificate(Path.of("/path/to/cluster-root-certificate.pem")))
-      .build
-      .get
-
-    val cluster: Cluster = Cluster.connect("couchbases://428ecdea-c7ca-4a7e-82c6-ef8d927cda0a.dp.cloud.couchbase.com",
-      ClusterOptions.create("username", "password")
-        .environment(env))
-      .get
-    // #end::cloud-cluster[]
-  }
-
-  def cloudConnectInsecure(): Unit = {
-    // #tag::cloud-cluster-insecure[]
-    val env: ClusterEnvironment = ClusterEnvironment.builder
-      .securityConfig(SecurityConfig()
-        .trustManagerFactory(InsecureTrustManagerFactory.INSTANCE))
-      .build
-      .get
-    // #end::cloud-cluster-insecure[]
-  }
-
+object StartUsing {
   def main(args: Array[String]): Unit = {
-    cloudConnect()
-  }
-}
+    // tag::connect[]
+    // Update this to your cluster
+    val username = "Administrator"
+    val password = "password"
+    val bucketName = "travel-sample"
 
-object ClusterExample {
-  def main(args: Array[String]) {
-    // #tag::cluster[]
-    val cluster = Cluster.connect("10.112.180.101", "username", "password").get
-    // #end::cluster[]
+    val env = ClusterEnvironment.builder
+      // You should uncomment this if running in a production environment.
+      // .securityConfig(
+      //   SecurityConfig()
+      //     .enableTls(true)
+      //     .trustCertificate(Path.of("/path/to/cluster-root-certificate.pem"))
+      // )
+      .timeoutConfig(
+        TimeoutConfig()
+          .kvTimeout(10.seconds)
+      )
+      .build
+      .get
 
-    // #tag::resources[]
-    val bucket = cluster.bucket("bucket-name")
+    val cluster = Cluster
+      .connect(
+        "couchbase://localhost",
+        ClusterOptions
+          .create(username, password)
+          .environment(env)
+      )
+      .get
+    // end::connect[]
+
+    val bucket = cluster.bucket(bucketName)
     bucket.waitUntilReady(30.seconds).get
+
     val collection = bucket.defaultCollection
-    // #end::resources[]
 
-    // #tag::json[]
     val json = JsonObject("status" -> "awesome")
-    // #end::json[]
 
-    // #tag::upsert[]
     val docId = UUID.randomUUID().toString
     collection.upsert(docId, json) match {
       case Success(result)    =>
       case Failure(exception) => println("Error: " + exception)
     }
-    // #end::upsert[]
 
-    // #tag::get[]
     // Get a document
     collection.get(docId) match {
       case Success(result) =>
@@ -100,10 +90,8 @@ object ClusterExample {
         }
       case Failure(err) => println("Error getting document: " + err)
     }
-    // #end::get[]
 
     def getFor() {
-      // #tag::get-for[]
       val result: Try[String] = for {
         result <- collection.get(docId)
         json <- result.contentAs[JsonObjectSafe]
@@ -114,11 +102,9 @@ object ClusterExample {
         case Success(status) => println(s"Couchbase is $status")
         case Failure(err)    => println("Error: " + err)
       }
-      // #end::get-for[]
     }
 
     def getMap() {
-      // #tag::get-map[]
       val result: Try[String] = collection
         .get(docId)
         .flatMap(_.contentAs[JsonObjectSafe])
@@ -128,28 +114,27 @@ object ClusterExample {
         case Success(status) => println(s"Couchbase is $status")
         case Failure(err)    => println("Error: " + err)
       }
-      // #end::get-map[]
     }
 
     def replaceOptions() {
-      // #tag::replace-options[]
       collection
-        .replace(docId, json, ReplaceOptions()
-          .expiry(10.seconds)
-          .durability(Durability.Majority)) match {
+        .replace(
+          docId,
+          json,
+          ReplaceOptions()
+            .expiry(10.seconds)
+            .durability(Durability.Majority)
+        ) match {
         case Success(status) =>
         case Failure(err)    => println("Error: " + err)
       }
-      // #end::replace-options[]
     }
 
     def replaceNamed() {
-      // #tag::replace-named[]
       collection.replace(docId, json, durability = Durability.Majority) match {
         case Success(status) =>
         case Failure(err)    => println("Error: " + err)
       }
-      // #end::replace-named[]
     }
   }
 }
