@@ -8,7 +8,9 @@
 [abstract]
 {description}
 
-== Version 1.3.0 (26 April 2021)
+
+== Version 1.3.0 (26 April 2022)
+
 Version 1.3.0 is the first release of the 1.3 series, codenamed "Eos".
 
 The two headline changes in this release:
@@ -27,6 +29,7 @@ The supported and tested dependencies for this release are:
 * org.reactivestreams:**reactive-streams:1.0.3**
 
 === Improvements
+
 * https://issues.couchbase.com/browse/SCBC-352[SCBC-352]:
 Scala SDK now bundles the public Capella CA certificate.
 * https://issues.couchbase.com/browse/JVMCBC-1074[JVMCBC-1074]:
@@ -43,6 +46,7 @@ Updated maintenance dependencies.
 The last connect attempt failure is now stored and exposed through `Diagnostics`.
 
 === Bugs
+
 * https://issues.couchbase.com/browse/SCBC-350[SCBC-350]:
 `NOT_STORED` is now correctly handled as `DocAlreadyExists` when inserting a document.
 * https://issues.couchbase.com/browse/SCBC-353[SCBC-353]:
@@ -51,7 +55,9 @@ Fixed issue where incorrect `GetAllIndexes` response is returned on the default 
 Shutting down a `ClusterEnvironment` now correctly stops a `Meter` owned by the cluster.
 This plugs a resource leak where `LoggingMeter` worker threads would never be stopped.
 
-== Version 1.2.6 (2 March 2021)
+
+== Version 1.2.6 (2 March 2022)
+
 There are no changes at the Scala SDK layer in this release, but there are bugfixes and improvements in the underlying core-io library.
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.6/com/couchbase/client/scala/index.html[API Reference]
@@ -65,12 +71,14 @@ The supported and tested dependencies for this release are:
 * org.reactivestreams:**reactive-streams:1.0.3**
 
 === Bugs
+
 * https://issues.couchbase.com/browse/JVMCBC-1060[JVMCBC-1060]:
 Fixed an issue where rate limited exceptions were not thrown for `SearchIndexManager` errors.
 * https://issues.couchbase.com/browse/JVMCBC-1071[JVMCBC-1071]:
 The SDK now ensures that negative values are not sent to the `ValueRecorder`.
 
 === New Features
+
 * https://issues.couchbase.com/browse/JVMCBC-1057[JVMCBC-1057]:
 Added core infrastructure for the Backup service. 
 Users can now make custom HTTP requests to the Backup service.
@@ -78,6 +86,7 @@ Users can now make custom HTTP requests to the Backup service.
 When implementing a custom `RetryStrategy`, a new overload of `RetryAction.noRetry` lets you specify an exception translator for converting the default request cancellation exception into your preferred exception class.
 
 === Improvements
+
 * https://issues.couchbase.com/browse/JVMCBC-1065[JVMCBC-1065]:
 `RetryReason.allowsNonIdempotentRetry()` is now public, so you can call it from a custom `RetryStrategy`.
 * https://issues.couchbase.com/browse/JVMCBC-1066[JVMCBC-1066]:
@@ -88,7 +97,8 @@ Added explicit handling of `FeatureNotAvailable` for Magma on CE.
 * https://issues.couchbase.com/browse/JVMCBC-1069[JVMCBC-1069]:
 Added explicit handling of `FeatureNotAvailable` for Query CE.
 
-== Version 1.2.5 (2 February 2021)
+
+== Version 1.2.5 (2 February 2022)
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.5/com/couchbase/client/scala/index.html[API Reference]
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.5/[Core API Reference]
@@ -101,6 +111,7 @@ The supported and tested dependencies for this release are:
 * org.reactivestreams:**reactive-streams:1.0.3**
 
 === Bugs
+
 * https://issues.couchbase.com/browse/SCBC-339[SCBC-339]:
 `QueryIndexManager` `watchIndexes` now refreshes on every try.
 * https://issues.couchbase.com/browse/JVMCBC-1046[JVMCBC-1046]:
@@ -109,6 +120,7 @@ Do not load global config if node not in seed node list anymore.
 When a non-default scope or collection is being created with memcached buckets, the correct `FeatureNotAvailableException` is now thrown.
 
 === Improvements
+
 * https://issues.couchbase.com/browse/SCBC-341[SCBC-341]:
 Removed the Azure link type from the analytics management API, due to a change in the underlying server API.
 (Note that this interface is marked `@Stability.Volatile`, indicating that it can change.)
@@ -144,6 +156,7 @@ log4j (an optional dependency) from 2.15.0 to 2.17.1.
 
 
 == Version 1.2.4 (9 December 2021)
+
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.4/com/couchbase/client/scala/index.html[API Reference]
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.4/[Core API Reference]
 
@@ -155,6 +168,7 @@ The supported and tested dependencies for this release are:
 * org.reactivestreams:**reactive-streams:1.0.3**
 
 === Improvements
+
 * https://issues.couchbase.com/browse/SCBC-334[SCBC-334]:
 Bucket Management API - Added Storage Option for Magma.
 
