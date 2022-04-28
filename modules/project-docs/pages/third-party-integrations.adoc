@@ -4,6 +4,8 @@
 :page-topic-type: project-doc
 :page-aliases: 
 
+include::project-docs:partial$attributes.adoc[]
+
 [abstract]
 {description}
 
