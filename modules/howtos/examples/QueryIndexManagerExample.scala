@@ -109,7 +109,7 @@ object QueryIndexManagerExample {
     // Drop a secondary index
    result = queryIndexMgr.dropIndex(
       "travel-sample",
-			"tenant_agent_01_users_email",
+      "tenant_agent_01_users_email",
       scopeName = Option("tenant_agent_01"),
       collectionName = Option("users")
     )
