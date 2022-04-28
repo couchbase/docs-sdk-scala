@@ -117,14 +117,13 @@ object StartUsing {
     }
 
     def replaceOptions() {
-      collection
-        .replace(
-          docId,
-          json,
-          ReplaceOptions()
-            .expiry(10.seconds)
-            .durability(Durability.Majority)
-        ) match {
+      collection.replace(
+        docId,
+        json,
+        ReplaceOptions()
+          .expiry(10.seconds)
+          .durability(Durability.Majority)
+      ) match {
         case Success(status) =>
         case Failure(err)    => println("Error: " + err)
       }
