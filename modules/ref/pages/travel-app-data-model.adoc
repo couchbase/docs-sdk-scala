@@ -1,1 +1,1 @@
-include::7.0@sdk:pages:partial$travel-app-data-model.adoc[]
+include::{version-server}@sdk:pages:partial$travel-app-data-model.adoc[]
