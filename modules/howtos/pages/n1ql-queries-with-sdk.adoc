@@ -116,17 +116,14 @@ include::example$Queries.scala[tag=reactive,indent=0]
 
 == Querying at Scope Level
 
-From version 1.0.9 of the Scala SDK, it is possible to query off the xref:7.0@server:learn:data/scopes-and-collections.adoc[`Scope` level] _with the beta version of the next Couchbase Server release, 7.0β_,
+It is possible to query off the xref:7.1@server:learn:data/scopes-and-collections.adoc[`Scope` level] with _Couchbase Server version 7.0_ onwards,
 using the `scope.query()` method.
 It takes the statement as a required argument, and then allows additional options if needed.
-
-CAUTION: This feature is marked xref:project-docs:compatibility.adoc#interface-stability[_Uncommitted_].
-Expect a promotion to _Committed_ API in a future release.
 
 The code snippet below shows how to run a simple query to fetch 10 random rows from travel-sample and print the results,
 the assumption is that the `airline` collection exists within a scope `us`.
 
-[source,ruby]
+[source,scala]
 ----
 scope
   .query("""select * from `airline` limit 10;""")
