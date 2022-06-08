@@ -25,7 +25,7 @@ The supported and tested dependencies for this release are:
 === Improvements
 * https://issues.couchbase.com/browse/JVMCBC-1089[JVMCBC-1089]:
 SDK users can now customize the `ConsoleLogger` format.
-* https://issues.couchbase.com/browse/JVMCBC-1093[JVMCBC-1093] -
+* https://issues.couchbase.com/browse/JVMCBC-1093[JVMCBC-1093]:
 Previously, when a DNS SRV lookup failure occured, the SDK logged this as a `WARNING` along with a stack trace.
 The lookup failure is typically harmless, so the log message has now been downgraded to `INFO` level, without a stack trace.
 * https://issues.couchbase.com/browse/JVMCBC-1088[JVMCBC-1088]:
