@@ -23,10 +23,12 @@ The supported and tested dependencies for this release are:
 * org.reactivestreams:**reactive-streams:1.0.3**
 
 === Bug Fixes
+
 * https://issues.couchbase.com/browse/JVMCBC-1103[JVMCBC-1103]:
-Only fetch one config per poll interval.
+To reduce overhead, the `MAX_PARALLEL_FETCH` value in `KeyValueBucketRefresher` has been updated to only fetch one config per poll interval.
+
 * https://issues.couchbase.com/browse/JVMCBC-1104[JVMCBC-1104]:
-Global refresher does not honor the config poll interval.
+Fixed issue where the global refresher did not honor the config poll interval.
 
 == Version 1.3.1 (8 June 2022)
 
