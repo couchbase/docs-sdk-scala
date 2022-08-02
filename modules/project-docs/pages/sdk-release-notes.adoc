@@ -8,6 +8,34 @@
 [abstract]
 {description}
 
+== Version 1.3.3 (2 August 2022)
+
+Version 1.3.3 is the fourth release of the 1.3 series, and is a maintenance release.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.3.3/com/couchbase/client/scala/index.html[API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.3.3/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.3.3**
+* com.couchbase.client:**core-io:2.3.3**
+* io.projectreactor:**reactor-core:3.4.21**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+=== Improvements
+* https://issues.couchbase.com/browse/JVMCBC-1116[JVMCBC-1116]:
+Dependency versions have been increased.
+
+=== Bug Fixes
+* https://issues.couchbase.com/browse/JVMCBC-1119[JVMCBC-1119]:
+Do not wait for num (kv) nodesExt to equal number of nodes on Bucket waitUntilReady.
+* https://issues.couchbase.com/browse/JVMCBC-1120[JVMCBC-1120]:
+`ClusterConfig#allNodeAddresses` needs to take global config into account.
+* https://issues.couchbase.com/browse/JVMCBC-1112[JVMCBC-1112]:
+Replace deprecated Reactor Processors.
+* https://issues.couchbase.com/browse/JVMCBC-1115[JVMCBC-1115]:
+Allow for configurations with only TLS ports.
+
 == Version 1.3.2 (6 July 2022)
 
 Version 1.3.2 is the third release of the 1.3 series.
