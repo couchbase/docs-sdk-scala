@@ -152,7 +152,7 @@ The downside of these workarounds is potentially reduced performance, which can 
 | Analytics
 3+| Since 1.0
 
-| Default Collections
+| Collections
 | Not Supported
 | Developer Preview in 6.5-6.6, SDK 1.0
 | Since 1.0.10
