@@ -133,7 +133,7 @@ See the xref:howtos:managing-connections.adoc#ssl[Connection Management] section
 == I/O Options
 
 I/O settings are represented by the Scala class `IoConfig`.
-The associated `ClusterEnvironement.Builder` method is called `ioConfig`.
+The associated `ClusterEnvironment.Builder` method is called `ioConfig`.
 
 .Template for configuring I/O settings
 [source,scala]
@@ -330,7 +330,7 @@ The values set here are used as the defaults when no per-operation timeout is sp
 See <<duration-values, setting duration values>> under xref:#system-properties[System Properties].
 
 Timeout settings are represented by the Scala class `TimeoutConfig`.
-The associated `ClusterEnvironement.Builder` method is called `timeoutConfig`.
+The associated `ClusterEnvironment.Builder` method is called `timeoutConfig`.
 
 .Template for configuring timeouts
 [source,scala]
