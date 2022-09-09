@@ -35,10 +35,6 @@ Failed telemetry spans will now record their exception and error status.
 Update maintenance dependencies.
 
 === Bug Fixes
-* https://issues.couchbase.com/browse/JVMCBC-1125[JVMCBC-1125]:
-Fix a rare `CompletionException` seen from transactions when a very aggressive cleanup window is configured.
-* https://issues.couchbase.com/browse/JVMCBC-1136[JVMCBC-1136]:
-Remove verbose transactions cleanup debug "stop on" logging that was being logged at INFO level.
 * https://issues.couchbase.com/browse/SCBC-367[SCBC-367]:
 Fix a `NullPointerException` when there is no FTS index.
 
