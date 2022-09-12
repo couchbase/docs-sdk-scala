@@ -8,6 +8,36 @@
 [abstract]
 {description}
 
+== Version 1.3.4 (9 September 2022)
+
+Version 1.3.4 is the fifth release of the 1.3 series, and is a maintenance release.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.3.4/com/couchbase/client/scala/index.html[API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.3.4/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.3.4**
+* com.couchbase.client:**core-io:2.3.4**
+* io.projectreactor:**reactor-core:3.4.22**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+=== Improvements
+* https://issues.couchbase.com/browse/JVMCBC-1131[JVMCBC-1131]:
+Added ability to track the number of created instances.
+Users can now set to hard-fail if too many instances are created.
+* https://issues.couchbase.com/browse/JVMCBC-1134[JVMCBC-1134]:
+Updated `MemcachedProtocol::decodeStatus` to be inlineable.
+* https://issues.couchbase.com/browse/JVMCBC-1135[JVMCBC-1135]:
+Moved `Core#reconfiguration` off IO threads.
+* https://issues.couchbase.com/browse/JVMCBC-1143[JVMCBC-1143]:
+Failed telemetry spans will now record their exception and error status.
+* https://issues.couchbase.com/browse/JVMCBC-1145[JVMCBC-1145]:
+Updated maintenance dependencies.
+
+=== Bug Fixes
+* https://issues.couchbase.com/browse/SCBC-367[SCBC-367]:
+Fixed issue where a `NullPointerException` was thrown for a non-existent FTS index.
 
 == Version 1.3.3 (2 August 2022)
 
@@ -60,6 +90,7 @@ To reduce overhead, the `MAX_PARALLEL_FETCH` value in `KeyValueBucketRefresher` 
 
 * https://issues.couchbase.com/browse/JVMCBC-1104[JVMCBC-1104]:
 Fixed issue where the global refresher did not honor the config poll interval.
+
 
 == Version 1.3.1 (8 June 2022)
 
