@@ -43,17 +43,13 @@ object StartUsing {
       // .securityConfig(
       //   SecurityConfig()
       //     .enableTls(true)
-      //     .trustCertificate(Path.of("/path/to/cluster-root-certificate.pem"))
       // )
-      .timeoutConfig(
-        TimeoutConfig()
-          .kvTimeout(10.seconds)
-      )
       .build
       .get
 
     val cluster = Cluster
       .connect(
+        // For a secure cluster connection, use `couchbases://<your-cluster-ip>` instead.
         "couchbase://localhost",
         ClusterOptions
           .create(username, password)

@@ -38,7 +38,7 @@ object Cloud {
     // Update this to your cluster
     val endpoint = "cb.<your-endpoint>.cloud.couchbase.com"
     val username = "username"
-    val password = "Password123!"
+    val password = "Password!123"
     val bucketName = "travel-sample"
 
     val env = ClusterEnvironment.builder
@@ -46,10 +46,10 @@ object Cloud {
         SecurityConfig()
           .enableTls(true)
       )
-      .timeoutConfig(
-        TimeoutConfig()
-          .kvTimeout(10.seconds)
-      )
+      // Sets a pre-configured profile called "wan-development" to help avoid latency issues
+      // when accessing Capella from a different Wide Area Network
+      // or Availability Zone (e.g. your laptop).
+      .applyProfile("wan-development")
       .build
       .get
 
