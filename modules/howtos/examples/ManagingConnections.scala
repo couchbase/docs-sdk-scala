@@ -19,6 +19,7 @@ import com.couchbase.client.scala.env._
 import com.couchbase.client.scala.kv.GetResult
 import reactor.core.scala.publisher.SMono
 
+import java.nio.file.Path
 import scala.concurrent.Future
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
@@ -166,14 +167,16 @@ class ManagingConnections {
   }
 
   def secure(): Unit = {
-    // #tag::secure[]
-    // todo needs SCBC-189
-//    val envTry: Try[ClusterEnvironment] = ClusterEnvironment.builder
-//        .securityConfig(SecurityConfig()
-//          .enableTls(true)
-//            .trustCertificates(Paths.get("/path/to/cluster.cert")))
-//      .build
-    // #end::secure[]
+    // tag::secure[]
+    val env = ClusterEnvironment.builder
+       .securityConfig(
+         SecurityConfig()
+           .enableTls(true)
+           .trustCertificate(Path.of("/path/to/cluster-root-certificate.pem"))
+       )
+      .build
+      .get
+    // end::secure[]
   }
 
   def blockingToAsync(): Unit = {
