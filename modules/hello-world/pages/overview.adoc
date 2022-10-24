@@ -20,7 +20,7 @@ The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster 
 [.content]
 [source,sbt]
 ----
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.3.4"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.4.0"
 ----
 
 
