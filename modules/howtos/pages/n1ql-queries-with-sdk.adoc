@@ -1,11 +1,11 @@
-= N1QL Queries from the SDK
+= Query
 :description: link:project-docs:partial$attributes.adoc[]
-:navtitle: N1QL from the SDK
 :page-topic-type: howto
 :page-aliases: n1ql-query
 :lang: Scala
 :example-source: howtos:example$Queries.scala
 :example-source-lang: scala
+:page-pagination: full
 
 {description}
 

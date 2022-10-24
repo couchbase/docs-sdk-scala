@@ -1,6 +1,5 @@
 = Handling Errors
 :description: Errors are inevitable.
-:navtitle: Handling Errors
 :page-topic-type: howto
 :page-aliases: handling-error-conditions.adoc
 :source-language: scala

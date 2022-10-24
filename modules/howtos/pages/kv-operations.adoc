@@ -1,10 +1,10 @@
-= Key Value Operations
+= Data Operations
 :description: link:project-docs:partial$attributes.adoc[]
-:navtitle: KV Operations
 :page-topic-type: howto
 :page-aliases: document-operations.adoc
 :lang: Scala
 :page-toclevels: 2
+:page-pagination: full
 
 {description}
 

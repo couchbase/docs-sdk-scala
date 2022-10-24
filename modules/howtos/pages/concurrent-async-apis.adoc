@@ -1,6 +1,5 @@
-= Choosing an API
+= Async & Reactive APIs
 :description: The Couchbase Scala SDK allows the use, and mixing, of three distinct APIs: blocking, asynchronous, and reactive.
-:navtitle: Choosing an API
 :page-topic-type: howto
 :source-language: scala
 :lang: Scala

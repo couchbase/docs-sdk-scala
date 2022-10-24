@@ -1,6 +1,5 @@
-= Choosing & Using a JSON Library
+= JSON Libraries
 :description: The Scala SDK supports multiple options for working with JSON.
-:navtitle: JSON Libraries
 :page-topic-type: howto
 :lang: Scala
 

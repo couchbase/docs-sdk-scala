@@ -1,7 +1,7 @@
-= Couchbase Scala SDK Release Notes and Archives
+= Release Notes
 :description: Release notes, installation instructions, and download archive for the Couchbase Scala Client.
 :navtitle: Release Notes
-:page-topic-type: project-doc
+:page-topic-type: reference
 :page-aliases: relnotes-scala-sdk
 
 // tag::all[]

@@ -1,106 +1,114 @@
-= Couchbase Scala SDK 1.3
-:page-type: landing-page
+= Couchbase Scala SDK 1.4
 :page-layout: landing-page-top-level-sdk
 :page-role: tiles
 :!sectids:
 
+= Couchbase Scala SDK 1.4
 
-++++
-<div class="card-row two-column-row">
-++++
-
-
-[.column]
-====== {empty}
-[.content]
-The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster from the Scala language.
-
-
-[.column]
-[.content]
 [source,sbt]
 ----
 libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.4.0"
 ----
 
+The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster from the Scala language.
 
-++++
-</div>
-++++
+{empty} +
 
-[.column]
-====== {empty}
+== icon:database[] Using Your Database
 
-== Couchbase Scala SDK 1.3
+How-to guides to help you start your development journey with Couchbase and the Scala SDK.
 
 ++++
 <div class="card-row three-column-row">
 ++++
 
-
 [.column]
-====== {empty}
 .Getting Started
+* xref:hello-world:start-using-sdk.adoc[]
+* xref:howtos:kv-operations.adoc[]
+* xref:howtos:n1ql-queries-with-sdk.adoc[]
+* xref:howtos:full-text-searching-with-sdk.adoc[]
+* xref:hello-world:sample-application.adoc[]
 
-[.content]
-Dive right in with a xref:start-using-sdk.adoc[quick install and Hello World].
-Try out our xref:sample-application.adoc[Travel Sample Application].
-And take a look at the xref:howtos:working-with-collections.adoc[new Collections feature].
-
-
-[.column]
-====== {empty}
-.Practical Howto Docs
-
-[.content]
-Connect to our services -- xref:howtos:kv-operations.adoc[data (KV)];
-xref:howtos:n1ql-queries-with-sdk.adoc[Query];
-xref:howtos:full-text-searching-with-sdk.adoc[Search];
-xref:howtos:analytics-using-sdk.adoc[Analytics];
-xref:howtos:view-queries-with-sdk.adoc[Views] --
-and the xref:howtos:subdocument-operations.adoc[Sub-Document API].
+// TODO: Uncomment when transactions are supported
+//[.column]
+//.Transactions
+//* xref:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
+//* xref:concept-docs:transactions.adoc[]
 
 [.column]
-====== {empty}
-.Reference Guides
-
-[.content]
-The documentation supplements the practical Howto docs with references and xref:concept-docs:concepts.adoc[concept guides], for those who prefer a broader understanding before diving in and coding.
-[]
-https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/index.html[API Docs^]
-
+.Working with Data
+* xref:howtos:subdocument-operations.adoc[]
+* xref:howtos:analytics-using-sdk.adoc[]
+* xref:howtos:encrypting-using-sdk.adoc[]
+* xref:howtos:working-with-collections.adoc[Working with Collections]
 
 [.column]
-====== {empty}
-.What's Hot?
-
-[.content]
-The Scala 1.x SDK is a fully-native Scala API.
-Leverage the new Couchbase Server Scopes and Collection features to build multi-tenant micro-service application.
-// Integrate with Open Telemetry API to instrument telemetry data for your mission critical workloads that will make troubleshooting and debugging of your applications easier than ever.
-// Add an additional layer of security and protect your sensitive workloads using our Client Side Field Level Encryption capability. 
+.Managing Couchbase
+* xref:howtos:managing-connections.adoc[]
+* xref:howtos:sdk-authentication.adoc[]
+* xref:howtos:provisioning-cluster-resources.adoc[]
+* xref:howtos:sdk-user-management-example.adoc[]
 
 [.column]
-====== {empty}
-.About
-
-[.content]
-Those useful nuts-and-bolts guides to
-xref:project-docs:compatibility.adoc[compatibility tables];
-xref:project-docs:sdk-release-notes.adoc[release notes];
-xref:project-docs:get-involved.adoc[contribution guide]; and the
-xref:project-docs:migrating-sdk-code-to-3.n.adoc[migration guide] for moving to the 3.0 API.
-
-[.column]
-====== {empty}
-.Community
-
-[.content]
-For community help, visit the https://forums.couchbase.com/c/scala-sdk/37[Couchbase forums^].
-The Scala SDK can be combined with many other projects in the broader Scala and JVM ecosystem and beyond.
+.Errors & Diagnostics
+* xref:howtos:error-handling.adoc[]
+* xref:howtos:collecting-information-and-logging.adoc[]
+* xref:howtos:slow-operations-logging.adoc[]
 
 ++++
 </div>
 ++++
 
-include::7.1@sdk:shared:partial$archive.adoc[tag=link]
+== icon:graduation-cap[] Learn
+
+Take a deep-dive into the SDK concept material and learn more about Couchbase.
+
+++++
+<div class="card-row three-column-row">
+++++
+
+[.column]
+.Data Concepts
+* xref:concept-docs:data-model.adoc[]
+* xref:concept-docs:data-services.adoc[Service Selection]
+* xref:concept-docs:encryption.adoc[Field Level Encryption]
+
+[.column]
+.Errors & Diagnostics Concepts
+* xref:concept-docs:errors.adoc[]
+* xref:concept-docs:response-time-observability.adoc[]
+* xref:concept-docs:durability-replication-failure-considerations.adoc[]
+
+++++
+</div>
+++++
+
+== icon:book[] Resources
+
+Useful resources to help support your development experience with Couchbase and the Scala SDK.
+
+++++
+<div class="card-row three-column-row">
+++++
+
+[.column]
+.Reference
+* https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/index.html[API Reference]
+* xref:ref:client-settings.adoc[]
+* xref:ref:error-codes.adoc[]
+* xref:ref:glossary.adoc[Glossary]
+* xref:ref:travel-app-data-model.adoc[]
+
+[.column]
+.Project Docs
+* xref:project-docs:sdk-release-notes.adoc[]
+* xref:project-docs:compatibility.adoc[Compatibility]
+* https://docs-archive.couchbase.com/home/index.html[Older Versions Archive]
+* xref:project-docs:migrating-sdk-code-to-3.n.adoc[]
+* xref:project-docs:third-party-integrations.adoc[]
+* xref:project-docs:sdk-full-installation.adoc[]
+
+++++
+</div>
+++++

@@ -1,6 +1,5 @@
-= Sub-Document Operations with the Scala SDK
+= Sub-Document Operations
 :description: Sub-Document operations can be used to efficiently access and change parts of documents.
-:navtitle: Sub-Doc Operations
 :page-topic-type: howto
 :lang: Scala
 :page-aliases: ROOT:sdk-xattr-example.adoc
