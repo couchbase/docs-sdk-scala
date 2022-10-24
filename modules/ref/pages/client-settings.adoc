@@ -599,9 +599,9 @@ CAUTION: The Configuration Profiles feature is currently a xref:java-sdk:project
 
 === WAN Development
 
-*Builder Method:* `applyProfile("wan-development")`
+*Builder Method:* `applyProfile(ClusterEnvironment.WanDevelopmentProfile)`
 
-A `wan-development` configuration profile can be used to modify client settings for development or high-latency environments.
+A `ClusterEnvironment.WanDevelopmentProfile` configuration profile can be used to modify client settings for development or high-latency environments.
 This profile changes the default timeouts.
 
 
