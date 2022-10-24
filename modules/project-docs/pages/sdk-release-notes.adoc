@@ -25,9 +25,9 @@ The supported and tested dependencies for this release are:
 
 === Improvements
 * https://issues.couchbase.com/browse/JVMCBC-1102[JVMCBC-1102]:
-Support for serverless execution environments including AWS Lambda.
+Added support for serverless execution environments including AWS Lambda.
 * https://issues.couchbase.com/browse/SCBC-371[SCBC-371]:
-Support for configuration profiles, which allow quickly initialising a `ClusterEnvironment` for particular use-cases.
+Added support for configuration profiles, which allow you to quickly configure an environment for common use-cases.
 In particular, this makes it easy to apply timeouts appropriate for WAN (Internet) development, such as developing against a remote Couchbase Capella instance.
 Example usage: `val env = ClusterEnvironment.builder.applyProfile(ClusterEnvironment.WanDevelopmentProfile).build.get`.
 * https://issues.couchbase.com/browse/SCBC-374[SCBC-374],
