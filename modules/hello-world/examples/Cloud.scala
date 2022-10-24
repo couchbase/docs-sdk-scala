@@ -49,7 +49,7 @@ object Cloud {
       // Sets a pre-configured profile called "wan-development" to help avoid latency issues
       // when accessing Capella from a different Wide Area Network
       // or Availability Zone (e.g. your laptop).
-      .applyProfile("wan-development")
+      .applyProfile(ClusterEnvironment.WanDevelopmentProfile)
       .build
       .get
 
