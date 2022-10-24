@@ -6,6 +6,8 @@
 :page-toclevels: 2
 :page-pagination: full
 
+include::project-docs:partial$attributes.adoc[]
+
 {description}
 
 At its heart Couchbase Server is a high-performance key-value store, and the key-value interface outlined below is the fastest and best method to perform operations involving single documents.
@@ -295,7 +297,7 @@ Some applications may find `getAndTouch` useful, which fetches a document while 
 include::example$KvOperations.scala[indent=0,tag=expiry-touch]
 ----
 
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=exp-note]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=exp-note]
 
 == Atomic Counter Operations
 
@@ -309,7 +311,7 @@ include::example$KvOperations.scala[indent=0,tag=counter-increment]
 Note that a counter cannot be below 0.
 
 
-include::7.1@sdk:shared:partial$atomic.adoc[tag=xdcr]
+include::{version-common}@sdk:shared:partial$atomic.adoc[tag=xdcr]
 
 
 == Scoped KV Operations

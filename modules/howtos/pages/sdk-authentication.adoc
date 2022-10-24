@@ -22,9 +22,9 @@ Our xref:hello-world:start-using-sdk.adoc[Getting Started] guide introduced basi
 include::example$Auth.scala[tag=basic,indent=0]
 ----
 
-include::{version-server}@sdk:shared:partial$auth-overview.adoc[tag=rbac]
+include::{version-common}@sdk:shared:partial$auth-overview.adoc[tag=rbac]
 
-include::{version-server}@sdk:shared:partial$auth-overview.adoc[tag=cert-auth]
+include::{version-common}@sdk:shared:partial$auth-overview.adoc[tag=cert-auth]
 
 
 == Authenticating a Scala Client by Certificate
@@ -39,5 +39,5 @@ include::example$Auth.scala[tag=auth,indent=0]
 ----
 
 
-include::{version-server}@sdk:shared:partial$auth-overview.adoc[tag=ldap]
+include::{version-common}@sdk:shared:partial$auth-overview.adoc[tag=ldap]
 

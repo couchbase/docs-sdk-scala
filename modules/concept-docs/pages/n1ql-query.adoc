@@ -9,11 +9,11 @@ include::project-docs:partial$attributes.adoc[]
 [abstract]
 {description}
 
-include::{version-server}@sdk:shared:partial$n1ql-queries.adoc[tag=intro]
+include::{version-common}@sdk:shared:partial$n1ql-queries.adoc[tag=intro]
 
 
 // Prepared Statements for Query Optimization
-include::{version-server}@sdk:shared:partial$n1ql-queries.adoc[tag=prepared]
+include::{version-common}@sdk:shared:partial$n1ql-queries.adoc[tag=prepared]
 
 For the Scala SDK, the `adhoc` parameter should be set to `false` for a plan to be prepared, or a prepared plan to be reused.
 Do not turn off the `adhoc` flag for _every_ query to Server 6.0 and earlier, since only a finite number of query plans (currently 5000) can be stored in the SDK.
@@ -103,7 +103,7 @@ Note that the build step is still asynchronous, so `watchIndexes` is used to wai
 
 
 // Index Consistency
-include::{version-server}@sdk:shared:partial$n1ql-queries.adoc[tag=index-consistency]
+include::{version-common}@sdk:shared:partial$n1ql-queries.adoc[tag=index-consistency]
 
 The following options are available:
 

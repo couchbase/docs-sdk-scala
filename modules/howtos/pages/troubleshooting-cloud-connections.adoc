@@ -1,6 +1,6 @@
 include::project-docs:partial$attributes.adoc[]
 
-include::{version-server}@sdk:pages:partial$troubleshooting-cloud-connections.adoc[]
+include::{version-common}@sdk:pages:partial$troubleshooting-cloud-connections.adoc[]
 
 
 == Additional Steps
