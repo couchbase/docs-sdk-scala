@@ -8,6 +8,43 @@
 [abstract]
 {description}
 
+== Version 1.4.1 (7 December 2022)
+
+Version 1.4.1 is the second release of the 1.4 series.
+The headline change is support for the KV range scan feature (`collection.scan()`), added at @Stability.Volatile level.
+This feature will be available in a future version of Couchbase Server.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.4.1/com/couchbase/client/scala/index.html[API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.1/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* com.couchbase.client:**scala-client:1.4.1**
+* com.couchbase.client:**core-io:2.4.1**
+* io.projectreactor:**reactor-core:3.5.0**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+=== Improvements
+* https://issues.couchbase.com/browse/JVMCBC-1163[JVMCBC-1163]:
+Dependencies have been updated.
+* https://issues.couchbase.com/browse/JVMCBC-1156[JVMCBC-1156]:
+The traffic tracing functionality has been enhanced to perform Wireshark-style dissection of portions of the KV protocol.
+* https://issues.couchbase.com/browse/SCBC-377[SCBC-377]:
+KV range scan functionality (`collection.scan()`) added at @Stability.Volatile level.
+* https://issues.couchbase.com/browse/SCBC-382[SCBC-382]:
+`Cluster.connect` now throws an `IllegalArgumentException` if you pass a pre-built `ClusterEnvironment` and a connection string incompatible with the environment.
+Before this change, the connection string scheme and parameters were always silently ignored when connecting with a pre-built cluster environment.
+** A pre-built environment without TLS enabled is incompatible with a connection string that specifies the secure `couchases` scheme.
+** A pre-built environment is incompatible with a connection string that has parameters.
+
+=== Bugs
+* https://issues.couchbase.com/browse/JVMCBC-1157[JVMCBC-1157]:
+The SDK no longer rejects a `PersistTo` requirement in a bucket using the Magma storage engine.
+Before this change, the SDK would refuse the request because it misidentified Magma buckets as ephemeral (unable to persist documents).
+* https://issues.couchbase.com/browse/JVMCBC-1167[JVMCBC-1167]:
+If you call `CancellationErrorContext.getWaitUntilReadyContext()` on an error context that didn't come from a "wait until ready" request, the method is now guaranteed to return null instead of sometimes throwing a `ClassCastException`.
+* https://issues.couchbase.com/browse/SCBC-380[SCBC-380]:
+Bucket creation and update can now be used with Couchbase Server Community Edition 7.X.
 
 == Version 1.4.0 (24 October 2022)
 
