@@ -8,6 +8,39 @@
 [abstract]
 {description}
 
+== Version 1.4.3 (9 February 2023)
+
+This is a regular maintenance release.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.4.3/com/couchbase/client/scala/index.html[API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.3/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.5.0**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+=== Improvements
+* https://issues.couchbase.com/browse/SCBC-384[SCBC-384],
+https://issues.couchbase.com/browse/SCBC-385[SCBC-385],
+https://issues.couchbase.com/browse/SCBC-386[SCBC-386]
+https://issues.couchbase.com/browse/SCBC-387[SCBC-387]:
+Internally, the JVM SDKs are being aligned to share the same implementation of multiple pieces of functionality.
+This should not impact end-users, but will ensure conformity of behaviour and performance between all JVM SDKs, going forwards.
+* https://issues.couchbase.com/browse/JVMCBC-1181[JVMCBC-1181]:
+It is now possible to authenticate over secure connections even if the JVM does not support the SASL PLAIN authentication mechanisms.
+* https://issues.couchbase.com/browse/JVMCBC-1184[JVMCBC-1184]:
+Update dependencies.
+* https://issues.couchbase.com/browse/JVMCBC-1213[JVMCBC-1213]:
+If too many operations are specified in a single sub-document lookup, the exception message now indicates why the operation failed.
+
+=== Bug Fixes
+* https://issues.couchbase.com/browse/JVMCBC-1160[JVMCBC-1160]:
+When a sub-document path has a syntax error or is inappropriate for an operation, the SDK now raises `PathInvalidException`.
+Prior to this change, it would raise a generic `CouchbaseException` with the message "Unexpected SubDocument response code".
+* https://issues.couchbase.com/browse/SCBC-388[SCBC-388]:
+If expiry has not been requested on a KV get operation, then expiry fields in `GetResult` are now `None`, as expected.
+
 == Version 1.4.2 (16 January 2023)
 
 This is a regular maintenance release.
