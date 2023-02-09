@@ -8,11 +8,45 @@
 [abstract]
 {description}
 
+
+== Version 1.4.3 (9 February 2023)
+
+This is a regular maintenance release.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.4.3/com/couchbase/client/scala/index.html[API Reference] |
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.3/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.5.0**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+=== Improvements
+* https://issues.couchbase.com/browse/SCBC-384[SCBC-384],
+https://issues.couchbase.com/browse/SCBC-385[SCBC-385],
+https://issues.couchbase.com/browse/SCBC-386[SCBC-386]
+https://issues.couchbase.com/browse/SCBC-387[SCBC-387]:
+Internally, the JVM SDKs are being aligned to share the same implementation of multiple pieces of functionality.
+This should not impact end-users, but will ensure conformity of behavior and performance between all JVM SDKs, going forwards.
+* https://issues.couchbase.com/browse/JVMCBC-1181[JVMCBC-1181]:
+It is now possible to authenticate over secure connections even if the JVM does not support the SASL PLAIN authentication mechanisms.
+* https://issues.couchbase.com/browse/JVMCBC-1184[JVMCBC-1184]:
+Updated dependencies.
+* https://issues.couchbase.com/browse/JVMCBC-1213[JVMCBC-1213]:
+If too many operations are specified in a single sub-document lookup, the exception message now indicates why the operation failed.
+
+=== Bug Fixes
+* https://issues.couchbase.com/browse/JVMCBC-1160[JVMCBC-1160]:
+When a sub-document path has a syntax error or is inappropriate for an operation, the SDK now raises `PathInvalidException`.
+Prior to this change, it would raise a generic `CouchbaseException` with the message "Unexpected SubDocument response code".
+* https://issues.couchbase.com/browse/SCBC-388[SCBC-388]:
+If expiry has not been requested on a KV get operation, then expiry fields in `GetResult` are now `None`, as expected.
+
 == Version 1.4.2 (16 January 2023)
 
 This is a regular maintenance release.
 
-https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.4.2/com/couchbase/client/scala/index.html[API Reference]
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.4.2/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.2/[Core API Reference]
 
 The supported and tested dependencies for this release are:
@@ -43,7 +77,7 @@ Version 1.4.1 is the second release of the 1.4 series.
 The headline change is support for the KV range scan feature (`collection.scan()`), added at @Stability.Volatile level.
 This feature will be available in a future version of Couchbase Server.
 
-https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.4.1/com/couchbase/client/scala/index.html[API Reference]
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.4.1/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.1/[Core API Reference]
 
 The supported and tested dependencies for this release are:
@@ -79,7 +113,7 @@ Bucket creation and update can now be used with Couchbase Server Community Editi
 
 Version 1.4.0 is the first release of the 1.4 series.
 
-https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.4.0/com/couchbase/client/scala/index.html[API Reference]
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.4.0/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.0/[Core API Reference]
 
 The supported and tested dependencies for this release are:
@@ -123,7 +157,7 @@ Make sure targeted round robin request keeps retrying if no config is available.
 
 Version 1.3.4 is the fifth release of the 1.3 series, and is a maintenance release.
 
-https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.3.4/com/couchbase/client/scala/index.html[API Reference]
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.3.4/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.3.4/[Core API Reference]
 
 The supported and tested dependencies for this release are:
@@ -154,7 +188,7 @@ Fixed issue where a `NullPointerException` was thrown for a non-existent FTS ind
 
 Version 1.3.3 is the fourth release of the 1.3 series, and is a maintenance release.
 
-https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.3.3/com/couchbase/client/scala/index.html[API Reference]
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.3.3/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.3.3/[Core API Reference]
 
 The supported and tested dependencies for this release are:
@@ -184,7 +218,7 @@ The SDK now allows for configurations with _only_ TLS ports.
 
 Version 1.3.2 is the third release of the 1.3 series.
 
-https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.3.2/com/couchbase/client/scala/index.html[API Reference]
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.3.2/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.3.2/[Core API Reference]
 
 The supported and tested dependencies for this release are:
@@ -207,7 +241,7 @@ Fixed issue where the global refresher did not honor the config poll interval.
 
 Version 1.3.1 is the second release of the 1.3 series.
 
-https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.3.1/com/couchbase/client/scala/index.html[API Reference]
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.3.1/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.3.1/[Core API Reference]
 
 The supported and tested dependencies for this release are:
@@ -236,7 +270,7 @@ The two headline changes in this release:
 * Supports the new functionality of Couchbase Server 7.1.
 * Bundles the public server security certificates for Couchbase Capella, to make it easier for users to get started with Capella.
 
-https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.3.0/com/couchbase/client/scala/index.html[API Reference]
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.3.0/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.3.0/[Core API Reference]
 
 The supported and tested dependencies for this release are:
@@ -278,7 +312,7 @@ This plugs a resource leak where `LoggingMeter` worker threads would never be st
 
 There are no changes at the Scala SDK layer in this release, but there are bugfixes and improvements in the underlying core-io library.
 
-https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.6/com/couchbase/client/scala/index.html[API Reference]
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.6/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.6/[Core API Reference]
 
 The supported and tested dependencies for this release are:
@@ -318,7 +352,7 @@ Added explicit handling of `FeatureNotAvailable` for Query CE.
 
 == Version 1.2.5 (2 February 2022)
 
-https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.5/com/couchbase/client/scala/index.html[API Reference]
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.5/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.5/[Core API Reference]
 
 The supported and tested dependencies for this release are:
@@ -375,7 +409,7 @@ log4j (an optional dependency) from 2.15.0 to 2.17.1.
 
 == Version 1.2.4 (9 December 2021)
 
-https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.4/com/couchbase/client/scala/index.html[API Reference]
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.4/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.4/[Core API Reference]
 
 The supported and tested dependencies for this release are:
@@ -409,7 +443,7 @@ This helps with debugging.
 
 == Version 1.2.3 (2 November 2021)
 
-https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.3/com/couchbase/client/scala/index.html[API Reference]
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.3/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.3/[Core API Reference]
 
 The supported and tested dependencies for this release are:
@@ -433,7 +467,7 @@ Updated dependencies.
 
 == Version 1.2.2 (6 October 2021)
 
-https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.2/com/couchbase/client/scala/index.html[API Reference]
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.2/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.2/[Core API Reference]
 
 The supported and tested dependencies for this release are:
