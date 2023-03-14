@@ -7,8 +7,10 @@
 :example-source-lang: scala
 :page-pagination: full
 
+////
 [abstract]
 {description}
+////
 
 include::howtos:partial$n1ql-intro.adoc[]
 include::howtos:partial$n1ql-getting-started.adoc[]
