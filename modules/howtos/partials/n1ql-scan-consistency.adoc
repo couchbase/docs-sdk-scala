@@ -6,7 +6,7 @@
 == Scan Consistency
 Queries take an optional `scanConsistency` parameter that enables a tradeoff between latency and (eventual) consistency.
 
-* A N1QL query using the default `NotBounded` scan consistency will not wait for any indexes to finish updating before running the query and returning results, meaning that results are returned quickly, but the query will not return any documents that are yet to be indexed.
+* A {sqlpp} query using the default `NotBounded` scan consistency will not wait for any indexes to finish updating before running the query and returning results, meaning that results are returned quickly, but the query will not return any documents that are yet to be indexed.
 
 * With scan consistency set to `RequestPlus`, all outstanding document changes and index updates are processed before the query is run.
 Select this when consistency is always more important than performance.

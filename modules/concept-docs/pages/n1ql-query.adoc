@@ -1,6 +1,6 @@
-= Querying with N1QL
+= Querying with {sqlpp}
 :description: Parallel data management for complex queries over many records, using a familiar SQL-like syntax.
-:nav-title: Querying with N1QL
+:nav-title: Querying with {sqlpp}
 :page-topic-type: concept
 :page-aliases: ROOT:n1ql-query,
 
@@ -109,14 +109,14 @@ The following options are available:
 
 include::{version-server}@server:learn:page$services-and-indexes/indexes/index-replication.adoc[tag=scan_consistency]
 
-* A N1QL query using the default `NotBounded` scan consistency will not wait for any indexes to finish updating before running the query and returning results, meaning that results are returned quickly, but the query will not return any documents that are yet to be indexed.
+* A {sqlpp} query using the default `NotBounded` scan consistency will not wait for any indexes to finish updating before running the query and returning results, meaning that results are returned quickly, but the query will not return any documents that are yet to be indexed.
 
 * With scan consistency set to `RequestPlus`, all outstanding document changes and index updates are processed before the query is run.
 Select this when consistency is always more important than performance.
 
 * For a middle ground, `AtPlus` is a "read your own write" (RYOW) option, which means it just waits for the documents that you specify to be indexed.
 
-For N1QL, the default consistency is `not_bounded`.
+For {sqlpp}, the default consistency is `not_bounded`.
 
 Here's how to specify the `RequestPlus` scan consistency level:
 

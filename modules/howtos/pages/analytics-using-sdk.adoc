@@ -1,5 +1,5 @@
 = Analytics
-:description: Parallel data management for complex queries over many records, using a familiar N1QL-like syntax.
+:description: Parallel data management for complex queries over many records, using a familiar {sqlpp} syntax.
 :page-topic-type: howto
 :page-edition: Enterprise Edition:
 :lang: Scala
@@ -45,7 +45,7 @@ An `AnalyticsResult` contains various things of interest, such as metrics, but t
 Note that the `flatMap` means the `allRowsAs` call will only be attempted if the initial query was successful.
 Otherwise `rows` will contain the `Failure(Throwable)` from the query result.
 
-Here we're fetching rows converted into `JsonObject`, but as with N1QL there's many more options available.
+Here we're fetching rows converted into `JsonObject`, but as with {sqlpp} (formerly N1QL) there's many more options available.
 Rows can be returned as JSON representations from multiple third party Scala libraries, such as Circe, directly as case classes, and more.
 Please see xref:howtos:json.adoc[JSON Libraries] for full details.
 
@@ -127,6 +127,6 @@ include::example$Analytics.scala[tag=reactive,indent=0]
 ////
 == Additional Resources
 
-To learn more about using N1QL for Analytics -- the first commercial implementation of SQL++ -- see our https://sqlplusplus-tutorial.couchbase.com/tutorial/#1[Tutorial Introduction to SQL++ for SQL users].
+To learn more about using {sqlpp} for Analytics -- the first commercial implementation of SQL++ -- see our https://sqlplusplus-tutorial.couchbase.com/tutorial/#1[Tutorial Introduction to SQL++ for SQL users].
 
 ////
