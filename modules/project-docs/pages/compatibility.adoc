@@ -151,7 +151,7 @@ The downside of these workarounds is potentially reduced performance, which can 
 | Developer Preview in 6.6, SDK 1.0
 | Since 1.0.10
 
-| Scope-Level N1QL Queries & all Collections features
+| Scope-Level {sqlpp} (formerly N1QL) Queries & all Collections features
 | Not Supported
 | Since SDK 1.2.0
 

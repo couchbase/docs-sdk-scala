@@ -1,5 +1,5 @@
 = Query
-:description: You can query for documents in Couchbase using the N1QL query language, a language based on SQL, but designed for structured and flexible JSON documents.
+:description: You can query for documents in Couchbase using the {sqlpp} query language, a language based on SQL, but designed for structured and flexible JSON documents.
 :page-topic-type: howto
 :page-aliases: n1ql-query
 :lang: Scala
@@ -21,9 +21,9 @@ Here's the basics of how to run a simple query to fetch 10 random rows from trav
 include::example$Queries.scala[tag=simple,indent=0]
 ----
 
-(Note that we won't be covering the N1QL language itself in any detail here, but if you're familiar with SQL you'll see it's very similar.)
+(Note that we won't be covering the {sqlpp} language itself in any detail here, but if you're familiar with SQL you'll see it's very similar.)
 
-The Scala SDK returns `Try` rather than throwing exceptions, to allow you to handle errors in a functional way.  A `Try` can either be a `Success(QueryResult)` if the N1QL statement was successfully executed, or `Failure(Throwable)` if something went wrong.  It can be pattern matched on like this:
+The Scala SDK returns `Try` rather than throwing exceptions, to allow you to handle errors in a functional way.  A `Try` can either be a `Success(QueryResult)` if the {sqlpp} statement was successfully executed, or `Failure(Throwable)` if something went wrong.  It can be pattern matched on like this:
 
 [source,scala]
 ----
@@ -67,7 +67,7 @@ include::example$Queries.scala[tag=at-plus,indent=0]
 ----
 
 == Returning Results as Case Classes
-The Scala SDK supports returning N1QL results directly as Scala case classes.
+The Scala SDK supports returning {sqlpp} results directly as Scala case classes.
 
 A small amount of boilerplate is required to tell the SDK how to convert your case class to/from JSON.  There are more details
 available xref:json.adoc#case-classes[here], but the short version is to add a `Codec` in the case class's companion object like this:

@@ -139,7 +139,7 @@ If you're already writing code in a synchronous way already then it may make sen
 If you're writing a web application that supports reactive streams, it may make sense to use the reactive API.
 And you can use different APIs at different times.
 
-The most important thing to consider is when streaming back large queries from N1QL, Full Text Search, and Analytics.
+The most important thing to consider is when streaming back large queries from Query, Full Text Search, and Analytics.
 Here, the reactive API will provide full backpressure:
 that is, if your application is processing rows slower than the service is returning them, then automatically fewer rows will be requested from the service to give the application time to catch up.
 The upshot of this is that few rows are ever buffered in-memory, and the application shouldn't get out-of-memory exceptions.
