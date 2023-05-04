@@ -8,6 +8,24 @@
 [abstract]
 {description}
 
+== Version 1.4.6 (4 May 2023)
+
+This is a regular maintenance release.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.4.6/com/couchbase/client/scala/index.html[API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.6/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.5.0**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+=== Bugs
+* https://issues.couchbase.com/browse/JVMCBC-1275[JVMCBC-1275]:
+Fixed a regression in Couchbase Java SDK 3.4.5 and Scala SDK 1.4.5 that caused Full Text Search `term` queries to throw `NullPointerException` unless `prefixLength` and `fuzziness` were specified.
+* https://issues.couchbase.com/browse/JVMCBC-1285[JVMCBC-1285]:
+Fixed a regression in Couchbase Java SDK 3.4.5 and Scala SDK 1.4.5 that caused Full-Text Search queries to fail to report the locations of some terms. Specifically, any location that did not have `arrayPositions` was omitted from the results.
+
 == Version 1.4.5 (13 April 2023)
 
 This is a regular maintenance release.
