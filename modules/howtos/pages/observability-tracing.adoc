@@ -1,6 +1,5 @@
 = Request Tracing
 :description: Collecting information about an individual request and its response is an essential feature of every observability stack.
-:page-status: Developer Preview
 :page-topic-type: howto
 
 {description}
@@ -68,7 +67,6 @@ More information will be provided as we get closer to stabilization.
 
 
 == OpenTelemetry Integration
-[.status]#Developer Preview#
 
 The built-in tracer is great if you do not have a centralized monitoring system, but if you already plug into the OpenTelemetry ecosystem we want to make sure to provide first-class support.
 
@@ -180,7 +178,6 @@ include::example$Tracing.scala[tag=otel-options,indent=0]
 
 
 == OpenTracing Integration
-[.status]#Developer Preview#
 
 In addition to OpenTelemetry, we also provide support for OpenTracing for legacy systems which have not yet migrated to OpenTelemetry. 
 Note that we still recommend migrating eventually since OpenTracing has been sunsetted.
