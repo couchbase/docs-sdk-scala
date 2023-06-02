@@ -136,7 +136,7 @@ The downside of these workarounds is potentially reduced performance, which can 
 [.table-merge-cells]
 [cols="7,6,6"]
 |===
-| | Server 6.6 | Server 7.0, 7.1
+| | Server 6.6 | Server 7.0-7.2
 
 | Enhanced Durability
 2+| Since 1.0
