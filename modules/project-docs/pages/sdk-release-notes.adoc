@@ -8,6 +8,27 @@
 [abstract]
 {description}
 
+== Version 1.4.8 (19 July 2023)
+
+This is a regular maintenance release.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.4.8/com/couchbase/client/scala/index.html[API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.8/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.5.0**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+
+=== Improvements
+* https://issues.couchbase.com/browse/SCBC-406[SCBC-406]:
+Upcoming Couchbase server release 7.6 will support having SQL++ queries read from replicas, in scenarios where the active is unavailable (such as failover).
+This improves availability, though users should be aware that they may be reading stale data.
+The option is activated with `scope.query("...", QueryOptions().useReplica(true))`, and is disabled by default.
+It will only work against 7.6 and above: against older server versions, it will return a `Failure(FeatureNotAvailableException)`.
+* https://issues.couchbase.com/browse/JVMCBC-1322[JVMCBC-1322]:
+The `waitUntilReady()` method now logs additional diagnostic information to the `com.couchbase.core.WaitUntilReady` logging category at `DEBUG` level.
 
 == Version 1.4.7 (12 June 2023)
 
