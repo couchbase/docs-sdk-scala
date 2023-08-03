@@ -3,6 +3,7 @@
 :page-topic-type: howto
 :source-language: scala
 :lang: Scala
+:page-toclevels: 2
 :page-aliases: ROOT:async-programming,multiple-apis,ROOT:batching-operations
 
 [abstract]
@@ -13,6 +14,7 @@ The Scala SDK provides three APIs, which can be freely mixed:
 * A simple blocking one, that returns `Try`.
 * An asynchronous one, that returns `Future`.
 * A reactive one, that returns reactive primitives from the https://projectreactor.io/[Project Reactor] library, e.g. `Mono` and `Flux`.
+
 
 == Using the Blocking API
 
@@ -50,6 +52,7 @@ Here, the call to `collection.get` will only be attempted if the call to `collec
 include::example$MultipleAPIs.scala[tag=get-map,indent=0]
 ----
 
+
 == Using the Asynchronous API
 
 The asynchronous API returns Scala `Future`, representing the execution of an asynchronous task and the promise of a future result.
@@ -86,6 +89,7 @@ Interestingly, you'll see a couple of calls to `Try.get()` here.
 These throw exceptions if the Try is `Failure`, and exceptions are usually something we try to avoid in Scala.
 But here there's no problem as the `Future` will capture the exception,
 and raise in so it can be handled in a `Failure`, as in the example.
+
 
 == Using the Reactive API
 
@@ -131,7 +135,28 @@ While it's beyond the scope of this guide to teach reactive programming, it's im
 2. Never subscribe to a reactive primitive inside an operator.  Instead, `flatMap` to it.
 3. Always subscribe.  A `Mono` or `Flux` will not start until it's subscribed to.
 
+=== Bulk Operations
+
+For bulk operations, and applying the golden rules above,
+call `flatMap` inside `SFlux`, as in the `upsert` example following:
+
+[source,scala]
+----
+val json = JsonObject("foo" -> "bar", "baz" -> "qux")
+val parallelism = 32
+
+val result: Seq[Either[Throwable, MutationResult]] = SFlux.fromIterable(Seq("doc1", "doc2", "doc3"))
+      .flatMap(docId => collection.reactive.upsert(docId, json)
+              .map(result => Right(result))
+              .onErrorResume(err => SMono.just(Left(err))),
+          parallelism)
+      .collectSeq()
+      .block()
+----
+
+
 == Choosing an API
+
 So which API should you choose?
 
 It's really down to you and the needs of your application.
