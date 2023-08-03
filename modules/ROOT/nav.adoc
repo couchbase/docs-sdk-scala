@@ -1,4 +1,4 @@
-.Couchbase Scala SDK
+ .Couchbase Scala SDK
 
 .Getting Started
 * xref:hello-world:start-using-sdk.adoc[]
@@ -17,7 +17,7 @@
 //** xref:concept-docs:transactions-cleanup.adoc[]
 //** xref:concept-docs:transactions-error-handling.adoc[]
 
-.Working with Data
+.Further Data Ops
 * xref:howtos:json.adoc[]
 * xref:howtos:subdocument-operations.adoc[]
 //  ** xref:howtos:sdk-xattr-example.adoc[Extended Attributes]
@@ -27,7 +27,6 @@
 * xref:howtos:concurrent-async-apis.adoc[Async & Reactive APIs]
 * xref:howtos:concurrent-document-mutations.adoc[]
 * xref:howtos:transcoders-nonjson.adoc[Transcoders & Non-JSON Documents]
-* xref:howtos:working-with-collections.adoc[Working with Collections]
 
 
 .Managing Couchbase
@@ -81,6 +80,7 @@
 .Project Docs
 * xref:project-docs:sdk-release-notes.adoc[]
 * xref:project-docs:compatibility.adoc[]
+** xref:howtos:working-with-collections.adoc[Working with Collections]
 // *xref:project-docs:integrations.adoc[Integrations]]
 * https://docs-archive.couchbase.com/home/index.html[Older Versions Archive]
 * xref:project-docs:sdk-licenses.adoc[]
