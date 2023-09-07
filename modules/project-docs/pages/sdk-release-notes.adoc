@@ -8,6 +8,45 @@
 [abstract]
 {description}
 
+== Version 1.4.10 (6 September 2023)
+
+This is a regular maintenance release.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.4.10/com/couchbase/client/scala/index.html[API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.10/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.5.8**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+
+=== Improvements
+* https://issues.couchbase.com/browse/JVMCBC-1367[JVMCBC-1367]:
+The `db.couchbase.operations` metric now has `db.name` (bucket), `db.couchbase.scope`, `db.couchbase.collection` and `outcome` labels (tags).
+This new feature is at Stability.Volatile, and may change before it is promoted to Stability.Committed in a future release.
+* https://issues.couchbase.com/browse/JVMCBC-1311[JVMCBC-1311],
+https://issues.couchbase.com/browse/JVMCBC-1352[JVMCBC-1352]:
+Upgraded dependencies.
+* https://issues.couchbase.com/browse/SCBC-419[SCBC-419]:
+Support deserializing `Float`.
+
+=== Bugfixes
+* https://issues.couchbase.com/browse/JVMCBC-1350[JVMCBC-1350]:
+`lookupInAnyReplica` now throws `FeatureNotAvailableException` if the server does not support the feature.
+* https://issues.couchbase.com/browse/JVMCBC-1351[JVMCBC-1351]:
+`lookupInAnyReplica` no longer hangs when too many operations are specified.
+* https://issues.couchbase.com/browse/JVMCBC-1353[JVMCBC-1353]:
+Removed the unrelocated `io.opentracing` classes that accidentally slipped into version 2.4.9 of the Couchbase `core-io` library.
+* https://issues.couchbase.com/browse/JVMCBC-1361[JVMCBC-1361]:
+When the SDK receives multiple cluster map versions at the same time, it is now more careful about applying only the most recent version.
+Before this change, there was a brief window where the SDK could apply an obsolete cluster map.
+If this happened, the SDK would temporarily dispatch requests to incorrect or non-existent nodes.
+This condition was typically short-lived, and healed the next time the SDK polled for an updated cluster map, or dispatched a KV request to the wrong node.
+* https://issues.couchbase.com/browse/JVMCBC-1368[JVMCBC-1368]:
+Fixed a rare `java.lang.ArithmeticException: / by zero` exception in `RoundRobinSelectionStrategy.select` that could occur during rebalance.
+* https://issues.couchbase.com/browse/SCBC-420[SCBC-420]:
+Scope-level queries will now work correctly (they now send the `query_context` parameter).
 
 == Version 1.4.9 (2 August 2023)
 
