@@ -1,6 +1,7 @@
 = Release Notes
 :description: Release notes, installation instructions, and download archive for the Couchbase Scala Client.
 :navtitle: Release Notes
+:page-toclevels: 2
 :page-topic-type: reference
 :page-aliases: relnotes-scala-sdk
 
@@ -8,7 +9,15 @@
 [abstract]
 {description}
 
-== Version 1.4.10 (6 September 2023)
+
+
+== Scala SDK 1.4 Releases
+
+We always recommend using the latest version of the SDK -- it contains all of the latest security patches and support for new and upcoming features.
+All patch releases for each dot minor release should be API compatible, and safe to upgrade;
+any changes to expected behavior are noted in the release notes that follow.
+
+=== Version 1.4.10 (6 September 2023)
 
 This is a regular maintenance release.
 
@@ -21,7 +30,7 @@ The supported and tested dependencies for this release are:
 * org.reactivestreams:**reactive-streams:1.0.4**
 
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/JVMCBC-1367[JVMCBC-1367]:
 The `db.couchbase.operations` metric now has `db.name` (bucket), `db.couchbase.scope`, `db.couchbase.collection` and `outcome` labels (tags).
 This new feature is at Stability.Volatile, and may change before it is promoted to Stability.Committed in a future release.
@@ -31,7 +40,7 @@ Upgraded dependencies.
 * https://issues.couchbase.com/browse/SCBC-419[SCBC-419]:
 Support deserializing `Float`.
 
-=== Bugfixes
+==== Bugfixes
 * https://issues.couchbase.com/browse/JVMCBC-1350[JVMCBC-1350]:
 `lookupInAnyReplica` now throws `FeatureNotAvailableException` if the server does not support the feature.
 * https://issues.couchbase.com/browse/JVMCBC-1351[JVMCBC-1351]:
@@ -48,7 +57,7 @@ Fixed a rare `java.lang.ArithmeticException: / by zero` exception in `RoundRobin
 * https://issues.couchbase.com/browse/SCBC-420[SCBC-420]:
 Scope-level queries will now work correctly (they now send the `query_context` parameter).
 
-== Version 1.4.9 (2 August 2023)
+=== Version 1.4.9 (2 August 2023)
 
 This is a regular maintenance release.
 
@@ -61,7 +70,7 @@ The supported and tested dependencies for this release are:
 * org.reactivestreams:**reactive-streams:1.0.4**
 
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/JVMCBC-1339[JVMCBC-1339]:
 When KV traffic capture is enabled, each `ReadTrafficCapturedEvent` now contains a single protocol frame, and the human-readable frame description is more accurate.
 * https://issues.couchbase.com/browse/JVMCBC-1320[JVMCBC-1320]:
@@ -72,7 +81,7 @@ Reduced the default value for the `io.idleHttpConnectionTimeout` client setting 
 The previous default (4.5 seconds) was too close to the 5-second server-side timeout, and could lead to spurious request failures.
 
 
-== Version 1.4.8 (19 July 2023)
+=== Version 1.4.8 (19 July 2023)
 
 This is a regular maintenance release.
 
@@ -85,7 +94,7 @@ The supported and tested dependencies for this release are:
 * org.reactivestreams:**reactive-streams:1.0.4**
 
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/SCBC-406[SCBC-406]:
 Upcoming Couchbase server release 7.6 will support having SQL++ queries read from replicas, in scenarios where the active is unavailable (such as failover).
 This improves availability, though users should be aware that they may be reading stale data.
@@ -94,7 +103,7 @@ It will only work against 7.6 and above: against older server versions, it will 
 * https://issues.couchbase.com/browse/JVMCBC-1322[JVMCBC-1322]:
 The `waitUntilReady()` method now logs additional diagnostic information to the `com.couchbase.core.WaitUntilReady` logging category at `DEBUG` level.
 
-== Version 1.4.7 (12 June 2023)
+=== Version 1.4.7 (12 June 2023)
 
 This is a regular maintenance release.
 
@@ -106,7 +115,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.5.0**
 * org.reactivestreams:**reactive-streams:1.0.4**
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/JVMCBC-1290[JVMCBC-1290]:
 For compatibility with other modern Couchbase SDKs, certificate verification can now be disabled using the connection string parameter: `tls_verify=none`.
 This config property is introduced at stability level `Volatile`, meaning it may change in a patch release without notice.
@@ -115,14 +124,14 @@ https://issues.couchbase.com/browse/JVMCBC-1310[JVMCBC-1310],
 https://issues.couchbase.com/browse/JVMCBC-1313[JVMCBC-1313]:
 Dependencies updated.
 
-=== Bugs
+==== Bugs
 * https://issues.couchbase.com/browse/JVMCBC-1288[JVMCBC-1288]:
 Fixed a regression in Couchbase Java SDK 3.4.5 and Scala SDK 1.4 .5 that prevented Full-Text Search result rows from including an explanation when requested.
 * https://issues.couchbase.com/browse/JVMCBC-1292[JVMCBC-1292]:
 Removed `META-INF/versions/9/module-info.class` from the `core-io` jar. This file was associated with an improperly repackaged dependency, and never should have been there.
 
 
-== Version 1.4.6 (4 May 2023)
+=== Version 1.4.6 (4 May 2023)
 
 This is a regular maintenance release.
 
@@ -134,14 +143,14 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.5.0**
 * org.reactivestreams:**reactive-streams:1.0.4**
 
-=== Bugs
+==== Bugs
 * https://issues.couchbase.com/browse/JVMCBC-1275[JVMCBC-1275]:
 Fixed a regression in Couchbase Java SDK 3.4.5 and Scala SDK 1.4.5 that caused Full Text Search `term` queries to throw `NullPointerException` unless `prefixLength` and `fuzziness` were specified.
 * https://issues.couchbase.com/browse/JVMCBC-1285[JVMCBC-1285]:
 Fixed a regression in Couchbase Java SDK 3.4.5 and Scala SDK 1.4.5 that caused Full-Text Search queries to fail to report the locations of some terms. Specifically, any location that did not have `arrayPositions` was omitted from the results.
 
 
-== Version 1.4.5 (13 April 2023)
+=== Version 1.4.5 (13 April 2023)
 
 This is a regular maintenance release.
 
@@ -153,7 +162,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.5.0**
 * org.reactivestreams:**reactive-streams:1.0.4**
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/JVMCBC-1223[JVMCBC-1223]:
 Adds a `RetryReason.AUTHENTICATION_ERROR` at `Uncommitted` API stability level.
 A custom `RetryStrategy` can use this new, more granular information to distinguish if a connection problem is down to an authentication issue.
@@ -161,7 +170,7 @@ A custom `RetryStrategy` can use this new, more granular information to distingu
 https://issues.couchbase.com/browse/SCBC-394[SCBC-394]:
 Internal improvements to further align Scala with the Java implementation for Full Text Search.
 
-=== Bugs
+==== Bugs
 * https://issues.couchbase.com/browse/JVMCBC-1252[JVMCBC-1252]:
 Orphaned "observe" operations will no longer occasionally contain a `total_duration_us` field equal to 0.
 * https://issues.couchbase.com/browse/JVMCBC-1255[JVMCBC-1255]:
@@ -169,7 +178,7 @@ If you were subscribing to the event bus and printing all the events, you may ha
 `Event.toString()` now handles null contexts more gracefully, and no longer throws this exception.
 
 
-== Version 1.4.4 (8 March 2023)
+=== Version 1.4.4 (8 March 2023)
 
 This is a regular maintenance release.
 
@@ -181,7 +190,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.5.0**
 * org.reactivestreams:**reactive-streams:1.0.4**
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/SCBC-383[SCBC-383],
 https://issues.couchbase.com/browse/SCBC-391[SCBC-391]:
 Adding `CollectionQueryIndexManager`, allowing query index management at the collection level via `collection.queryIndexes()`.
@@ -190,14 +199,14 @@ Added "network" as an alias for the "io.networkResolution" connection string par
 For example, the connection string "couchbase://example.com?network=external" is now equivalent to "couchbase://example.com?io.networkResolution=external".
 This was done for compatibility with other Couchbase SDKs that use "network" as the name of this parameter.
 
-=== Bugs
+==== Bugs
 * https://issues.couchbase.com/browse/JVMCBC-1232[JVMCBC-1232]:
 `Cluster.connect()` now rejects connection strings that have no addresses (like "couchbase://").
 Before this change, it would accept the invalid connection string, and subsequent operations would fail with a misleading error message: "The cluster does not support cluster-level queries".
 * https://issues.couchbase.com/browse/JVMCBC-1234[JVMCBC-1234]:
 Fixed a regression in Java SDK 3.4.3 and Scala SDK 1.4.3 that caused SQL++ query result metadata to always include metrics, regardless of the "metrics" query option.
 
-== Version 1.4.3 (9 February 2023)
+=== Version 1.4.3 (9 February 2023)
 
 This is a regular maintenance release.
 
@@ -209,7 +218,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.5.0**
 * org.reactivestreams:**reactive-streams:1.0.4**
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/SCBC-384[SCBC-384],
 https://issues.couchbase.com/browse/SCBC-385[SCBC-385],
 https://issues.couchbase.com/browse/SCBC-386[SCBC-386]
@@ -223,14 +232,14 @@ Updated dependencies.
 * https://issues.couchbase.com/browse/JVMCBC-1213[JVMCBC-1213]:
 If too many operations are specified in a single sub-document lookup, the exception message now indicates why the operation failed.
 
-=== Bug Fixes
+==== Bug Fixes
 * https://issues.couchbase.com/browse/JVMCBC-1160[JVMCBC-1160]:
 When a sub-document path has a syntax error or is inappropriate for an operation, the SDK now raises `PathInvalidException`.
 Prior to this change, it would raise a generic `CouchbaseException` with the message "Unexpected SubDocument response code".
 * https://issues.couchbase.com/browse/SCBC-388[SCBC-388]:
 If expiry has not been requested on a KV get operation, then expiry fields in `GetResult` are now `None`, as expected.
 
-== Version 1.4.2 (16 January 2023)
+=== Version 1.4.2 (16 January 2023)
 
 This is a regular maintenance release.
 
@@ -244,12 +253,12 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.5.0**
 * org.reactivestreams:**reactive-streams:1.0.4**
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/JVMCBC-1175[JVMCBC-1175]:
 The SDK now includes native libraries for IO and TLS that can enhance performance on `aarch_64` architectures like Graviton and Apple Silicon. Previously, native libraries were included only for `x86_64` architectures.
 Native libraries for IO and TLS are enabled by default. If you need to disable native IO, set the `ioEnvironment.enableNativeIo` client setting to false. To disable native TLS, set the `security.enableNativeTls` client setting to false.
 
-=== Bugs
+==== Bugs
 * https://issues.couchbase.com/browse/JVMCBC-1161[JVMCBC-1161]:
 Fixed a minor issue where `cluster.disconnect()` could occasionally timeout due to a race condition.
 * https://issues.couchbase.com/browse/JVMCBC-1176[JVMCBC-1176]:
@@ -259,7 +268,7 @@ Supporting in transactions a future version of Couchbase Server that requires qu
 * https://issues.couchbase.com/browse/JVMCBC-1174[JVMCBC-1174]:
 Fixed a regression that prevented native TLS from being used regardless of whether the `security.enableNativeTls` client setting was set to true.
 
-== Version 1.4.1 (7 December 2022)
+=== Version 1.4.1 (7 December 2022)
 
 Version 1.4.1 is the second release of the 1.4 series.
 The headline change is support for the KV range scan feature (`collection.scan()`), added at @Stability.Volatile level.
@@ -275,7 +284,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.5.0**
 * org.reactivestreams:**reactive-streams:1.0.4**
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/JVMCBC-1163[JVMCBC-1163]:
 Dependencies have been updated.
 * https://issues.couchbase.com/browse/JVMCBC-1156[JVMCBC-1156]:
@@ -288,7 +297,7 @@ Before this change, the connection string scheme and parameters were always sile
 ** A pre-built environment without TLS enabled is incompatible with a connection string that specifies the secure `couchases` scheme.
 ** A pre-built environment is incompatible with a connection string that has parameters.
 
-=== Bugs
+==== Bugs
 * https://issues.couchbase.com/browse/JVMCBC-1157[JVMCBC-1157]:
 The SDK no longer rejects a `PersistTo` requirement in a bucket using the Magma storage engine.
 Before this change, the SDK would refuse the request because it misidentified Magma buckets as ephemeral (unable to persist documents).
@@ -297,7 +306,7 @@ If you call `CancellationErrorContext.getWaitUntilReadyContext()` on an error co
 * https://issues.couchbase.com/browse/SCBC-380[SCBC-380]:
 Bucket creation and update can now be used with Couchbase Server Community Edition 7.X.
 
-== Version 1.4.0 (24 October 2022)
+=== Version 1.4.0 (24 October 2022)
 
 Version 1.4.0 is the first release of the 1.4 series.
 
@@ -311,7 +320,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.24**
 * org.reactivestreams:**reactive-streams:1.0.4**
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/JVMCBC-1102[JVMCBC-1102]:
 Added support for serverless execution environments including AWS Lambda.
 * https://issues.couchbase.com/browse/SCBC-371[SCBC-371]:
@@ -328,20 +337,25 @@ Bucket hibernation is a feature coming in a future Couchbase release.
 https://issues.couchbase.com/browse/JVMCBC-1144[JVMCBC-1144]:
 If your Couchbase Server cluster's root certificate is signed by a well-known certificate authority whose certificate is included in the JVM's trust store, it's no longer necessary to configure the certificate in the securityConfig settings.
 
-=== Removals
+==== Removals
 * https://issues.couchbase.com/browse/SCBC-372[SCBC-372]:
 We have made the difficult decision to remove the build for Scala 2.11.
 Scala 2.11's last release was in November 2017, and supporting this legacy version is now impeding our ability to also support 2.12, 2.13 and in future Scala 3.
 Scala 2.11 users should continue to use the previous release (1.3.4) and are strongly recommended to upgrade to Scala 2.12 or 2.13, both of which are fully supported.
 Scala 2.11 has never been officially supported for the Couchbase Scala SDK, but it was previously possible for developers to build it themselves.
 
-=== Bugs
+==== Bugs
 * https://issues.couchbase.com/browse/JVMCBC-1141[JVMCBC-1141]:
 Provide required OpenTelemetry span attributes.
 * https://issues.couchbase.com/browse/JVMCBC-1155[JVMCBC-1155]:
 Make sure targeted round robin request keeps retrying if no config is available.
 
-== Version 1.3.4 (9 September 2022)
+
+
+
+== Scala SDK 1.3 Releases
+
+=== Version 1.3.4 (9 September 2022)
 
 Version 1.3.4 is the fifth release of the 1.3 series, and is a maintenance release.
 
@@ -355,7 +369,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.22**
 * org.reactivestreams:**reactive-streams:1.0.4**
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/JVMCBC-1131[JVMCBC-1131]:
 Added ability to track the number of created instances.
 Users can now set to hard-fail if too many instances are created.
@@ -368,11 +382,11 @@ Failed telemetry spans will now record their exception and error status.
 * https://issues.couchbase.com/browse/JVMCBC-1145[JVMCBC-1145]:
 Updated maintenance dependencies.
 
-=== Bug Fixes
+==== Bug Fixes
 * https://issues.couchbase.com/browse/SCBC-367[SCBC-367]:
 Fixed issue where a `NullPointerException` was thrown for a non-existent FTS index.
 
-== Version 1.3.3 (2 August 2022)
+=== Version 1.3.3 (2 August 2022)
 
 Version 1.3.3 is the fourth release of the 1.3 series, and is a maintenance release.
 
@@ -386,11 +400,11 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.21**
 * org.reactivestreams:**reactive-streams:1.0.4**
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/JVMCBC-1116[JVMCBC-1116]:
 Dependency versions have been increased.
 
-=== Bug Fixes
+==== Bug Fixes
 * https://issues.couchbase.com/browse/JVMCBC-1119[JVMCBC-1119]:
 The num (kv) nodesExt to equal number of nodes check can lead to otherwise healthy clusters being flagged as not ready.
 The check has been removed, and now the ` Bucket `waitUntilReady` will not timeout on these edge cases.
@@ -402,7 +416,7 @@ Deprecated Reactor Processors have been replaced.
 The SDK now allows for configurations with _only_ TLS ports.
 
 
-== Version 1.3.2 (6 July 2022)
+=== Version 1.3.2 (6 July 2022)
 
 Version 1.3.2 is the third release of the 1.3 series.
 
@@ -416,7 +430,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.17**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Bug Fixes
+==== Bug Fixes
 
 * https://issues.couchbase.com/browse/JVMCBC-1103[JVMCBC-1103]:
 To reduce overhead, the `MAX_PARALLEL_FETCH` value in `KeyValueBucketRefresher` has been updated to only fetch one config per poll interval.
@@ -425,7 +439,7 @@ To reduce overhead, the `MAX_PARALLEL_FETCH` value in `KeyValueBucketRefresher` 
 Fixed issue where the global refresher did not honor the config poll interval.
 
 
-== Version 1.3.1 (8 June 2022)
+=== Version 1.3.1 (8 June 2022)
 
 Version 1.3.1 is the second release of the 1.3 series.
 
@@ -439,7 +453,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.17**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/JVMCBC-1089[JVMCBC-1089]:
 SDK users can now customize the `ConsoleLogger` format.
 * https://issues.couchbase.com/browse/JVMCBC-1093[JVMCBC-1093]:
@@ -449,7 +463,7 @@ The lookup failure is typically harmless, so the log message has now been downgr
 Updated Netty to version `4.1.77.Final`.
 
 
-== Version 1.3.0 (26 April 2022)
+=== Version 1.3.0 (26 April 2022)
 
 Version 1.3.0 is the first release of the 1.3 series.
 
@@ -468,7 +482,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.17**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Improvements
+==== Improvements
 
 * https://issues.couchbase.com/browse/SCBC-352[SCBC-352]:
 Scala SDK now bundles the public Capella CA certificate.
@@ -485,7 +499,7 @@ Updated maintenance dependencies.
 * https://issues.couchbase.com/browse/JVMCBC-1085[JVMCBC-1085]:
 The last connect attempt failure is now stored and exposed through `Diagnostics`.
 
-=== Bugs
+==== Bugs
 
 * https://issues.couchbase.com/browse/SCBC-350[SCBC-350]:
 `NOT_STORED` is now correctly handled as `DocAlreadyExists` when inserting a document.
@@ -496,7 +510,10 @@ Shutting down a `ClusterEnvironment` now correctly stops a `Meter` owned by the 
 This plugs a resource leak where `LoggingMeter` worker threads would never be stopped.
 
 
-== Version 1.2.6 (2 March 2022)
+
+== Scala SDK 1.2 Releases
+
+=== Version 1.2.6 (2 March 2022)
 
 There are no changes at the Scala SDK layer in this release, but there are bugfixes and improvements in the underlying core-io library.
 
@@ -510,14 +527,14 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.14**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Bugs
+==== Bugs
 
 * https://issues.couchbase.com/browse/JVMCBC-1060[JVMCBC-1060]:
 Fixed an issue where rate limited exceptions were not thrown for `SearchIndexManager` errors.
 * https://issues.couchbase.com/browse/JVMCBC-1071[JVMCBC-1071]:
 The SDK now ensures that negative values are not sent to the `ValueRecorder`.
 
-=== New Features
+==== New Features
 
 * https://issues.couchbase.com/browse/JVMCBC-1057[JVMCBC-1057]:
 Added core infrastructure for the Backup service. 
@@ -525,7 +542,7 @@ Users can now make custom HTTP requests to the Backup service.
 * https://issues.couchbase.com/browse/JVMCBC-1064[JVMCBC-1064]:
 When implementing a custom `RetryStrategy`, a new overload of `RetryAction.noRetry` lets you specify an exception translator for converting the default request cancellation exception into your preferred exception class.
 
-=== Improvements
+==== Improvements
 
 * https://issues.couchbase.com/browse/JVMCBC-1065[JVMCBC-1065]:
 `RetryReason.allowsNonIdempotentRetry()` is now public, so you can call it from a custom `RetryStrategy`.
@@ -538,7 +555,7 @@ Added explicit handling of `FeatureNotAvailable` for Magma on CE.
 Added explicit handling of `FeatureNotAvailable` for Query CE.
 
 
-== Version 1.2.5 (2 February 2022)
+=== Version 1.2.5 (2 February 2022)
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.5/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.5/[Core API Reference]
@@ -550,7 +567,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.14**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Bugs
+==== Bugs
 
 * https://issues.couchbase.com/browse/SCBC-339[SCBC-339]:
 `QueryIndexManager` `watchIndexes` now refreshes on every try.
@@ -559,7 +576,7 @@ Do not load global config if node not in seed node list anymore.
 * https://issues.couchbase.com/browse/JVMCBC-1058[JVMCBC-1058]:
 When a non-default scope or collection is being created with memcached buckets, the correct `FeatureNotAvailableException` is now thrown.
 
-=== Improvements
+==== Improvements
 
 * https://issues.couchbase.com/browse/SCBC-341[SCBC-341]:
 Removed the Azure link type from the analytics management API, due to a change in the underlying server API.
@@ -595,7 +612,7 @@ Reactor from 3.4.12 to 3.4.14.
 log4j (an optional dependency) from 2.15.0 to 2.17.1.
 
 
-== Version 1.2.4 (9 December 2021)
+=== Version 1.2.4 (9 December 2021)
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.4/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.4/[Core API Reference]
@@ -607,7 +624,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.12**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Improvements
+==== Improvements
 
 * https://issues.couchbase.com/browse/SCBC-334[SCBC-334]:
 Bucket Management API - Added Storage Option for Magma.
@@ -629,7 +646,7 @@ Included httpStatus in Query and Analytics Error Context, as well as the vbucket
 This helps with debugging.
 
 
-== Version 1.2.3 (2 November 2021)
+=== Version 1.2.3 (2 November 2021)
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.3/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.3/[Core API Reference]
@@ -641,7 +658,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.9**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/JVMCBC-1026[JVMCBC-1026]:
 Added support for Error Map v2.
 
@@ -653,7 +670,7 @@ https://issues.couchbase.com/browse/SCBC-337[SCBC-337]
 Updated dependencies.
 
 
-== Version 1.2.2 (6 October 2021)
+=== Version 1.2.2 (6 October 2021)
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.2/com/couchbase/client/scala/index.html[API Reference] |
 http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.2/[Core API Reference]
@@ -665,7 +682,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.9**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/SCBC-265[SCBC-265]:
 Added an eventing management API.
 * https://issues.couchbase.com/browse/SCBC-332[SCBC-332]:
@@ -681,11 +698,11 @@ batched up and logged at interval.
 Note that this implies some "loss of precision", as
 not all dropped events are logged - one event per type is preserved.
 
-=== Interface Affecting
+==== Interface Affecting
 * https://issues.couchbase.com/browse/SCBC-331[SCBC-331]:
 Promoted Manager interfaces to committed.
 
-=== Bugs
+==== Bugs
 * https://issues.couchbase.com/browse/SCBC-330[SCBC-330]:
 Ensured that JsonObjectSafe is recursive.
 * https://issues.couchbase.com/browse/JVMCBC-1017[JVMCBC-1017]:
@@ -694,7 +711,7 @@ Fixed issue with Threshold Logging Tracing not working due to RequestContext not
 Added `target` property to QueryRequest and ensured it is honored for prepare and execute, so they are both run on the same node. This fix removes need for `TargetedQueryRequest`.
 
 
-== Version 1.2.1 (1 September 2021)
+=== Version 1.2.1 (1 September 2021)
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.1/com/couchbase/client/scala/index.html[API Reference]
 
@@ -705,7 +722,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.9**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/SCBC-328[SCBC-328]:
 Update collections compat dependency.
 * https://issues.couchbase.com/browse/SCBC-325[SCBC-325]:
@@ -725,14 +742,14 @@ Allow to export Context as Map.
 * https://issues.couchbase.com/browse/JVMCBC-1006[JVMCBC-1006]:
 ErrorContext must be included in message.
 
-=== Bug fixes
+==== Bug fixes
 * https://issues.couchbase.com/browse/JVMCBC-1002[JVMCBC-1002]:
 Default log level reverted to INFO.
 * https://issues.couchbase.com/browse/JVMCBC-1007[JVMCBC-1007]:
 LoggingMeter incorrectly marked as Volatile in SDK 3.2.
 
 
-== Version 1.2.0 (20 July 2021)
+=== Version 1.2.0 (20 July 2021)
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.2.0/com/couchbase/client/scala/index.html[API Reference]
 
@@ -746,7 +763,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.6**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Improvement
+==== Improvement
 * https://issues.couchbase.com/browse/SCBC-217[SCBC-217]:
 Provide a published and officially supported Scala 2.13 build.
 * https://issues.couchbase.com/browse/SCBC-231[SCBC-231]:
@@ -793,7 +810,7 @@ Add support for SDK2-compatible LegacyTranscoder.
 * https://issues.couchbase.com/browse/JCBC-1841[JCBC-1841]:
 Update OpenTelemetry to 1.3.0.
 
-=== Interface Changes
+==== Interface Changes
 All interface changes are to interfaces that are currently in beta and marked @Stability.Volatile or @Stability.Uncommitted.
 
 * https://issues.couchbase.com/browse/JVMCBC-978[JVMCBC-978]:
@@ -805,7 +822,7 @@ Rename ThresholdRequestTracer to ThresholdLoggingTracer
 * https://issues.couchbase.com/browse/SCBC-297[SCBC-297]:
 Promote collection APIs from Volatile to Committed.
 
-=== Bug Fixes
+==== Bug Fixes
 * https://issues.couchbase.com/browse/SCBC-270[SCBC-270]:
 Add redundant error handling for collection manager errors.
 * https://issues.couchbase.com/browse/SCBC-296[SCBC-296]:
@@ -815,7 +832,12 @@ Opening a non-default collection on an memcached bucket now fails fast.
 * https://issues.couchbase.com/browse/JVMCBC-983[JVMCBC-983]:
 Ignore slow subscribers on certain Flux intervals.
 
-== Version 1.1.8 (1 March 2022)
+
+
+== Scala SDK 1.1 Releases
+
+
+=== Version 1.1.8 (1 March 2022)
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.1.8/com/couchbase/client/scala/index.html[API Reference]
 
 The supported and tested dependencies for this release are:
@@ -825,7 +847,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.15**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-== Bug Fixes
+=== Bug Fixes
 
 * https://issues.couchbase.com/browse/JVMCBC-1067[JVMCBC-1067]:
 Internal and external maintenance dependencies are updated to their latest available bugfix releases (including Netty to 4.1.74.Final).
@@ -834,7 +856,7 @@ Added fix to not load the global config if a node is not in the seed node list a
 * https://issues.couchbase.com/browse/JVMCBC-1006[JVMCBC-1006]:
 `ErrorContext` is now included in the message of a `CouchbaseException`.
 
-== Version 1.1.7 (11 August 2021)
+=== Version 1.1.7 (11 August 2021)
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.1.7/com/couchbase/client/scala/index.html[API Reference]
 
 The supported and tested dependencies for this release are:
@@ -844,7 +866,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.6**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-== Bug Fixes
+=== Bug Fixes
 * https://issues.couchbase.com/browse/JVMCBC-949[JVMCBC-949]:
 Opening a non-default collection on an memcached bucket now fails fast.
 * https://issues.couchbase.com/browse/JVMCBC-983[JVMCBC-983]:
@@ -854,7 +876,7 @@ The SDK now gracefully handles cluster-level WaitUntilReady against clusters < 6
 * https://issues.couchbase.com/browse/SCBC-296[SCBC-296]:
 Fixes a `JsonArraySafe` bug.
 
-=== Improvements
+==== Improvements
 
 * https://issues.couchbase.com/browse/JVMCBC-996[JVMCBC-996]:
 Throw `FeatureNotAvailableException` if scope level queries are not available.
@@ -866,9 +888,9 @@ Allow supplying an SDK2-compatible memcached hashing strategy.
 Properly map server query timeout while streaming.
 
 
-== Improvements
+=== Improvements
 
-== Version 1.1.6 (4 June 2021)
+=== Version 1.1.6 (4 June 2021)
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.1.6/com/couchbase/client/scala/index.html[API Reference]
 
 The supported and tested dependencies for this release are:
@@ -878,11 +900,11 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.6**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Bug Fixes
+==== Bug Fixes
 * https://issues.couchbase.com/browse/JVMCBC-972[JVMCBC-972]:
 Only open one GCCCP connection per node.
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/SCBC-237[SCBC-237]:
 Added `ThresholdRequestTracerConfig` and support for it in `ClusterEnvironment`.
 * https://issues.couchbase.com/browse/SCBC-286[SCBC-286]:
@@ -896,7 +918,7 @@ Further improve wait until ready diagnostics.
 * https://issues.couchbase.com/browse/JVMCBC-977[JVMCBC-977]:
 Improve bucket configuration handling (revEpoch).
 
-== Version 1.1.5 (6 May 2021)
+=== Version 1.1.5 (6 May 2021)
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.1.5/com/couchbase/client/scala/index.html[API Reference]
 
 The supported and tested dependencies for this release are:
@@ -906,13 +928,13 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.5**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/SCBC-266[SCBC-266]:
 Add FTS support for collections.
 * https://issues.couchbase.com/browse/SCBC-281[SCBC-281]:
 Add Support to Preserve TTL.
 
-== Version 1.1.4 (7 April 2021)
+=== Version 1.1.4 (7 April 2021)
 
 While there are no changes specific to the Scala SDK in this release, it does inherit fixes from the underlying core-io release.
 
@@ -925,11 +947,11 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.4**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Bug Fixes
+==== Bug Fixes
 * https://issues.couchbase.com/browse/JCBC-1798[JCBC-1798]:
 Fixes ViewResult.metaData() throwing Exception when debug=true.
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/JCBC-1786[JCBC-1786]:
 Transcoders now allow contentAs(Object.class).
 Java Map and List collections are used to represent JSON objects and arrays.
@@ -937,7 +959,7 @@ Java Map and List collections are used to represent JSON objects and arrays.
 Allow `MutateInSpec.remove("")`, which removes the entire document.
 
 
-== Version 1.1.3 (2 March 2021)
+=== Version 1.1.3 (2 March 2021)
 
 Version 1.1.3 is the fourth release of the 1.1 series, bringing stabilizations and enhancements over 1.1.2.
 
@@ -950,7 +972,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.3**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Improvements
+==== Improvements
 * https://issues.couchbase.com/browse/SCBC-285[SCBC-285]:
 Expose property loading on environment.
 * https://issues.couchbase.com/browse/JVMCBC-924[JVMCBC-924],
@@ -963,7 +985,7 @@ Performance: Replace new byte[] full copies with ByteBufUtil.getBytes.
 * https://issues.couchbase.com/browse/JVMCBC-927[JVMCBC-927]:
 Performance: Improve performance of metrics hot code path.
 
-=== Bugs
+==== Bugs
 * https://issues.couchbase.com/browse/JVMCBC-930[JVMCBC-930]:
 Threshold and Orphan Reporting now report the correct time units.
 * https://issues.couchbase.com/browse/JVMCBC-932[JVMCBC-932]:
@@ -971,7 +993,7 @@ Fixed a memory leak when OrphanReporter is disabled.
 * https://issues.couchbase.com/browse/JVMCBC-933[JVMCBC-933]:
 ThresholdRequestTracer and OrphanReporter now use bounded queues.
 
-=== Internal Improvements
+==== Internal Improvements
 * https://issues.couchbase.com/browse/JVMCBC-912[JVMCBC-912]:
 Refactor property loading.
 * https://issues.couchbase.com/browse/JVMCBC-918[JVMCBC-918]:
@@ -985,7 +1007,7 @@ Retain stability annotations at runtime.
 * https://issues.couchbase.com/browse/SCBC-284[SCBC-284]:
 Expose package-level APIs for Spark interop.
 
-== Version 1.1.2 (2 February 2020)
+=== Version 1.1.2 (2 February 2020)
 
 Version 1.1.2 is the third release of the 1.1 series, bringing stabilizations and enhancements over 1.1.1.
 
@@ -998,21 +1020,21 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.1**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Bugs
+==== Bugs
 * https://issues.couchbase.com/browse/SCBC-282[SCBC-282]:
 Collection map is no longer refreshed when using the default scope and default collection.
 
-=== API Affecting
+==== API Affecting
 * https://issues.couchbase.com/browse/SCBC-288[SCBC-288]:
 CollectionManager::getScope is now deprecated, in favour of using getAllScopes.
 
-=== Enhancements
+==== Enhancements
 * https://issues.couchbase.com/browse/JVMCBC-915[JVMCBC-915]:
 As a performance optimization, loading a collection now only fetches the information required for that collection, rather than the full collection manifest.
 * https://issues.couchbase.com/browse/JVMCBC-916[JVMCBC-916]:
 Any send HTTP request will send a hostname if hostnames are used, rather than IP, leading to consistent hostname use across the system.
 
-== Version 1.1.1 (12 January 2020)
+=== Version 1.1.1 (12 January 2020)
 Version 1.1.1 is the second release of the 1.1 series, bringing stabilizations and enhancements over 1.1.
 
 http://docs.couchbase.com/sdk-api/couchbase-scala-client-1.1.1/[API Reference]
@@ -1024,7 +1046,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.1**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Bugs
+==== Bugs
 * https://issues.couchbase.com/browse/JVMCBC-909[JVMCBC-909]:
 Retry opening the bucket until timeout when it is not found, to allow for it not yet being created.
 * https://issues.couchbase.com/browse/JVMCBC-910[JVMCBC-910]:
@@ -1033,13 +1055,13 @@ WaitUntilReady will now wait if bucket not present yet, before it starts to time
 Prepared non-adhoc queries on scopes were failing, as query_context was not being passed to the individual prepare and/or execute statements.
 This has now been fixed, and scope-level queries are working as expected. 
 
-=== Enhancements
+==== Enhancements
 * https://issues.couchbase.com/browse/SCBC-273[SCBC-273]:
 Exposed partition information from the query management API on `QueryIndex` class.
 * https://issues.couchbase.com/browse/SCBC-275[SCBC-275]:
 Escape the scope for scope-level queries now enabled, as a fix in the server means that this works.
 
-== Version 1.1.0 (2 December 2020)
+=== Version 1.1.0 (2 December 2020)
 
 Version 1.1.0 is the first GA release of the 1.1 series, bringing stabilizations and enhancements over 1.0.10 and the 1.0 SDK, and adding features to support Couchbase Server 6.6 and 7.0β.
 
@@ -1052,7 +1074,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.0**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Enhancements
+==== Enhancements
 
 * https://issues.couchbase.com/browse/SCBC-241[SCBC-241]:
 Refactored Document Expiry Duration.
@@ -1062,7 +1084,7 @@ Added disableScoring parameter for Search.
 The minimum durability level can now be configured on the `BucketManager`.
 
 
-== Version 1.0.10 (3 November 2020)
+=== Version 1.0.10 (3 November 2020)
 
 Version 1.0.10 is a maintenance release, bringing enhancements over the last stable release.
 
@@ -1075,7 +1097,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.3.9.RELEASE**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Enhancements
+==== Enhancements
 
 * https://issues.couchbase.com/browse/JVMCBC-898[JVMCBC-898]:
 Added fallback for lastDispatchedTo in context, to improve debuggability.
@@ -1087,7 +1109,9 @@ Enhanced user management for collections/RBAC, to support future 7.0 release.
 
 
 
-== Version 1.0.9 (7 October 2020)
+== Scala SDK 1.0 Releases
+
+=== Version 1.0.9 (7 October 2020)
 
 Version 1.0.9 is a maintenance release, bringing enhancements and bugfixes over the last stable release.
 
@@ -1101,7 +1125,7 @@ The supported and tested dependencies for this release are:
 * org.reactivestreams:**reactive-streams:1.0.3**
 
 
-=== Bug Fixes
+==== Bug Fixes
 * https://issues.couchbase.com/browse/SCBC-254[SCBC-254]: 
 Fixed a decode error (allocstall) on BucketSettings with certain long values sent from particular server versions by swapping out upickle for JsonObject decoding.
 * https://issues.couchbase.com/browse/SCBC-257[SCBC-257]: 
@@ -1120,7 +1144,7 @@ BatchHelper: handle success case with no body gracefully.
 Subdoc 'no access' error code is now reported correctly.
 This helps users to identify and fix permissions errors for system XATTRs.
 
-=== Enhancements
+==== Enhancements
 * https://issues.couchbase.com/browse/SCBC-233[SCBC-233]: 
 Geopolygon search support.
 * https://issues.couchbase.com/browse/SCBC-234[SCBC-234]: 
@@ -1140,7 +1164,7 @@ Improved LDAP auth failure handling.
 Fast dispatch pooled requests.
 
 
-== Version 1.0.8 (1 September 2020)
+=== Version 1.0.8 (1 September 2020)
 
 Version 1.0.8 is the ninth release of the Scala SDK, bringing enhancements and bugfixes over the last stable release.
 
@@ -1153,7 +1177,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.3.9.RELEASE**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Bug Fixes
+==== Bug Fixes
 
 * https://issues.couchbase.com/browse/JVMCBC-805[JVMCBC-805]:
 The client now handles bootstrapping against nodes much better which do not have the data service enabled (in an MDS setup).
@@ -1168,7 +1192,7 @@ The client now trackes multiple parallel bucket open attempts (against different
 * https://issues.couchbase.com/browse/JVMCBC-878[JVMCBC-878]:
 `EndpointDiagnostics` had the local and remote hostnames mixed up, they now show up in the correct order.
 
-=== Enhancements
+==== Enhancements
 
 * https://issues.couchbase.com/browse/JVMCBC-883[JVMCBC-883]:
 The client is now a little less verbose when performing a DNS SRV request and the underlying JDK operation times out.
@@ -1180,7 +1204,7 @@ When dealing with unknown collections, the SDK now returns a more user friendly 
 On the request timeout exception, the retry reasons are now accessible directly.
 
 
-== Version 1.0.7 (4 August 2020)
+=== Version 1.0.7 (4 August 2020)
 
 Version 1.0.7 is the eighth release of the Scala SDK, bringing enhancements, and bugfixes over the last stable release.
 
@@ -1193,7 +1217,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.3.8.RELEASE**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Bug Fixes
+==== Bug Fixes
 * https://issues.couchbase.com/browse/SCBC-247[SCBC-247]: 
 Removed cas from `IncrementOptions` and `DecrementOptions`.  
 CAS is not supported by the underlying protocol and should not have been exposed in these options.
@@ -1201,14 +1225,14 @@ CAS is not supported by the underlying protocol and should not have been exposed
 A bug in the chunk response parser prohibited responses meant that View reduce responses were never completed, and as a result timed out on the user side.
 The completion of view results with reduce enabled has now been fixed.
 
-=== Enhancements
+==== Enhancements
 * https://issues.couchbase.com/browse/JVMCBC-867[JVMCBC-867]: 
 Performance improvement: do not grab ByteBuf slice when extracting server response time.
 * https://issues.couchbase.com/browse/JVMCBC-869[JVMCBC-869]: 
 Maintenance dependency bump: Netty -> 4.1.51, Jackson -> 2.11.1, Reactor -> 3.3.7, OpenTelemetry -> 0.6.0, Reactor Scala Extensions -> 0.7.1.
 
 
-== Version 1.0.6 (14 July 2020)
+=== Version 1.0.6 (14 July 2020)
 
 Version 1.0.6 is the seventh release of the Scala SDK.
 
@@ -1221,11 +1245,11 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.3.5.RELEASE**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Enhancements
+==== Enhancements
 * https://issues.couchbase.com/browse/JVMCBC-865[JVMCBC-865]:
 Change the default idle timeout to 4.5s for http connections, to support performance improvements in query service.
 
-=== Bug Fixes
+==== Bug Fixes
 * https://issues.couchbase.com/browse/SCBC-244[SCBC-244]:
 ViewQuery with keys does not work.
 * https://issues.couchbase.com/browse/JVMCBC-849[JVMCBC-849]:
@@ -1243,7 +1267,7 @@ Bucket-Level ping report no longer includes other view and KV services buckets.
 Trailing : no longer added to IPv6 addresses without [].
 'invalid IPv6 address' warnings now no longer produced when trying to connect to a valid Ipv6 address thus specified.
 
-== Version 1.0.5 (2 June 2020)
+=== Version 1.0.5 (2 June 2020)
 
 Version 1.0.5 is the sixth release of the Scala SDK.
 It brings no new changes to the Scala client itself, but inherits enhancements and bugfixes over the last stable release from the core-io dependency.
@@ -1258,20 +1282,20 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.3.5.RELEASE**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Enhancements
+==== Enhancements
 
 * http://issues.couchbase.com/browse/JVMCBC-852[JVMCBC-852]:
 Bumped Reactor to 3.3.5, Netty to 4.1.50.Final, and Jackson to 2.11.0.
 * https://issues.couchbase.com/browse/JVMCBC-693[JVMCBC-693]:
 For performance, the KV bootstrap sequence is now partially pipelined.
 
-=== Bug Fixes
+==== Bug Fixes
 
 * http://issues.couchbase.com/browse/JVMCBC-849[JVMCBC-849]:
 Duplicate global loading exceptions are now swallowed to remove redundant warnings from logging (this was a cosmetic-only issue).
 
 
-== Version 1.0.4 (7 May 2020)
+=== Version 1.0.4 (7 May 2020)
 
 Version 1.0.4 is the fifth release of the Scala SDK.
 It brings no new changes to the Scala client itself, but inherits enhancements and bugfixes over the last stable release from the core-io dependency.
@@ -1286,18 +1310,18 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.3.4.RELEASE**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-=== Enhancements
+==== Enhancements
 
 * http://issues.couchbase.com/browse/JVMCBC-841[JVMCBC-841]:
 Bumped Netty dependency to 2.0.30, and reactor to 3.3.4.
 
-=== Bug Fixes
+==== Bug Fixes
 
 * http://issues.couchbase.com/browse/JVMCBC-845[JVMCBC-845]:
 If a rebalance is stopped in the middle, an edge case occasionally causes KV ops to time out as the fast forward map is chosen over the retry.
 The behavior has now been changed so that the client will try the old and new servers to make sure the operation eventually gets dispatched to the right node.
 
-== Version 1.0.3 (7 April 2020)
+=== Version 1.0.3 (7 April 2020)
 
 Version 1.0.3 is the fourth release of the Scala SDK.
 It brings no new changes to the Scala client itself, but inherits enhancements and bugfixes over the last stable release from the core-io dependency.
@@ -1312,7 +1336,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.3.1.RELEASE**
 * org.reactivestreams:**reactive-streams:1.0.2**
 
-=== Enhancements
+==== Enhancements
 
 * http://issues.couchbase.com/browse/JVMCBC-830[JVMCBC-830]:
 Added more convenient overloads for SecurityConfig and CertAuth. 
@@ -1331,7 +1355,7 @@ Updates OpenTelemetry to 0.3 (beta).
 * http://issues.couchbase.com/browse/JVMCBC-839[JVMCBC-839]:
 Bootstrap will now correctly use the mapped port if alternate addr is present.
 
-=== Bug Fixes
+==== Bug Fixes
 
 * http://issues.couchbase.com/browse/JVMCBC-834[JVMCBC-834]:
 'CollectionNotFoundException' now triggers a retry, and if no collection refresh is currently in progress it will proactively trigger a new one.
@@ -1345,7 +1369,7 @@ This has now been fixed.
 * http://issues.couchbase.com/browse/JVMCBC-828[JVMCBC-828]:
 Omit internal config request in orphan reporting.
 
-== Version 1.0.2 (3 March 2020)
+=== Version 1.0.2 (3 March 2020)
 
 Version 1.0.2 is the third release of the Scala SDK, bringing enhancements and bugfixes over the last stable release.
 
@@ -1359,7 +1383,7 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.3.1.RELEASE**
 * org.reactivestreams:**reactive-streams:1.0.2**
 
-=== Enhancements
+==== Enhancements
 
 * http://issues.couchbase.com/browse/JVMCBC-813[JVMCBC-813]:
 Improved error message for bucket is missing.
@@ -1377,7 +1401,7 @@ Support added for new VATTR HELLO flag.
 With huge thanks to our community, who submitted the patch, it is now possible to build versions of the SDK for 2.11 and 2.13.
 Couchbase only officially provides, tests and supports a Scala 2.12 build currently, but users are welcome to build their own jars for 2.11 or 2.13 following the https://github.com/couchbase/couchbase-jvm-clients[README instructions].
 
-=== Bug Fixes
+==== Bug Fixes
 
 * http://issues.couchbase.com/browse/SCBC-200[SCBC-200]:
 Dependencies now correctly shaded.
@@ -1390,17 +1414,17 @@ Native Netty transports not included, resulting in fallback to default implement
 * http://issues.couchbase.com/browse/JCBC-1600[JCBC-1600]:
 Using expiry together with document flags on a Sub-Document `mutateIn` no longer causes an incorrect flags field to be sent.
 
-== Version 1.0.1 (5th February 2020)
+=== Version 1.0.1 (5th February 2020)
 
 Version 1.0.1 is the second release of the 1.0 series, bringing new features, enhancements, and bugfixes over the last stable release.
 
-=== Stability Enhancements & Bug Fixes
+==== Stability Enhancements & Bug Fixes
 * https://issues.couchbase.com/browse/SCBC-192[SCBC-192]:
 All scaladoc warnings fixed.
 * https://issues.couchbase.com/browse/SCBC-193[SCBC-193]:
 When creating buckets, numReplicas can now be specified.
 
-=== New Features & Enhancements
+==== New Features & Enhancements
 * https://issues.couchbase.com/browse/SCBC-190[SCBC-190]:
 Exposed enableDnsSrv parameter on `IoConfig()`, allowing DNS SRV to be used.
 * https://issues.couchbase.com/browse/SCBC-204[SCBC-204]:
@@ -1411,12 +1435,12 @@ Exposed Java core environment through Scala ClusterEnvironment, allowing the eve
 Exposed environment getter through cluster. 
 This allows a constructed environment to be shutdown without having to maintain a reference to it.
 
-== Version 1.0.0 (17th January 2020)
+=== Version 1.0.0 (17th January 2020)
 
 This is the first General Availability (GA) release of the new Couchbase Scala SDK.
 It brings a large number of improvements, bug-fixes and API changes from the previous beta release.
 
-=== Stability Enhancements & Bug Fixes
+==== Stability Enhancements & Bug Fixes
 * https://issues.couchbase.com/browse/SCBC-147[SCBC-147]:
 QueryIndexManager should return only GSI indexes
 * https://issues.couchbase.com/browse/SCBC-151[SCBC-151]:
@@ -1436,7 +1460,7 @@ ReactiveCollection KV operations now do ClientVerified Observe check
 * https://issues.couchbase.com/browse/SCBC-182[SCBC-182]:
 QueryOptions missing setters
 
-=== New Features & Enhancements
+==== New Features & Enhancements
 * https://issues.couchbase.com/browse/SCBC-190[SCBC-190]:
 Expose enableDnsSrv parameter on `IoConfig()`, allowing DNS SRV to be used
 * https://issues.couchbase.com/browse/SCBC-192[SCBC-192]:
@@ -1444,7 +1468,7 @@ All scaladoc warnings fixed
 * https://issues.couchbase.com/browse/SCBC-204[SCBC-204]:
 Add support for new server flag `createAsDeleted`, for internal use only
 
-=== API Changes
+==== API Changes
 * https://issues.couchbase.com/browse/SCBC-159[SCBC-159]:
 Fix semantics of datastructures so they behave more like Scala collections
 * https://issues.couchbase.com/browse/SCBC-162[SCBC-162]:
@@ -1465,7 +1489,7 @@ Remove scopeExists and collectionExists from CollectionManager
 Align UserAndMetadata with latest RFC
 
 
-== Pre-releases
+=== Pre-releases
 
 Numerous _Alpha_ and _Beta_ releases were made in the run-up to the 1.0 release, and although unsupported, the release notes and download links are retained for archive purposes xref:3.0-pre-release-notes.adoc[here].
 // enc::all[]
