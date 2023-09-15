@@ -10,7 +10,7 @@
 {description}
 
 
-
+[#latest-release]
 == Scala SDK 1.4 Releases
 
 We always recommend using the latest version of the SDK -- it contains all of the latest security patches and support for new and upcoming features.
