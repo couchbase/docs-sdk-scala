@@ -17,6 +17,32 @@ We always recommend using the latest version of the SDK -- it contains all of th
 All patch releases for each dot minor release should be API compatible, and safe to upgrade;
 any changes to expected behavior are noted in the release notes that follow.
 
+
+=== Version 1.4.11 (4 October 2023)
+
+This is a regular maintenance release.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.4.11/com/couchbase/client/scala/index.html[API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.11/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.5.8**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+==== Improvements
+* https://issues.couchbase.com/browse/JCBC-2046[JCBC-2046]:
+With thanks to our community for the contribution, support for Micrometer Observation has been added to all JVM SDKs via the new `tracing-micrometer-observation` module.
+* https://issues.couchbase.com/browse/JVMCBC-1327[JVMCBC-1327]:
+Internal improvements to support upcoming faster failover and config push features.
+
+==== Bugfixes
+* https://issues.couchbase.com/browse/JVMCBC-1364[JVMCBC-1364]:
+Fixed decoding of certain niche sub-document errors, so they no longer raise a `DecodingFailureException`.
+* https://issues.couchbase.com/browse/SCBC-424[SCBC-424]:
+`ConflictResolution` field is now correctly sent on creating a bucket.
+
+
 === Version 1.4.10 (6 September 2023)
 
 This is a regular maintenance release.
@@ -56,6 +82,7 @@ This condition was typically short-lived, and healed the next time the SDK polle
 Fixed a rare `java.lang.ArithmeticException: / by zero` exception in `RoundRobinSelectionStrategy.select` that could occur during rebalance.
 * https://issues.couchbase.com/browse/SCBC-420[SCBC-420]:
 Scope-level queries will now work correctly (they now send the `query_context` parameter).
+
 
 === Version 1.4.9 (2 August 2023)
 
@@ -102,6 +129,7 @@ The option is activated with `scope.query("...", QueryOptions().useReplica(true)
 It will only work against 7.6 and above: against older server versions, it will return a `Failure(FeatureNotAvailableException)`.
 * https://issues.couchbase.com/browse/JVMCBC-1322[JVMCBC-1322]:
 The `waitUntilReady()` method now logs additional diagnostic information to the `com.couchbase.core.WaitUntilReady` logging category at `DEBUG` level.
+
 
 === Version 1.4.7 (12 June 2023)
 
@@ -206,6 +234,7 @@ Before this change, it would accept the invalid connection string, and subsequen
 * https://issues.couchbase.com/browse/JVMCBC-1234[JVMCBC-1234]:
 Fixed a regression in Java SDK 3.4.3 and Scala SDK 1.4.3 that caused SQL++ query result metadata to always include metrics, regardless of the "metrics" query option.
 
+
 === Version 1.4.3 (9 February 2023)
 
 This is a regular maintenance release.
@@ -239,6 +268,7 @@ Prior to this change, it would raise a generic `CouchbaseException` with the mes
 * https://issues.couchbase.com/browse/SCBC-388[SCBC-388]:
 If expiry has not been requested on a KV get operation, then expiry fields in `GetResult` are now `None`, as expected.
 
+
 === Version 1.4.2 (16 January 2023)
 
 This is a regular maintenance release.
@@ -267,6 +297,7 @@ Setting `security.enableNativeTls` to false now prevents the SDK from even attem
 Supporting in transactions a future version of Couchbase Server that requires query_context be sent in all queries.
 * https://issues.couchbase.com/browse/JVMCBC-1174[JVMCBC-1174]:
 Fixed a regression that prevented native TLS from being used regardless of whether the `security.enableNativeTls` client setting was set to true.
+
 
 === Version 1.4.1 (7 December 2022)
 
@@ -305,6 +336,7 @@ Before this change, the SDK would refuse the request because it misidentified Ma
 If you call `CancellationErrorContext.getWaitUntilReadyContext()` on an error context that didn't come from a "wait until ready" request, the method is now guaranteed to return null instead of sometimes throwing a `ClassCastException`.
 * https://issues.couchbase.com/browse/SCBC-380[SCBC-380]:
 Bucket creation and update can now be used with Couchbase Server Community Edition 7.X.
+
 
 === Version 1.4.0 (24 October 2022)
 
