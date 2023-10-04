@@ -17,6 +17,30 @@ We always recommend using the latest version of the SDK -- it contains all of th
 All patch releases for each dot minor release should be API compatible, and safe to upgrade;
 any changes to expected behavior are noted in the release notes that follow.
 
+=== Version 1.4.11 (4 October 2023)
+
+This is a regular maintenance release.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.4.11/com/couchbase/client/scala/index.html[API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.4.11/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.5.8**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+==== Improvements
+* https://issues.couchbase.com/browse/JCBC-2046[JCBC-2046]:
+With thanks to our community for the contribution, support for Micrometer Observation has been added via the new `tracing-micrometer-observation` module.
+* https://issues.couchbase.com/browse/JVMCBC-1327[JVMCBC-1327]:
+Internal improvements to support upcoming faster failover and config push features.
+
+==== Bugfixes
+* https://issues.couchbase.com/browse/JVMCBC-1364[JVMCBC-1364]:
+Fixed decoding of certain niche sub-document errors, so they no longer raise a `DecodingFailureException`.
+* https://issues.couchbase.com/browse/SCBC-424[SCBC-424]:
+`ConflictResolution` field is now correctly sent on creating a bucket.
+
 === Version 1.4.10 (6 September 2023)
 
 This is a regular maintenance release.
