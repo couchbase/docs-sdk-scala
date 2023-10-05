@@ -32,7 +32,7 @@ The supported and tested dependencies for this release are:
 
 ==== Improvements
 * https://issues.couchbase.com/browse/JCBC-2046[JCBC-2046]:
-With thanks to our community for the contribution, support for Micrometer Observation has been added to all JVM SDKs via the new `tracing-micrometer-observation` module.
+With thanks to community member https://github.com/marcingrzejszczak[Marcin Grzejszczak] for the contribution, support for Micrometer Observation has been added to all JVM SDKs via the new `tracing-micrometer-observation` module.
 * https://issues.couchbase.com/browse/JVMCBC-1327[JVMCBC-1327]:
 Internal improvements to support upcoming faster failover and config push features.
 
