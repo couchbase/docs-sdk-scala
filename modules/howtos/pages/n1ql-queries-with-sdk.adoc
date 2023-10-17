@@ -15,6 +15,11 @@
 include::howtos:partial$n1ql-intro.adoc[]
 include::howtos:partial$n1ql-getting-started.adoc[]
 
+
+Note that building indexes is covered in more detail on the xref:concept-docs:n1ql-query.adoc#index-building[Query concept page] --
+and in the https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/manager/query/index.html[API Reference].
+
+
 == A Simple Query
 Here's the basics of how to run a simple query to fetch 10 random rows from travel-sample and print the results:
 
