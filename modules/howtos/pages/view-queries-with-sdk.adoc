@@ -1,38 +1,24 @@
 = MapReduce Views
-:description: You can use MapReduce views to create queryable indexes in Couchbase Data Platform.
-:page-topic-type: howto
+:description: Our legacy MapReduce Views Service is best replaced by the scalable Query Service.
+:navtitle: MapReduce Views
 :page-aliases: ROOT:view-queries-with-sdk
 
-include::project-docs:partial$attributes.adoc[]
 
 [abstract]
 {description}
 
 include::{version-common}@sdk:shared:partial$views.adoc[tag=deprecate]
 
+xref:{version-server}@server:learn:views/views-intro.adoc[MapReduce Views] date from the earliest days of Couchbase and although still maintained and supported for legacy use, they are deprecated in Couchbase Server, and will eventually be removed.
 
-include::{version-common}@sdk:shared:partial$views.adoc[tag=views-intro]
+Views are the only service which does not benefit from xref:{version-server}@server:learn:services-and-indexes/services/services.adoc#services-and-multi-dimensional-scaling[Multi-Dimensional Scaling], and is rarely the best choice over, say, xref:howtos:n1ql-queries-with-sdk.adoc[our Query service] if you are starting a fresh application.
+See our discussion document on xref:concept-docs:data-services.adoc[the best service for you to use].
 
-
-== Querying Views
-Once you have a view defined, it can be queried from the Scala SDK by using the `viewQuery` method on a Bucket instance.
-
-Here is an example:
-
-[source,scala]
-----
-include::example$Views.scala[tag=basic,indent=0]
-var result = bucket.ViewQuery<Type>("design-doc", "view-name", options =>
-    options.WithLimit
-----
+CAUTION: If you are provisioning Views on Couchbase Server for a legacy application, _they must run on a 
+xref:{version-server}@server:learn:buckets-memory-and-storage/storage-engines.adoc#couchstore[couchstore] bucket_.
 
 
+We will maintain support for Views in the SDKs for so long as it can be used with a supported version of Couchbase Server.
 
-[source,scala]
-----
-include::example$Views.scala[tag=byName,indent=0]
-----
-
-include::{version-common}@sdk:shared:partial$views.adoc[tag=example-travel]
-
+Information on using MapReduce Views with the SDK can still be accessed in our https://docs-archive.couchbase.com/scala-sdk/1.1/howtos/view-queries-with-sdk.html[documentation archive].
 
