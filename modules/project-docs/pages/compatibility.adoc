@@ -3,7 +3,7 @@
 Plus notes on Cloud, networks, and AWS Lambda.
 :page-aliases: ROOT:overview,ROOT:compatibility-versions-features,compatibility-versions-features
 :page-toclevels: 2
-:page-topic-type: reference
+
 
 include::project-docs:partial$attributes.adoc[]
 
@@ -11,7 +11,7 @@ include::project-docs:partial$attributes.adoc[]
 {description}
 
 
-The Couchbase Scala SDK 1.4 Client supports Scala 2.12 and 2.13.
+The Couchbase Scala SDK 1.5 Client supports Scala 2.12 and 2.13.
 
 == Couchbase Version/SDK Version Matrix
 
@@ -27,15 +27,15 @@ It is best to upgrade either the SDK or the Couchbase version you are using.
 .Recommended SDK per Server Version Matrix
 [#table_sdk_versions]
 |===
-| | SDK 1.1 | 1.2 | 1.3, 1.4
+| | 1.2 | 1.3, 1.4 | 1.5
 
 | *Server 6.6*
 | *✔*
 | *✔*
 | *✔*
 
-| *Server 7.0 - 7.1*
-| *◎*
+| *Server 7.0 - 7.2*
+| *✔*
 | *✔*
 | *✔*
 |===
