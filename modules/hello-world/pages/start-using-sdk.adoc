@@ -185,6 +185,17 @@ For production deployments, you will want to use a secure server, with `couchbas
 NOTE: `Cluster.connect` returns a `Try[Cluster]`, as the Scala client uses functional error handling and does not throw exceptions.
 You'll see examples later of how to better handle a `Try`, but for simplicity here we'll assume the operation succeeded and get the result as a `Cluster` using `.get`.
 
+
+
+////
+[TIP]
+.Connecting to Cloud Native Gateway, for Kubernetes or OpenShift
+====
+Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string -- read more on the xref:howtos:managing-connections.adoc#cloud-native-gateway[Connections] page.
+====
+////
+
+
 Following successful authentication, the bucket can be opened:
 
 [source,scala]
