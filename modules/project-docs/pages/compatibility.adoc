@@ -59,9 +59,10 @@ We recommend running the latest LTS version (i.e. at the time of writing JDK 17)
 
 The following JDK releases are supported:
 
+* https://adoptium.net/[OpenJDK 21 with HotSpot JVM] (recommended)
+* https://adoptium.net/[OpenJDK 17 with HotSpot JVM]
+* https://www.oracle.com/java/technologies/downloads/#jdk17[Oracle JDK 17]
 * https://adoptium.net/[OpenJDK 11] (Hotspot recommended) or https://www.oracle.com/java/technologies/downloads/#jdk11[Oracle JDK 11]
-* https://adoptium.net/[OpenJDK 17 with HotSpot JVM] (recommended)
-* https://www.oracle.com/java/technologies/downloads/#jdk17[Oracle JDK 17 (recommended)]
 * https://adoptium.net/[OpenJDK 1.8 with HotSpot JVM]
 * https://www.oracle.com/java/technologies/downloads/#java8[Oracle JDK 1.8]
 
@@ -79,11 +80,11 @@ The Scala SDK is tested and supported on the following OSs and platforms:
 [discrete]
 === GNU/Linux
 
-* Amazon Linux 2.
-* Red Hat Enterprise Linux 7 & 8;
-* CentOS 7 & 8.
-* Ubuntu (LTS) 16.04 (_Xenial_), 18.04 (_Bionic_), & 20.04 (_Focal_).
-* Debian 9 (_Stretch_) & 10 (_Buster_).
+* Amazon Linux 2 & AL2023.
+* Red Hat Enterprise Linux 8 & 9;
+// * CentOS 7.
+* Ubuntu (LTS) 20.04 (_Focal_) & 22.04 (_Jammy_).
+* Debian 10 (_Buster_) & 11 (_Bullseye_).
 * Alpine Linux (_Oracle JDK only_) -- but see <<alpine-linux-compatibility, workaround note below>>.
 
 [discrete]
@@ -95,13 +96,13 @@ Microsoft Windows 10 / All LTS releases from Windows Server 2016.
 === Mac OS X
 
 The current and previous two releases of OS X.
-At time of writing (October 2022): 13 (Ventura), 12 (Monterey), and 11 (Big Sur).
+At time of writing (November 2023): 14 (Sonoma), 13 (Ventura), and 12 (Monterey).
 M1 ARM  architecture is fully supported in the Scala SDK.
 
 [discrete]
 === ARM Processor Support
 
-AWS Amazon Graviton2, Apple M1 ARM processors, and ARMv8 on Ubuntu 20.04 (from SDK 1.4).
+AWS Amazon Graviton2, Apple M1 ARM processors, and ARMv8 on Ubuntu 20.04+ (from SDK 1.4).
 ****
 
 The JVM SDKs should also be expected to run on other commonly-available GNU/Linux distributions which support an appropriate JDK, but not all combinations can be tested -- notable exceptions are listed below.
@@ -136,27 +137,31 @@ The downside of these workarounds is potentially reduced performance, which can 
 [.table-merge-cells]
 [cols="7,6,6"]
 |===
-| | Server 6.6 | Server 7.0-7.2
+| | Server 6.6 | Server 7.0 & 7.1 | Server 7.2
 
 | Enhanced Durability
-2+| Since 1.0
+3+| All SDK versions
 
 | Durable Writes
-2+| Since 1.0
+3+| Since 1.0
 
 | Analytics
-2+| Since 1.0
+3+| Since 1.0
 
 | Collections
 | Developer Preview in 6.6, SDK 1.0
-| Since 1.0.10
+2+| Since 1.0.10
 
 | Scope-Level {sqlpp} (formerly N1QL) Queries & all Collections features
 | Not Supported
-| Since SDK 1.2.0
+2+| Since SDK 1.2.0
 
 | Request Tracing
-2+| Since SDK 1.2.0
+3+| Since SDK 1.2.0
+
+| Cloud Native Gateway
+2+| Not Supported
+| From SDK 3.5.0 (with xref:operator::overview.adoc[Couchbase Autonomous Operator] 2.6+)
 |===
 
 include::{version-common}@sdk:shared:partial$network-requirements.adoc[]
@@ -171,18 +176,14 @@ The following table provides an overview.
 .Recommended Spring Data Couchbase per Server Version Matrix
 [#table_spring_versions]
 |===
-|  | SDC 4.0 - 4.4
+|  | SDC 4.3 - 4.4 | SDC 5.0 - 5.1
 
 | _Status ->_
+| _Maintenance Support_
 | _New Features, Active Development_
 
-| *Server 6.0*
-| *Recommended*
-
-| *Server 6.5 & 6.6*
-| *Recommended*
-
-| *Server 7.0 & 7.1*
+| *Server 7.0 - 7.2*
+| *Compatible*
 | *Recommended*
 |===
 
