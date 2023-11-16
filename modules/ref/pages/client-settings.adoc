@@ -84,7 +84,7 @@ Builder Method: `SecurityConfig.enableTls(Boolean)`
 +
 Default:  `false`
 +
-ystem Property: `com.couchbase.env.security.enableTls`
+System Property: `com.couchbase.env.security.enableTls`
 +
 Set this to `true` to encrypt all communication between the client and server using TLS.
 This feature requires the Enterprise Edition of Couchbase Server 3.0 or later.
