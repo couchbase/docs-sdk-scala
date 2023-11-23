@@ -1,36 +1,384 @@
-= Distributed Transactions from the Scala SDK
-:description: Distributed ACID Transactions with JVM SDKs
-:navtitle: ACID Transactions
+= Using Couchbase Transactions
+:description: A practical guide on using Couchbase Distributed ACID transactions, via the Scala SDK.
+:page-partial:
 :page-topic-type: howto
+:page-aliases: acid-transactions
+:page-toclevels: 2
+:page-pagination: next
 
 include::project-docs:partial$attributes.adoc[]
+include::partial$acid-transactions-attributes.adoc[]
 
 [abstract]
 {description}
 
+This guide will show you examples of how to perform multi-document ACID (atomic, consistent, isolated, and durable) database transactions within your application, using the Couchbase Scala SDK.
 
-Distributed ACID Transactions are implemented in the Java SDK, and simple to integrate into your Scala client code.
+Refer to the xref:concept-docs:transactions.adoc[] page for a high-level overview.
 
+== Prerequisites
 
-== Java Transactions from the Scala SDK
+[{tabs}]
+====
+Couchbase Capella::
++
+--
+* Couchbase Capella account.
+* You should know how to perform xref:howtos:kv-operations.adoc[key-value] or xref:howtos:n1ql-queries-with-sdk.adoc[query] operations with the SDK.
+* Your application should have the relevant roles and permissions on the required buckets, scopes, and collections, to perform transactional operations.
+Refer to the xref:cloud:organizations:organization-projects-overview.adoc[Organizations & Access] page for more details.
+* If your application is using xref:concept-docs:xattr.adoc[extended attributes (XATTRs)], you should avoid using the XATTR field `txn` -- this is reserved for Couchbase use.
+--
 
-Just create a `com.couchbase.client.java.Cluster` in your Scala app with the xref:java-sdk:howtos:managing-connections.adoc[normal Java calls] `(Cluster.connect(...))`, and then do transactions on it as normal, e.g.:
+Couchbase Server::
++
+--
+* Couchbase Server (6.6.1 or above).
+* You should know how to perform xref:howtos:kv-operations.adoc[key-value] or xref:howtos:n1ql-queries-with-sdk.adoc[query] operations with the SDK.
+* Your application should have the relevant roles and permissions on the required buckets, scopes, and collections, to perform transactional operations.
+Refer to the xref:{version-server}@server:learn:security/roles.adoc[Roles] page for more details.
+* If your application is using xref:concept-docs:xattr.adoc[extended attributes (XATTRs)], you should avoid using the XATTR field `txn` -- this is reserved for Couchbase use.
+* NTP should be configured so nodes of the Couchbase cluster are in sync with time.
+--
+====
 
-[source,java]
+include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tag=requirements]
+
+== Creating a Transaction
+
+include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tag=creating]
+
+You can create transactions either _synchronously_ or _asynchronously_ (using the https://projectreactor.io/[Project Reactor] reactive library).
+
+[{tabs}]
+====
+Synchronous API::
++
+--
+The synchronous mode is the easiest to write and understand.
+
+Transactions are accessed via the `Cluster` object.
+By invoking `Cluster.transactions`, we can access the `Transactions` object and `run` a transaction.
+
+[source,scala]
 ----
-javaCluster.transactions().run(ctx => { /* your transaction logic here */ })
+include::example$TransactionsExample.scala[tag=examples,indent=0]
+----
+--
+
+Asynchronous API::
++
+--
+The asynchronous mode allows you to build your application in a reactive style, which can help you scale with excellent efficiency.
+
+Transactions are accessed via the `ReactiveCluster` object.
+By invoking `Cluster.reactive().transactions()`, we can access the `ReactiveTransactions` object and `run` the {lambda}.
+
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=examplesReactive,indent=0]
+----
+--
+====
+
+include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tag=lambda-ctx]
+
+include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tag=creating-error]
+
+=== Functional Error Handling
+As with everything in the Scala SDK, the transactions synchronous API presents a functional error handlling interface.
+The transaction itself, and each operation inside it, will return a `Try` containing either a `Success` or a `Failure` object.
+
+To simplify the synchronous API examples, most of them will call `.get` on this `Try`, which will throw if it contains a `Failure`.
+Users should feel free to use this style, or pattern matching, for-comprehensions, or `.flatMap()`, as they prefer.
+
+=== Logging
+
+To aid troubleshooting, each transaction maintains a list of log entries, which can be logged on failure like this:
+
+[{tabs}]
+====
+Synchronous API::
++
+--
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=logging,indent=0]
+----
+--
+
+Asynchronous API::
++
+--
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=async_logging,indent=0]
+----
+--
+====
+
+A failed transaction can involve dozens, even hundreds, of lines of logging, so it may be preferable to write failed transactions into a separate file.
+
+== Key-Value Operations
+
+You can perform transactional database operations using familiar key-value CRUD methods:
+
+* **C**reate - `ctx.insert()`
+
+* **R**ead - `ctx.get()`
+
+* **U**pdate - `ctx.replace()`
+
+* **D**elete - `ctx.remove()`
+
+[IMPORTANT]
+====
+As mentioned <<lambda-ops,previously>>, make sure your application uses the transactional key-value operations inside the {lambda} -- such as `ctx.insert()`, rather than `collection.insert()`.
+====
+
+=== Insert
+
+To insert a document within a transaction {lambda}, simply call `ctx.insert()`.
+
+[{tabs}]
+====
+Synchronous API::
++
+--
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=insert,indent=0]
+----
+--
+
+Asynchronous API::
++
+--
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=insertReactive,indent=0]
+----
+--
+====
+
+=== Get
+
+To retrieve a document from the database you can call `ctx.get()`.
+
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=get,indent=0]
 ----
 
-So in your app you have both a `com.couchbase.client.java.Cluster` and a `com.couchbase.client.scala.Cluster`, which are independent connections.
+`ctx.get()` will return a `TransactionGetResult` object, which is very similar to the `GetResult` you are used to.
 
+If the application needs to ignore or take action on a document not existing, it can handle the failure:
 
-== Additional Information
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=get-catch,indent=0]
+----
 
-For more information on Java transactions, read our guide in the Java documentation:
+Gets will "Read Your Own Writes", e.g. this will succeed:
 
-* xref:java-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
-** xref:java-sdk:howtos:transactions-single-query.adoc[]
-** xref:java-sdk:howtos:transactions-tracing.adoc[]
-* xref:java-sdk:concept-docs:transactions.adoc[]
-** xref:java-sdk:concept-docs:transactions-cleanup.adoc[]
-** xref:java-sdk:concept-docs:transactions-error-handling.adoc[]
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=getReadOwnWrites,indent=0]
+----
+
+Of course, no other transaction will be able to read that inserted document, until this transaction reaches the commit point.
+
+=== Replace
+
+Replacing a document requires a `ctx.get()` call first.
+This is necessary so the SDK can check that the document is not involved in another transaction, and take appropriate action if so.
+
+[{tabs}]
+====
+Synchronous API::
++
+--
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=replace,indent=0]
+----
+--
+
+Asynchronous API::
++
+--
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=replaceReactive,indent=0]
+----
+--
+====
+
+=== Remove
+
+As with replaces, removing a document requires a `ctx.get()` call first.
+
+[{tabs}]
+====
+Synchronous API::
++
+--
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=remove,indent=0]
+----
+--
+
+Asynchronous API::
++
+--
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=removeReactive,indent=0]
+----
+
+[TIP]
+.Reactor Mono<Void>
+Some `ctx` methods, notably `ctx.remove()`, return `SMono[Unit]`.
+There is a common "gotcha" with `SMono[Unit]` in that it does not trigger a "next" reactive event - only a "completion" event.
+This means that some reactive operators chained afterwards, including the common `flatMap`, will not trigger.
+Generally, you will want to do `ctx.remove(...).`then`(...)` rather than `ctx.remove(...).flatMap(...)`.
+--
+====
+
+== {sqlpp} Queries
+
+If you already use https://www.couchbase.com/products/n1ql[{sqlpp} (formerly N1QL)], then its use in transactions is very similar.
+A query returns a `TransactionQueryResult` that is very similar to the `QueryResult` you are used to, and takes most of the same options.
+
+[IMPORTANT]
+====
+As mentioned <<lambda-ops,previously>>, make sure your application uses the transactional query operations inside the {lambda} -- such as `ctx.query()`, rather than `cluster.query()` or `scope.query()`.
+====
+
+Here is an example of selecting some rows from the `travel-sample` bucket:
+
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=queryExamplesSelectScope,indent=0]
+----
+
+An example using a `Scope` for an `UPDATE`:
+
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=queryExamplesUpdate,indent=0]
+----
+
+And an example combining `SELECT` and `UPDATE`.
+
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=queryExamplesComplex,indent=0]
+----
+
+As you can see from the snippet above, it is possible to call regular Scala methods from the {lambda}, permitting complex logic to be performed.
+Just remember that since the {lambda} may be called multiple times, so may the method.
+
+Like key-value operations, queries support "Read Your Own Writes".
+This example shows inserting a document and then selecting it again:
+
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=queryInsert,indent=0]
+----
+
+<1> The inserted document is only staged at this point, as the transaction has not yet committed. +
+Other transactions, and other non-transactional actors, will not be able to see this staged insert yet.
+<2> But the `SELECT` can, as we are reading a mutation staged inside the same transaction.
+
+=== Query Options
+
+Query options can be provided via the `TransactionQueryOptions` object:
+
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=queryOptions,indent=0]
+----
+
+.Supported Transaction Query Options
+|===
+| Name | Description
+
+| `parameters(Positional)` | Allows to set positional arguments for a parameterized query.
+| `parameters(Named)` | Allows you to set named arguments for a parameterized query.
+| `scanConsistency(QueryScanConsistency)` | Sets a different scan consistency for this query.
+| `flexIndex(boolean)` | Tells the query engine to use a flex index (utilizing the search service).
+| `clientContextId(String)` | Sets a context ID returned by the service for debugging purposes.
+| `scanWait(Duration)` | Allows to specify a maximum scan wait time.
+| `scanCap(int)` | Specifies a maximum cap on the query scan size.
+| `pipelineBatch(int)` | Sets the batch size for the query pipeline.
+| `pipelineCap(int)` | Sets the cap for the query pipeline.
+| `profile(QueryProfile)` | Allows you to enable additional query profiling as part of the response.
+| `readonly(boolean)` | Tells the client and server that this query is readonly.
+| `adhoc(boolean)` | If set to false will prepare the query and later execute the prepared statement.
+| `raw(String, Object)` | Escape hatch to add arguments that are not covered by these options.
+|===
+
+== Mixing Key-Value and {sqlpp}
+
+Key-Value and {sqlpp} query operations can be freely intermixed, and will interact with each other as you would expect.
+In this example we insert a document with a key-value operation, and read it with a `SELECT` query.
+
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=queryRyow,indent=0]
+----
+
+<1> The key-value insert operation is only staged, and so it is not visible to other transactions or non-transactional actors.
+<2> But the `SELECT` can view it, as the insert was in the same transaction.
+
+include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tag=rbac]
+
+== Concurrent Operations
+
+The reactive API allows operations to be performed concurrently inside a transaction, which can assist performance.
+
+An example of performing parallel operations using the reactive API:
+
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=concurrentOps,indent=0]
+----
+
+include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tag=query-perf-note]
+
+=== Non-Transactional Writes
+
+To ensure key-value performance is not compromised, and to avoid conflicting writes, applications should *never* perform non-transactional _writes_ concurrently with transactional ones, on the same document.
+
+You can verify this when debugging your application by subscribing to the client's event logger and checking for any `IllegalDocumentStateEvent` events.
+These events are raised when a non-transactional write has been detected and overridden.
+Note that this is on a best-effort basis and detection of every such case cannot be guaranteed.
+
+[source,scala]
+----
+include::howtos:example$TransactionsExample.scala[tag=concurrency,indent=0]
+----
+
+The event contains the key of the document involved, to aid the application with debugging.
+
+See xref:concept-docs:transactions.adoc#concurrency-with-non-transactional-writes[Concurrency with Non-Transactional Writes] to learn more.
+
+== Configuration
+
+The default configuration should be appropriate for most use-cases.
+If needed, transactions can be globally configured at the point of creating the `Cluster`:
+
+[source,scala]
+----
+include::example$TransactionsExample.scala[tag=config,indent=0]
+----
+
+include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tag=config]
+
+== Additional Resources
+
+* Learn more about xref:concept-docs:transactions.adoc[Distributed ACID Transactions].
+
+* Check out the SDK https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/transactions/package-summary.html[API Reference].
