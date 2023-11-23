@@ -30,11 +30,10 @@ How-to guides to help you start your development journey with Couchbase and the 
 * xref:howtos:full-text-searching-with-sdk.adoc[]
 * xref:hello-world:sample-application.adoc[]
 
-// TODO: Uncomment when transactions are supported
-//[.column]
-//.Transactions
-//* xref:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
-//* xref:concept-docs:transactions.adoc[]
+[.column]
+.Transactions
+* xref:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
+* xref:concept-docs:transactions.adoc[]
 
 [.column]
 .Working with Data

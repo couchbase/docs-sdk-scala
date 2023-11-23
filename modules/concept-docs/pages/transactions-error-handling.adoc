@@ -1,0 +1,41 @@
+= Error Handling
+:description:  Handling transaction errors with Couchbase.
+:page-toclevels: 2
+:page-pagination: prev
+
+[abstract]
+{description}
+
+include::project-docs:partial$attributes.adoc[]
+include::howtos:partial$acid-transactions-attributes.adoc[]
+
+include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tag=error-intro]
+
+== Transaction Errors
+
+include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tag=error]
+
+include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tag=txnfailed]
+
+[source,scala]
+----
+include::howtos:example$TransactionsExample.scala[tag=config-expiration,indent=0]
+----
+
+Alternatively it can be configured at the per-transaction level:
+
+[source,scala]
+----
+include::howtos:example$TransactionsExample.scala[tag=config-expiration-per,indent=0]
+----
+
+include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tag=txnfailed1]
+
+== Full Error Handling Example
+
+Pulling all of the above together into a complete error-handling example:
+
+[source,scala]
+----
+include::howtos:example$TransactionsExample.scala[tag=full-error-handling,indent=0]
+----
