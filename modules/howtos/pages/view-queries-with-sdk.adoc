@@ -7,7 +7,7 @@
 [abstract]
 {description}
 
-include::{version-common}@sdk:shared:partial$views.adoc[tag=deprecate]
+// include::{version-common}@sdk:shared:partial$views.adoc[tag=deprecate]
 
 xref:{version-server}@server:learn:views/views-intro.adoc[MapReduce Views] date from the earliest days of Couchbase and although still maintained and supported for legacy use, they are deprecated in Couchbase Server, and will eventually be removed.
 
