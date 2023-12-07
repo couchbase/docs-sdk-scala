@@ -32,7 +32,7 @@ sourceSets {
 }
 
 dependencies {
-    implementation group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.5.0'
+    implementation group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.5.1'
     implementation group: 'com.couchbase.client', name: 'tracing-opentelemetry', version: '0.4.0'
     implementation group: 'com.couchbase.client', name: 'metrics-opentelemetry', version: '0.4.0'
     implementation group: 'com.couchbase.client', name: 'metrics-micrometer', version: '0.4.0'

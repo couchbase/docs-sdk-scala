@@ -17,6 +17,40 @@ We always recommend using the latest version of the SDK -- it contains all of th
 All patch releases for each dot minor release should be API compatible, and safe to upgrade;
 any changes to expected behavior are noted in the release notes that follow.
 
+=== Version 1.5.1 (7 December 2023)
+
+This is a regular maintenance release.
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.5.8**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+==== Improvements
+
+* https://issues.couchbase.com/browse/JVMCBC-1435[JVMCBC-1435],
+https://issues.couchbase.com/browse/JVMCBC-1436[JVMCBC-1436]:
+Upgrade Netty and Jackson dependencies.
+* https://issues.couchbase.com/browse/JVMCBC-1440[JVMCBC-1440]:
+Adding `DocumentNotLockedException` supporting future Couchbase Server versions that will return an error code when unlocking a document that is not locked.
+* https://issues.couchbase.com/browse/SCBC-438[SCBC-438]:
+Add new overloads for `Transactions.run` that take `TransactionOptions` directly.
+
+==== Bugs
+
+* https://issues.couchbase.com/browse/JVMCBC-1433[JVMCBC-1433]:
+The SDK can now connect to Memcached buckets whose names contain the percent (`%`) character.
+(We'd like to take this opportunity to remind everyone that Memcached buckets are deprecated in favor of Ephemeral buckets.)
+* https://issues.couchbase.com/browse/JVMCBC-1437[JVMCBC-1437]:
+With Couchbase Server versions that support updating a collection's max expiry, it's now possible to clear the expiry by passing `Duration.ZERO` for the new value.
+* https://issues.couchbase.com/browse/JVMCBC-1441[JVMCBC-1441]:
+Handle additional error case for `IndexNotFoundException`.
+* https://issues.couchbase.com/browse/JVMCBC-1442[JVMCBC-1442]:
+Fix dependency issue with `tracing-opentelemetry` module.
+* https://issues.couchbase.com/browse/SCBC-435[SCBC-435]:
+Allow compiling with JDK 21.
+* https://issues.couchbase.com/browse/SCBC-436[SCBC-436]:
+`CollectionManager.createCollection(CollectionSpec)` now correctly passes expiry.
 
 
 === Version 1.5.0 (21 November 2023)
