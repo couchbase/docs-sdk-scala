@@ -59,9 +59,11 @@ We recommend running the latest LTS version (i.e. at the time of writing JDK 17)
 
 The following JDK releases are supported:
 
-* https://adoptium.net/[OpenJDK 11] (Hotspot recommended) or https://www.oracle.com/java/technologies/downloads/#jdk11[Oracle JDK 11]
+* https://adoptium.net/[OpenJDK 21 with HotSpot JVM] (recommended) -- from Scala SDK 1.5.1 onwards
+* https://www.oracle.com/java/technologies/downloads/#jdk21[Oracle JDK 21 (recommended)] -- from Scala SDK 1.5.1 onwards
 * https://adoptium.net/[OpenJDK 17 with HotSpot JVM] (recommended)
 * https://www.oracle.com/java/technologies/downloads/#jdk17[Oracle JDK 17 (recommended)]
+* https://adoptium.net/[OpenJDK 11] (Hotspot recommended) or https://www.oracle.com/java/technologies/downloads/#jdk11[Oracle JDK 11]
 * https://adoptium.net/[OpenJDK 1.8 with HotSpot JVM]
 * https://www.oracle.com/java/technologies/downloads/#java8[Oracle JDK 1.8]
 
