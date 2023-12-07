@@ -30,13 +30,13 @@ The supported and tested dependencies for this release are:
 
 * https://issues.couchbase.com/browse/JVMCBC-1435[JVMCBC-1435],
 https://issues.couchbase.com/browse/JVMCBC-1436[JVMCBC-1436]:
-Upgrade Netty and Jackson dependencies.
+Upgraded Netty and Jackson dependencies.
 * https://issues.couchbase.com/browse/JVMCBC-1440[JVMCBC-1440]:
 Adding `DocumentNotLockedException` supporting future Couchbase Server versions that will return an error code when unlocking a document that is not locked.
 * https://issues.couchbase.com/browse/SCBC-438[SCBC-438]:
-Add new overloads for `Transactions.run` that take `TransactionOptions` directly.
+Added new overloads for `Transactions.run` that take `TransactionOptions` directly.
 
-==== Bugs
+==== Bugfixes
 
 * https://issues.couchbase.com/browse/JVMCBC-1433[JVMCBC-1433]:
 The SDK can now connect to Memcached buckets whose names contain the percent (`%`) character.
@@ -44,11 +44,11 @@ The SDK can now connect to Memcached buckets whose names contain the percent (`%
 * https://issues.couchbase.com/browse/JVMCBC-1437[JVMCBC-1437]:
 With Couchbase Server versions that support updating a collection's max expiry, it's now possible to clear the expiry by passing `Duration.ZERO` for the new value.
 * https://issues.couchbase.com/browse/JVMCBC-1441[JVMCBC-1441]:
-Handle additional error case for `IndexNotFoundException`.
+The SDK now handles an additional error case for `IndexNotFoundException`.
 * https://issues.couchbase.com/browse/JVMCBC-1442[JVMCBC-1442]:
-Fix dependency issue with `tracing-opentelemetry` module.
+Fixed a dependency issue with `tracing-opentelemetry` module.
 * https://issues.couchbase.com/browse/SCBC-435[SCBC-435]:
-Allow compiling with JDK 21.
+Upgraded the Scala build versions, to allow compiling with JDK 21.
 * https://issues.couchbase.com/browse/SCBC-436[SCBC-436]:
 `CollectionManager.createCollection(CollectionSpec)` now correctly passes expiry.
 
