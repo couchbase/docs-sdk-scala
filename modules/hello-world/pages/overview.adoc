@@ -7,7 +7,7 @@
 
 [source,sbt]
 ----
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.5.0"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.5.1"
 ----
 
 The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster from the Scala language.
