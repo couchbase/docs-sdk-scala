@@ -7,6 +7,7 @@ nav:
 
 asciidoc:
   attributes:
+    page-nav-header-levels: 1
     server_version: '7.6'
     sdk_current_version: '1.6.0'
     sdk_dot_minor: '1.6'
