@@ -1,64 +1,116 @@
-= Couchbase Scala SDK 1.5
+= Couchbase {name-sdk} {sdk_dot_minor}
 :page-layout: landing-page-top-level-sdk
 :page-role: tiles
 :!sectids:
 
-= Couchbase Scala SDK 1.5
 
-[source,sbt]
+// Note to editors
+// 
+// This page pulls in content from -sdk-common-
+// and code samples from -example-dir-
+// 
+// It can be seen built at wwww.
+// 
+// See the antora.yml file for the {attributes}
+
+
+
+= Couchbase {name-sdk} {sdk_dot_minor}
+
+
+[source,sbt,subs="normal, attributes"]
 ----
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.5.1"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "{sdk_current_version}"
 ----
 
-The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster from the Scala language.
+What's the point of a fast and scalable database if it's not easy to develop for?
+Couchbase gives you the {name_platform} APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
+
+Couchbase is a large platform -- covering many services -- and Couchbase SDKs are not thin wrappers generated around a REST API, but well thought out interfaces to the platform that make it easier to design and maintain your client code,
+and work with Couchbase in more natural ways for your platform.
+
+
+[{tabs}] 
+==== 
+Data Ops (CRUD)::
++
+--
+[source,scala]
+----
+val json = JsonObject("foo" -> "bar", "baz" -> "qux")
+
+collection.upsert("document-key", json) match {
+  case Success(result)    => println("Document upsert successful")
+  case Failure(exception) => println("Error: " + exception)
+}
+----
+--
+
+{sqlpp} Query (OLTP)::
++
+--
+[source,scala]
+----
+val statement = """select * from `travel-sample` limit 10;"""
+val result: Try[QueryResult] = cluster.query(statement)
+----
+--
+
+Vector Search::
++
+--
+[source,scala]
+----
+// Hector in the sector tries a vector with the metal detector
+----
+--
+====
+
+
 
 {empty} +
 
 == icon:database[] Using Your Database
 
-How-to guides to help you start your development journey with Couchbase and the Scala SDK.
+How-to guides to help you start your development journey with Couchbase and the {name-sdk}.
 
 ++++
-<div class="card-row three-column-row">
+<div class="card-row two-column-row">
 ++++
 
 [.column]
-.Getting Started
-* xref:hello-world:start-using-sdk.adoc[]
-* xref:howtos:kv-operations.adoc[]
-* xref:howtos:n1ql-queries-with-sdk.adoc[]
-* xref:howtos:full-text-searching-with-sdk.adoc[]
+.Easy to Connect & Get Started
+* xref:hello-world:start-using-sdk.adoc[Quickstart Guide]
 * xref:hello-world:sample-application.adoc[]
-
-[.column]
-.Transactions
-* xref:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
-* xref:concept-docs:transactions.adoc[]
-
-[.column]
-.Working with Data
-* xref:howtos:subdocument-operations.adoc[]
-* xref:howtos:analytics-using-sdk.adoc[]
-* xref:howtos:encrypting-using-sdk.adoc[]
-* xref:howtos:working-with-collections.adoc[Working with Collections]
-
-[.column]
-.Managing Couchbase
 * xref:howtos:managing-connections.adoc[]
-* xref:howtos:sdk-authentication.adoc[]
-* xref:howtos:provisioning-cluster-resources.adoc[]
-* xref:howtos:sdk-user-management-example.adoc[]
+* xref:hello-world:student-record-developer-tutorial.adoc[Beginners' Couchbase Tutorial]
 
 [.column]
-.Errors & Diagnostics
+.Search or Query the Way You Need
+* xref:[Query with a familiar, SQL-like language]
+* xref:[Vector Search for your AI app]
+* xref:[Fuzzy Search with text and Geo data]
+* xref:[OLAP -- long running analytical queries]
+
+[.column]
+.Lightning Fast Data Service
+* xref:howtos:kv-operations.adoc[]
+* xref:howtos:subdocument-operations.adoc[]
+* xref:howtos:encrypting-using-sdk.adoc[]
+* xref:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
+
+[.column]
+Observability and Error Handling
 * xref:howtos:error-handling.adoc[]
 * xref:howtos:collecting-information-and-logging.adoc[]
 * xref:howtos:slow-operations-logging.adoc[]
+* xref:howtos:health-check.adoc[]
 
 ++++
 </div>
 ++++
 
+////
 == icon:graduation-cap[] Learn
 
 Take a deep-dive into the SDK concept material and learn more about Couchbase.
@@ -82,13 +134,14 @@ Take a deep-dive into the SDK concept material and learn more about Couchbase.
 ++++
 </div>
 ++++
+////
 
 == icon:book[] Resources
 
 Useful resources to help support your development experience with Couchbase and the Scala SDK.
 
 ++++
-<div class="card-row three-column-row">
+<div class="card-row two-column-row">
 ++++
 
 [.column]
@@ -97,14 +150,14 @@ Useful resources to help support your development experience with Couchbase and 
 * xref:ref:client-settings.adoc[]
 * xref:ref:error-codes.adoc[]
 * xref:ref:glossary.adoc[Glossary]
-* xref:ref:travel-app-data-model.adoc[]
+// * xref:ref:travel-app-data-model.adoc[]
 
 [.column]
-.Project Docs
+.Deployment
 * xref:project-docs:sdk-release-notes.adoc[]
 * xref:project-docs:compatibility.adoc[Compatibility]
-* https://docs-archive.couchbase.com/home/index.html[Older Versions Archive]
-* xref:project-docs:migrating-sdk-code-to-3.n.adoc[]
+// * https://docs-archive.couchbase.com/home/index.html[Older Versions Archive]
+// * xref:project-docs:migrating-sdk-code-to-3.n.adoc[]
 * xref:project-docs:third-party-integrations.adoc[]
 * xref:project-docs:sdk-full-installation.adoc[]
 
