@@ -17,7 +17,7 @@
 
 = Couchbase {name-sdk} {sdk_dot_minor}
 
-
+.Installing the SDK via Scala Build Tool
 [source,sbt,subs="normal, attributes"]
 ----
 libraryDependencies += "com.couchbase.client" %% "scala-client" % "{sdk_current_version}"
