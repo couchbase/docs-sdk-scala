@@ -17,22 +17,9 @@
 
 = Couchbase {name-sdk} {sdk_dot_minor}
 
-.Installing the SDK via Scala Build Tool
-[source,sbt,subs="normal, attributes"]
-----
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "{sdk_current_version}"
-----
-
-What's the point of a fast and scalable database if it's not easy to develop for?
-Couchbase gives you the {name_platform} APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
-
-Couchbase is a large platform -- covering many services -- and Couchbase SDKs are not thin wrappers generated around a REST API, but well thought out interfaces to the platform that make it easier to design and maintain your client code,
-and work with Couchbase in more natural ways for your platform.
-
-
 [{tabs}] 
 ==== 
-Data Ops (CRUD){nbsp}|{nbsp}::
+Data Ops (CRUD)::
 +
 --
 
@@ -47,7 +34,7 @@ collection.upsert("document-key", json) match {
 ----
 --
 
-{sqlpp} Query (OLTP){nbsp}|{nbsp}::
+{sqlpp} Query (OLTP)::
 +
 --
 
@@ -64,10 +51,27 @@ Vector Search::
 
 [source,scala]
 ----
-// Hector in the sector tries a vector with the metal detector
+// Hector in the sector tries a vector full of nectar,
+// A perfect trifecta?
+// Hypocrite lecteur!
 ----
 --
 ====
+
+
+What's the point of a fast and scalable database if it's not easy to develop for?
+Couchbase gives you the {name_platform} APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
+
+Couchbase is a large platform -- covering many services -- and Couchbase SDKs are not thin wrappers generated around a REST API, but well thought out interfaces to the platform that make it easier to design and maintain your client code,
+and work with Couchbase in more natural ways for your platform.
+
+
+.Installing the SDK via Scala Build Tool
+[source,sbt,subs="normal, attributes"]
+----
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "{sdk_current_version}"
+----
+
 
 
 
@@ -89,7 +93,7 @@ How-to guides to help you start your development journey with Couchbase and the 
 * xref:hello-world:student-record-developer-tutorial.adoc[Beginners' Couchbase Tutorial]
 
 [.column]
-.Search or Query the Way You Need
+.Search, Query, Analyze
 * xref:howtos:sqlpp-queries-with-sdk.adoc[Query with a familiar, SQL-like language]
 * xref:howtos:vector-searching-with-sdk.adoc[Vector Search for your AI app]
 * xref:howtos:full-text-searching-with-sdk.adoc[Fuzzy Search with text and Geo data]
@@ -103,7 +107,7 @@ How-to guides to help you start your development journey with Couchbase and the 
 * xref:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 
 [.column]
-.Observability and Error Handling
+.Observability & Error Handling
 * xref:howtos:error-handling.adoc[]
 * xref:howtos:collecting-information-and-logging.adoc[]
 * xref:howtos:slow-operations-logging.adoc[]
@@ -151,7 +155,7 @@ Useful resources to help support your development experience with Couchbase and 
 
 [.column]
 .Reference
-* https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/index.html[API Reference]
+* https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/index.html[API Reference^]
 * xref:ref:client-settings.adoc[]
 * xref:ref:error-codes.adoc[]
 * xref:ref:glossary.adoc[Glossary]

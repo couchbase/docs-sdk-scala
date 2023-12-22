@@ -1,17 +1,305 @@
 = Start Using the Scala SDK
-:description: Get up and running quickly, installing the Couchbase Scala SDK, and running our Hello World example.
-:page-aliases: ROOT:getting-started,ROOT:start-using,ROOT:hello-couchbase,ROOT:start-using-sdk
-:lang: Scala
+:page-aliases: ROOT:getting-started.adoc,ROOT:start-using.adoc,ROOT:hello-couchbase.adoc,ROOT:start-using-sdk.adoc
 :page-toclevels: 2
-:page-pagination: next
-:page-topic-type: tutorial
+:description: Install, connect, try. A quick start guide to get you up and running with Couchbase and the {name-sdk}.
 
-include::project-docs:partial$attributes.adoc[]
+
+// Note to editors
+// 
+// This page pulls in content from -sdk-common-
+// and code samples from -example-dir-
+// 
+// It can be seen built at wwww.
+
 
 [abstract]
 {description}
 
-The Couchbase Scala SDK allows Scala applications to access a Couchbase cluster.
+
+Couchbase has a simple interface to create and modify records in a document, based upon the _Collection_ into which the documents are organised.
+You can read more about data modelling <<data-modeling,below>>, but first let's look at those data operations, and installing the {name-sdk}.
+
+// remember to add a nomenclature note to the next version of this page for LCB.
+
+.Upsert with a Unique ID
+[source,scala]
+----
+val docId = UUID.randomUUID().toString
+collection.upsert(docId, json) match {
+  case Success(result)    =>
+  case Failure(exception) => println("Error: " + exception)
+}
+----
+
+We'll explore creating and retrieving data records in more detail <<create-read-update-delete,below>>, after walking through a quick installation.
+
+
+== Before You Start
+
+Couchbase Capella, our Database-as-a-Service, lets you get on with what matters, whilst we take care of the administration for you.
+Alternately, if you need to control every aspect of deployment -- or just want to run the Server in a VM on your laptop -- there are several self-managed options available:
+
+[{tabs}]
+==== 
+Couchbase Capella::
++
+--
+If you haven't already got a database set up, the easiest route is to https://cloud.couchbase.com/sign-up[sign up to a trial of Couchbase Capella], then come back to this page.
+Make a note of the xref:[endpoint] to connect to, and remember the credentials for the user that you set up.
+--
+
+Self-Managed Couchbase Server Options::
++
+--
+Alternatively, you may want to look at one of the self-managed installation options:
+
+* xref:server:install:get-started.adoc[Deployment overview]
+* xref:server:install:getting-started-docker.adoc[Docker Install]
+* xref:operator::overview.adoc[Couchbase Autonomous Operator]
+** xref:operator::install-kubernetes.adoc[Kubernetes]
+** xref:operator::install-openshiftadoc[Openshift]
+* xref:server:cloud:couchbase-cloud-deployment.adoc[Cloud Marketplace]:
+** xref:server:cloud:couchbase-aws-marketplace.adoc[AWS Marketplace]
+** xref:server:cloud:couchbase-azure-marketplace.adoc[Azure Marketplace]
+** xref:server:cloud:couchbase-gcp-cloud-launcher.adoc[GCP Marketplace]
+--
+====
+
+
+// Script the docs!
+// Can any of the SDK installations be scripted?
+
+=== Prerequisites
+
+The Scala SDK is tested against LTS versions of Oracle JDK and OpenJDK -- see our xref:project-docs:compatibility.adoc#jdk-compat[compatibility docs].
+
+The Couchbase {name-sdk} {sdk_dot_minor} Client supports Scala 2.12 and 2.13.
+
+
+== Installation
+
+More details of the installation proces can be found in the xref:project-docs:sdk-full-installation.adoc[full installation guide].
+In most cases, given the above prerequisites, it's a simple matter of the following for your favorite build tool:
+
+[{tabs}] 
+==== 
+SBT::
++
+--
+[source,sbt]
+----
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.5.1"
+----
+
+This will automatically use the Scala 2.12 or 2.13 builds, as appropriate for your SBT project.
+--
+
+Gradle::
++
+--
+It can be included in your `build.gradle` like this for 2.13:
+
+[source,groovy]
+----
+dependencies {
+    compile group: 'com.couchbase.client', name: 'scala-client_2.13', version: '1.5.1'
+}
+----
+
+For Scala 2.12, refer to the full xref:project-docs:sdk-full-installation.adoc[Installation page].
+--
+
+Maven::
++
+--
+It can be included in your Maven `pom.xml` like this for 2.13:
+
+[source,xml]
+----
+<dependencies>
+    <dependency>
+        <groupId>com.couchbase.client</groupId>
+        <artifactId>scala-client_2.13</artifactId>
+        <version>1.5.1</version>
+    </dependency>
+</dependencies>
+----
+
+For Scala 2.12, refer to the full xref:project-docs:sdk-full-installation.adoc[Installation page].
+--
+====
+
+
+=== IDE Plugins
+
+To make development easier, Couchbase plugins are available for VSCode and the IntelliJ family of IDEs and editors.
+For links and more information on these and other integrations across the {name_platform} ecosystem, check out the xref:project-docs:third-party-integrations.adoc[] page.
+
+
+
+== Connect to your Database
+
+Connect to your Couchbase Capella database (or your local Couchbase Cluster, if you are trying out self-managed Couchbase).
+
+
+[{tabs}] 
+==== 
+Couchbase Capella::
++
+--
+[source,scala]
+----
+// Update this to your cluster
+val endpoint = "cb.<your-endpoint>.cloud.couchbase.com"
+val username = "username"
+val password = "Password!123"
+val bucketName = "travel-sample"
+
+val env = ClusterEnvironment.builder
+  .securityConfig(
+    SecurityConfig()
+      .enableTls(true)
+  )
+  // Sets a pre-configured profile called "wan-development" to help avoid latency issues
+  // when accessing Capella from a different Wide Area Network
+  // or Availability Zone (e.g. your laptop).
+  .applyProfile(ClusterEnvironment.WanDevelopmentProfile)
+  .build
+  .get
+
+val cluster = Cluster
+  .connect(
+    "couchbases://" + endpoint,
+    ClusterOptions
+      .create(username, password)
+      .environment(env)
+  )
+  .get
+----
+
+Note, the client certificate for connecting to a Capella database is included in the SDK installation.
+--
+
+Self-Managed Couchbase::
++ 
+-- 
+[source,scala]
+----
+// Update this to your cluster
+val username = "Administrator"
+val password = "password"
+val bucketName = "travel-sample"
+
+val env = ClusterEnvironment.builder
+  // You should uncomment this if running in a production environment.
+  // .securityConfig(
+  //   SecurityConfig()
+  //     .enableTls(true)
+  // )
+  .build
+  .get
+
+val cluster = Cluster
+  .connect(
+    // For a secure cluster connection, use `couchbases://<your-cluster-ip>` instead.
+    "couchbase://localhost",
+    ClusterOptions
+      .create(username, password)
+      .environment(env)
+  )
+  .get
+----
+--
+====
+
+A deeper look at connection options can be found in xref:howtos:managing-connections.adoc[].
+
+TIP: The connection code for getting started uses the Administrator password that you were given during set up.
+In any production app you should create a role restricted to the permissions needed for your app -- more on this in xref:concept-docs:best-practices.adoc#roles-and-rbac[the Security documentation].
+
+== Create, Read, Update, Delete
+
+Couchbase documents are organized into buckets, scopes, and collections.
+https://en.wikipedia.org/wiki/CRUD[CRUD operations^] -- Create, Read, Update, Delete -- can be performed upon documents in a collection.
+
+[source,scala]
+----
+
+----
+
+
+
+
+
+
+== Data Modeling
+
+Documents are organized into collections -- collections of documents that belong together.. 
+You get to decide what it means to "belong." 
+Developers usually put documents of the same type in the same collection.
+
+For example, imagine you have two types of documents: customers and invoices. 
+You could put the customer documents in a collection called customers`, and the invoice documents in a collection called `invoices`.
+
+Each document belongs to exactly one collection. 
+A document’s ID is unique _within_ the collection.
+
+Different scopes can hold collections with different names. 
+There is no relationship between collections in different scopes.
+
+Each collection belongs to exactly one scope. 
+A collection’s name is unique within the scope.
+
+
+More details can be found on the xref:concept-docs.data-model.adoc[Data Model page].
+
+
+== What Next?
+
+////
+Query and KV -
+both
+- but different emphasis on modelling objects....
+////
+
+
+
+=== Help and Troubleshooting
+
+* Forum
+* Discord
+* Read the xref:[error handling page].
+
+
+
+
+=== Next Steps
+
+* Take a look at the xref:hello-world:sample-application.adoc[].
+* Explore some of the xref:project-docs:third-party-integrations.adoc[third party integrations] with Couchbase and the {name_platform} SDK, across the {name_platform} ecosystem.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 == Hello Couchbase
 
