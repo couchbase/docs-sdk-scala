@@ -32,9 +32,10 @@ and work with Couchbase in more natural ways for your platform.
 
 [{tabs}] 
 ==== 
-Data Ops (CRUD)::
+Data Ops (CRUD){nbsp}|{nbsp}::
 +
 --
+
 [source,scala]
 ----
 val json = JsonObject("foo" -> "bar", "baz" -> "qux")
@@ -46,9 +47,10 @@ collection.upsert("document-key", json) match {
 ----
 --
 
-{sqlpp} Query (OLTP)::
+{sqlpp} Query (OLTP){nbsp}|{nbsp}::
 +
 --
+
 [source,scala]
 ----
 val statement = """select * from `travel-sample` limit 10;"""
@@ -59,6 +61,7 @@ val result: Try[QueryResult] = cluster.query(statement)
 Vector Search::
 +
 --
+
 [source,scala]
 ----
 // Hector in the sector tries a vector with the metal detector
@@ -87,10 +90,10 @@ How-to guides to help you start your development journey with Couchbase and the 
 
 [.column]
 .Search or Query the Way You Need
-* xref:[Query with a familiar, SQL-like language]
-* xref:[Vector Search for your AI app]
-* xref:[Fuzzy Search with text and Geo data]
-* xref:[OLAP -- long running analytical queries]
+* xref:howtos:sqlpp-queries-with-sdk.adoc[Query with a familiar, SQL-like language]
+* xref:howtos:vector-searching-with-sdk.adoc[Vector Search for your AI app]
+* xref:howtos:full-text-searching-with-sdk.adoc[Fuzzy Search with text and Geo data]
+* xref:howtos:analytics-using-sdk.adoc[OLAP -- long running analytical queries]
 
 [.column]
 .Lightning Fast Data Service
@@ -100,7 +103,7 @@ How-to guides to help you start your development journey with Couchbase and the 
 * xref:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 
 [.column]
-Observability and Error Handling
+.Observability and Error Handling
 * xref:howtos:error-handling.adoc[]
 * xref:howtos:collecting-information-and-logging.adoc[]
 * xref:howtos:slow-operations-logging.adoc[]
@@ -135,6 +138,8 @@ Take a deep-dive into the SDK concept material and learn more about Couchbase.
 </div>
 ++++
 ////
+
+{empty} +
 
 == icon:book[] Resources
 
