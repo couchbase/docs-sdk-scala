@@ -17,6 +17,23 @@ We always recommend using the latest version of the SDK -- it contains all of th
 All patch releases for each dot minor release should be API compatible, and safe to upgrade;
 any changes to expected behavior are noted in the release notes that follow.
 
+=== Version 1.5.2 (5 January 2024)
+
+This is a regular maintenance release.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.5.2/com/couchbase/client/scala/index.html[API Reference] |
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.5.2/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.5.8**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+==== Bugfixes
+
+* https://issues.couchbase.com/browse/SCBC-441[SCBC-441]:
+Transactional queries should not have any QueryScanConsistency by default.
+
 === Version 1.5.1 (8 December 2023)
 
 This is a regular maintenance release.
