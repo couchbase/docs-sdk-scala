@@ -32,7 +32,15 @@ The supported and tested dependencies for this release are:
 ==== Bugfixes
 
 * https://issues.couchbase.com/browse/SCBC-441[SCBC-441]:
-Transactional queries should not have any QueryScanConsistency by default.
+Transactional queries were sending `ScanConsistency` when in `NOT_BOUNDED` mode, as set by `core-io`.
+The desired behavior is for the default transactional query `ScanConsistency` to be `not-set`, 
+and this fix ensures that there should now be no `QueryScanConsistency` by default.
+* https://issues.couchbase.com/browse/JVMCBC-1455[JVMCBC-1455]:
+Fixed compatibility with `couchbase2://` endpoints by upgrading internal GRPC dependency. 
+All couchbase2 protocol users should upgrade to this release.
+* https://issues.couchbase.com/browse/JVMCBC-1463[JVMCBC-1463]:
+Fixed compatibility between `couchbase2://` endpoints and the `tracing-opentelemetry` module.
+
 
 === Version 1.5.1 (8 December 2023)
 
