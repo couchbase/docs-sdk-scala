@@ -17,7 +17,8 @@ We always recommend using the latest version of the SDK -- it contains all of th
 All patch releases for each dot minor release should be API compatible, and safe to upgrade;
 any changes to expected behavior are noted in the release notes that follow.
 
-=== Version 1.5.3 (4 February 2024)
+
+=== Version 1.5.3 (6 February 2024)
 
 This is a regular maintenance release.
 
@@ -32,35 +33,39 @@ The supported and tested dependencies for this release are:
 ==== Improvements
 
 * https://issues.couchbase.com/browse/SCBC-414[SCBC-414]
-All forms of `getAnyReplica()` and `getAllReplicas()` will now use the `Transcoder` provided as an option. In AsyncCollection and ReactiveCollection. The calls should use options.transcoder.
+All forms of `getAnyReplica()` and `getAllReplicas()` will now use the `Transcoder` provided as an option.
+Users that require a true streaming solution should use the reactive version.
 * https://issues.couchbase.com/browse/SCBC-443[SCBC-443]
-Transactions now have a third `Future`-based API.
+Transactions now have a third, `Future`-based API.
 * https://issues.couchbase.com/browse/SCBC-445[SCBC-445]
-`maxExpiry(Duration(-1, TimeUnit.SECONDS))` can now be used to specify that a collection has no expiry, overriding whatever is set on the bucket.
+`maxExpiry(Duration(-1, TimeUnit.SECONDS))` can now be used to specify that a collection has no expiry,
+overriding whatever is set on the bucket.
 * https://issues.couchbase.com/browse/SCBC-446[SCBC-446]
-Adding support for `scope.search()` and `scope.searchIndexes()`, for querying and managing FTS scoped indexes.
+Added support for `scope.search()` and `scope.searchIndexes()`, for querying and managing FTS scoped indexes.
 * https://issues.couchbase.com/browse/SCBC-448[SCBC-448]
 All functionality is now present for `SearchIndexManager`.
 * https://issues.couchbase.com/browse/JVMCBC-1460[JVMCBC-1460]
-couchbase2 now supports compressing data between the SDK and the server.
+`couchbase2` now supports compressing data between the SDK and the server.
 * https://issues.couchbase.com/browse/JVMCBC-1464[JVMCBC-1464]
-The metrics-opentelemetry package is now aligned with the same OpenTelemetry version as tracing-opentelemetry.
+The `metrics-opentelemetry` package is now aligned with the same `OpenTelemetry` version as `tracing-opentelemetry`.
 * https://issues.couchbase.com/browse/JVMCBC-1468[JVMCBC-1468]
-`Cluster.connect` now validates that connection strings using the `couchbase2` scheme have exactly one host. (Previously, hosts after the first were silently ignored.).
+`Cluster.connect` now validates that connection strings using the `couchbase2` scheme have exactly one host.
+(Previously, hosts after the first were silently ignored.).
 * https://issues.couchbase.com/browse/JVMCBC-1470[JVMCBC-1470]
-Improved support for Full Text Search in couchbase2 mode.
+Improved support for Full Text Search in `couchbase2` mode.
 * https://issues.couchbase.com/browse/JVMCBC-1472[JVMCBC-1472]
-couchbase2 errors will now include diagnostic information when CNG is running with the `--debug` flag.
+`couchbase2` errors will now include diagnostic information when CNG is running with the `--debug` flag.
 
 
 ==== Bugfixes
 
 * https://issues.couchbase.com/browse/SCBC-430[SCBC-430]
-lookupInAnyReplica() and lookupInAllReplicas() will now raise DocumentUnretrievableException if all replicas fail.
+`lookupInAnyReplica()` and `lookupInAllReplicas()` will now raise `DocumentUnretrievableException` if all replicas fail.
 * https://issues.couchbase.com/browse/SCBC-449[SCBC-449]
-Correctly serialise an FTS index during index creation.
+The SDK now correctly serializes an FTS index during index creation.
 * https://issues.couchbase.com/browse/JVMCBC-1475[JVMCBC-1475]
-Accessing the terms of a `TermFacet` result no longer throws NullPointerException if the target field is absent from all documents.
+Accessing the terms of a `TermFacet` result no longer throws `NullPointerException` if the target field is absent from all documents.
+
 
 === Version 1.5.2 (5 January 2024)
 
