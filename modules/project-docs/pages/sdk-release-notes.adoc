@@ -34,7 +34,6 @@ The supported and tested dependencies for this release are:
 
 * https://issues.couchbase.com/browse/SCBC-414[SCBC-414]
 All forms of `getAnyReplica()` and `getAllReplicas()` will now use the `Transcoder` provided as an option.
-Users that require a true streaming solution should use the reactive version.
 * https://issues.couchbase.com/browse/SCBC-443[SCBC-443]
 Transactions now have a third, `Future`-based API.
 * https://issues.couchbase.com/browse/SCBC-445[SCBC-445]
