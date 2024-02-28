@@ -78,7 +78,7 @@
 * xref:ref:travel-app-data-model.adoc[]
 
 .Project Docs
-* xref:project-docs:sdk-release-notes.adoc[]
+* xref:project-docs:sdk-release-notes.adoc#scala-sdk-1-4-releases[]
 * xref:project-docs:compatibility.adoc[]
 ** xref:howtos:working-with-collections.adoc[Working with Collections]
 // *xref:project-docs:integrations.adoc[Integrations]]
