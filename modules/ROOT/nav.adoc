@@ -71,7 +71,7 @@
 * xref:ref:travel-app-data-model.adoc[Travel Sample Data Model]
 
 .Project Docs
-* xref:project-docs:sdk-release-notes.adoc[Release Notes]
+* xref:project-docs:sdk-release-notes.adoc#scala-sdk-1-3-releases[Release Notes]
 * xref:project-docs:compatibility.adoc[Compatibility]
 // *xref:project-docs:integrations.adoc[Integrations]]
 * https://docs-archive.couchbase.com/home/index.html[Older Versions Archive]
