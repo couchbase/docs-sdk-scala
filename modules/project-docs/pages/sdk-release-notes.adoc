@@ -3,4 +3,4 @@
 :page-topic-type: project-doc
 :page-aliases: relnotes-scala-sdk
 
-include::1.3@scala-sdk:project-docs:page$sdk-release-notes.adoc[tag=all]
+include::1.2@scala-sdk:project-docs:page$sdk-release-notes.adoc[tag=all]
