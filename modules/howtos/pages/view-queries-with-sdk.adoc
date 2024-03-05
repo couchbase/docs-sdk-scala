@@ -10,6 +10,7 @@
 // include::{version-common}@sdk:shared:partial$views.adoc[tag=deprecate]
 
 xref:{version-server}@server:learn:views/views-intro.adoc[MapReduce Views] date from the earliest days of Couchbase and although still maintained and supported for legacy use, they are deprecated in Couchbase Server, and will eventually be removed.
+Views is not available on Couchbase Capella.
 
 Views are the only service which does not benefit from xref:{version-server}@server:learn:services-and-indexes/services/services.adoc#services-and-multi-dimensional-scaling[Multi-Dimensional Scaling], and is rarely the best choice over, say, xref:howtos:n1ql-queries-with-sdk.adoc[our Query service] if you are starting a fresh application.
 See our discussion document on xref:concept-docs:data-services.adoc[the best service for you to use].
