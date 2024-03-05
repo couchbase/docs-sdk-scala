@@ -1,9 +1,8 @@
 = Errors and Diagnostics
 :description: When the unexpected happens, take a step-by-step approach.
-:page-topic-type: concept
-:page-aliases:
+// :page-aliases:
 
-include::project-docs:partial$attributes.adoc[]
+
 
 [abstract]
 {description}
