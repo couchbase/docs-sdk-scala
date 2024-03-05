@@ -1,1 +1,0 @@
-include::{version-common}@sdk:pages:partial$certificates.adoc[]
