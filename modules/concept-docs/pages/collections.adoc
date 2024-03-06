@@ -1,9 +1,8 @@
 = Collections and Scopes
-:description: Fully supported in Couchbase Server 7.0.
-:page-topic-type: concept
-:page-aliases:
+:description: 
 
-include::project-docs:partial$attributes.adoc[]
+
+
 
 [abstract]
 {description}
@@ -18,13 +17,13 @@ Access a non-default collection, in the default scope, with:
 
 [source,scala]
 ----
-include::example$CollectionsExample.scala[tag=collections_1,indent=0]
+include::devguide:example$scala/CollectionsExample.scala[tag=collections_1,indent=0]
 ----
 
 And for a non-default scope:
 [source,scala]
 ----
-include::example$CollectionsExample.scala[tag=collections_2,indent=0]
+include::devguide:example$scala/CollectionsExample.scala[tag=collections_2,indent=0]
 ----
 
 

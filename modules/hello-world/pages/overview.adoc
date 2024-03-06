@@ -104,7 +104,7 @@ How-to guides to help you start your development journey with Couchbase and the 
 * xref:howtos:kv-operations.adoc[]
 * xref:howtos:subdocument-operations.adoc[]
 * xref:howtos:encrypting-using-sdk.adoc[]
-* xref:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
+* xref:howtos:distributed-acid-transactions-from-the-sdk.adoc[Multi-Document Distributed ACID Transactions]
 
 [.column]
 .Observability & Error Handling

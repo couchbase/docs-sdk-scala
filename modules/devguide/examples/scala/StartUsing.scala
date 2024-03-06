@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Couchbase, Inc.
+ * Copyright (c) 2024 Couchbase, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-// tag::imports[]
 import com.couchbase.client.scala.durability.Durability
 import com.couchbase.client.scala.env.{
   ClusterEnvironment,
@@ -30,32 +29,28 @@ import java.nio.file.Path
 import java.util.UUID
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
-// end::imports[]
 
-object Cloud {
+object StartUsing {
   def main(args: Array[String]): Unit = {
     // tag::connect[]
     // Update this to your cluster
-    val endpoint = "cb.<your-endpoint>.cloud.couchbase.com"
-    val username = "username"
-    val password = "Password!123"
+    val username = "Administrator"
+    val password = "password"
     val bucketName = "travel-sample"
 
     val env = ClusterEnvironment.builder
-      .securityConfig(
-        SecurityConfig()
-          .enableTls(true)
-      )
-      // Sets a pre-configured profile called "wan-development" to help avoid latency issues
-      // when accessing Capella from a different Wide Area Network
-      // or Availability Zone (e.g. your laptop).
-      .applyProfile(ClusterEnvironment.WanDevelopmentProfile)
+      // You should uncomment this if running in a production environment.
+      // .securityConfig(
+      //   SecurityConfig()
+      //     .enableTls(true)
+      // )
       .build
       .get
 
     val cluster = Cluster
       .connect(
-        "couchbases://" + endpoint,
+        // For a secure cluster connection, use `couchbases://<your-cluster-ip>` instead.
+        "couchbase://localhost",
         ClusterOptions
           .create(username, password)
           .environment(env)
@@ -63,31 +58,19 @@ object Cloud {
       .get
     // end::connect[]
 
-    // tag::bucket[]
     val bucket = cluster.bucket(bucketName)
     bucket.waitUntilReady(30.seconds).get
-    // end::bucket[]
 
-    // tag::collection[]
-    // get a reference to the default collection, required for Couchbase server 6.5 or earlier
-    // val collection = bucket.defaultCollection
+    val collection = bucket.defaultCollection
 
-    val collection = bucket.scope("inventory").collection("airport")
-    // end::collection[]
-
-    // tag::json[]
     val json = JsonObject("status" -> "awesome")
-    // end::json[]
 
-    // tag::upsert[]
     val docId = UUID.randomUUID().toString
     collection.upsert(docId, json) match {
       case Success(result)    =>
       case Failure(exception) => println("Error: " + exception)
     }
-    // end::upsert[]
 
-    // tag::get[]
     // Get a document
     collection.get(docId) match {
       case Success(result) =>
@@ -103,10 +86,8 @@ object Cloud {
         }
       case Failure(err) => println("Error getting document: " + err)
     }
-    // end::get[]
 
     def getFor() {
-      // tag::get-for[]
       val result: Try[String] = for {
         result <- collection.get(docId)
         json <- result.contentAs[JsonObjectSafe]
@@ -117,11 +98,9 @@ object Cloud {
         case Success(status) => println(s"Couchbase is $status")
         case Failure(err)    => println("Error: " + err)
       }
-      // end::get-for[]
     }
 
     def getMap() {
-      // tag::get-map[]
       val result: Try[String] = collection
         .get(docId)
         .flatMap(_.contentAs[JsonObjectSafe])
@@ -131,11 +110,9 @@ object Cloud {
         case Success(status) => println(s"Couchbase is $status")
         case Failure(err)    => println("Error: " + err)
       }
-      // end::get-map[]
     }
 
     def replaceOptions() {
-      // tag::replace-options[]
       collection.replace(
         docId,
         json,
@@ -146,16 +123,13 @@ object Cloud {
         case Success(status) =>
         case Failure(err)    => println("Error: " + err)
       }
-      // end::replace-options[]
     }
 
     def replaceNamed() {
-      // tag::replace-named[]
       collection.replace(docId, json, durability = Durability.Majority) match {
         case Success(status) =>
         case Failure(err)    => println("Error: " + err)
       }
-      // end::replace-named[]
     }
   }
 }

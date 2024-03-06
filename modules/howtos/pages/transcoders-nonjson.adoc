@@ -1,6 +1,5 @@
 = Transcoders & Non-JSON Documents
 :description: The Scala SDK supports common JSON document requirements out-of-the-box.
-:page-topic-type: howtos
 
 [abstract]
 {description}
@@ -143,7 +142,7 @@ Similarly, the same transcoder is used on reading the document, so the raw bytes
 
 [source,scala]
 ----
-include::example$Transcoding.scala[tag=json,indent=0]
+include::devguide:example$scala/Transcoding.scala[tag=json,indent=0]
 ----
 
 
@@ -186,7 +185,7 @@ Here’s an example of using the `RawStringTranscoder`:
 
 [source,scala]
 ----
-include::example$Transcoding.scala[tag=string,indent=0]
+include::devguide:example$scala/Transcoding.scala[tag=string,indent=0]
 ----
 
 === RawBinaryTranscoder
@@ -216,7 +215,7 @@ Here’s an example of using the `RawBinaryTranscoder`:
 
 [source,scala]
 ----
-include::example$Transcoding.scala[tag=binary,indent=0]
+include::devguide:example$scala/Transcoding.scala[tag=binary,indent=0]
 ----
 
 == Custom Transcoders and Serializers
@@ -229,7 +228,7 @@ First we need a `JsonSerializer[User]` and `JsonDeserializer[User]`, which are s
 
 [source,scala]
 ----
-include::example$Transcoding.scala[tag=ujson,indent=0]
+include::devguide:example$scala/Transcoding.scala[tag=ujson,indent=0]
 ----
 
 Both of these are marked `implicit object` and inside `object MyUser` so the compiler can find them.
@@ -237,7 +236,7 @@ They will now be picked up by the compiler and used automatically:
 
 [source,scala]
 ----
-include::example$Transcoding.scala[tag=ujson-used,indent=0]
+include::devguide:example$scala/Transcoding.scala[tag=ujson-used,indent=0]
 ----
 
 Note we don't need to change the transcoder for this example.
@@ -251,12 +250,12 @@ The serializer is an implicit argument to any operation that requires one, and t
 
 [source,scala]
 ----
-include::example$Transcoding.scala[tag=overloaded1,indent=0]
+include::devguide:example$scala/Transcoding.scala[tag=overloaded1,indent=0]
 ----
 
 [source,scala]
 ----
-include::example$Transcoding.scala[tag=overloaded2,indent=0]
+include::devguide:example$scala/Transcoding.scala[tag=overloaded2,indent=0]
 ----
 
 === Creating a Custom Transcoder
@@ -269,14 +268,14 @@ Start by creating a new serializer and deserializer for our case class, that use
 
 [source,scala]
 ----
-include::example$Transcoding.scala[tag=msgpack-serializer,indent=0]
+include::devguide:example$scala/Transcoding.scala[tag=msgpack-serializer,indent=0]
 ----
 
 And now create a transcoder that sets the binary Common Flag when storing the data:
 
 [source,scala]
 ----
-include::example$Transcoding.scala[tag=msgpack-transcoder,indent=0]
+include::devguide:example$scala/Transcoding.scala[tag=msgpack-transcoder,indent=0]
 ----
 
 Note this transcoder is completely independent to MessagePack.
@@ -286,7 +285,7 @@ Now we can use the new transcoder and serializer to seamlessly store MessagePack
 
 [source,scala]
 ----
-include::example$Transcoding.scala[tag=msgpack-encode,indent=0]
+include::devguide:example$scala/Transcoding.scala[tag=msgpack-encode,indent=0]
 ----
 
 == Further reading

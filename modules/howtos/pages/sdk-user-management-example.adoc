@@ -1,6 +1,5 @@
 = User Management
 :description: pass:q[The Java SDK lets you create _users_, assign them _roles_ and associated _privileges_, and remove them from the system.]
-:navtitle: Provisioning Cluster Resources
 :page-aliases: ROOT:sdk-user-management-example.adoc
 
 [abstract]
@@ -20,20 +19,20 @@ The most common uses of the `UserManager` API are creating and listing users:
 .Creating Users
 [source,java]
 ----
-include::example$UserManagementExample.java[tag=usermanagement_1,indent=0]
+include::devguide:example$scala/UserManagementExample.java[tag=usermanagement_1,indent=0]
 ----
 
 .Listing Users
 [source,java]
 ----
-include::example$UserManagementExample.java[tag=usermanagement_2,indent=0]
+include::devguide:example$scala/UserManagementExample.java[tag=usermanagement_2,indent=0]
 ----
 
 Using a user created in the SDK to access data:
 
 [source,java]
 ----
-include::example$UserManagementExample.java[tag=usermanagement_3,indent=0]
+include::devguide:example$scala/UserManagementExample.java[tag=usermanagement_3,indent=0]
 ----
 
 

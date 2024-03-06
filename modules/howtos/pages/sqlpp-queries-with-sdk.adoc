@@ -1,19 +1,19 @@
-= Query
+= Querying with {sqlpp}
 :description: You can query for documents in Couchbase using the {sqlpp} query language, a language based on SQL, but designed for structured and flexible JSON documents.
-:page-topic-type: howto
-:page-aliases: n1ql-query
-:lang: Scala
-:example-source: howtos:example$Queries.scala
-:example-source-lang: scala
-:page-pagination: full
+:page-aliases: n1ql-query.adoc,n1ql-queries-with-sdk.adoc
+// :page-aliases: ROOT:document-operations.adoc,ROOT:documents-creating,ROOT:documents-updating,ROOT:documents-retrieving,ROOT:documents-deleting,n1ql-queries-with-sdk.adoc
 
-////
+
 [abstract]
 {description}
-////
+
 
 include::howtos:partial$n1ql-intro.adoc[]
 include::howtos:partial$n1ql-getting-started.adoc[]
+
+
+// index first - start again - see both C++ and .NET versions....
+// https://docs.couchbase.com/dotnet-sdk/current/howtos/n1ql-queries-with-sdk.html#querying-at-scope-level
 
 
 Note that building indexes is covered in more detail on the xref:concept-docs:n1ql-query.adoc#index-building[Query concept page] --
@@ -25,7 +25,7 @@ Here's the basics of how to run a simple query to fetch 10 random rows from trav
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=simple,indent=0]
+include::devguide:example$scala/Queries.scala[tag=simple,indent=0]
 ----
 
 (Note that we won't be covering the {sqlpp} language itself in any detail here, but if you're familiar with SQL you'll see it's very similar.)
@@ -34,7 +34,7 @@ The Scala SDK returns `Try` rather than throwing exceptions, to allow you to han
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=simple-results,indent=0]
+include::devguide:example$scala/Queries.scala[tag=simple-results,indent=0]
 ----
 
 The returned `QueryResult` contains an `rowsAs[T]` method, allowing the results to be converted into something useful.  The above
@@ -54,7 +54,7 @@ Of course, it wouldn't be Scala if we couldn't elegantly combine the operations 
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=get-rows,indent=0]
+include::devguide:example$scala/Queries.scala[tag=get-rows,indent=0]
 ----
 
 [NOTE]
@@ -70,7 +70,7 @@ And the `AtPlus` level is represented with `QueryScanConsistency.ConsistentWith`
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=at-plus,indent=0]
+include::devguide:example$scala/Queries.scala[tag=at-plus,indent=0]
 ----
 
 == Returning Results as Case Classes
@@ -81,14 +81,14 @@ available xref:json.adoc#case-classes[here], but the short version is to add a `
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=codec,indent=0]
+include::devguide:example$scala/Queries.scala[tag=codec,indent=0]
 ----
 
 Now you're free to pull out the results directly as your case class:
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=case-classes,indent=0]
+include::devguide:example$scala/Queries.scala[tag=case-classes,indent=0]
 ----
 
 == Streaming Large Result Sets
@@ -100,7 +100,7 @@ As mentioned earlier, the Scala SDK provides three SDKs (documented further on x
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=async,indent=0]
+include::devguide:example$scala/Queries.scala[tag=async,indent=0]
 ----
 
 * A reactive API, that can be used to stream rows.
@@ -118,11 +118,13 @@ Here's how to perform a query and stream the results using the reactive API:
 
 [source,scala]
 ----
-include::example$Queries.scala[tag=reactive,indent=0]
+include::devguide:example$scala/Queries.scala[tag=reactive,indent=0]
 ----
 
 
 == Querying at Scope Level
+
+// rearrange and put scope first????
 
 It is possible to query off the xref:7.1@server:learn:data/scopes-and-collections.adoc[`Scope` level] with _Couchbase Server version 7.0_ onwards,
 using the `scope.query()` method.
@@ -147,3 +149,17 @@ A complete list of `QueryOptions` can be found in the https://docs.couchbase.com
 
 
 include::howtos:partial$n1ql-additional-resources.adoc[]
+
+// tutorial - https://query.pub.couchbase.com/tutorial/#1
+// check it's working still?
+
+// recursive
+// https://www.couchbase.com/blog/recursive-query-processing-in-sql-n1ql/ 
+
+
+
+
+
+// also
+// query options
+// https://github.com/couchbaselabs/sdk-rfcs/pull/125/files 

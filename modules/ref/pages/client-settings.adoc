@@ -1,11 +1,8 @@
 = Client Settings
 :description: pass:q[The `ClusterEnvironment` class enables you to configure Scala SDK options for bootstrapping, timeouts, reliability, and performance.]
 :nav-title: Client Settings
-:page-topic-type: reference
-:page-aliases: ROOT:client-settings, ROOT:env-config
+// :page-aliases: ROOT:client-settings, ROOT:env-config
 :page-toclevels: 2
-
-include::project-docs:partial$attributes.adoc[]
 
 [abstract]
 {description}
@@ -20,7 +17,7 @@ It is designed to apply the builder arguments in a fluent fashion and then creat
 .Creating a cluster with custom settings
 [source,scala]
 ----
-include::example$ClientSettings.scala[tag=create-env-simple,indent=0]
+include::devguide:example$scala/ClientSettings.scala[tag=create-env-simple,indent=0]
 ----
 
 == Config Builders
@@ -34,7 +31,7 @@ As with most options blocks in the SDK, this is a Scala case class - e.g. an imm
 .Creating a new timeout config builder
 [source,scala]
 ----
-include::example$ClientSettings.scala[tag=timeout,indent=0]
+include::devguide:example$scala/ClientSettings.scala[tag=timeout,indent=0]
 ----
 
 The name of the cluster environment builder method for getting and setting each config builder always matches the name of the config class.
@@ -51,7 +48,7 @@ If a system property is set, it always takes precedence over the builder setting
 .Configuration via system property
 [source,scala]
 ----
-include::example$ClientSettings.scala[tag=system-properties,indent=0]
+include::devguide:example$scala/ClientSettings.scala[tag=system-properties,indent=0]
 ----
 <1> When specifying durations, `s` stands for seconds.
 Other valid qualifiers are `ns` for nanoseconds, `us` for microseconds, `ms` for milliseconds, and `m` for minutes.
@@ -74,7 +71,7 @@ If you are using the Enterprise Edition, it's possible to secure the connection 
 .Template for configuring security settings
 [source,scala]
 ----
-include::example$ClientSettings.scala[tag=security,indent=0]
+include::devguide:example$scala/ClientSettings.scala[tag=security,indent=0]
 ----
 
 NOTE: Unless you set `enableTls` to `true`, none of the other security settings in this section have any effect.
@@ -142,7 +139,7 @@ The associated `ClusterEnvironment.Builder` method is called `ioConfig`.
 .Template for configuring I/O settings
 [source,scala]
 ----
-include::example$ClientSettings.scala[tag=io-config,indent=0]
+include::devguide:example$scala/ClientSettings.scala[tag=io-config,indent=0]
 ----
 
 // TODO needs SCBC-190
@@ -278,7 +275,7 @@ The `IoConfig` builder has methods for configuring the circuit breakers of each 
 .Template for configuring circuit breaker settings
 [source,scala]
 ----
-include::example$ClientSettings.scala[tag=circuit-breaker,indent=0]
+include::devguide:example$scala/ClientSettings.scala[tag=circuit-breaker,indent=0]
 ----
 
 The corresponding system properties would be:
@@ -348,7 +345,7 @@ The associated `ClusterEnvironment.Builder` method is called `timeoutConfig`.
 .Template for configuring timeouts
 [source,scala]
 ----
-include::example$ClientSettings.scala[tag=timeout,indent=0]
+include::devguide:example$scala/ClientSettings.scala[tag=timeout,indent=0]
 ----
 
 === Timeout Options Reference
@@ -465,7 +462,7 @@ The associated `ClusterEnvironment.Builder` method is called `compressionConfig`
 .Template for configuring compression settings
 [source,scala]
 ----
-include::example$ClientSettings.scala[tag=compression,indent=0]
+include::devguide:example$scala/ClientSettings.scala[tag=compression,indent=0]
 ----
 
 Name: *Enabling Compression*::
@@ -512,7 +509,7 @@ They are configured directly on the `ClusterEnvironment.Builder`.
 .Template for configuring general settings
 [source,scala]
 ----
-include::example$ClientSettings.scala[tag=general,indent=0]
+include::devguide:example$scala/ClientSettings.scala[tag=general,indent=0]
 ----
 
 Name: *Retry Strategy*::

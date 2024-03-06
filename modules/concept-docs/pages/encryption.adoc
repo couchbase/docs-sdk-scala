@@ -1,6 +1,5 @@
 = Field Level Encryption
 :description: Fields within a document can be securely encrypted by the SDK, to support FIPS-140-2 compliance.
-:page-topic-type: concept
 :page-edition: Enterprise Edition
 :page-aliases: ROOT:encrypting-using-sdk,ROOT:encryption
 

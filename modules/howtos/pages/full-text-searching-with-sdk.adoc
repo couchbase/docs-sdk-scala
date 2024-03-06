@@ -1,9 +1,8 @@
 = Search
 :description: You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server.
-:page-topic-type: howto
 :page-pagination: full
+:page-toclevels: 2
 
-include::project-docs:partial$attributes.adoc[]
 
 [abstract]
 {description}
@@ -18,7 +17,7 @@ The examples below use these imports:
 
 [source.scala]
 ----
-include::example$FTS.scala[tag=imports,indent=0]
+include::devguide:example$scala/FTS.scala[tag=imports,indent=0]
 ----
 
 Search queries are executed at Cluster level (not bucket or collection).
@@ -26,7 +25,7 @@ Here is a simple MatchQuery that looks for the text “swanky” using a defined
 
 [source.scala]
 ----
-include::example$FTS.scala[tag=basic,indent=0]
+include::devguide:example$scala/FTS.scala[tag=basic,indent=0]
 ----
 
 All simple query types are created in the same manner.
@@ -42,7 +41,7 @@ Metadata holds additional information not directly related to your query, such a
 
 [source.scala]
 ----
-include::example$FTS.scala[tag=results,indent=0]
+include::devguide:example$scala/FTS.scala[tag=results,indent=0]
 ----
 
 
@@ -52,5 +51,6 @@ Like the Couchbase Query Service, FTS allows provides optional _Read-Your-Own-Wr
 
 [source.scala]
 ----
-include::example$FTS.scala[tag=consistency,indent=0]
+include::devguide:example$scala/FTS.scala[tag=consistency,indent=0]
 ----
+

@@ -1,0 +1,7 @@
+<dependencies>
+    <dependency>
+        <groupId>com.couchbase.client</groupId>
+        <artifactId>scala-client_2.13</artifactId>
+        <version>1.6.0</version>
+    </dependency>
+</dependencies>

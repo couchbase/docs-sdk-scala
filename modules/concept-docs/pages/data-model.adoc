@@ -1,10 +1,8 @@
 = Data Model
 :description: Couchbase's use of JSON as a storage format allows powerful search and query over documents.
-:page-topic-type: concept
-:page-aliases: ROOT:core-operations, ROOT:datastructures
-:lang: Scala
+// :page-aliases: ROOT:core-operations, ROOT:datastructures
 
-include::project-docs:partial$attributes.adoc[]
+
 
 [abstract]
 {description}

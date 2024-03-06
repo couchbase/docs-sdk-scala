@@ -1,8 +1,7 @@
 = Licenses
 :description: Couchbase SDKs' source code is licensed under the Apache Licence 2.0. \
 Dependencies carry their own licenses.
-:page-topic-type: reference
-:page-aliases: ROOT:sdk-licenses.adoc
+// :page-aliases: ROOT:sdk-licenses.adoc
 
 [abstract]
 {description}

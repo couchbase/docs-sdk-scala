@@ -1,18 +1,17 @@
 = Analytics
 :description: Parallel data management for complex queries over many records, using a familiar {sqlpp} syntax.
-:page-topic-type: howto
 :page-edition: Enterprise Edition:
+////
 :lang: Scala
 :source-language: scala
-
-include::project-docs:partial$attributes.adoc[]
+////
 
 [abstract]
 {description}
 
 
 For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the xref:{version-server}@server:analytics:introduction.adoc[Couchbase Analytics Service (CBAS)].
-This is the analytic counterpart to our xref:n1ql-queries-with-sdk.adoc[operational data focussed Query Service].
+This is the analytic counterpart to our xref:sqlpp-queries-with-sdk.adoc[operational data focussed Query Service].
 The analytics service is available in Couchbase Data Platform 6.0 and later (developer preview in 5.5).
 
 
@@ -27,14 +26,14 @@ Before starting, here's all imports used in the following examples:
 
 [source,scala]
 ----
-include::example$Analytics.scala[tag=imports,indent=0]
+include::devguide:example$scala/Analytics.scala[tag=imports,indent=0]
 ----
 
 Here's a complete example of doing an analytics query and handling the results:
 
 [source,scala]
 ----
-include::example$Analytics.scala[tag=simple,indent=0]
+include::devguide:example$scala/Analytics.scala[tag=simple,indent=0]
 ----
 
 Let's break this down.  First, we get the results in the form of a `Try[AnalyticsResult]`.
@@ -57,7 +56,7 @@ We can write that example more concisely, like this:
 
 [source,scala]
 ----
-include::example$Analytics.scala[tag=simple-better,indent=0]
+include::devguide:example$scala/Analytics.scala[tag=simple-better,indent=0]
 ----
 
 == Queries
@@ -67,12 +66,12 @@ Here is one example of each:
 
 [source,scala]
 ----
-include::example$Analytics.scala[tag=parameterised,indent=0]
+include::devguide:example$scala/Analytics.scala[tag=parameterised,indent=0]
 ----
 
 [source,scala]
 ----
-include::example$Analytics.scala[tag=named,indent=0]
+include::devguide:example$scala/Analytics.scala[tag=named,indent=0]
 ----
 
 == Additional Parameters
@@ -81,7 +80,7 @@ The handful of additional parameters are illustrated here:
 
 [source,scala]
 ----
-include::example$Analytics.scala[tag=parameters,indent=0]
+include::devguide:example$scala/Analytics.scala[tag=parameters,indent=0]
 ----
 
 === Metadata
@@ -89,7 +88,7 @@ include::example$Analytics.scala[tag=parameters,indent=0]
 
 [source,scala]
 ----
-include::example$Analytics.scala[tag=metrics,indent=0]
+include::devguide:example$scala/Analytics.scala[tag=metrics,indent=0]
 ----
 
 For a full listing of available `Metrics` in `Metadata`, see the xref:concept-docs:analytics-for-sdk-users.adoc[Understanding Analytics] documentation.
@@ -103,7 +102,7 @@ The Scala SDK provides three SDKs (documented further on xref:howtos:concurrent-
 
 [source,scala]
 ----
-include::example$Analytics.scala[tag=async,indent=0]
+include::devguide:example$scala/Analytics.scala[tag=async,indent=0]
 ----
 
 * A reactive API, that can be used to stream rows.
@@ -121,7 +120,7 @@ Here's how to perform a query and stream the results using the reactive API:
 
 [source,scala]
 ----
-include::example$Analytics.scala[tag=reactive,indent=0]
+include::devguide:example$scala/Analytics.scala[tag=reactive,indent=0]
 ----
 
 ////

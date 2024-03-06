@@ -1,11 +1,14 @@
 = Handling Errors
 :description: Errors are inevitable.
-:page-topic-type: howto
 :page-aliases: handling-error-conditions.adoc
-:source-language: scala
-:lang: Scala
+// :source-language: scala
+// :lang: Scala
 
+[abstract]
 {description}
+
+
+
 The developer’s job is to be prepared for whatever is likely to come up -- and to try and be prepared for anything that conceivably could come up.
 Couchbase gives you a lot of flexibility, but it is recommended that you equip yourself with an understanding of the possibilities.
 
@@ -21,19 +24,19 @@ If a particular key cannot be found it is raised as an `DocumentNotFoundExceptio
 
 [source,scala]
 ----
-include::example$ErrorHandling.scala[tag=key-not-found,indent=0]
+include::devguide:example$scala/ErrorHandling.scala[tag=key-not-found,indent=0]
 ----
 
 [source,scala]
 ----
-include::example$ErrorHandling.scala[tag=get,indent=0]
+include::devguide:example$scala/ErrorHandling.scala[tag=get,indent=0]
 ----
 
 On the other hand if the key already exists and should not (e.g. on an insert) then it is raised as a `DocumentExistsException`:
 
 [source,scala]
 ----
-include::example$ErrorHandling.scala[tag=key-exists,indent=0]
+include::devguide:example$scala/ErrorHandling.scala[tag=key-exists,indent=0]
 ----
 
 === Concurrency
@@ -43,7 +46,7 @@ When you get a document you automatically receive its CAS value, and when replac
 
 [source,scala]
 ----
-include::example$ErrorHandling.scala[tag=cas,indent=0]
+include::devguide:example$scala/ErrorHandling.scala[tag=cas,indent=0]
 ----
 
 === Ambiguity
@@ -60,7 +63,7 @@ For instance, for inserts, they can simply be retried to see if they fail on `Do
 
 [source,scala]
 ----
-include::example$ErrorHandling.scala[tag=insert,indent=0]
+include::devguide:example$scala/ErrorHandling.scala[tag=insert,indent=0]
 ----
 
 That example is much closer to what an application will want to be doing.  Let's flesh it out further.
@@ -70,7 +73,7 @@ The application can write wrappers so that it can easily do operations without h
 
 [source,scala]
 ----
-include::example$ErrorHandling.scala[tag=insert-real,indent=0]
+include::devguide:example$scala/ErrorHandling.scala[tag=insert-real,indent=0]
 ----
 
 This will make a 'best effort' to do the insert (though its retry strategy is rather naive, and applications may want to implement a more sophisticated approach involving exponential backoff and circuit breaking.)
@@ -94,7 +97,7 @@ A {sqlpp} (formerly N1QL) query either returns results or `QueryError`, like so:
 
 [source,scala]
 ----
-include::example$ErrorHandling.scala[tag=query,indent=0]
+include::devguide:example$scala/ErrorHandling.scala[tag=query,indent=0]
 ----
 
 Analytics works in an identical fashion, raising an `AnalyticsError`.

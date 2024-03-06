@@ -1,0 +1,191 @@
+= Data Modelling, Durability, and Consistency
+// :page-aliases: 
+// :page-aliases: durability-replication-failure-considerations.adoc
+:description: Performance, availability, consistency -- balance your priorities, and model your data to achieve these goals.
+:page-toclevels: 2
+
+
+// Note to editors
+// 
+// This page pulls in content from -sdk-common-
+// and code samples from -example-dir-
+// 
+// It can be seen built at wwww.
+
+
+[abstract]
+{description}
+
+[source,scala]
+----
+collection.remove("document-key2", durability = Durability.Majority) match {
+  case Success(result) => println("Document removed successfully")
+  // The mutation is available in-memory on at least a majority of replicas
+  case Failure(err: DocumentNotFoundException) =>
+    println("The document does not exist")
+  case Failure(err) => println("Error: " + err)
+}
+----
+
+At its heart, a database is in the business of storing data and letting you query and retrieve it.
+Putting a database on the network -- in particular a remote network, or another company's cloud service -- and partitioning the data across multiple nodes, with several replicas, does not alter this.
+It does, however, mean that choices must be made to optimize for consistency or availability of data.
+
+.Skipping Ahead
+[TIP]
+====
+This page lays out some of the things you need to consider when designing an app.
+If you have already reached your decisions, and want to work with the Data API, then skip straight to our pages on 
+xref:howtos:kv-operations.adoc[], 
+xref:howtos:subdocument-operations.adoc[], or
+xref:howtos:concurrent-document-mutations.adoc[],
+and try some of the code snippets there.
+Or see some of the other links in the <<#further-reading,Further Reading>> section.
+====
+
+Whether you go through the Data Service, or Query,
+you'll find that both follow the typical DML (Data Manipulation Language) patterns that you encounter in the relational database world.
+See the xref:querying-your-data.adoc[SDK Query introduction] for choices of {sqlpp} queries for OLTP (transactional queries) and OLAP (analytics) -- 
+including real-time analytics -- as well as fuzzy searches and vector search.
+
+
+
+
+////
+// earier doc intro:
+Couchbase stores data in _documents_, and this is the atomic....
+
+////
+
+Designing an application to offer guarantees of durability or consistency in a networked environment is hard.
+The newcomer to the area has to wrestle with concepts like [CAP Theorum] and the [many possible interpretations] of ACID transactions. 
+Here we hope to keep it _relatively_ simple, with a look at which Couchbase features give you which guarantees,
+when you may prefer to use them, and -- perhaps equally important, though sometimes overlooked -- 
+what is the performance cost of these choices.
+
+
+
+////
+From 3.4 doc:
+
+Data durability refers to the fault tolerance and persistence of data in the face of software or hardware failure. Even the most reliable software and hardware might fail at some point, and along with the failures, introduce a chance of data loss. Couchbase’s durability features include Synchronous Replication, and the possibility to use distributed, multi-document ACID transactions. It is the responsibility of the development team and the software architect to evaluate the best choice for each use case.
+Couchbase’s distributed and scalable nature exposes any set-up to the risk of potential network and hardware problems. The key to durability is planning for resilience, by evaluating the options on offer for persistence and replication, and carefully considering the performance trade-offs involved.
+
+Durability
+Writes in Couchbase (from the SDK or elsewhere) are written to a single node. From there, Couchbase Server will take care of sending the mutation to any configured replicas, and to disk. By default all writes are asynchronous, but levels of durability can be set, to ensure replication and/or persistence to disks, before the write is committed.
+
+
+//// 
+
+
+
+
+== Data and Good Schema Design
+
+Each level of durability guarantee carries a price in time to persist to replicas or to disk.
+Transactional guarantees across multiple documents add another layer of performance cost -- something readily bourne when the data is important enough, and justifiably discarded for many categories of transient and unimportant data.
+However, many data fall into an intermediate category, and here the atomic consistency decision is made by what's tolerable for read and write times.
+In this case, consider if a tweak to the schema, to bring items into the same document, can give you transactional guarntees without th eperformance penalty of multi-document transactions.
+
+Consider, too, that many operations are performed at the _collection_ level, and keeping documents in the same collection can make for speedier indexing and queries -- whether {sqlpp} or Search.
+
+
+// counter argument
+// when it's better to have small docs
+// https://www.couchbase.com/forums/t/single-document-structure-or-multiple-documents-for-user-data/37016 
+
+
+=== Collections
+
+// Working at the collection level - kv, query, ....
+// pull in some https://docs.couchbase.com/server/current/learn/data/scopes-and-collections.html ?
+
+
+=== Object Mapping & Modelling JSON
+
+
+
+
+// mention arrays where?
+// x.rowsAs(JsonArray.class) 
+
+
+== Durability
+
+
+
+
+
+This durability is enforced by the database, 
+
+
+
+// Worth putting in?
+// Note, if you are working with an older, no longer supported version of Couchbase Server, you may want to look at 3.3@java-sdk:concept-docs:durability-replication-failure-considerations.adoc#older-server-versions in the earlier SDK docs.
+// https://docs.couchbase.com/java-sdk/current/concept-docs/durability-replication-failure-considerations.html#older-server-versions
+// Change link once 3.3 is archived?
+
+== Concurrent Document Mutations
+
+
+
+
+=== Performance considerations
+
+CAS operations incur no additional overhead.
+CAS values are always returned from the server for each operation. 
+Comparing CAS at the server involves a simple integer comparison which incurs no overhead.
+
+=== CAS value format
+
+The CAS value should be treated as an opaque object at the application level. 
+No assumptions should be made with respect to how the value is changed (for example, it is wrong to assume that it is a simple counter value). 
+In the SDK, the CAS is represented as a 64 bit integer for efficient copying but should otherwise be treated as an opaque 8 byte buffer.
+
+
+
+== Pessimistic locking
+
+
+
+
+
+
+== Multi-Document ACID Transactions
+
+
+
+
+
+
+////
+TTL
+
+DOC-11679
+ 
+Re: Information on maxTTL for collections is not accurate
+The summary of "Document do not expire" is actually incorrect. After I did some testing, it turns out that documents *can* expire within collections and buckets that have maxTTL=0 if you set the document's expiration to a positive value.
+
+Instead of talking about maxTTL in terms of documents expiring or not expiring, I believe we should discuss maxTTL's effect on a document's expiration setting: a non-zero value as sets a default expiration value for all documents contained in the bucket/collection (actually, I believe this is all newly-created documents . Setting maxTTL on a bucket or collection does not automatically change the expiration of existing documents, from what I have seen). It also sets the upper bound on a the expiration value you can set in a document directly. The actual expiration time is set by the document's expiration setting.  
+////
+
+
+
+
+== Further Reading
+
+Below, we link some of the pages in this section that take a deeper dive into data structures, durability guarantees, and ???? --
+but if you are in a hurry to just learn more about querying your data, please skip ahead to xref:concept-docs:querying-your-data.adoc[the next section].
+
+* 
+
+* 
+
+* Backups
+
+* Retry strategy
+
+
+
+For more on
+see durability-replication-failure-considerations.adoc

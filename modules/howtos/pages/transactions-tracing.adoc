@@ -1,8 +1,7 @@
 = Tracing
 :description: Tracing Couchbase Distributed ACID transactions.
 :page-partial:
-:page-topic-type: howto
-:page-pagination: full
+// :page-pagination: full
 
 [abstract]
 {description}
@@ -22,12 +21,12 @@ It can do this by passing that as a parent span.
 This can be done using the SDK's `RequestTracer` abstraction as so:
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=tracing,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=tracing,indent=0]
 ----
 
 Or if you have an existing OpenTelemetry span you can easily convert it to a Couchbase `RequestSpan` and pass it to the SDK:
 
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=tracing-wrapped,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=tracing-wrapped,indent=0]
 ----

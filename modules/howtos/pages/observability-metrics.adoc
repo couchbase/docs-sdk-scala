@@ -1,9 +1,9 @@
 = Metrics Reporting
 :description: Individual request tracing presents a very specific (though isolated) view of the system.
-:page-status: Developer Preview
-:page-topic-type: howto
 
+[abstract]
 {description}
+
 In addition, it also makes sense to capture information that aggregates request data (i.e. requests per second),
 but also data which is not tied to a specific request at all (i.e. resource utilization).
 
@@ -27,7 +27,7 @@ Before starting, here are all imports used in the following examples:
 
 [source,scala]
 ----
-include::example$Metrics.scala[tag=imports,indent=0]
+include::devguide:example$scala/Metrics.scala[tag=imports,indent=0]
 ----
 
 The default implementation aggregates and logs request and response metrics.
@@ -35,14 +35,14 @@ Since the feature is in developer preview, you need to manually enable it on the
 
 [source,scala]
 ----
-include::example$Metrics.scala[tag=metrics-enable,indent=0]
+include::devguide:example$scala/Metrics.scala[tag=metrics-enable,indent=0]
 ----
 
 By default the metrics will be emitted every 10 minutes, but you can customize the emit interval as well:
 
 [source,scala]
 ----
-include::example$Metrics.scala[tag=metrics-enable-custom,indent=0]
+include::devguide:example$scala/Metrics.scala[tag=metrics-enable-custom,indent=0]
 ----
 
 Once enabled, there is no further configuration needed.
@@ -117,7 +117,7 @@ Now you can initialise the SDK with OpenTelemetry:
 
 [source,scala]
 ----
-include::example$Metrics.scala[tag=metrics-otel,indent=0]
+include::devguide:example$scala/Metrics.scala[tag=metrics-otel,indent=0]
 ----
 
 

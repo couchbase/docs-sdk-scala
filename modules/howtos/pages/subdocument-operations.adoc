@@ -1,10 +1,7 @@
 = Sub-Document Operations
 :description: Sub-Document operations can be used to efficiently access and change parts of documents.
-:page-topic-type: howto
-:lang: Scala
 :page-aliases: ROOT:sdk-xattr-example.adoc
 
-include::project-docs:partial$attributes.adoc[]
 
 [abstract]
 {description}
@@ -22,7 +19,7 @@ While full-document retrievals retrieve the entire document and full document up
 You should use Sub-Document operations when you are modifying only portions of a document, and full-document operations when the contents of a document is to change significantly.
 
 IMPORTANT: The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document {sqlpp} (formerly N1QL) queries.
-(Sub-Document {sqlpp} queries are explained in the section xref:n1ql-queries-with-sdk.adoc[Querying with {sqlpp}].)
+(Sub-Document {sqlpp} queries are explained in the section xref:sqlpp-queries-with-sdk.adoc[Querying with {sqlpp}].)
 
 In order to use Sub-Document operations you need to specify a _path_ indicating the location of the Sub-Document.
 The _path_ follows <<Path syntax,{sqlpp} syntax>>.
@@ -70,13 +67,13 @@ The examples use the following imports:
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=imports,indent=0,indent=0]
+include::devguide:example$scala/SubDocument.scala[tag=imports,indent=0,indent=0]
 ----
 
 .Retrieve Sub-Document value
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=get]
+include::devguide:example$scala/SubDocument.scala[tag=get]
 ----
 
 NOTE: Use `import com.couchbase.client.scala.kv.LookupInSpec._` to make sure all operations are in scope.
@@ -86,20 +83,20 @@ It can be hard to read multiple nested `Try` so you may prefer to use either fla
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=get-flatmap]
+include::devguide:example$scala/SubDocument.scala[tag=get-flatmap]
 ----
 
 or a for-comprehension:
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=get-forcomp]
+include::devguide:example$scala/SubDocument.scala[tag=get-forcomp]
 ----
 
 .Check existence of Sub-Document path
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=exists]
+include::devguide:example$scala/SubDocument.scala[tag=exists]
 ----
 
 NOTE: LookupInResult has an `exists` method, but this should not be confused with the exists __operation__.  The `exists` method
@@ -111,7 +108,7 @@ Multiple operations can be combined, and this can be most neatly done with a for
 .Combine multiple lookup operations
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=combine]
+include::devguide:example$scala/SubDocument.scala[tag=combine]
 ----
 
 == Choosing an API
@@ -120,14 +117,14 @@ asynchronous variant that returns Scala `Future`:
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=get-future]
+include::devguide:example$scala/SubDocument.scala[tag=get-future]
 ----
 
 And a third that uses reactive programming primitives from https://projectreactor.io/[Project Reactor]:
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=get-reactive]
+include::devguide:example$scala/SubDocument.scala[tag=get-reactive]
 ----
 
 == Mutating
@@ -138,7 +135,7 @@ The simplest of these operations is _upsert_, which, similar to the fulldoc-leve
 .Upserting a new Sub-Document value
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=upsert]
+include::devguide:example$scala/SubDocument.scala[tag=upsert]
 ----
 
 NOTE: Use `import com.couchbase.client.scala.kv.MutateInSpec._` to make sure all operations are in scope.
@@ -148,7 +145,7 @@ Likewise, the _insert_ operation will only add the new value to the path if it d
 .Inserting a Sub-Document value
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=insert]
+include::devguide:example$scala/SubDocument.scala[tag=insert]
 ----
 
 Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutateIn_ API.
@@ -156,7 +153,7 @@ Here's an example of one which replaces one path and removes another.
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=multi]
+include::devguide:example$scala/SubDocument.scala[tag=multi]
 ----
 
 NOTE: `mutateIn` is an _atomic_ operation.  If any single operation fails, then the entire document is left unchanged.
@@ -176,12 +173,12 @@ Unlike fulldoc _append_/_prepend_ operations (which simply concatenate bytes to 
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=array-append]
+include::devguide:example$scala/SubDocument.scala[tag=array-append]
 ----
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=array-prepend]
+include::devguide:example$scala/SubDocument.scala[tag=array-prepend]
 ----
 
 If your document only needs to contain an array, you do not have to create a top-level object wrapper to contain it.
@@ -190,14 +187,14 @@ Simply initialize the document with an empty array and then use the empty path f
 .Creating and populating an array document
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=array-create]
+include::devguide:example$scala/SubDocument.scala[tag=array-create]
 ----
 
 If you wish to create an array if it does not exist and also push elements to it within the same operation you may use the <<subdoc_create_path,_createPath_>> option:
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=array-upsert]
+include::devguide:example$scala/SubDocument.scala[tag=array-upsert]
 ----
 
 == Arrays as Unique Sets
@@ -207,7 +204,7 @@ This will do a check to determine if the given value exists or not before actual
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=array-unique]
+include::devguide:example$scala/SubDocument.scala[tag=array-unique]
 ----
 
 Note that currently the _arrayAddUnique_ will fail with a _PathMismatchException_ if the array contains JSON _floats_, _objects_, or _arrays_.
@@ -224,7 +221,7 @@ For example, to insert `"cruel"` as the second element in the array `["Hello", "
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=array-insert]
+include::devguide:example$scala/SubDocument.scala[tag=array-insert]
 ----
 
 // for your examples, above, CD: “I feel like somewhere in this we should also just a an example path like "my.path[1]" too, just to show how to use the index with a nested path. I don't think it's necessarily clear.”
@@ -239,7 +236,7 @@ These operations are logically similar to the _increment_ and _decrement_ full-d
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=counter-inc]
+include::devguide:example$scala/SubDocument.scala[tag=counter-inc]
 ----
 
 The _increment_ and _decrement_ operations perform simple arithmetic against a numeric value.
@@ -247,7 +244,7 @@ The updated value is returned.
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=counter-dec]
+include::devguide:example$scala/SubDocument.scala[tag=counter-dec]
 ----
 
 The existing value for counter operations must be within range of a 64 bit signed integer.
@@ -306,8 +303,23 @@ In this case, the _createPath_ option may be used.
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=create-path]
+include::devguide:example$scala/SubDocument.scala[tag=create-path]
 ----
+
+
+////
+Multiple sub-document operations (for a single document) can be specified in a single sub-document request.
+To perform sub-document operations on a (bulk) list of documents, follow the bulk operations documentation, substituting the insert calls with subdocument (lookupIn, mutateIn) calls. Notice that the .NET, Java and Nodejs samples just use the single APIs in an efficient pattern for their language.  Python has _multi() APIs (which, in turn use the single APIs in an efficient pattern).
+////
+
+
+
+
+
+// Read from Replica
+
+
+
 
 
 == Concurrent Modifications
@@ -317,7 +329,7 @@ For example the following two blocks can execute concurrently without any risk o
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=concurrent]
+include::devguide:example$scala/SubDocument.scala[tag=concurrent]
 ----
 
 Even when modifying the _same_ part of the document, operations will not necessarily conflict.
@@ -331,7 +343,7 @@ If CAS is required then it can be provided like this:
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=cas]
+include::devguide:example$scala/SubDocument.scala[tag=cas]
 ----
 
 
@@ -342,7 +354,7 @@ xref:concept-docs:durability-replication-failure-considerations.adoc#older-serve
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=durability,indent=0]
+include::devguide:example$scala/SubDocument.scala[tag=durability,indent=0]
 ----
 
 In Couchbase Server 6.5 and up, this is built upon with xref:concept-docs:durability-replication-failure-considerations.adoc#durable-writes[Durable Writes],
@@ -350,7 +362,7 @@ which uses the concept of xref:{version-server}@server:learn:data/durability.ado
 
 [source,scala]
 ----
-include::example$SubDocument.scala[tag=sync-durability,indent=0]
+include::devguide:example$scala/SubDocument.scala[tag=sync-durability,indent=0]
 ----
 
 
@@ -426,3 +438,12 @@ a quote or backslash) and then encapsulating it in backticks (`pass:c[`path`]`).
 NOTE: Currently, paths cannot exceed 1024 characters, and cannot be more than 32 levels deep.
 
 include::{version-common}@sdk:shared:partial$sdk-xattr-overview.adoc[tag=extended_attributes]
+
+
+
+
+
+
+
+// read from replica
+// 

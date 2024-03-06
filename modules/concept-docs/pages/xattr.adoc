@@ -1,9 +1,8 @@
 = XATTR & Virtual XATTR
 :description: Extended Attributes (XATTR) are metadata that can be provided on a per-application basis.
-:page-topic-type: concept
-:page-aliases: sdk-xattr-overview,ROOT:sdk-xattr-overview
+// :page-aliases: sdk-xattr-overview,ROOT:sdk-xattr-overview
 
-include::project-docs:partial$attributes.adoc[]
+
 
 [abstract]
 {description}
@@ -16,7 +15,7 @@ include::{version-common}@sdk:shared:partial$sdk-xattr-overview.adoc[tag=virtual
 
 [source,scala]
 ----
-include::example$Examples.scala[tag=lookup,indent=0]
+include::devguide:example$scala/Examples.scala[tag=lookup,indent=0]
 ----
 
 // See the xref:howtos:sdk-xattr-example.adoc#virtual-extended-attributes-example[example page] for a complete code sample.

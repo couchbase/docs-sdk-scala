@@ -1,7 +1,7 @@
 = Request Tracing
 :description: Collecting information about an individual request and its response is an essential feature of every observability stack.
-:page-topic-type: howto
 
+[abstract]
 {description}
 
 To give insight into a request/response flow, the SDK provides a `RequestTracer` interface and ships with both a default implementation as well as modules that can feed the traces to external systems (including OpenTelemetry).
@@ -16,7 +16,7 @@ It is possible to customize this behavior by modifying the configuration:
 
 [source,scala]
 ----
-include::example$Tracing.scala[tag=tracing-configure,indent=0]
+include::devguide:example$scala/Tracing.scala[tag=tracing-configure,indent=0]
 ----
 
 In this case the emit interval is one minute and Key/Value requests will only be considered if their latency is greater or equal than two seconds.
@@ -126,7 +126,7 @@ Before starting, here are all imports used in the following examples:
 
 [source,scala]
 ----
-include::example$Tracing.scala[tag=imports,indent=0]
+include::devguide:example$scala/Tracing.scala[tag=imports,indent=0]
 ----
 
 Now, you can configure an OpenTelemetry `TracerProvider`.  
@@ -134,14 +134,14 @@ We are using the OTLP GRPC exporter, which the OpenTelemetry Collector is config
 
 [source,scala]
 ----
-include::example$Tracing.scala[tag=otel-configure,indent=0]
+include::devguide:example$scala/Tracing.scala[tag=otel-configure,indent=0]
 ----
 
 Once the OpenTelemetry `TracerProvider` is set up, it can be wrapped into a Couchbase `RequestTracer` and passed into the environment:
 
 [source,scala]
 ----
-include::example$Tracing.scala[tag=otel-use,indent=0]
+include::devguide:example$scala/Tracing.scala[tag=otel-use,indent=0]
 ----
 
 At this point, all spans will be sent into the OpenTelemetry collector.  
@@ -173,7 +173,7 @@ Just call `OpenTelemetryRequestSpan.wrap` to wrap your OpenTelemetry span into a
 
 [source,scala]
 ----
-include::example$Tracing.scala[tag=otel-options,indent=0]
+include::devguide:example$scala/Tracing.scala[tag=otel-options,indent=0]
 ----
 
 

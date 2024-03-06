@@ -1,5 +1,8 @@
 = Platform Introduction
-:description: A simple Scala orientation intro for _non-Scala_ folk who are evaluating the Couchbase Scala SDK.
+:description: pass:q[A simple Scala orientation intro for _non-Scala_ folk who are evaluating the Couchbase Scala SDK.]
+:page-toclevels: 2
+
+// https://couchbasecloud.atlassian.net/wiki/spaces/SWD/pages/2137194599/Scala
 
 
 [abstract]
@@ -29,11 +32,22 @@ To install the JDK we are going to use a JVM-management tool called `sdkman`.
 
 
 
+=== SDKMAN!
 
+SDKMAN! -- the Software Development Kit Manager -- enables multiple Java versions and runtimes to be installed and managed, without intefering with your system's default JVM.
 
+This third party tool is unnecessary in most production environments, but ideal for development machines.
+Installation instructions can be found on the https://sdkman.io/install[SDKMAN! website]. 
 
+Once SDKMAN! is installed, use it to install the latest version of Scala 2.13:
 
+[source,console]
+----
+$ sdk install scala 2.13.13
+----
 
+You may be prompted to set that version as a default -- say yes (by pressing *<Enter>*).
+More details of SDKMAN! use can be found on the https://sdkman.io/install[SDKMAN! website].
 
 
 == REPL
@@ -56,6 +70,10 @@ scala>
 ----
 
 You can see the commands available with `:help`, and leave the REPL any time with `:q`.
+
+
+=== Quick Intro to Scala
+
 Just enter `6 * 7` to see that everything is working fine (you should see the result returned:
 
 [source,scala]
@@ -72,7 +90,7 @@ scala> res0
 val res1: Int = 42
 ----
 
-== Static Typing
+==== Static Typing
 
 Scala is a statically typed language -- like in Java, values _and_ variables have types -- but unlike Java, Scala uses _type inference_ to determine type, cutting down on repetitive boilerplate.
 
@@ -96,3 +114,34 @@ val customers - Array(
                )
 ----
 
+
+
+
+== Installing the Scala SDK
+
+Maven, Gradle, or the Scala Build Tool (SBT) may all be used to manage dependencies, building, and deployment.
+Here we will use SBT:
+
+[source,console]
+----
+$ sdk install sbt
+----
+
+
+== Running Your Project
+
+[source,sbt,subs="+attributes"]
+----
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "{sdk_current_version}"
+----
+
+
+
+some intermediate steps....
+
+
+
+[source,console]
+----
+$ sbt run
+----

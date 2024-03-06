@@ -1,12 +1,10 @@
 = Using Couchbase Transactions
 :description: A practical guide on using Couchbase Distributed ACID transactions, via the Scala SDK.
 :page-partial:
-:page-topic-type: howto
 :page-aliases: acid-transactions
 :page-toclevels: 2
-:page-pagination: next
+// :page-pagination: next
 
-include::project-docs:partial$attributes.adoc[]
 include::partial$acid-transactions-attributes.adoc[]
 
 [abstract]
@@ -24,7 +22,7 @@ Couchbase Capella::
 +
 --
 * Couchbase Capella account.
-* You should know how to perform xref:howtos:kv-operations.adoc[key-value] or xref:howtos:n1ql-queries-with-sdk.adoc[query] operations with the SDK.
+* You should know how to perform xref:howtos:kv-operations.adoc[key-value] or xref:howtos:sqlpp-queries-with-sdk.adoc[query] operations with the SDK.
 * Your application should have the relevant roles and permissions on the required buckets, scopes, and collections, to perform transactional operations.
 Refer to the xref:cloud:organizations:organization-projects-overview.adoc[Organizations & Access] page for more details.
 * If your application is using xref:concept-docs:xattr.adoc[extended attributes (XATTRs)], you should avoid using the XATTR field `txn` -- this is reserved for Couchbase use.
@@ -34,7 +32,7 @@ Couchbase Server::
 +
 --
 * Couchbase Server (6.6.1 or above).
-* You should know how to perform xref:howtos:kv-operations.adoc[key-value] or xref:howtos:n1ql-queries-with-sdk.adoc[query] operations with the SDK.
+* You should know how to perform xref:howtos:kv-operations.adoc[key-value] or xref:howtos:sqlpp-queries-with-sdk.adoc[query] operations with the SDK.
 * Your application should have the relevant roles and permissions on the required buckets, scopes, and collections, to perform transactional operations.
 Refer to the xref:{version-server}@server:learn:security/roles.adoc[Roles] page for more details.
 * If your application is using xref:concept-docs:xattr.adoc[extended attributes (XATTRs)], you should avoid using the XATTR field `txn` -- this is reserved for Couchbase use.
@@ -62,7 +60,7 @@ By invoking `Cluster.transactions`, we can access the `Transactions` object and 
 
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=examples,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=examples,indent=0]
 ----
 --
 
@@ -76,7 +74,7 @@ By invoking `Cluster.reactive().transactions()`, we can access the `ReactiveTran
 
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=examplesReactive,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=examplesReactive,indent=0]
 ----
 --
 ====
@@ -103,7 +101,7 @@ Synchronous API::
 --
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=logging,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=logging,indent=0]
 ----
 --
 
@@ -112,7 +110,7 @@ Asynchronous API::
 --
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=async_logging,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=async_logging,indent=0]
 ----
 --
 ====
@@ -147,7 +145,7 @@ Synchronous API::
 --
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=insert,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=insert,indent=0]
 ----
 --
 
@@ -156,7 +154,7 @@ Asynchronous API::
 --
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=insertReactive,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=insertReactive,indent=0]
 ----
 --
 ====
@@ -167,7 +165,7 @@ To retrieve a document from the database you can call `ctx.get()`.
 
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=get,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=get,indent=0]
 ----
 
 `ctx.get()` will return a `TransactionGetResult` object, which is very similar to the `GetResult` you are used to.
@@ -176,14 +174,14 @@ If the application needs to ignore or take action on a document not existing, it
 
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=get-catch,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=get-catch,indent=0]
 ----
 
 Gets will "Read Your Own Writes", e.g. this will succeed:
 
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=getReadOwnWrites,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=getReadOwnWrites,indent=0]
 ----
 
 Of course, no other transaction will be able to read that inserted document, until this transaction reaches the commit point.
@@ -200,7 +198,7 @@ Synchronous API::
 --
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=replace,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=replace,indent=0]
 ----
 --
 
@@ -209,7 +207,7 @@ Asynchronous API::
 --
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=replaceReactive,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=replaceReactive,indent=0]
 ----
 --
 ====
@@ -225,7 +223,7 @@ Synchronous API::
 --
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=remove,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=remove,indent=0]
 ----
 --
 
@@ -234,7 +232,7 @@ Asynchronous API::
 --
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=removeReactive,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=removeReactive,indent=0]
 ----
 
 [TIP]
@@ -260,21 +258,21 @@ Here is an example of selecting some rows from the `travel-sample` bucket:
 
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=queryExamplesSelectScope,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=queryExamplesSelectScope,indent=0]
 ----
 
 An example using a `Scope` for an `UPDATE`:
 
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=queryExamplesUpdate,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=queryExamplesUpdate,indent=0]
 ----
 
 And an example combining `SELECT` and `UPDATE`.
 
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=queryExamplesComplex,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=queryExamplesComplex,indent=0]
 ----
 
 As you can see from the snippet above, it is possible to call regular Scala methods from the {lambda}, permitting complex logic to be performed.
@@ -285,7 +283,7 @@ This example shows inserting a document and then selecting it again:
 
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=queryInsert,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=queryInsert,indent=0]
 ----
 
 <1> The inserted document is only staged at this point, as the transaction has not yet committed. +
@@ -298,7 +296,7 @@ Query options can be provided via the `TransactionQueryOptions` object:
 
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=queryOptions,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=queryOptions,indent=0]
 ----
 
 .Supported Transaction Query Options
@@ -327,7 +325,7 @@ In this example we insert a document with a key-value operation, and read it wit
 
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=queryRyow,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=queryRyow,indent=0]
 ----
 
 <1> The key-value insert operation is only staged, and so it is not visible to other transactions or non-transactional actors.
@@ -343,7 +341,7 @@ An example of performing parallel operations using the reactive API:
 
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=concurrentOps,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=concurrentOps,indent=0]
 ----
 
 include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tag=query-perf-note]
@@ -372,7 +370,7 @@ If needed, transactions can be globally configured at the point of creating the 
 
 [source,scala]
 ----
-include::example$TransactionsExample.scala[tag=config,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=config,indent=0]
 ----
 
 include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tag=config]

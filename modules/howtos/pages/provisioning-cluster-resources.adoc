@@ -1,6 +1,6 @@
 = Provisioning Cluster Resources
 :description: Provisioning cluster resources is managed at the collection or bucket level, depending upon the service affected.
-:page-aliases: ROOT:managing-clusters
+// :page-aliases: ROOT:managing-clusters
 :page-toclevels: 2
 
 // API refs
@@ -16,7 +16,6 @@
 :upsertDesignDocument: pass:q[`upsertDesignDocument` method]
 :getDesignDocument: pass:q[`getDesignDocument`]
 
-include::project-docs:partial$attributes.adoc[]
 
 [abstract]
 {description}
@@ -70,21 +69,21 @@ The following example creates a "hello" bucket:
 
 [source,scala]
 ----
-include::example$ClusterResources.scala[tag=bucket,indent=0]
+include::devguide:example$scala/ClusterResources.scala[tag=bucket,indent=0]
 ----
 
 We can now get this bucket and update it to enable Flush:
 
 [source,scala]
 ----
-include::example$ClusterResources.scala[tag=flush,indent=0]
+include::devguide:example$scala/ClusterResources.scala[tag=flush,indent=0]
 ----
 
 Once you no longer need to use the bucket, you can remove it:
 
 [source,scala]
 ----
-include::example$ClusterResources.scala[tag=drop,indent=0]
+include::devguide:example$scala/ClusterResources.scala[tag=drop,indent=0]
 ----
 
 === Flushing Buckets
@@ -95,7 +94,7 @@ You can flush a bucket in the SDK by using the `Flush` method:
 
 [source,scala]
 ----
-include::example$ClusterResources.scala[tag=flush-real,indent=0]
+include::devguide:example$scala/ClusterResources.scala[tag=flush-real,indent=0]
 ----
 
 == Collection Management
@@ -107,30 +106,30 @@ for further details.
 
 [source,scala]
 ----
-include::example$CollectionManagerExample.scala[tag=create-collection-manager,indent=0]
+include::devguide:example$scala/CollectionManagerExample.scala[tag=create-collection-manager,indent=0]
 ----
 
 You can create a scope:
 
 [source,scala]
 ----
-include::example$CollectionManagerExample.scala[tag=create-scope,indent=0]
+include::devguide:example$scala/CollectionManagerExample.scala[tag=create-scope,indent=0]
 ----
 
 You can then create a collection within that scope:
 
 [source,scala]
 ----
-include::example$CollectionManagerExample.scala[tag=create-collection,indent=0]
+include::devguide:example$scala/CollectionManagerExample.scala[tag=create-collection,indent=0]
 ----
 
 Finally, you can drop unneeded collections and scopes:
 
 [source,scala]
 ----
-include::example$CollectionManagerExample.scala[tag=drop-collection,indent=0]
+include::devguide:example$scala/CollectionManagerExample.scala[tag=drop-collection,indent=0]
 
-include::example$CollectionManagerExample.scala[tag=drop-scope,indent=0]
+include::devguide:example$scala/CollectionManagerExample.scala[tag=drop-scope,indent=0]
 ----
 
 Note that the most minimal permissions to create and drop a Scope or Collection is
@@ -141,7 +140,7 @@ You can create users with the appropriate RBAC programmatically:
 
 [source,scala]
 ----
-include::example$CollectionManagerExample.scala[tag=scopeAdmin, indent=0]
+include::devguide:example$scala/CollectionManagerExample.scala[tag=scopeAdmin, indent=0]
 ----
 
 == Index Management
@@ -155,7 +154,7 @@ It can be accessed via `Cluster.queryIndexes`.
 
 [source,scala]
 ----
-include::example$QueryIndexManagerExample.scala[tag=creating-index-mgr,indent=0]
+include::devguide:example$scala/QueryIndexManagerExample.scala[tag=creating-index-mgr,indent=0]
 ----
 
 include::{version-common}@sdk:shared:partial$flush-info-pars.adoc[tag=query-index-manager-intro]
@@ -167,7 +166,7 @@ Note that you cannot provide a named scope or collection separately, both must b
 
 [source,scala]
 ----
-include::example$QueryIndexManagerExample.scala[tag=primary,indent=0]
+include::devguide:example$scala/QueryIndexManagerExample.scala[tag=primary,indent=0]
 ----
 
 When a primary index name is not specified, the SDK will create the index as `#primary` by default.
@@ -182,7 +181,7 @@ Creating a _secondary_ index follows a similar approach, with some minor differe
 
 [source,scala]
 ----
-include::example$QueryIndexManagerExample.scala[tag=secondary,indent=0]
+include::devguide:example$scala/QueryIndexManagerExample.scala[tag=secondary,indent=0]
 ----
 
 The `createIndex()` method requires an index name to be provided, along with the fields to create the index on.
@@ -196,7 +195,7 @@ To achieve this we can use the `deferred` boolean option, and set it to `true`.
 
 [source,scala]
 ----
-include::example$QueryIndexManagerExample.scala[tag=defer-indexes,indent=0]
+include::devguide:example$scala/QueryIndexManagerExample.scala[tag=defer-indexes,indent=0]
 ----
 
 To delete a query index you can use the `dropIndex()` or `dropPrimaryIndex()` methods. 
@@ -206,7 +205,7 @@ Which one you use depends on the type of query index you wish to drop from the d
 
 [source,scala]
 ----
-include::example$QueryIndexManagerExample.scala[tag=drop-primary-or-secondary-index,indent=0]
+include::devguide:example$scala/QueryIndexManagerExample.scala[tag=drop-primary-or-secondary-index,indent=0]
 ----
 
 // * Search - note & link to FTS page & API?
@@ -220,14 +219,14 @@ All operations on design documents are performed on the `ViewIndexManager` insta
 
 [source,scala]
 ----
-include::example$ClusterResources.scala[tag=view-manager,indent=0]
+include::devguide:example$scala/ClusterResources.scala[tag=view-manager,indent=0]
 ----
 
 The following example upserts a design document with two views:
 
 [source,scala]
 ----
-include::example$ClusterResources.scala[tag=view-upsert,indent=0]
+include::devguide:example$scala/ClusterResources.scala[tag=view-upsert,indent=0]
 ----
 
 include::{version-common}@sdk:shared:partial$flush-info-pars.adoc[tag=one-view-update-warning]
@@ -239,19 +238,19 @@ Now that we've created a design document we can fetch it:
 
 [source,scala]
 ----
-include::example$ClusterResources.scala[tag=view-get,indent=0]
+include::devguide:example$scala/ClusterResources.scala[tag=view-get,indent=0]
 ----
 
 We've created the design document using `DesignDocumentNamespace.Development` and now want to push it to production, we can do this with:
 
 [source,scala]
 ----
-include::example$ClusterResources.scala[tag=view-push,indent=0]
+include::devguide:example$scala/ClusterResources.scala[tag=view-push,indent=0]
 ----
 
 To remove this design document:
 
 [source,scala]
 ----
-include::example$ClusterResources.scala[tag=view-remove,indent=0]
+include::devguide:example$scala/ClusterResources.scala[tag=view-remove,indent=0]
 ----

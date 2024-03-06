@@ -1,6 +1,5 @@
 = Logging
 :description: The Scala SDK logs events and also provides an event bus that transmits information about the behavior of your database system, including system and metric events.
-:page-topic-type: howto
 
 [abstract]
 {description}
@@ -122,7 +121,7 @@ If you want to set it to DEBUG (or the JUL equivalent: Fine) you can do it like 
 
 [source,scala]
 ----
-include::example$Logging.scala[indent=0,tag=example1]
+include::devguide:example$scala/Logging.scala[indent=0,tag=example1]
 ----
 
 You should not use JUL in production because SLF4J and Log4J provide better configuration options and performance.
@@ -134,7 +133,7 @@ For example, if you always want to log to `stderr` and ignore SLF4J (even if pre
 
 [source,scala]
 ----
-include::example$Logging.scala[indent=0,tag=env]
+include::devguide:example$scala/Logging.scala[indent=0,tag=env]
 ----
 
 You can also use it to enable the http://logback.qos.ch/manual/mdc.html[Mapped Diagnostic Context^].
@@ -167,7 +166,7 @@ The following code subscribes to the event bus and prints out all events that ar
 
 [source,scala]
 ----
-include::example$Logging.scala[indent=0,tag=events]
+include::devguide:example$scala/Logging.scala[indent=0,tag=events]
 ----
 
 This leads to output similar to this:

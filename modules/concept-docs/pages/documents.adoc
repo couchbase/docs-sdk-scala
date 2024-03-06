@@ -1,10 +1,9 @@
 = Documents
 :description: Couchbase supports CRUD operations, various data structures, and binary documents.
-:page-topic-type: concept
 //:page-aliases: ROOT:core-operations
-:page-aliases: ROOT:documents,ROOT:documents-basics,ROOT:documents-atomic
+// :page-aliases: ROOT:documents,ROOT:documents-basics,ROOT:documents-atomic
 
-include::project-docs:partial$attributes.adoc[]
+
 
 [abstract]
 {description}
@@ -51,7 +50,7 @@ If you wish to only modify certain parts of a document, you can use xref:subdocu
 
 [source,scala]
 ----
-include::howtos:example$SubDocument.scala[tag=upsert,indent=0]
+include::devguide:example$scala/SubDocument.scala[tag=upsert,indent=0]
 ----
 
 or xref:{version-server}@server:n1ql:n1ql-language-reference/update.adoc[N1QL UPDATE] to update documents based on specific query criteria:
@@ -80,7 +79,7 @@ You can also retrieve _parts_ of documents using xref:subdocument-operations.ado
 
 [source,scala]
 ----
-include::howtos:example$SubDocument.scala[tag=combine,indent=0]
+include::devguide:example$scala/SubDocument.scala[tag=combine,indent=0]
 ----
 
 // Counters

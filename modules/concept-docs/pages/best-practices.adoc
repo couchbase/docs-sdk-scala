@@ -1,0 +1,111 @@
+= Best Practices
+:description: Speed up your application development, with some best practices for using Couchbase SDKs.
+:page-aliases: concept-docs:errors.adoc,concept-docs:rbac.adoc
+
+
+
+// Note to editors
+// 
+// This page pulls in content from -sdk-common-
+// and code samples from -example-dir-
+// 
+// It can be seen built at wwww.
+
+
+[abstract]
+{description}
+
+
+// see .NET doc on this
+
+
+From batching and reactive APIs, to unit tests and handling errors.
+There's plenty that can be done to remove bottlenecks in development and in performance, and this page can be your checklist of areas not to neglect as you develop your app.
+
+
+
+== Security
+
+But before worrying about bottlenecks, let's put security concerns first.
+
+Security is a 
+//
+
+=== Roles and RBAC
+
+Self-managed Couchbase Server uses Role-Based Access Control (RBAC), which is reflected in our managed service as a nuanced set of Roles.
+Data security depends in part on only giving access to 
+// 
+
+
+
+// concept snippet
+////
+include::{version-common}@sdk:pages:partial$rbac.adoc[]
+
+////
+
+
+
+
+== Dealing with Timeout Errors
+
+
+// see also
+// https://couchbasecloud.atlassian.net/wiki/spaces/CST/pages/1993769712/Java+-+Debugging+KV+Timeouts
+// in Support wiki
+
+
+* waitUntilReady
+* WAN development
+
+
+
+
+== Concurrency and Async APIs
+
+
+....this paragraph different for each SDK.
+
+
+== Error Handling
+
+Errors
+
+
+== Testing
+
+
+.
+
+
+
+
+////
+= Errors and Diagnostics
+:description: When the unexpected happens, take a step-by-step approach.
+:page-topic-type: concept
+
+include::project-docs:partial$attributes.adoc[]
+
+[abstract]
+{description}
+
+
+== General Approach to Scala Exceptions
+
+include::{version-common}@sdk:shared:partial$errors.adoc[tag=exception]
+
+// include::{version-common}@sdk:shared:partial$errors.adoc[tag=ref]
+
+include::{version-common}@sdk:shared:partial$errors.adoc[tag=durability]
+
+include::{version-common}@sdk:shared:partial$errors.adoc[tag=diag]
+
+// Slow Operations Logging
+include::{version-common}@sdk:shared:partial$errors.adoc[tag=observability]
+
+// until opentelemetry release for link below, could add note on API to expose own tracing features?
+// include::{version-common}@sdk:shared:partial$errors.adoc[tag=rto]
+
+////

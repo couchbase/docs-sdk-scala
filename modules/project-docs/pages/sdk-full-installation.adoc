@@ -2,13 +2,14 @@
 :description: Installation instructions for the Couchbase Scala Client.
 :navtitle: Full Installation
 :page-partial:
-:page-topic-type: project-doc
+:page-toclevels: 2
 
 [abstract]
 {description}
 
 
 The Couchbase Scala SDK allows Scala applications to access a Couchbase cluster.
+
 
 == Prerequisites
 
@@ -21,6 +22,7 @@ The underlying OS normally makes no difference, but library incompatibilities in
 The Couchbase Scala SDK is available on the Maven repository, packaged for Scala 2.12 and 2.13.
 
 === With SBT Projects
+
 It can be included in your SBT build like this:
 
 [source,sbt]
@@ -31,6 +33,7 @@ libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.5.1"
 This will automatically use the Scala 2.12 or 2.13 builds, as appropriate for your SBT project.
 
 === With Gradle Projects
+
 It can be included in your `build.gradle` like this for 2.12:
 
 [source,groovy]

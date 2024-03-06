@@ -1,8 +1,8 @@
 = Migrating from SDK2 to SDK3 API
 :description: This is the first release of the Couchbase Scala SDK -- you will not have any code based upon older API versions.
-:nav-title: Migrating to Scala SDK 3.0 API
-:page-topic-type: concept
-:page-aliases: ROOT:migrate
+:nav-title: Migrating to Scala SDK 3.x API
+// :page-aliases: ROOT:migrate.adoc
+:page-aliases: howtos:view-queries-with-sdk.adoc,concept-docs:understanding-views.adoc,howtos:working-with-collections.adoc
 
 [abstract]
 {description}
@@ -10,7 +10,16 @@
 Couchbase Scala SDK 1.0 implements the Couchbase SDK 3.0 API.
 It it the first release of the Couchbase Scala SDK, there are no releases implementing older APIs.
 Migration will only be a concern if you are mixing code from different JVM SDKs in your application
--- specifically the Java SDK -- 
+-- specifically the xref:java-sdk:hello-world:overview.adoc[Java SDK] -- 
 in which case you will need to be using Java SDK 3.0 and above. 
 If you have programmed Couchbase client software against the Java 2.x SDK previously, 
-then you may want to read the xref:3.0@java-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[Java migration guide].
+then you may want to read the xref:java-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[Java migration guide].
+
+.Views
+Note, if you are looking for information about Couchbase's legacy MapReduce Views Service, 
+MapReduce Views are deprecated in Couchbase Server, and will eventually be removed.
+Information on using MapReduce Views with the SDK can still be accessed in our https://docs-archive.couchbase.com/scala-sdk/1.1/howtos/view-queries-with-sdk.html[documentation archive].
+
+Views are the only service which does not benefit from xref:{version-server}@server:learn:services-and-indexes/services/services.adoc#services-and-multi-dimensional-scaling[Multi-Dimensional Scaling],
+and is rarely the best choice over, say, xref:howtos:sqlpp-queries-with-sdk.adoc[our Query service] if you are starting a fresh application.
+See our discussion document on xref:concept-docs:querying-your-data.adoc[the best service for you to use] to query your data.

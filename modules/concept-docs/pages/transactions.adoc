@@ -1,9 +1,7 @@
 = Transaction Concepts
 :description:  A high-level overview of Distributed ACID Transactions with Couchbase.
 :page-toclevels: 2
-:page-pagination: full
 
-include::project-docs:partial$attributes.adoc[]
 include::howtos:partial$acid-transactions-attributes.adoc[]
 
 [abstract]
@@ -19,7 +17,7 @@ include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tags=intro]
 
 [source,scala]
 ----
-include::howtos:example$TransactionsExample.scala[tag=create-simple,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=create-simple,indent=0]
 ----
 
 include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tags=mechanics;!library-cleanup-process]
@@ -39,7 +37,7 @@ The application can use this to signal why it triggered a rollback, as so:
 
 [source,scala]
 ----
-include::howtos:example$TransactionsExample.scala[tag=rollback-cause,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=rollback-cause,indent=0]
 ----
 
 After a transaction is rolled back, it cannot be committed, no further operations are allowed on it, and the SDK will not try to automatically commit it at the end of the code block.
@@ -58,14 +56,14 @@ include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tag=custom-m
 
 [source,scala]
 ----
-include::howtos:example$TransactionsExample.scala[tag=custom-metadata,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=custom-metadata,indent=0]
 ----
 
 or at an individual transaction level with:
 
 [source,scala]
 ----
-include::howtos:example$TransactionsExample.scala[tag=custom-metadata-per,indent=0]
+include::devguide:example$scala/TransactionsExample.scala[tag=custom-metadata-per,indent=0]
 ----
 
 include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tag=integrated-sdk-custom-metadata-2,indent=0]

@@ -1,10 +1,11 @@
 = Async & Reactive APIs
 :description: The Couchbase Scala SDK allows the use, and mixing, of three distinct APIs: blocking, asynchronous, and reactive.
-:page-topic-type: howto
+////
 :source-language: scala
 :lang: Scala
+////
 :page-toclevels: 2
-:page-aliases: ROOT:async-programming,multiple-apis,ROOT:batching-operations
+// :page-aliases: ROOT:async-programming,multiple-apis,ROOT:batching-operations
 
 [abstract]
 {description}
@@ -23,7 +24,7 @@ A simple upsert example looks like this:
 
 [source,scala]
 ----
-include::example$MultipleAPIs.scala[tag=upsert-simple,indent=0]
+include::devguide:example$scala/MultipleAPIs.scala[tag=upsert-simple,indent=0]
 ----
 
 Methods in the blocking API that can error will return a Scala `Try` object,
@@ -34,14 +35,14 @@ This can be pattern matched on, like this:
 
 [source,scala]
 ----
-include::example$MultipleAPIs.scala[tag=upsert,indent=0]
+include::devguide:example$scala/MultipleAPIs.scala[tag=upsert,indent=0]
 ----
 
 Simple pattern matching like this works fine for simple examples, but starts to look complicated when doing multiple operations:
 
 [source,scala]
 ----
-include::example$MultipleAPIs.scala[tag=get,indent=0]
+include::devguide:example$scala/MultipleAPIs.scala[tag=get,indent=0]
 ----
 
 Developers may prefer to use `flatMap`, which lets all the `Try` be checked in one place.
@@ -49,7 +50,7 @@ Here, the call to `collection.get` will only be attempted if the call to `collec
 
 [source,scala]
 ----
-include::example$MultipleAPIs.scala[tag=get-map,indent=0]
+include::devguide:example$scala/MultipleAPIs.scala[tag=get-map,indent=0]
 ----
 
 
@@ -62,7 +63,7 @@ Here's what a simple upsert looks like, handling `Success` or `Failure`
 
 [source,scala]
 ----
-include::example$MultipleAPIs.scala[tag=upsert-async,indent=0]
+include::devguide:example$scala/MultipleAPIs.scala[tag=upsert-async,indent=0]
 ----
 
 But, the compiler will fail to compile this, reporting that an implicit `ExecutionContext` cannot be found for onComplete.
@@ -72,7 +73,7 @@ Here's how to create one that creates an unlimited thread-pool with named thread
 
 [source,scala]
 ----
-include::example$MultipleAPIs.scala[tag=async-import,indent=0]
+include::devguide:example$scala/MultipleAPIs.scala[tag=async-import,indent=0]
 ----
 
 Now there's an implicit ExecutionContext available, the upsert example will compile.
@@ -82,7 +83,7 @@ Let's see a more complex example combining operations together.
 
 [source,scala]
 ----
-include::example$MultipleAPIs.scala[tag=get-async,indent=0]
+include::devguide:example$scala/MultipleAPIs.scala[tag=get-async,indent=0]
 ----
 
 Interestingly, you'll see a couple of calls to `Try.get()` here.
@@ -102,7 +103,7 @@ Here's how to do a simple reactive upsert operation, logging any errors:
 
 [source,scala]
 ----
-include::example$MultipleAPIs.scala[tag=upsert-reactive,indent=0]
+include::devguide:example$scala/MultipleAPIs.scala[tag=upsert-reactive,indent=0]
 ----
 
 `upsert` returns `Mono[MutationResult]`.  The `subscribe` starts the operation - without a subscribe, nothing will happen.  The operation happens in the background.
@@ -114,7 +115,7 @@ In the rare cases where you need to block on a reactive primitive (say, in a uni
 
 [source,scala]
 ----
-include::example$MultipleAPIs.scala[tag=upsert-reactive-block,indent=0]
+include::devguide:example$scala/MultipleAPIs.scala[tag=upsert-reactive-block,indent=0]
 ----
 
 The `block` call here also does a `subscribe` under the hood.
@@ -123,7 +124,7 @@ Let's look at a more complex example, combining multiple operations.  As with `F
 
 [source,scala]
 ----
-include::example$MultipleAPIs.scala[tag=get-reactive,indent=0]
+include::devguide:example$scala/MultipleAPIs.scala[tag=get-reactive,indent=0]
 ----
 
 Similar to the `Future` example, you'll note some calls to .get, on `Option` and `Try` that will throw exceptions if they do not contain `Some` or `Success` respectively.

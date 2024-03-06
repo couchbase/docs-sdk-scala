@@ -1,10 +1,9 @@
 = Querying with {sqlpp}
 :description: Parallel data management for complex queries over many records, using a familiar SQL-like syntax.
 :nav-title: Querying with {sqlpp}
-:page-topic-type: concept
-:page-aliases: ROOT:n1ql-query,
+// :page-aliases: ROOT:n1ql-query,
 
-include::project-docs:partial$attributes.adoc[]
+
 
 [abstract]
 {description}
@@ -20,7 +19,7 @@ Do not turn off the `adhoc` flag for _every_ query to Server 6.0 and earlier, si
 
 [source,scala]
 ----
-include::howtos:example$Queries.scala[tag=positional,indent=0]
+include::devguide:example$scala/Queries.scala[tag=positional,indent=0]
 ----
 
 
@@ -122,12 +121,12 @@ Here's how to specify the `RequestPlus` scan consistency level:
 
 [source,scala]
 ----
-include::howtos:example$Queries.scala[tag=request-plus,indent=0]
+include::devguide:example$scala/Queries.scala[tag=request-plus,indent=0]
 ----
 
 And the `AtPlus` level is represented with `QueryScanConsistency.ConsistentWith`:
 
 [source,scala]
 ----
-include::howtos:example$Queries.scala[tag=at-plus,indent=0]
+include::devguide:example$scala/Queries.scala[tag=at-plus,indent=0]
 ----

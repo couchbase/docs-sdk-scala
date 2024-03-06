@@ -1,10 +1,9 @@
 = Integrations & Ecosystem
 :description: The Couchbase Scala SDK is often used with unofficial and third party tools and applications to integrate into broader language and platform ecosystems, and across data lakes in heterogeneous environments.
 :navtitle: Integrations
-:page-topic-type: project-doc
-:page-aliases: 
+:page-toclevels: 2
 
-include::project-docs:partial$attributes.adoc[]
+
 
 [abstract]
 {description}
@@ -16,7 +15,17 @@ include::{version-common}@sdk:shared:partial$integrations.adoc[tag=official]
 
 The Couchbase Scala SDK is a first class citizen in the https://spring.io/projects/spring-data-couchbase[Spring Data^] world, and the Scala SDK can leverage that through the JVM.
 
-Couchbase also supports integrating with xref:2.4@spark-connector:ROOT:getting-started.adoc.adoc[Spark].
+Couchbase also supports integrating with xref:spark-connector:ROOT:getting-started.adoc.adoc[Spark].
+
+
+=== IDE Integrations
+
+To make development easier, xref:server:develop:integrations.adoc#ide-integrations[Couchbase plugins] are available for 
+https://marketplace.visualstudio.com/items?itemName=Couchbase.vscode-couchbase[VSCode] and the 
+https://plugins.jetbrains.com/plugin/22131-couchbase[IntelliJ] family of IDEs and editors.
+
+
+
 
 
 include::{version-common}@sdk:shared:partial$integrations.adoc[tag=important]

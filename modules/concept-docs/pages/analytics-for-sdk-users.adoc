@@ -1,9 +1,6 @@
 = Analytics
 :description: Parallel data management for complex queries over many records, using a familiar {sqlpp} syntax.
-:page-topic-type: concept
 :page-aliases: analytics,
-
-include::project-docs:partial$attributes.adoc[]
 
 [abstract]
 {description}

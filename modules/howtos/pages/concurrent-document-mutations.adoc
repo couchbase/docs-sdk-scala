@@ -1,7 +1,5 @@
 = Concurrent Document Mutations
-:page-topic-type: howto
-include::project-docs:partial$attributes.adoc[]
-:page-aliases: ROOT:concurrent-document-mutations.adoc
+// :page-aliases: ROOT:concurrent-document-mutations.adoc
 
 include::{version-common}@sdk:shared:partial$cas.adoc[tag=intro]
 
@@ -13,7 +11,7 @@ include::{version-common}@sdk:shared:partial$cas.adoc[tag=errors]
 
 [source,scala]
 ----
-include::example$CAS.scala[tag=loop,indent=0]
+include::devguide:example$scala/CAS.scala[tag=loop,indent=0]
 ----
 
 Sometimes more logic is needed when performing updates, for example, if a property is mutually exclusive with another property; only one or the other can exist, but not both.
@@ -27,7 +25,7 @@ include::{version-common}@sdk:shared:partial$cas.adoc[tag=locking]
 
 [source,scala]
 ----
-include::example$CAS.scala[tag=locking,indent=0]
+include::devguide:example$scala/CAS.scala[tag=locking,indent=0]
 ----
 
 If the item has already been locked, the server will respond with `CasMismatchException` which means that the operation could not be executed temporarily, but may succeed later on.

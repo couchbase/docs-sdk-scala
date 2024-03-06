@@ -1,1 +1,0 @@
-include::{version-common}@sdk:shared:partial$working-with-collections.adoc[]

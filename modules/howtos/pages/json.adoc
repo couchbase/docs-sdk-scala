@@ -1,7 +1,5 @@
 = JSON Libraries
 :description: The Scala SDK supports multiple options for working with JSON.
-:page-topic-type: howto
-:lang: Scala
 
 [abstract]
 {description}
@@ -25,7 +23,7 @@ In the examples below we'll use the following case classes:
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=cc,indent=0]
+include::devguide:example$scala/JSON.scala[tag=cc,indent=0]
 ----
 
 So without further ado, let's dive into some practical examples of the many ways you can use JSON with the Couchbase Scala SDK.
@@ -39,7 +37,7 @@ Here's an example of how to use Circe with Couchbase:
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=circe2,indent=0]
+include::devguide:example$scala/JSON.scala[tag=circe2,indent=0]
 ----
 
 That works, but it's very verbose to handle all those `Try` one-by-one.  Here's an example of how to do the same thing, but
@@ -47,14 +45,14 @@ chaining all the `Try` together using `flatMap`:
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=circe3,indent=0]
+include::devguide:example$scala/JSON.scala[tag=circe3,indent=0]
 ----
 
 And finally the same thing again, but this time using a for-comprehension:
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=circe1,indent=0]
+include::devguide:example$scala/JSON.scala[tag=circe1,indent=0]
 ----
 
 If for-comprehensions are unfamiliar then they're essentially syntactic sugar, with each of the `<-` being a `flatMap` call.
@@ -71,7 +69,7 @@ Here's an example of how to use µJson with Couchbase:
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=upickle,indent=0]
+include::devguide:example$scala/JSON.scala[tag=upickle,indent=0]
 ----
 
 == JsonObject and JsonArray
@@ -92,14 +90,14 @@ Using JsonObject here's how to create some simple JSON:
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=json1,indent=0]
+include::devguide:example$scala/JSON.scala[tag=json1,indent=0]
 ----
 
 As `JsonObject` and `JsonArray` are both mutable, they can also be created this way:
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=json-mutable,indent=0]
+include::devguide:example$scala/JSON.scala[tag=json-mutable,indent=0]
 ----
 
 === Retrieving Data
@@ -107,14 +105,14 @@ It's easy to retrieve data:
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=json2,indent=0]
+include::devguide:example$scala/JSON.scala[tag=json2,indent=0]
 ----
 
 Or, using a feature of Scala called `Dynamic`, you can use an alternative syntax like this:
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=json3,indent=0]
+include::devguide:example$scala/JSON.scala[tag=json3,indent=0]
 ----
 
 === Using with Key-Value Operations
@@ -123,7 +121,7 @@ As with the other supported JSON libraries, JsonObject (and JsonArray) can easil
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=jsonObject,indent=0]
+include::devguide:example$scala/JSON.scala[tag=jsonObject,indent=0]
 ----
 
 === Error Handling and JsonObjectSafe
@@ -133,7 +131,7 @@ If you'd rather not deal with exceptions, `JsonObject` comes with a counterpart 
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=json4,indent=0]
+include::devguide:example$scala/JSON.scala[tag=json4,indent=0]
 ----
 
 A `JsonArraySafe` counterpart also exists.
@@ -142,14 +140,14 @@ If you're walking through JSON it can be useful to use flatMap or for-comprehens
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=json5,indent=0]
+include::devguide:example$scala/JSON.scala[tag=json5,indent=0]
 ----
 
 or use the support for `Dynamic` to combine brevity with safety:
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=json6,indent=0]
+include::devguide:example$scala/JSON.scala[tag=json6,indent=0]
 ----
 
 Note that `JsonObjectSafe`, though presenting a more functional interface, is still mutable.
@@ -161,7 +159,7 @@ It's necessary to write a small amount of boilerplate code first.  If you try an
 
 [source,scala]
 ----
-include::example$KvOperations.scala[tag=cc-fails]
+include::devguide:example$scala/KvOperations.scala[tag=cc-fails]
 ----
 
 This is because the Scala SDK does not currently know how to convert a `User` into JSON it can send to the server.
@@ -172,7 +170,7 @@ So, let's provide an `JsonSerializer[User]`.  It's possible to create one manual
 
 [source,scala]
 ----
-include::example$KvOperations.scala[tag=cc-codec]
+include::devguide:example$scala/KvOperations.scala[tag=cc-codec]
 ----
 
 (As this is a companion object for User, it needs to go in the same file as the `User` case class you added earlier.)
@@ -189,7 +187,7 @@ The same `Codec` also generates a `JsonDeserializer[User]` which can be used to 
 
 [source,scala]
 ----
-include::example$KvOperations.scala[tag=cc-get]
+include::devguide:example$scala/KvOperations.scala[tag=cc-get]
 ----
 
 [NOTE]
@@ -204,7 +202,7 @@ Here's an example of how to use Json4s with Couchbase:
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=json4s,indent=0]
+include::devguide:example$scala/JSON.scala[tag=json4s,indent=0]
 ----
 
 == Jawn
@@ -212,7 +210,7 @@ Here's an example of how to use https://github.com/typelevel/jawn[Jawn] with Cou
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=jawn,indent=0]
+include::devguide:example$scala/JSON.scala[tag=jawn,indent=0]
 ----
 
 == Play JSON
@@ -220,7 +218,7 @@ Here's an example of how to use https://github.com/playframework/play-json[Play 
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=playJson,indent=0]
+include::devguide:example$scala/JSON.scala[tag=playJson,indent=0]
 ----
 
 == Strings
@@ -228,7 +226,7 @@ It's possible to send and receive JVM `String` directly:
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=string,indent=0]
+include::devguide:example$scala/JSON.scala[tag=string,indent=0]
 ----
 
 == Array[Byte]
@@ -236,7 +234,7 @@ And an `Array[Byte]` can be used directly:
 
 [source,scala]
 ----
-include::example$JSON.scala[tag=bytes,indent=0]
+include::devguide:example$scala/JSON.scala[tag=bytes,indent=0]
 ----
 
 With the support for `String` and `Array[Byte]`, the Scala SDK can be used with any JSON library that can import and export those formats.

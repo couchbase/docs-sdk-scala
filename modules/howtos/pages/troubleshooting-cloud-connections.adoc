@@ -1,5 +1,3 @@
-include::project-docs:partial$attributes.adoc[]
-
 include::{version-common}@sdk:pages:partial$troubleshooting-cloud-connections.adoc[]
 
 
@@ -21,7 +19,7 @@ include::{version-common}@sdk:pages:partial$troubleshooting-cloud-connections.ad
 +
 [source,scala]
 ----
-include::hello-world:example$Cluster.scala[tag=cloud-cluster-insecure,indent=0]
+include::devguide:example$scala/Cluster.scala[tag=cloud-cluster-insecure,indent=0]
 ----
 +
 _This is not a secure connection._
