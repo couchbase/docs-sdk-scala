@@ -15,6 +15,6 @@ asciidoc:
     version-common: '7.5'
     name_platform: 'Scala'
     name-sdk: 'Scala SDK'
-    sdk_api: '3.4'
+    sdk_api: '3.5'
     sdk-api-link: https://docs.couchbase.com/sdk-api/couchbase-scala-client/
     sdk-gh-link: https://github.com/couchbase/couchbase-jvm-clients/tree/master/scala-client
