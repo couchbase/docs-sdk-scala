@@ -19,8 +19,9 @@ import com.couchbase.client.scala._
 import com.couchbase.client.scala.json.JsonObject
 import com.couchbase.client.scala.kv.MutationState
 import com.couchbase.client.scala.search.{SearchOptions, SearchScanConsistency}
-import com.couchbase.client.scala.search.queries.MatchQuery
+import com.couchbase.client.scala.search.queries.{MatchQuery, SearchQuery}
 import com.couchbase.client.scala.search.result.{SearchResult, SearchRow}
+import com.couchbase.client.scala.search.vector.{SearchRequest, VectorQuery, VectorSearch}
 
 import scala.util.{Failure, Success, Try}
 // #end::imports[]
@@ -67,7 +68,7 @@ class FTS {
           // ...
         })
 
-        // MetaData
+        // Metadata
         val maxScore: Double = res.metaData.metrics.maxScore
         val successCount: Long = res.metaData.metrics.successPartitionCount
 
@@ -101,4 +102,42 @@ class FTS {
     // #end::consistency[]
   }
 
+  val vectorQuery: Array[Float] = null // In a real app, this would come from e.g. an embeddings API
+  val anotherVectorQuery: Array[Float] = null
+
+  def vector1(): Unit = {
+    // #tag::vector1[]
+    val request = SearchRequest.vectorSearch(VectorSearch(VectorQuery("vector_field", vectorQuery)))
+
+    val result: Try[SearchResult] = scope.search("vector-index", request)
+    // #end::vector1[]
+  }
+
+  def vector2(): Unit = {
+    // #tag::vector2[]
+    val request = SearchRequest
+      .vectorSearch(VectorSearch(Seq(
+        VectorQuery("vector_field", vectorQuery).numCandidates(2).boost(0.3),
+        VectorQuery("vector_field", anotherVectorQuery).numCandidates(5).boost(0.7))))
+
+    val result = scope.search("vector-index", request)
+    // #end::vector2[]
+  }
+
+  def vector3(): Unit = {
+    // #tag::vector2[]
+    val request = SearchRequest.searchQuery(SearchQuery.matchAll)
+      .vectorSearch(VectorSearch(VectorQuery("vector_field", vectorQuery)))
+
+    val result = scope.search("vector-and-fts-index", request)
+    // #end::vector2[]
+  }
+
+  def vector4(): Unit = {
+    // #tag::vector4[]
+    val request = SearchRequest.searchQuery(SearchQuery.matchAll)
+
+    val result = scope.search("travel-sample-index", request)
+    // #end::vector4[]
+  }
 }

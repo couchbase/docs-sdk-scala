@@ -1,5 +1,5 @@
 = Search
-:description: You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server.
+:description: You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server, and to perform vector searches.
 :page-topic-type: howto
 :page-pagination: full
 
@@ -8,20 +8,27 @@ include::project-docs:partial$attributes.adoc[]
 [abstract]
 {description}
 
-Full Text Search or FTS allows you to create, manage, and query full text indexes on JSON documents stored in Couchbase buckets.
+Full Text Search (FTS) allows you to create, manage, and query full text indexes on JSON documents stored in Couchbase buckets.
+
 It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches.
 Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries.
-The Scala SDK exposes an API for performing FTS queries which abstracts some of the complexity of using the underlying REST API.
+The Scala SDK exposes an API for performing FTS queries which abstracts away the complexity of using the underlying REST API.
+
+From Couchbase Server 7.6, the FTS service also supports powerful vector search.
 
 == Examples
 
-After familiarizing yourself with how to create and query a Search index in the UI you can query it from the SDK. 
+After familiarizing yourself with how to create and query a search index in the UI, you can query it from the SDK.
 
-There are two APIs for querying search: `cluster.searchQuery()`, and `cluster.search()`.
-Both are also available at the Scope level.
+You'll need to know whether a global or scoped search index has been created - see <<Scoped vs Global Indexes>> for details.
+If your Couchbase Server is pre 7.6 it will certainly be a global index, otherwise, the UI will tell you which it is.
 
-The former API supports FTS queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6.
-Most of this documentation will focus on the former API, as the latter is in @Stability.Volatile status.
+These APIs are used for querying global search indexes: `cluster.searchQuery()`, and `cluster.search()`.
+And this one is used for scoped search indexes: `scope.search()`.
+
+The `cluster.searchQuery()` API supports FTS queries (`SearchQuery`), while `scope.search()` additionally supports the `VectorSearch` added in 7.6.
+
+Most of this documentation will focus on the former API, as the latter is in @Stability.Uncommitted status.
 
 We will perform an FTS query here - see the <<vector search>> section for examples of that.
 
@@ -32,9 +39,9 @@ The examples below use these imports:
 include::example$FTS.scala[tag=imports,indent=0]
 ----
 
-The `searchQuery` API takes the name of the index and the type of query  as required arguments and then allows to provide additional options if needed
+The `cluster.searchQuery()` API takes the name of the index and the type of query as required arguments, and allows additional options to be provided if needed.
 
-Here is a simple MatchQuery that looks for the text “swanky” using a defined index:
+Here is a simple `MatchQuery` that looks for the text “swanky” using a defined index:
 
 [source.scala]
 ----
@@ -60,11 +67,11 @@ include::example$FTS.scala[tag=results,indent=0]
 
 
 == Scoped vs Global Indexes
-The FTS APIs exist at both the `Cluster` and `Scope` levels.
+The FTS APIs exist on both the `Cluster` and `Scope` objects.
 
 This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
 
-It's important to use the `Cluster.searchQuery()` / `Cluster.search()` for global indexes, and `Scope.searchQuery()` / `Scope.search()` for scoped indexes.
+It's important to use the `Cluster.searchQuery()` or `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
 
 == Vector Search
 As of Couchbase Server 7.6, the FTS service supports vector search in additional to traditional full text search queries.
@@ -73,12 +80,10 @@ As of Couchbase Server 7.6, the FTS service supports vector search in additional
 === Examples
 ==== Single vector query
 In this first example we are performing a single vector query:
-[source,java]
-----
-SearchRequest request = SearchRequest
-        .create(VectorSearch.create(VectorQuery.create("vector_field", vectorQuery)));
 
-SearchResult result = scope.search("vector-index", request);
+[source.scala]
+----
+include::example$FTS.scala[tag=vector1,indent=0]
 ----
 
 Let's break this down.
@@ -91,7 +96,7 @@ The `VectorQuery` itself takes the name of the document field that contains embe
 
 (Note that Couchbase itself is not involved in generating the vectors, and these will come from an external source such as an embeddings API.)
 
-Finally we execute the `SearchRequest` against the FTS index "travel-sample-index", which has previously been setup to vector index the "vector_field" field.
+Finally we execute the `SearchRequest` against the FTS index "vector-index", which has previously been setup to vector index the "vector_field" field.
 
 This happens to be a scoped index so we are using `scope.search()`.
 If it was a global index we would use `cluster.search()` instead - see <<Scoped vs Global Indexes>>.
@@ -101,39 +106,27 @@ It returns the same `SearchResult` detailed earlier.
 ==== Multiple vector queries
 You can run multiple vector queries together:
 
-[source,java]
+[source.scala]
 ----
-SearchRequest request = SearchRequest
-        .create(VectorSearch.create(List.of(
-                        VectorQuery.create("vector_field", vectorQuery).numCandidates(2).boost(0.3),
-                        VectorQuery.create("vector_field", anotherVectorQuery).numCandidates(5).boost(0.7)));
-
-SearchResult result = scope.search("vector-index", request);
+include::example$FTS.scala[tag=vector2,indent=0]
 ----
 
-How the results are combined (ANDed or ORed) can be controlled with `vectorSearchOptions().vectorQueryCombination()`.
+How the results are combined (ANDed or ORed) can be controlled with `VectorSearch.vectorSearchOptions(VectorSearchOptions().vectorQueryCombination(VectorQueryCombination.And))`.
 
 ==== Combining FTS and vector queries
 You can combine a traditional FTS query with vector queries:
 
-[source,java]
+[source.scala]
 ----
-SearchRequest request = SearchRequest.create(SearchQuery.matchAll())
-        .vectorSearch(VectorSearch.create(VectorQuery.create("vector_field", vectorQuery)));
-
-SearchResult result = scope.search("vector-and-fts-index", request);
+include::example$FTS.scala[tag=vector3,indent=0]
 ----
-
-How the results are combined (ANDed or ORed) can be controlled with `vectorSearchOptions().vectorQueryCombination()`.
 
 ==== FTS queries
 And note that traditional FTS queries, without vector search, are also supported with the new `cluster.search()` / `scope.search()` APIs:
 
-[source,java]
+[source.scala]
 ----
-SearchRequest request = SearchRequest.create(SearchQuery.matchAll());
-
-SearchResult result = scope.search("travel-sample-index", request);
+include::example$FTS.scala[tag=vector4,indent=0]
 ----
 
 The `SearchQuery` is created in the same way as detailed earlier.
