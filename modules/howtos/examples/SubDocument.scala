@@ -341,4 +341,33 @@ val result = collection.get("player432")
     // #end::sync-durability[]
   }
 
+  def lookupInAnyReplica(collection: Collection): Unit = {
+    // tag::lookup-in-any-replica[]
+    val result: Try[LookupInReplicaResult] =
+      collection.lookupInAnyReplica("hotel_1368", Seq(LookupInSpec.get("geo.lat")))
+
+    result match {
+      case Success(value) =>
+        val str = value.contentAs[String](0)
+        println(s"Latitude = ${str}")
+      case Failure(exception) => println(s"Error: ${exception}")
+    }
+    // end::lookup-in-any-replica[]
+  }
+
+  def lookupInAllReplicas(collection: Collection): Unit = {
+    // tag::lookup-in-all-replicas[]
+    val results: Try[Iterable[LookupInReplicaResult]] =
+      collection.lookupInAllReplicas("hotel_1368", Seq(LookupInSpec.get("geo.lat")))
+
+    results match {
+      case Success(replicas) =>
+        replicas.foreach(replica => {
+          val str = replica.contentAs[String](0)
+          println(s"Latitude = ${str}")
+        })
+      case Failure(exception) => println(s"Error: ${exception}")
+    }
+    // end::lookup-in-all-replicas[]
+  }
 }

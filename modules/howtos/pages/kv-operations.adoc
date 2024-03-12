@@ -333,6 +333,62 @@ Here is an example showing an upsert in the `users` collection, which lives in t
 include::example$KvOperations.scala[indent=0,tag=named-collection-upsert]
 ----
 
+
+[#kv-range-scan]
+== KV Range Scan
+A range scan gives you documents from a collection, even if you don't know the document IDs.
+
+This feature requires Couchbase Server 7.6 or newer.
+
+TIP: KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency.
+If your application does many scans at once, or requires low latency results, we recommend using {sqlpp} instead of KV range scan.
+
+[#kv-range-scan-range]
+=== Range scan
+Here's an example of a KV range scan that gets all documents in a collection:
+
+.KV Range Scan for all documents in a collection
+[source,scala]
+----
+include::example$KvRangeScan.scala[tag=rangeScanAllDocuments,indent=0]
+----
+
+[#kv-range-scan-prefix]
+=== Prefix scan
+KV range scan can also give you all documents whose IDs start with the same prefix.
+Imagine you have a collection where documents are named like this: `<username>::<uuid>`.
+In other words, the document ID starts with the name of the user associated with the document, followed by a delimiter, and then a UUID.
+If you use this document naming scheme, you can use a prefix range scan to get all documents associated with a user.
+For example, to get all documents associated with user "alice", you would write:
+
+.KV Range Scan for all documents in a collection whose IDs start with `alice::`
+[source,scala]
+----
+include::example$KvRangeScan.scala[tag=rangeScanPrefix,indent=0]
+----
+
+[#kv-range-scan-sample]
+=== Sample scan
+If you want to get random documents from a collection, use a sample scan.
+
+.KV Range Scan for 100 random documents
+[source,scala]
+----
+include::example$KvRangeScan.scala[tag=rangeScanSample,indent=0]
+----
+
+[#kv-range-scan-only-ids]
+=== Get IDs instead of full document
+To save network bandwidth it's possible to retrieve only the document IDs from any scan.
+
+.KV Range Scan for all document IDs in a collection
+[source,scala]
+----
+include::example$KvRangeScan.scala[tag=rangeScanAllDocumentIds,indent=0]
+----
+<1> Note the call to `scanIds()` instead of `scanDocuments()`.
+The `scanIds()` methods also works with the other scan types described above.
+
 == Additional Resources
 
 Working on just a specific path within a JSON document will reduce network bandwidth requirements - see the xref:subdocument-operations.adoc[Sub-Document] pages.

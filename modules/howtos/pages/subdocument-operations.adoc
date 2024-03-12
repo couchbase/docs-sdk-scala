@@ -309,6 +309,31 @@ In this case, the _createPath_ option may be used.
 include::example$SubDocument.scala[tag=create-path]
 ----
 
+== Reading Sub-Documents From Replicas
+
+Couchbase Server 7.6 and later support Sub-Doc lookup from replicas, which could be used to, for example, increase availability during node failover scenarios.
+
+The `collection.lookupInAnyReplica()` method reads from all replicas and the active, and returns the first response.
+
+[source,java]
+----
+include::example$SubDocument.scala[tag=lookup-in-any-replica,indent=0]
+----
+
+If no replica or active returns a successful result, a `Failure(DocumentUnretrivableException)` is returned.
+This includes if the document does not exist.
+
+The `collection.lookupInAllReplicas()` fetches all available replicas (and the active), and returns all responses.
+
+[source,java]
+----
+include::example$SubDocument.scala[tag=lookup-in-all-replicas,indent=0]
+----
+
+Errors from the replicas and the active are ignored, so if all fail (including if the document does not exist), an empty stream is returned.
+
+You may want to use `lookupInAllReplicas` to build a consensus,
+but it's more likely that you'll make use of `lookupInAnyReplica` as a fallback to a `lookupIn`, when the active node times out.
 
 == Concurrent Modifications
 
