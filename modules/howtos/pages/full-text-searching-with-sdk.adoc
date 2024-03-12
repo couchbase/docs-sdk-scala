@@ -73,6 +73,7 @@ This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped 
 
 It's important to use the `Cluster.searchQuery()` or `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
 
+
 == Vector Search
 As of Couchbase Server 7.6, the FTS service supports vector search in additional to traditional full text search queries.
 // todo link to the server docs when available
