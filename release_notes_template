@@ -1,0 +1,23 @@
+=== Version 1.6.0 (11 March 2024)
+
+Version 1.6.0 is the first release of the 1.6 series.
+
+The SDK now supports Vector Search, with Server 7.6 (self-managed or Capella).
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.6.0/com/couchbase/client/scala/index.html[API Reference] |
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.6.0/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.6.3**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+==== Improvements
+
+* https://issues.couchbase.com/browse/SCBC-xxx[SCBC-xxx]
+summary
+
+==== Bugfixes
+
+* https://issues.couchbase.com/browse/SCBC-xxx[SCBC-xxx]
+summary
