@@ -24,10 +24,11 @@ grep '<reactor.version>' $src/pom.xml
 grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
+
+
 === Version 1.6.0 (11 March 2024)
 
 Version 1.6.0 is the first release of the 1.6 series.
-
 The SDK now supports Vector Search, with Server 7.6 (self-managed or Capella).
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.6.0/com/couchbase/client/scala/index.html[API Reference] |
@@ -41,26 +42,33 @@ The supported and tested dependencies for this release are:
 ==== Improvements
 
 * https://issues.couchbase.com/browse/SCBC-444[SCBC-444]
-Added support for vector search, a new feature in Couchbase Server 7.6. This API is currently at `@Volatile` level.
+Added support for vector search, a new feature in Couchbase Server 7.6.
+This API is currently at `@Volatile` level.
 * https://issues.couchbase.com/browse/SCBC-454[SCBC-454]
 `ScopeSearchIndexManager` and its Async/Reactive variants are now part of the committed public API.
 * https://issues.couchbase.com/browse/JVMCBC-1487[JVMCBC-1487]
-Upgrade reactor-core from 3.5.8 to 3.6.3.
+Upgraded reactor-core from 3.5.8 to 3.6.3.
 * https://issues.couchbase.com/browse/JVMCBC-1488[JVMCBC-1488]
-Upgrade Jackson from 2.16.0 to 2.16.1.
+Upgraded Jackson from 2.16.0 to 2.16.1.
 * https://issues.couchbase.com/browse/JVMCBC-1489[JVMCBC-1489]
-Upgrade Netty from 4.1.101 to 4.1.107
+Upgraded Netty from 4.1.101 to 4.1.107.
 * https://issues.couchbase.com/browse/JVMCBC-xxxx[JVMCBC-1491]
-`Collection.scan()` methods are not part of the SDK's committed API. These methods do range-scans of documentIds. This feature requires Couchbase Server 7.6 or later.
+`Collection.scan()` methods are not part of the SDK's committed API.
+These methods do range-scans of documentIds.
+This feature requires Couchbase Server 7.6 or later.
 * https://issues.couchbase.com/browse/JVMCBC-xxxx[JVMCBC-1493]
-`Collection.lookupInAnyReplica()` and `Collection.lookupInAllReplicas()` are now part of the SDK’s committed API. These methods do sub-document lookups against replicas. This feature requires Couchbase Server 7.6 or later.
+`Collection.lookupInAnyReplica()` and `Collection.lookupInAllReplicas()` are now part of the SDK’s committed API.
+These methods do sub-document lookups against replicas.
+This feature requires Couchbase Server 7.6 or later.
 
 ==== Bugfixes
 
 * https://issues.couchbase.com/browse/JVMCBC-1480[JVMCBC-1480]
-couchbase2: should use exponential backoff when bypassing BestEffortRetryStrategy
+`couchbase2:` should use exponential backoff when bypassing `BestEffortRetryStrategy`.
 * https://issues.couchbase.com/browse/JVMCBC-1494[JVMCBC-1494]
-If you specify `min=1` for a Full-Text Search disjunction query, the SDK now always sends the value to the server. Previously, the SDK assumed `1` was the default value, and omitted the parameter in that case.
+If you specify `min=1` for a Full-Text Search disjunction query, the SDK now always sends the value to the server.
+Previously, the SDK assumed `1` was the default value, and omitted the parameter in that case.
+
 
 == Scala SDK 1.5 Releases
 
