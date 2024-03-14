@@ -51,10 +51,9 @@ Vector Search::
 
 [source,scala]
 ----
-SearchRequest request = SearchRequest
-        .create(VectorSearch.create(VectorQuery.create("vector_field", vectorQuery)));
+val request = SearchRequest.vectorSearch(VectorSearch(VectorQuery("vector_field", vectorQuery)))
 
-SearchResult result = scope.search("vector-index", request);
+val result: Try[SearchResult] = scope.search("vector-index", request)
 ----
 --
 ====
