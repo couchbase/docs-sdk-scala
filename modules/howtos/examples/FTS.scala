@@ -125,12 +125,12 @@ class FTS {
   }
 
   def vector3(): Unit = {
-    // #tag::vector2[]
+    // #tag::vector3[]
     val request = SearchRequest.searchQuery(SearchQuery.matchAll)
       .vectorSearch(VectorSearch(VectorQuery("vector_field", vectorQuery)))
 
     val result = scope.search("vector-and-fts-index", request)
-    // #end::vector2[]
+    // #end::vector3[]
   }
 
   def vector4(): Unit = {
