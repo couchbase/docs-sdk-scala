@@ -1,13 +1,13 @@
-= Couchbase Scala SDK 1.5
+= Couchbase Scala SDK 1.6
 :page-layout: landing-page-top-level-sdk
 :page-role: tiles
 :!sectids:
 
-= Couchbase Scala SDK 1.5
+= Couchbase Scala SDK 1.6
 
 [source,sbt]
 ----
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.5.1"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.6.0"
 ----
 
 The Couchbase Scala SDK enables you to interact with a Couchbase Server cluster from the Scala language.
