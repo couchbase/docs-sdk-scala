@@ -15,9 +15,9 @@ The supported and tested dependencies for this release are:
 ==== Improvements
 
 * https://issues.couchbase.com/browse/SCBC-xxx[SCBC-xxx]
-summary
+summary [the problem behaviour addressed / the fix we applied / what you should now see]
 
 ==== Bugfixes
 
 * https://issues.couchbase.com/browse/SCBC-xxx[SCBC-xxx]
-summary
+summary [the problem behaviour addressed / the fix we applied / what you should now see]
