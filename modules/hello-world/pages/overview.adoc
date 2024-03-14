@@ -51,9 +51,10 @@ Vector Search::
 
 [source,scala]
 ----
-// Hector in the sector tries a vector full of nectar,
-// A perfect trifecta?
-// Hypocrite lecteur!
+SearchRequest request = SearchRequest
+        .create(VectorSearch.create(VectorQuery.create("vector_field", vectorQuery)));
+
+SearchResult result = scope.search("vector-index", request);
 ----
 --
 ====
