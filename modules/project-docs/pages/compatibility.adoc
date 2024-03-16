@@ -22,7 +22,7 @@ The Couchbase Scala SDK {sdk_dot_minor} Client supports Scala 2.12 and 2.13.
 
 === JDK Version Compatibility
 
-The {name-sdk} SDK is tested with Oracle JDK and OpenJDK.
+The {name-sdk} is tested with Oracle JDK and OpenJDK.
 Other JDK implementations might work but are not tested and are unsupported.
 We recommend running the latest LTS version (i.e. at the time of writing JDK 21) with the highest patch version available.
 
@@ -44,7 +44,7 @@ Please make sure you run on one of the latest patch releases, since they provide
 In general, the JVM eliminates concerns about underlying OS compatibility, 
 and Couchbase JVM SDKs can be expected to run on all of the Operating Systems supported by xref:{version-server}@server:install:install-platforms.adoc[Couchbase Server].
 
-The Scala SDK is tested and supported on the following OSs and platforms:
+The {name-sdk} is tested and supported on the following OSs and platforms:
 
 ****
 [discrete]
@@ -84,7 +84,7 @@ The JVM SDKs should also be expected to run on other commonly-available GNU/Linu
 The https://netty.io[Netty] I/O library used by our JVM SDKs supports native optimizations to achieve higher throughput and lower latency 
 -- which the SDK enables by default. 
 Those modules are compiled against `glibc` and Alpine Linux uses `musl` instead --
-so the Scala SDK is unable to complete bootstrapping on this platform.
+so the {name-sdk} is unable to complete bootstrapping on this platform.
 
 Because Alpine Linux does not have the `glibc` support needed,
 we highly recommend that you seek an alternative distribution where possible. 

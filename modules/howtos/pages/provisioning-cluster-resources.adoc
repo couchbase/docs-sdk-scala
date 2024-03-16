@@ -210,6 +210,19 @@ include::devguide:example$scala/QueryIndexManagerExample.scala[tag=drop-primary-
 
 // * Search - note & link to FTS page & API?
 
+
+
+== Eventing Management
+
+////
+https://issues.couchbase.com/browse/CBD-4930
+
+While investigating PYCBC-1277 and MB-51480 we saw the new function_scope field that was introduced with 7.1 and had to workaround it temporarily. The "function_scope" acts as a "grouping tag" or "namespace" and is now required due to recent changed for RBAC. Without this specified, the "*" default will be assumed and only the Admin can perform Eventing Management operations.
+////
+
+
+
+
 == View Management
 
 include::{version-common}@sdk:shared:partial$flush-info-pars.adoc[tag=view-management]

@@ -58,7 +58,7 @@ Couchbase stores data in _documents_, and this is the atomic....
 ////
 
 Designing an application to offer guarantees of durability or consistency in a networked environment is hard.
-The newcomer to the area has to wrestle with concepts like [CAP Theorum] and the [many possible interpretations] of ACID transactions. 
+The newcomer to the area has to wrestle with concepts like https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed/[CAP Theorum] and the https://en.wikipedia.org/wiki/Isolation_(database_systems)[many possible interpretations] of ACID transactions. 
 Here we hope to keep it _relatively_ simple, with a look at which Couchbase features give you which guarantees,
 when you may prefer to use them, and -- perhaps equally important, though sometimes overlooked -- 
 what is the performance cost of these choices.
@@ -95,10 +95,40 @@ Consider, too, that many operations are performed at the _collection_ level, and
 // https://www.couchbase.com/forums/t/single-document-structure-or-multiple-documents-for-user-data/37016 
 
 
+
+
+
+
+A document in Couchbase
+
+valid JSON
+
+key-value
+
+RDBMS table row
+
+
+but hierarchical data - normalization
+
+
+
+atomic unit
+
+
+
+
+
 === Collections
 
 // Working at the collection level - kv, query, ....
 // pull in some https://docs.couchbase.com/server/current/learn/data/scopes-and-collections.html ?
+
+
+Notionally equivalent to a table -- but it's up to you.
+
+
+Scope -- arbitary grouping of collections.
+
 
 
 === Object Mapping & Modelling JSON
@@ -108,6 +138,11 @@ Consider, too, that many operations are performed at the _collection_ level, and
 
 // mention arrays where?
 // x.rowsAs(JsonArray.class) 
+
+
+
+// extra JSON choices - libs in Scala
+
 
 
 == Durability
