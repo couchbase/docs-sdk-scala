@@ -111,6 +111,13 @@ The `:page-aliases:` directive enables Antora to build 502 redirects -- meaning 
 Leaving out this directive means that the page will default to `1`, showing only h2 headers in the in-page nav.
 A value of `3` should not be used, save in exceptionally complicated pages like that shown (the https://docs.couchbase.com/scala-sdk/1.6/project-docs/compatibility.html[compatibility page]).
 
+=== Patch Releases
+
+Update the following files:
+
+* build.gradle
+* modules/devguide/examples/scala/pom.xml
+* modules/project-docs/pages/sdk-release-notes.adoc
 
 === New Branches
 
