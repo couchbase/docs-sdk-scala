@@ -8,7 +8,8 @@
 {description}
 
 
-The Couchbase Scala SDK allows Scala applications to access a Couchbase cluster.
+This page gives full installation instructions for the {name-sdk}.
+In most cases, the xref:hello-world:start-using-sdk.adoc[Quickstart Guide] should be enough to get you up and running if you're in a hurry.
 
 
 == Prerequisites

@@ -126,6 +126,17 @@ Query without Index
 default in Capella from 7.6?
 
 "Just like RDBMS, we want queries to run without requiring users to create index. Query will use sequentialscan. Performance test shows the performance is acceptable for simple queries. For more complex queries, users can use Index Advisor to get the index recommendations for better performance. This feature is also designed to limit the number of  concurrent sequentialscans based on cpu count to avoid impacting KV ops. So yes, we want this to be available to all users."'    
+
+
+
+https://docs.couchbase.com/server/current/learn/services-and-indexes/indexes/query-without-index.html#sequential-scans
+
+Sequential Scans
+If a keyspace does not have any suitable primary or secondary indexes for a query, the Query service can fall back on a sequential scan of the data to retrieve the document keys. A sequential scan uses an underlying mechanism known as a K/V range scan.
+
+Sequential scans are intended for simple, ready access to data, and are not intended as a high performance solution.
+
+Sequential scans are best suited to small collections where key order is unimportant, or where the overhead of maintaining an index can’t be justified. For larger collections and greater performance, define the appropriate indexes to speed up your queries. For ordered document key operations, a primary index provides the same functionality, and will outperform a sequential scan.
 ////
 
 From 7.6 onwards,

@@ -17,6 +17,16 @@
 
 = Couchbase {name-sdk} {sdk_dot_minor}
 
+The Couchbase {name-sdk} allows {name_platform} applications to access a Couchbase cluster --
+Capella or self-managed.
+// Other SDKs are available for Couchbase Lite (edge or mobile devices) and Capella Columnar (real-time analytics)
+
+xref:hello-world:start-using-sdk.adoc[Quickstart Guide] |
+xref:project-docs:sdk-release-notes.adoc[] |
+{sdk-api-link}[{name-sdk} API Reference]
+
+
+
 [{tabs}] 
 ==== 
 Data Ops (CRUD)::
@@ -147,7 +157,7 @@ Take a deep-dive into the SDK concept material and learn more about Couchbase.
 
 == icon:book[] Resources
 
-Useful resources to help support your development experience with Couchbase and the Scala SDK.
+Useful resources to help support your development experience with Couchbase and the {name_platform} SDK.
 
 ++++
 <div class="card-row two-column-row">
@@ -155,10 +165,11 @@ Useful resources to help support your development experience with Couchbase and 
 
 [.column]
 .Reference
-* https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/index.html[API Reference^]
+* {sdk-api-link}[API Reference^]
 * xref:ref:client-settings.adoc[]
 * xref:ref:error-codes.adoc[]
-* xref:ref:glossary.adoc[Glossary]
+* {sdk-gh-link}[SDK source code]
+// * xref:ref:glossary.adoc[Glossary]
 // * xref:ref:travel-app-data-model.adoc[]
 
 [.column]
@@ -166,7 +177,7 @@ Useful resources to help support your development experience with Couchbase and 
 * xref:project-docs:sdk-release-notes.adoc[]
 * xref:project-docs:compatibility.adoc[Compatibility]
 // * https://docs-archive.couchbase.com/home/index.html[Older Versions Archive]
-// * xref:project-docs:migrating-sdk-code-to-3.n.adoc[]
+// ** xref:project-docs:migrating-sdk-code-to-3.n.adoc[]
 * xref:project-docs:third-party-integrations.adoc[]
 * xref:project-docs:sdk-full-installation.adoc[]
 

@@ -36,6 +36,22 @@ include::devguide:example$scala/UserManagementExample.java[tag=usermanagement_3,
 ----
 
 
+
+////
+Passwords
+
+https://issues.couchbase.com/browse/CBD-4876
+
+https://issues.couchbase.com/browse/DOC-10564
+
+This was initially implemented in the Go SDK (due to a client request), but will most likely end up in other SDKs for 3.5.
+
+This is documented in Go already, so it may just need something similar (see last example):
+https://docs.couchbase.com/go-sdk/current/howtos/sdk-user-management-example.html 
+////
+
+
+
 == Further Reading
 
 The SDK also contains management APIs for dealing with xref:provisioning-cluster-resources.adoc[Cluster resources].
