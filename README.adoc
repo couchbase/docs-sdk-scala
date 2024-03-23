@@ -115,6 +115,7 @@ A value of `3` should not be used, save in exceptionally complicated pages like 
 
 Update the following files:
 
+* antora.yml
 * build.gradle
 * modules/devguide/examples/scala/pom.xml
 * modules/project-docs/pages/sdk-release-notes.adoc
