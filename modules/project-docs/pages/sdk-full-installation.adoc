@@ -28,7 +28,7 @@ It can be included in your SBT build like this:
 
 [source,sbt]
 ----
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.5.1"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.6.0"
 ----
 
 This will automatically use the Scala 2.12 or 2.13 builds, as appropriate for your SBT project.
@@ -40,7 +40,7 @@ It can be included in your `build.gradle` like this for 2.12:
 [source,groovy]
 ----
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.5.1'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.6.0'
 }
 ----
 
@@ -49,7 +49,7 @@ or 2.13:
 [source,groovy]
 ----
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.13', version: '1.5.1'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.13', version: '1.6.0'
 }
 ----
 
@@ -63,7 +63,7 @@ It can be included in your Maven `pom.xml` like this for 2.12:
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_2.12</artifactId>
-        <version>1.5.1</version>
+        <version>1.6.0</version>
     </dependency>
 </dependencies>
 ----
@@ -76,7 +76,7 @@ or 2.13:
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_2.13</artifactId>
-        <version>1.5.1</version>
+        <version>1.6.0</version>
     </dependency>
 </dependencies>
 ----
