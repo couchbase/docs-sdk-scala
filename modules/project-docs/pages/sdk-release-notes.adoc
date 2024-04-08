@@ -24,6 +24,29 @@ grep '<reactor.version>' $src/pom.xml
 grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
+=== Version 1.6.1 (2 April 2024)
+
+Version 1.6.1 is the first service release of the 1.6 series.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.6.1/com/couchbase/client/scala/index.html[API Reference] |
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.6.1/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.6.3**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+==== Improvements
+
+* https://issues.couchbase.com/browse/JVMCBC-1477[JVMCBC-1477]
+Reduced the rate at which messages appear in the server's `http_access.log` when invalid credentials are provided resulting in 401 errors. 
+Issues resulting in 403 errors will be handled in a future release.
+* https://issues.couchbase.com/browse/JVMCBC-1498[JVMCBC-1498]
+The fields of a `SearchRow` from a Full-Text Search result are now included in the output of `SearchRow.toString()`.
+* https://issues.couchbase.com/browse/JVMCBC-1499[JVMCBC-1499]
+Disabled DNS SRV caching. The SDK now responds quicker to DNS changes in dynamic environments like Kubernetes.
+* https://issues.couchbase.com/browse/JVMCBC-1500[JVMCBC-1500]
+Added `EventingFunctionLanguageCompatibility.VERSION_7_2_0`.
 
 
 === Version 1.6.0 (11 March 2024)
