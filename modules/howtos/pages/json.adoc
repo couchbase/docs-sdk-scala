@@ -1,23 +1,39 @@
 = JSON Libraries
+:toclevels: 2
 :description: The Scala SDK supports multiple options for working with JSON.
+:page-partial:
 
 [abstract]
 {description}
 
-== Philosophy
 The Couchbase Server is a key-value store that's agnostic to what's stored, but it's very common to store JSON.
+
+
+== Philosophy
 
 The Scala SDK has these main objectives for JSON:
 
-* Be usable 'out-of-the-box'.  A simple JSON library is included, so you can get started right away.  Bonus: it's simple to use and very fast!
-* Be agnostic.  Your application may already be using its own JSON representation, and it shouldn't be forced to use the built-in JSON library.
-* Be inclusive.  There's a wide range of great, popular JSON libaries for the JVM, and we've supported many of them directly.  That is, you can use types from the https://circe.github.io/circe/[Circe library], and many others, when doing any operation.  And if we're missing support for your favourite, then please let us know on the http://forums.couchbase.com/[forums].
+* Be usable 'out-of-the-box'.
+A simple JSON library is included, so you can get started right away.  Bonus: it's simple to use and very fast!
+* Be agnostic.
+Your application may already be using its own JSON representation, and it shouldn't be forced to use the built-in JSON library.
+* Be inclusive.
+There's a wide range of great, popular JSON libaries for the JVM, and we've supported many of them directly.
+That is, you can use types from the https://circe.github.io/circe/[Circe library], and many others, when doing any operation.
+And if we're missing support for your favourite, then please let us know on the http://forums.couchbase.com/[forums].
+
 
 == Optional Dependencies
-Dependencies on third-party JSON libraries are performed with Maven's `optional` scope.  This means that if you have the Circe dependency in your _own_ project (be it SBT, Gradle or Maven based), then you will be able to use the Circe types with the Scala SDK.  But the SDK will not pull in the dependency itself, to stay lean and mean.
+
+Dependencies on third-party JSON libraries are performed with Maven's `optional` scope.
+This means that if you have the Circe dependency in your _own_ project (be it SBT, Gradle or Maven based), then you will be able to use the Circe types with the Scala SDK.
+But the SDK will not pull in the dependency itself, to stay lean and mean.
+
 
 == Getting Started
-The examples below assume you're familiar with connecting to a Couchbase cluster using the Scala SDK, and opening resources.  Please check out xref:hello-world:start-using-sdk[the Getting Started guide] for help with this.
+
+The examples below assume you're familiar with connecting to a Couchbase cluster using the Scala SDK, and opening resources.
+Please check out xref:hello-world:start-using-sdk[the Getting Started guide] for help with this.
 
 In the examples below we'll use the following case classes:
 
@@ -26,12 +42,13 @@ In the examples below we'll use the following case classes:
 include::devguide:example$scala/JSON.scala[tag=cc,indent=0]
 ----
 
-So without further ado, let's dive into some practical examples of the many ways you can use JSON with the Couchbase Scala SDK.
+Let's dive into some practical examples of the many ways you can use JSON with the Couchbase Scala SDK.
+
 
 == Circe
 
-https://circe.github.io/circe/[Circe] has the very useful property of being able to encode case classes directly to and from
-Circe data types, without having to write the 'codec' logic usually required for this.
+https://circe.github.io/circe/[Circe] has the very useful property of being able to encode case classes directly to and from Circe data types,
+without having to write the 'codec' logic usually required for this.
 
 Here's an example of how to use Circe with Couchbase:
 
@@ -40,8 +57,8 @@ Here's an example of how to use Circe with Couchbase:
 include::devguide:example$scala/JSON.scala[tag=circe2,indent=0]
 ----
 
-That works, but it's very verbose to handle all those `Try` one-by-one.  Here's an example of how to do the same thing, but
-chaining all the `Try` together using `flatMap`:
+That works, but it's very verbose to handle all those `Try` one-by-one.
+Here's an example of how to do the same thing, but chaining all the `Try` together using `flatMap`:
 
 [source,scala]
 ----
@@ -57,13 +74,15 @@ include::devguide:example$scala/JSON.scala[tag=circe1,indent=0]
 
 If for-comprehensions are unfamiliar then they're essentially syntactic sugar, with each of the `<-` being a `flatMap` call.
 
-The following examples will use the for-comprehension style, for brevity.
+Examples below will use the for-comprehension style, for brevity.
+
 
 == µPickle / µJson
+
 http://www.lihaoyi.com/upickle/[µPickle] is a serialization library with its own JSON library, µJson.
 
-Unlike the majority of JSON Scala libraries µJson is mutable, with the http://www.lihaoyi.com/post/uJsonfastflexibleandintuitiveJSONforScala.html[author's rationale]
-an interesting read.
+Unlike the majority of JSON Scala libraries, µJson is mutable, with the
+http://www.lihaoyi.com/post/uJsonfastflexibleandintuitiveJSONforScala.html[author's rationale] an interesting read.
 
 Here's an example of how to use µJson with Couchbase:
 
@@ -72,21 +91,34 @@ Here's an example of how to use µJson with Couchbase:
 include::devguide:example$scala/JSON.scala[tag=upickle,indent=0]
 ----
 
+
 == JsonObject and JsonArray
-The SDK includes a built-in JSON library, JsonObject.  Its main goals are:
 
-* Convenience.  Not everyone wants to evaluate multiple JSON libraries before getting started.  JsonObject is a decent default choice.
-* Speed.  Our internal benchmarking indicates JsonObject is up to 20 times faster than the nearest Scala JSON library on some important operations.  It achieves this mostly by being built around simple, but very fast, mutable JVM data structures.  Unlike the rest of the SDK it also throws exceptions rather than incur the small cost on the good path of functional-style error handling (e.g. `Try`) - though there is an optional alternative <<error-handling-and-jsonobjectsafe,`JsonObjectSafe`>> interface that does provide `Try`.
-* Ease-of-use and mutability.   We find ourselves in agreement with http://www.lihaoyi.com/post/uJsonfastflexibleandintuitiveJSONforScala.html[the author of µJson] that though
- immutability is usually desirable, it's actually not always the best choice for JSON.  Dealing with deeply nested JSON requires
- functional tools such as lenses which are rarely easy to read, not to mention incurring a performance penalty.  And JSON is most often dealt with briefly and
- in a limited scope (e.g. getting and modifying a document), so rarely benefits from the safety of immutability.  So JsonObject presents a simple mutable API.
+The SDK includes a built-in JSON library, `JsonObject`.
+Its main goals are:
 
-Of course, if you'd rather have a JSON library with immutable
-data, lenses, cursors and other functional goodies, then one of the other options on this page may be a better choice.
+* Convenience.
+Not everyone wants to evaluate multiple JSON libraries before getting started.
+JsonObject is a decent default choice.
+* Speed.
+Our internal benchmarking indicates `JsonObject` is up to 20 times faster than the nearest Scala JSON library on some important operations.
+It achieves this mostly by being built around simple, but very fast, mutable JVM data structures.
+Unlike the rest of the SDK, it also throws exceptions rather than incur the small cost on the good path of functional-style error handling (e.g. `Try`) --
+though there is an optional alternative <<error-handling-and-jsonobjectsafe,`JsonObjectSafe`>> interface that does provide `Try`.
+* Ease-of-use and mutability.
+We find ourselves in agreement with http://www.lihaoyi.com/post/uJsonfastflexibleandintuitiveJSONforScala.html[the author of µJson],
+that though immutability is usually desirable, it's actually not always the best choice for JSON.
+Dealing with deeply nested JSON requires functional tools such as lenses, which are rarely easy to read, not to mention incurring a performance penalty.
+And JSON is most often dealt with briefly and in a limited scope (e.g. getting and modifying a document),
+so rarely benefits from the safety of immutability.
+So `JsonObject` presents a simple mutable API.
+
+Of course, if you'd rather have a JSON library with immutable data, lenses, cursors and other functional goodies,
+then one of the other options on this page may be a better choice.
 
 === Creating
-Using JsonObject here's how to create some simple JSON:
+
+Using `JsonObject` here's how to create some simple JSON:
 
 [source,scala]
 ----
@@ -101,6 +133,7 @@ include::devguide:example$scala/JSON.scala[tag=json-mutable,indent=0]
 ----
 
 === Retrieving Data
+
 It's easy to retrieve data:
 
 [source,scala]
@@ -117,7 +150,7 @@ include::devguide:example$scala/JSON.scala[tag=json3,indent=0]
 
 === Using with Key-Value Operations
 
-As with the other supported JSON libraries, JsonObject (and JsonArray) can easily be used directly with any SDK operation:
+As with the other supported JSON libraries, `JsonObject` (and `JsonArray`) can easily be used directly with any SDK operation:
 
 [source,scala]
 ----
@@ -125,7 +158,10 @@ include::devguide:example$scala/JSON.scala[tag=jsonObject,indent=0]
 ----
 
 === Error Handling and JsonObjectSafe
-The majority of the Scala SDK will not throw exceptions.  Methods on `JsonObject` are, well, an exception to this general rule.  If a requested field does not exist a `NoSuchElementException` will be thrown.
+
+The majority of the Scala SDK will not throw exceptions.
+Methods on `JsonObject` are an exception to this general rule.
+If a requested field does not exist a `NoSuchElementException` will be thrown.
 
 If you'd rather not deal with exceptions, `JsonObject` comes with a counterpart `JsonObjectSafe` that provides an alternative interface in which all methods return Scala `Try` rather than throwing:
 
@@ -152,21 +188,28 @@ include::devguide:example$scala/JSON.scala[tag=json6,indent=0]
 
 Note that `JsonObjectSafe`, though presenting a more functional interface, is still mutable.
 
-== Case Classes
-It can be very useful to deal directly with Scala case classes, that is to send and retrieve them directly rather than via some interim type, and the Scala SDK includes built-in support for this.
 
-It's necessary to write a small amount of boilerplate code first.  If you try and insert a case class directly, you'll get an error.  E.g. this won't work:
+== Case Classes
+
+It can be very useful to deal directly with Scala case classes, that is to send and retrieve them directly rather than via some interim type,
+and the Scala SDK includes built-in support for this.
+
+It's necessary to write a small amount of boilerplate code first.
+If you try and insert a case class directly, you'll get an error.
+E.g. this won't work:
 
 [source,scala]
 ----
 include::devguide:example$scala/KvOperations.scala[tag=cc-fails]
 ----
 
-This is because the Scala SDK does not currently know how to convert a `User` into JSON it can send to the server.
+This is because the Scala SDK does not currently know how to convert a `User` into JSON that it can send to the server.
 
-More technically, methods like `insert` that take content of type `T` also take an implicit `JsonSerializer[T]`, which defines how to turn `T` into JSON.  If the Scala compiler cannot find a suitable `JsonSerializer[T]`, then it will report an error.
+More technically, methods like `insert` that take content of type `T` also take an implicit `JsonSerializer[T]`, which defines how to turn `T` into JSON.
+If the Scala compiler cannot find a suitable `JsonSerializer[T]`, then it will report an error.
 
-So, let's provide an `JsonSerializer[User]`.  It's possible to create one manually, but the Scala SDK includes a convenient shortcut:
+So, let's provide an `JsonSerializer[User]`.
+It's possible to create one manually, but the Scala SDK includes a convenient shortcut:
 
 [source,scala]
 ----
@@ -175,15 +218,19 @@ include::devguide:example$scala/KvOperations.scala[tag=cc-codec]
 
 (As this is a companion object for User, it needs to go in the same file as the `User` case class you added earlier.)
 
-This short line of boilerplate uses Scala macros to, at compile time, provide an `JsonSerializer[User]`.  Note that we don't need one for `Address` too - only the top-level case classes you're dealing with need a `Codec`.
+This short line of boilerplate uses Scala macros to, at compile time, provide a `JsonSerializer[User]`.
+Note that we don't need one for `Address` too -- only the top-level case classes you're dealing with need a `Codec`.
 
-Now we can pass a `User` directly to `insert`, and it will work fine.  The Scala compiler will look for an `JsonSerializer[User]` in a number of places, and find it in the `User` companion object.
+Now we can pass a `User` directly to `insert`, and it will work fine.
+The Scala compiler will look for a `JsonSerializer[User]` in a number of places, and find it in the `User` companion object.
 
-Since the encoding logic is generated at compile time it can also be extremely fast - no reflection is used.
+Since the encoding logic is generated at compile time it can also be extremely fast --
+no reflection is used.
 
 The generated JSON will be as you expect, with "name" and "age" fields, and an "addresses" array.
 
-The same `Codec` also generates a `JsonDeserializer[User]` which can be used to pull data out as our case class, using `contentAs`:
+The same `Codec` also generates a `JsonDeserializer[User]`,
+which can be used to pull data out as our case class, using `contentAs`:
 
 [source,scala]
 ----
@@ -192,20 +239,25 @@ include::devguide:example$scala/KvOperations.scala[tag=cc-get]
 
 [NOTE]
 ====
-There are other ways to handle case classes.  Many of the supported JSON libraries have some method to encode and decode case classes into an interim type, as in the <<circe,Circe example>>.
+There are other ways to handle case classes.
+Many of the supported JSON libraries have some method to encode and decode case classes into an interim type, as in the <<circe,Circe example>>.
 ====
+
+
 
 == Json4s
 http://json4s.org/[Json4s] aims to provide a single JSON representation that can be used by other JSON libraries.
 
-Here's an example of how to use Json4s with Couchbase:
+Here's an example of how to use `Json4s` with Couchbase:
 
 [source,scala]
 ----
 include::devguide:example$scala/JSON.scala[tag=json4s,indent=0]
 ----
 
+
 == Jawn
+
 Here's an example of how to use https://github.com/typelevel/jawn[Jawn] with Couchbase:
 
 [source,scala]
@@ -213,7 +265,9 @@ Here's an example of how to use https://github.com/typelevel/jawn[Jawn] with Cou
 include::devguide:example$scala/JSON.scala[tag=jawn,indent=0]
 ----
 
+
 == Play JSON
+
 Here's an example of how to use https://github.com/playframework/play-json[Play Json] with Couchbase:
 
 [source,scala]
@@ -221,7 +275,9 @@ Here's an example of how to use https://github.com/playframework/play-json[Play 
 include::devguide:example$scala/JSON.scala[tag=playJson,indent=0]
 ----
 
+
 == Strings
+
 It's possible to send and receive JVM `String` directly:
 
 [source,scala]
@@ -229,7 +285,9 @@ It's possible to send and receive JVM `String` directly:
 include::devguide:example$scala/JSON.scala[tag=string,indent=0]
 ----
 
+
 == Array[Byte]
+
 And an `Array[Byte]` can be used directly:
 
 [source,scala]
@@ -239,15 +297,22 @@ include::devguide:example$scala/JSON.scala[tag=bytes,indent=0]
 
 With the support for `String` and `Array[Byte]`, the Scala SDK can be used with any JSON library that can import and export those formats.
 
-== Adding Another Type
-As alluded to above, when inserting a `T`, the Scala SDK looks for an `JsonSerializer[T]` in implicit scope.  Similar for `contentAs` and `JsonDeserializer[T]`.
 
-For advanced users it's possible to support any type desired by simply writing an `JsonSerializer` and/or `JsonDeserializer` for that type.  Please see the
-code for those interfaces for details.
+== Adding Another Type
+
+As alluded to above, when inserting a `T`, the Scala SDK looks for an `JsonSerializer[T]` in implicit scope.
+Similar for `contentAs` and `JsonDeserializer[T]`.
+
+For advanced users it's possible to support any type desired by simply writing an `JsonSerializer` and/or `JsonDeserializer` for that type.
+Please see the code of those interfaces for details.
+
 
 == Choosing a Library
-We've looked at multiple options for working with JSON - but which one should you choose?
 
-In truth, they all fulfill different needs, provide different tradeoffs, and any of them can be a good option in certain situations.  You may want to evaluate and benchmark them with representative data to see which fits your situation best.
+We've looked at multiple options for working with JSON --
+but which one should you choose?
 
-If you're not already using a JSON library, then the built-in JsonObject library is very fast, very simple to use, and makes a good default choice.
+In truth, they all fulfill different needs, provide different tradeoffs, and any of them can be a good option in certain situations.
+You may want to evaluate and benchmark them with representative data to see which fits your situation best.
+
+If you're not already using a JSON library, then the built-in `JsonObject` library is very fast, very simple to use, and makes a good default choice.
