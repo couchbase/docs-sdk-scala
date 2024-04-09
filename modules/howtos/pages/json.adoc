@@ -159,6 +159,7 @@ include::devguide:example$scala/JSON.scala[tag=jsonObject,indent=0]
 
 === Error Handling and JsonObjectSafe
 
+// tag::JsonObjectSafe-errors[]
 The majority of the Scala SDK will not throw exceptions.
 Methods on `JsonObject` are an exception to this general rule.
 If a requested field does not exist a `NoSuchElementException` will be thrown.
@@ -187,6 +188,7 @@ include::devguide:example$scala/JSON.scala[tag=json6,indent=0]
 ----
 
 Note that `JsonObjectSafe`, though presenting a more functional interface, is still mutable.
+// end::JsonObjectSafe-errors[]
 
 
 == Case Classes
