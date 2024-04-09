@@ -47,7 +47,7 @@ Alternately, if you need to control every aspect of deployment --
 or just want to run the Server in a VM on your laptop -- 
 there are several self-managed options available:
 
-[{tabs}]
+[tabs]
 ==== 
 Couchbase Capella::
 +
@@ -87,7 +87,7 @@ see the xref:project-docs:compatibility.adoc#jdk-compat[compatibility docs].
 
 The code examples also assume:
 
-[{tabs}]
+[tabs]
 ====
 Couchbase Capella::
 +
@@ -129,7 +129,7 @@ More details of the installation process are in the
 xref:project-docs:sdk-full-installation.adoc[full installation guide].
 In most cases, given the above prerequisites, it's a simple matter of the following for your favorite build tool:
 
-[{tabs}] 
+[tabs] 
 ==== 
 Scala Build Tool (SBT)::
 +
@@ -335,7 +335,7 @@ include::devguide:example$scala/Cloud.scala[tag=get,indent=0]
 Here we're fetching the value for the key `docId`,
 converting that value to a `JsonObjectSafe`
 (a simple wrapper around `JsonObject` that returns `Try` results -- see
-xref:howtos:json.adoc#error-handling-and-jsonobjectsafe[here] for details),
+xref:howtos:json.adoc#error-handling-and-jsonobjectsafe[JsonObjectSafe] for details),
 and then accessing the value of the *status* key as a String.
 
 ==== Better Error Handling
@@ -415,7 +415,7 @@ A collection’s name is unique within the scope.
 
 
 More details can be found on the xref:concept-docs.data-model.adoc[Data Model page].
-// The Student Records Tutorial gives an introduction to data modeling in a document database alongside using the {name-sdk}.
+// The xref:student-record-developer-tutorial.adoc[Student Records Tutorial] gives an introduction to data modeling in a document database alongside using the {name-sdk}.
 
 
 == What Next?
