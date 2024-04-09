@@ -198,7 +198,8 @@ include::devguide:example$scala/Cloud.scala[]
 ====
 
 Otherwise, read on as we introduce the CRUD API and connection to Capella or self-managed Couchbase Server.
-(There's a *View* link to the complete sample code on GitHub above each of the snippets on the page, and a *Copy* icon to grab just the snippet shown.)
+
+TIP: There's a *View* link to the complete sample code on GitHub above each of the snippets on the page, and a *Copy* icon to grab just the snippet shown.
 
 
 == Connect to your Database
@@ -206,7 +207,7 @@ Otherwise, read on as we introduce the CRUD API and connection to Capella or sel
 Connect to your Couchbase Capella database (or your local Couchbase Cluster, if you are trying out self-managed Couchbase).
 
 
-[{tabs}] 
+[tabs,sync-group-id="Couchbase Capella|Self-Managed Couchbase Server"]
 ==== 
 Couchbase Capella::
 +
@@ -272,17 +273,15 @@ Opening resources such as buckets is asynchronous --
 that is, the `cluster.bucket` call returns immediately and proceeds in the background.
 `waitUntilReady` ensures that the bucket resource is fully loaded before proceeding.
 If not present, then the first key-value (KV) operation on the bucket will wait for it to be ready.
-As with `Cluster.connect`, we use `.get` on the result here for simplicity.
+As with the earlier `Cluster.connect`, we use `.get` on the result here for simplicity.
 
 *Collections* allow documents to be grouped by purpose or theme, according to a specified *scope* -- see data modeling, <<data-modeling,below>>.
-Here we will use the `users` collection within the `tenant_agent_00` scope from `travel-sample` bucket as an example.
+Here we will use the `airport` collection within the `inventory` scope from `travel-sample` bucket as an example.
 
 [source,scala]
 ----
 include::devguide:example$scala/Cloud.scala[tag=collection,indent=0]
 ----
-
-If you do not refer to a named collection, you can access the 'default collection', which includes all documents in a bucket, and is forwards and backwards compatible with all supported versions of Couchbase Server.
 
 
 == Create, Read, Update, Delete
