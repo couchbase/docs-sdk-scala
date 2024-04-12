@@ -1,4 +1,6 @@
 = Collections and Scopes
+:page-aliases: howtos:working-with-collections.adoc
+
 :description: 
 
 
@@ -7,7 +9,9 @@
 [abstract]
 {description}
 
-The Collections feature in Couchbase Server 7.0 is fully implemented in the Scala SDK version 1.2.
+
+// https://docs.couchbase.com/server/current/learn/data/scopes-and-collections.html
+
 
 Please see the xref:{version-server}@server:learn:data/scopes-and-collections.adoc[Scopes and Collections page] in the Server docs.
 
@@ -26,7 +30,8 @@ And for a non-default scope:
 include::devguide:example$scala/CollectionsExample.scala[tag=collections_2,indent=0]
 ----
 
-
+////
 == Further Reading
 
 To see Collections in action, take a look at our xref:howtos:working-with-collections.adoc[Collections-enabled Travel Sample page].
+////
