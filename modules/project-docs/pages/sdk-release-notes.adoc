@@ -5,4 +5,4 @@
 :page-topic-type: reference
 :page-aliases: relnotes-scala-sdk
 
-include::1.5@scala-sdk:project-docs:page$sdk-release-notes.adoc[tag=all]
+include::1.6@scala-sdk:project-docs:page$sdk-release-notes.adoc[tag=all]
