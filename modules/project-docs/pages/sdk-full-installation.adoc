@@ -2,13 +2,15 @@
 :description: Installation instructions for the Couchbase Scala Client.
 :navtitle: Full Installation
 :page-partial:
-:page-topic-type: project-doc
+:page-toclevels: 2
 
 [abstract]
 {description}
 
 
-The Couchbase Scala SDK allows Scala applications to access a Couchbase cluster.
+This page gives full installation instructions for the {name-sdk}.
+In most cases, the xref:hello-world:start-using-sdk.adoc[Quickstart Guide] should be enough to get you up and running if you're in a hurry.
+
 
 == Prerequisites
 
@@ -21,22 +23,24 @@ The underlying OS normally makes no difference, but library incompatibilities in
 The Couchbase Scala SDK is available on the Maven repository, packaged for Scala 2.12 and 2.13.
 
 === With SBT Projects
+
 It can be included in your SBT build like this:
 
 [source,sbt]
 ----
-libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.6.1"
+libraryDependencies += "com.couchbase.client" %% "scala-client" % "1.6.0"
 ----
 
 This will automatically use the Scala 2.12 or 2.13 builds, as appropriate for your SBT project.
 
 === With Gradle Projects
+
 It can be included in your `build.gradle` like this for 2.12:
 
 [source,groovy]
 ----
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.6.1'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.12', version: '1.6.0'
 }
 ----
 
@@ -45,7 +49,7 @@ or 2.13:
 [source,groovy]
 ----
 dependencies {
-    compile group: 'com.couchbase.client', name: 'scala-client_2.13', version: '1.6.1'
+    compile group: 'com.couchbase.client', name: 'scala-client_2.13', version: '1.6.0'
 }
 ----
 
@@ -59,7 +63,7 @@ It can be included in your Maven `pom.xml` like this for 2.12:
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_2.12</artifactId>
-        <version>1.6.1</version>
+        <version>1.6.0</version>
     </dependency>
 </dependencies>
 ----
@@ -72,7 +76,7 @@ or 2.13:
     <dependency>
         <groupId>com.couchbase.client</groupId>
         <artifactId>scala-client_2.13</artifactId>
-        <version>1.6.1</version>
+        <version>1.6.0</version>
     </dependency>
 </dependencies>
 ----
