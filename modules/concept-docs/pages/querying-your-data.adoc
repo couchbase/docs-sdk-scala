@@ -26,6 +26,13 @@ The data service stores your documents, but is the best route to retrieving them
 if you're sure that's the service that you want, jump to our xref:howtos:sqlpp-queries-with-sdk.adoc[Query Howto doc].
 
 
+Couchbase also has a powerful Search Service, supporting similarity and hybrid search, combining text, vector, range, and geospatial search.
+xref:{version-server}@server:n1ql:n1ql-language-reference/searchfun.adoc[Search functions] enable you to use Search queries directly within a {sqlpp} query.
+
+
+
+
+
 .{sqlpp} or CRUD API?
 [TIP]
 ====
@@ -60,6 +67,8 @@ Couchbase Server 7.6 introduces Vector Search to enable AI integration, semantic
 A developer-friendly vector indexing engine exposes a vector database and search functionality.
 With Couchbase Vector Search, you can enable fast and highly accurate semantic search, ground LLM responses in relevant data to reduce hallucinations, and enhance or enable use cases like personalized searches in e-commerce and media & entertainment, product recommendations, fraud detection, and reverse image search.
 You can also enable full access to an AI ecosystem with a Langchain integration, the most popular open-source framework for LLM-driven applications.
+
+// From 7.6.2, you can 
 
 Read more in our xref:{version-server}@server:vector-search:vector-search.adoc[Vector Search documentation],
 or dive in and try it xref:howtos:vector-searching-with-sdk.adoc[with the {name-sdk}].

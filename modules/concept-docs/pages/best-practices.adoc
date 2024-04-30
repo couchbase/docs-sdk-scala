@@ -28,7 +28,7 @@ There's plenty that can be done to remove bottlenecks in development and in perf
 
 But before worrying about bottlenecks, let's put security concerns first.
 
-Security is a 
+Security is a process, and not just a set of checkboxes -- but 
 //
 
 === Roles and RBAC
@@ -40,15 +40,15 @@ Data security depends in part on only giving access to
 
 
 // concept snippet
-////
+
 include::{version-common}@sdk:pages:partial$rbac.adoc[]
 
-////
 
 
 
+== Performance
 
-== Dealing with Timeout Errors
+=== Dealing with Timeout Errors
 
 
 // see also
@@ -62,7 +62,15 @@ include::{version-common}@sdk:pages:partial$rbac.adoc[]
 
 
 
-== Concurrency and Async APIs
+
+=== Read From Replica
+
+Advanced zone aware....
+
+
+
+
+=== Concurrency and Async APIs
 
 
 ....this paragraph different for each SDK.
@@ -78,21 +86,9 @@ Errors
 
 .
 
-
-
-
-////
-= Errors and Diagnostics
-:description: When the unexpected happens, take a step-by-step approach.
-:page-topic-type: concept
-
-include::project-docs:partial$attributes.adoc[]
-
-[abstract]
-{description}
-
-
 == General Approach to Scala Exceptions
+
+ When the unexpected happens, take a step-by-step approach.
 
 include::{version-common}@sdk:shared:partial$errors.adoc[tag=exception]
 
@@ -108,4 +104,62 @@ include::{version-common}@sdk:shared:partial$errors.adoc[tag=observability]
 // until opentelemetry release for link below, could add note on API to expose own tracing features?
 // include::{version-common}@sdk:shared:partial$errors.adoc[tag=rto]
 
+
+
+
+
+// Missing APIs
+// For anything that is not covered by the SDK, 
+// for example
+// a raw FTS query from the SDK...
+// use the HTTP client: 
+
 ////
+public class CouchbaseHttpClient
+extends Object
+A specialized HTTP client for making requests to Couchbase Server.
+Get an instance by calling Cluster.httpClient().
+
+Example usage:
+
+ public static String getAutoFailoverSettings(Cluster cluster) {
+   HttpResponse response = cluster.httpClient().get(
+       HttpTarget.manager(),
+       HttpPath.of("/settings/autoFailover"));
+
+   if (!response.success()) {
+     throw new RuntimeException(
+         "Failed to get auto-failover settings. HTTP status code " +
+             response.statusCode() + "; " + response.contentAsString());
+   }
+
+   return response.contentAsString();
+ }
+
+ public static void disableAutoFailover(Cluster cluster) {
+   HttpResponse response = cluster.httpClient().post(
+       HttpTarget.manager(),
+       HttpPath.of("/settings/autoFailover"),
+       HttpPostOptions.httpPostOptions()
+           .body(HttpBody.form(Map.of("enabled", "false"))));
+
+   if (!response.success()) {
+     throw new RuntimeException(
+         "Failed to disable auto-failover. HTTP status code " +
+             response.statusCode() + "; " + response.contentAsString());
+   }
+ }
+ 
+////
+// https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/http/CouchbaseHttpClient.html
+
+
+
+
+
+// other SDK's docs
+//
+// add in Python
+// https://docs.couchbase.com/sdk-api/couchbase-python-client/couchbase_api/parallelism.html
+//
+// 

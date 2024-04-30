@@ -181,7 +181,8 @@ In the SDK, the CAS is represented as a 64 bit integer for efficient copying but
 
 == Pessimistic locking
 
-
+Pessimistic locking is the default approach for many RDBMS.
+With Couchbase, 
 
 
 

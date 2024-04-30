@@ -7,18 +7,24 @@
 [abstract]
 {description}
 
-Couchbase Scala SDK 1.0 implements the Couchbase SDK 3.0 API.
-It it the first release of the Couchbase Scala SDK, there are no releases implementing older APIs.
+Couchbase {name-sdk} {sdk_dot_minor} implements the Couchbase SDK {sdk_api} API.
+1.x is the first release of the Couchbase Scala SDK, there are no releases implementing older APIs.
+
+
+== Mixing Code from Other JVM Platforms
+
 Migration will only be a concern if you are mixing code from different JVM SDKs in your application
 -- specifically the xref:java-sdk:hello-world:overview.adoc[Java SDK] -- 
-in which case you will need to be using Java SDK 3.0 and above. 
+in which case you will need to be using a supported 3.x Java SDK. 
 If you have programmed Couchbase client software against the Java 2.x SDK previously, 
 then you may want to read the xref:java-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[Java migration guide].
 
-.Views
+
+== Legacy MapReduce Views
+
 Note, if you are looking for information about Couchbase's legacy MapReduce Views Service, 
 MapReduce Views are deprecated in Couchbase Server, and will eventually be removed.
-Information on using MapReduce Views with the SDK can still be accessed in our https://docs-archive.couchbase.com/scala-sdk/1.1/howtos/view-queries-with-sdk.html[documentation archive].
+Information on using MapReduce Views with the SDK can still be accessed in our https://docs-archive.couchbase.com/scala-sdk/1.2/howtos/view-queries-with-sdk.html[documentation archive].
 
 Views are the only service which does not benefit from xref:{version-server}@server:learn:services-and-indexes/services/services.adoc#services-and-multi-dimensional-scaling[Multi-Dimensional Scaling],
 and is rarely the best choice over, say, xref:howtos:sqlpp-queries-with-sdk.adoc[our Query service] if you are starting a fresh application.

@@ -8,6 +8,9 @@
 {description}
 
 
+The Couchbase {name-sdk} has a management API to provision clusters.
+This is not the only programmatic way to deploy Couchbase, and you may wish to look at
+xref:cloud:terraform:index.adoc[Terraform] for Capella, or some of our command line tools.
 
 
 == buckets and clusters

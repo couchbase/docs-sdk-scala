@@ -8,6 +8,9 @@
 {description}
 
 
+
+// Kotlin - add https://www.couchbase.com/forums/t/max-idle-connections-error/38183
+
 == The Environment Builder
 
 Most client settings are related to the `ClusterEnvironment`.

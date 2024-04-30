@@ -122,3 +122,7 @@ repositories {
 ----
 --
 ====
+
+== Further Reading
+
+For those who spend little or no time using {name_platform}, but have to evaluate the platform, further installation and background help is available on the xref:hello-world:platform-help.adoc[{name_platform} Platform Introduction page].

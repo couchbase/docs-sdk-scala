@@ -13,6 +13,7 @@
 ** xref:howtos:subdocument-operations.adoc[]
 ** xref:concept-docs:data-model.adoc[]
 *** xref:concept-docs:documents.adoc[]
+// *** xref:concept-docs:collections.adoc[]
 *** xref:howtos:json.adoc[Choosing a JSON Library]
 // only Java and Scala have ^
 // Scala's we keep - Java's turns into the concept??
@@ -65,7 +66,7 @@
 *** xref:hello-world:platform-help.adoc[]
 ** xref:project-docs:get-involved.adoc[]
 *** xref:project-docs:sdk-licenses.adoc[]
-*** xref:home:contribute:index.adoc[Improve the Docs^]
+*** xref:home:contribute:index.adoc[Improve the Docs]
 * xref:ref:index.adoc[]
 ** https://docs.couchbase.com/sdk-api/couchbase-scala-client[API Reference^]
 ** https://docs.couchbase.com/sdk-api/couchbase-core-io/[JVM Core IO API^]

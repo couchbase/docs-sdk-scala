@@ -289,6 +289,19 @@ To stress, durability is a useful feature but should not be the default for most
 
 == Expiration/TTL
 
+
+
+
+
+
+
+
+////
+eventing is also a way to handle bulk deletes.  So is setting the expiration time.   If this is something like a daily purge, why not set the expiration time to the end of the day when the docs are being inserted?  If this is purging documents after they have been processed or transferred, why not delete (or expire) them as they are processed or transferred? (edited) 
+////
+
+
+
 Couchbase Server includes an option to have particular documents automatically expire after a set time.
 This can be useful for some use-cases, such as user sessions, caches, or other temporary documents.
 

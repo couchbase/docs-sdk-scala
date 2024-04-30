@@ -19,7 +19,7 @@
 
 The Couchbase {name-sdk} allows {name_platform} applications to access a Couchbase cluster --
 Capella or self-managed.
-// Other SDKs are available for Couchbase Lite (edge or mobile devices) and Capella Columnar (real-time analytics)
+// -- other SDKs are available for Couchbase Lite (edge or mobile devices) and Capella Columnar (real-time analytics)
 
 xref:hello-world:start-using-sdk.adoc[Quickstart Guide] |
 xref:project-docs:sdk-release-notes.adoc[] |

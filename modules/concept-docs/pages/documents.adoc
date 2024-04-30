@@ -86,6 +86,20 @@ include::devguide:example$scala/SubDocument.scala[tag=combine,indent=0]
 
 include::{version-common}@sdk:shared:partial$documents.adoc[tag=counters1]
 
+
+
+
+// NB for XDCR, add in something on CRDTs? (see Kleppmann) -
+// https://martin.kleppmann.com/2017/04/24/json-crdt.html
+// 
+// Strong eventual consistency -
+// https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type
+//
+// Maybe link https://jsonjoy.com/specs/json-crdt  ?
+
+
+
+
 [source,java]
 ----
 //  java example:

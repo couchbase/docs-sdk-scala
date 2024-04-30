@@ -6,10 +6,14 @@
 
 // Note to editors
 // 
-// This page pulls in content from -sdk-common-
-// and code samples from -example-dir-
+// This page pulls in content from
+// https://github.com/couchbase/docs-sdk-common/blob/release/7.6/modules/shared/partials/start-using-sdk.adoc
+//
+// and code samples from
+// https://github.com/couchbase/docs-sdk-scala/tree/release/1.6/modules/devguide/examples/scala
 // 
-// It can be seen built at wwww.
+// It can be seen built at
+// https://docs.couchbase.com/scala-sdk/1.6/hello-world/start-using-sdk.html
 
 
 [abstract]
@@ -268,6 +272,13 @@ Following successful authentication, open the bucket with:
 include::devguide:example$scala/Cloud.scala[tag=bucket,indent=0]
 ----
 
+
+
+////
+client has not yet completed bootstrapping (connecting to the cluster, getting the configuration, connecting to the nodes).
+////
+
+
 `waitUntilReady` is an optional call.
 Opening resources such as buckets is asynchronous --
 that is, the `cluster.bucket` call returns immediately and proceeds in the background.
@@ -440,7 +451,7 @@ both
 
 // * Take a look at the xref:hello-world:sample-application.adoc[].
 * xref:concept-docs:data-durability-acid-transactions.adoc[Learn more about the Data Service].
-* Discover xref:concept-docs:querying-your-data.adoc[SQL++] -- our SQL-family querying language.
+* xref:concept-docs:querying-your-data.adoc[Discover SQL++] -- our SQL-family querying language.
 * Explore some of the xref:project-docs:third-party-integrations.adoc[third party integrations] with Couchbase and the {name_platform} SDK, across the {name_platform} ecosystem.
 
 

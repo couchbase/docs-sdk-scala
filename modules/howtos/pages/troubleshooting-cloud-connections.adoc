@@ -19,8 +19,12 @@ include::{version-common}@sdk:pages:partial$troubleshooting-cloud-connections.ad
 +
 [source,scala]
 ----
-include::devguide:example$scala/Cluster.scala[tag=cloud-cluster-insecure,indent=0]
+    val env: ClusterEnvironment = ClusterEnvironment.builder
+      .securityConfig(SecurityConfig()
+        .trustManagerFactory(InsecureTrustManagerFactory.INSTANCE))
+      .build
+      .get
 ----
 +
 _This is not a secure connection._
-_It is only suitable for debugging purposes, and should not be used in production._
+_It is only suitable for debugging purposes, and *should not be used in production*._

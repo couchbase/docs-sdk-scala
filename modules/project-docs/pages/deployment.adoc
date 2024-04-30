@@ -41,10 +41,18 @@ The {name-sdk} docs note whenever a shortcut is being taken, but here is a non-e
 * Skipping certificate verification
 // * more
 
-The best way to accomodate developing an application that is to be deployed to production is to use the platform's default approach for configuration files.
+The best way to accommodate developing an application that is to be deployed to production is to use the platform's default approach for configuration files.
 
 For the Scala SDK, that is to keep a separate properties file for your development and production environments.
 
+
+
+
+// == Migration
+// 
+// This section also contains information on xref:migrating-sdk-code-to-3.n.adoc[migrating from the previous version of the SDK API].
+// 
+// :migration-link: for 4.x pages??
 
 
 == Further Reading
@@ -66,6 +74,3 @@ For the Scala SDK, that is to keep a separate properties file for your developme
 *** xref:{version-server}@server:cloud:couchbase-aws-marketplace.adoc[AWS Marketplace]
 *** xref:{version-server}@server:cloud:couchbase-azure-marketplace.adoc[Azure Marketplace]
 *** xref:{version-server}@server:cloud:couchbase-gcp-cloud-launcher.adoc[GCP Marketplace]
-
-
-// This section also contains information on xref:migrating-sdk-code-to-3.n.adoc[migrating from the previous version of the SDK API].

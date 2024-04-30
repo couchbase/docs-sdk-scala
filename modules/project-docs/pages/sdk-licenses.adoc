@@ -6,7 +6,7 @@ Dependencies carry their own licenses.
 [abstract]
 {description}
 
-The Couchbase Scala Client is distributed as source under the https://www.apache.org/licenses/LICENSE-2.0[Apache License, Version 2.0].
+The Couchbase {name_platform} Client is distributed as source under the https://www.apache.org/licenses/LICENSE-2.0[Apache License, Version 2.0].
 
 
 == Binary Distribution
@@ -20,3 +20,12 @@ Binary distributions are made under Couchbase's own license agreements.
 == Dependencies
 
 Any dependencies may have their https://www.couchbase.com/legal/agreements#ThirdPartyComponents[own, separate licenses].
+
+
+== Documentation License
+
+This documentation is copyright Couchbase Inc.
+The docs' source is licensed under the Creative Commons https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en[CC-by-NC-SA^] license,
+see https://github.com/couchbase/docs-sdk-scala/blob/release/{sdk_dot_minor}/LICENSE[https://github.com/couchbase/docs-sdk-scala/blob/release/{sdk_dot_minor}/LICENSE].
+
+// It's painful to keep mis-spelling licence!

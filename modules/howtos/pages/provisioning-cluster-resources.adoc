@@ -143,6 +143,10 @@ You can create users with the appropriate RBAC programmatically:
 include::devguide:example$scala/CollectionManagerExample.scala[tag=scopeAdmin, indent=0]
 ----
 
+
+// see also https://issues.couchbase.com/browse/CBSE-16834 
+
+
 == Index Management
 
 include::{version-common}@sdk:shared:partial$flush-info-pars.adoc[tag=index-management-intro]
@@ -213,6 +217,9 @@ include::devguide:example$scala/QueryIndexManagerExample.scala[tag=drop-primary-
 
 
 == Eventing Management
+
+// some SDKs (PHP, Ruby, Kotlin, C++) because they don't currently have any eventing management. 
+
 
 ////
 https://issues.couchbase.com/browse/CBD-4930
