@@ -99,9 +99,6 @@ Any client setting with a system property name may also be specified as a connec
 
 WARNING: When creating a `Cluster` using a custom `ClusterEnvironment`, *_connection string parameters are ignored_*, since client settings are frozen when the cluster environment is built.
 
-A connection string may optionally be prefixed by either `"couchbase://"` or `"couchbases://"`, although the Scala SDK completely ignores this prefix if present.
-If you wish to use TLS, the `ClusterEnvironment` must be configured as described in <<ssl>>.
-
 
 === Cluster Environment
 
@@ -244,7 +241,7 @@ The SDK includes the certificate for Capella.
 // [use your own certificate], 
 // or be
 If you are working with a self-managed Couchbase cluster,
-add the certificate with::
+add the certificate with:
 
 [source,scala]
 ----
