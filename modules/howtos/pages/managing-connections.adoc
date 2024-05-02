@@ -281,13 +281,6 @@ NOTE: Any TLS certificates must be set up at the point where the connections are
 
 // DNS-SRV
 
-
-
-
-// DNS SRV ?
-
-
-////
 include::{version-common}@sdk:shared:partial$dnssrv-pars.adoc[tag=dnssrv]
 
 DNS SRV bootstrapping is enabled by default in the {name-sdk).
@@ -392,4 +385,3 @@ include::devguide:example$scala/ManagingConnections.scala[tag=reactive,indent=0]
 == Next Steps
 
 xref:secure-connections.adoc[Certificate Authentication] 
-
