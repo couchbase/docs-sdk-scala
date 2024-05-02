@@ -14,25 +14,11 @@
 
 [abstract]
 {description}
-It contains best practices as well as information on TLS/SSL and advanced connection options, and a sub-page on troubleshoting Cloud connections.
+It contains best practices as well as information on TLS/SSL and advanced connection options, and a sub-page on troubleshooting Cloud connections.
 
 
 Our xref:hello-world:start-using-sdk[Getting Started pages] cover the basics of making a connection to a Capella or self-managed Couchbase cluster.
 This page is a wider look at the topic.
-
-
-////
-Connecting - and WaitUntilReady
-
-
-
-
-
-
-
-////
-
-
 
 
 == Connecting to a Cluster
@@ -45,7 +31,7 @@ include::devguide:example$scala/ManagingConnections.scala[tag=imports,indent=0]
 ----
 
 A connection to a Couchbase Server cluster is represented by a `Cluster` object.
-A `Cluster` provides access to Buckets, Scopes, and Collections, as well as various Couchbase services and management interfaces.
+A `Cluster` provides access to buckets, scopes, and collections, as well as various Couchbase services and management interfaces.
 The simplest way to create a `Cluster` object is to call `Cluster.connect()` with a <<connection-strings, connection string>>, username, and password:
 
 [source,scala]
@@ -65,7 +51,7 @@ TIP: You don't need to include the address of every node in the cluster.
 The client fetches the full address list from the first node it is able to contact.
 
 
-== Waiting for Bootstrap Completion
+=== Waiting for Bootstrap Completion
 
 Opening resources is asynchronous.
 That is, the call to `cluster.bucket` or `Cluster.connect` will complete instantly, and opening that resource will continue in the background.
@@ -86,7 +72,7 @@ this is xref:project-docs:compatibility.adoc#network-requirements[not recommende
 See the <<working-in-the-cloud,Cloud section>> below for some suggestions of settings adjustments.
 
 
-== Connection Strings
+=== Connection Strings
 
 A Couchbase connection string is a comma-delimited list of IP addresses and/or hostnames, optionally followed by a list of parameters.
 
@@ -117,7 +103,7 @@ A connection string may optionally be prefixed by either `"couchbase://"` or `"c
 If you wish to use TLS, the `ClusterEnvironment` must be configured as described in <<ssl>>.
 
 
-== Cluster Environment
+=== Cluster Environment
 
 A `ClusterEnvironment` manages shared resources like thread pools, timers, and schedulers.
 It also holds the client settings.
@@ -136,7 +122,7 @@ TIP: If you create a `Cluster` without specifying a custom environment, the clie
 This default `ClusterEnvironment` is managed completely by the Scala SDK, and is automatically shut down when the associated `Cluster` is disconnected.
 
 
-== Connection Lifecycle
+=== Connection Lifecycle
 
 Most of the high-level classes in the Scala SDK are designed to be safe for concurrent use by multiple threads.
 You will get the best performance if you share and reuse instances of `ClusterEnvironment`, `Cluster`, `Bucket`, `Scope`, and `Collection`, all of which are thread-safe.
@@ -148,7 +134,7 @@ Before your application stops, gracefully shut down the client by calling the `d
 If you created any `ClusterEnvironment` instances, call their `shutdown()` method after disconnecting the associated clusters.
 
 [#multiple-clusters]
-== Connecting to Multiple Clusters
+=== Connecting to Multiple Clusters
 
 If a single application needs to connect to multiple Couchbase Server clusters, we recommend creating a single `ClusterEnvironment` and sharing it between the `Clusters`.
 We will use a for-comprehension here to avoid excessive `Try` juggling.
@@ -162,32 +148,7 @@ Remember, whenever you manually create a `ClusterEnvironment` like this, the SDK
 Instead you are responsible for shutting it down after disconnecting all clusters that share the environment.
 
 
-== Alternate Addresses and Custom Ports
-
-If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT'd environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster.
-Both the client and server require special configuration in this case.
-
-On the server side, each server node must be configured to advertise its external address as well as any custom port mapping.
-This is done with the https://docs.couchbase.com/server/6.5/cli/cbcli/couchbase-cli-setting-alternate-address.html[`setting-alternate-address` CLI command] introduced in Couchbase Server 6.5.
-A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
-
-On the client side, the externally visible ports must be used when connecting.
-If the external ports are not the default, you can specify custom ports using the overloaded `Cluster.connect()` method that takes a set of `SeedNode` objects instead of a connection string.
-
-[source,scala]
-----
-include::devguide:example$scala/ManagingConnections.scala[tag=seed-nodes,indent=0]
-----
-
-TIP: In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service.
-A custom manager port may be specified regardless of which services are running on the node.
-
-In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses.
-If the detection heuristic fails in your environment, you can override it by setting the `io.networkResolution` client setting to `default` if the client and server are on the same network, or `external` if they're on different networks.
-
-NOTE: Any TLS certificates must be set up at the point where the connections are being made.
-
-
+[#ssl]
 == Secure Connections
 
 Both Couchbase Capella, and the
@@ -292,6 +253,69 @@ ClusterEnvironment env = ClusterEnvironment.builder()
 ----
 
 
+== Alternate Addresses and Custom Ports
+
+If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT'd environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster.
+Both the client and server require special configuration in this case.
+
+On the server side, each server node must be configured to advertise its external address as well as any custom port mapping.
+This is done with the https://docs.couchbase.com/server/6.5/cli/cbcli/couchbase-cli-setting-alternate-address.html[`setting-alternate-address` CLI command] introduced in Couchbase Server 6.5.
+A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
+
+On the client side, the externally visible ports must be used when connecting.
+If the external ports are not the default, you can specify custom ports using the overloaded `Cluster.connect()` method that takes a set of `SeedNode` objects instead of a connection string.
+
+[source,scala]
+----
+include::devguide:example$scala/ManagingConnections.scala[tag=seed-nodes,indent=0]
+----
+
+TIP: In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service.
+A custom manager port may be specified regardless of which services are running on the node.
+
+In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses.
+If the detection heuristic fails in your environment, you can override it by setting the `io.networkResolution` client setting to `default` if the client and server are on the same network, or `external` if they're on different networks.
+
+NOTE: Any TLS certificates must be set up at the point where the connections are being made.
+
+
+// DNS-SRV
+
+
+
+
+// DNS SRV ?
+
+
+////
+include::{version-common}@sdk:shared:partial$dnssrv-pars.adoc[tag=dnssrv]
+
+DNS SRV bootstrapping is enabled by default in the {name-sdk).
+In order to make the SDK use the SRV records, you need to pass in the hostname from your records (here `example.com`):
+
+[source,scala]
+----
+include::devguide:example$scala/ManagingConnections.scala[tag=dnssrv,indent=0]
+----
+
+If the DNS SRV records could not be loaded properly you'll get the exception logged and the given host name will be used as a A record lookup.
+
+----
+WARNING: DNS SRV lookup failed, proceeding with normal bootstrap.
+javax.naming.NameNotFoundException: DNS name not found [response code 3];
+   remaining name '_couchbase._tcp.example.com'
+	at com.sun.jndi.dns.DnsClient.checkResponseCode(DnsClient.java:651)
+	at com.sun.jndi.dns.DnsClient.isMatchResponse(DnsClient.java:569)
+----
+
+Also, if you pass in more than one node, DNS SRV bootstrap will not be initiated:
+
+----
+INFO: DNS SRV enabled, but less or more than one seed node given.
+Proceeding with normal bootstrap.
+----
+
+
 == Cloud Native Gateway
 
 
@@ -322,40 +346,6 @@ There are some different behaviors seen with this protocol:
 * Some error codes are more generic -- in cases where the client would not be expected to need to take specific action -- but should cause no problem, unless you have written code looking at individual strings within the error messages.
 * Although documents continue to be stored compressed by Couchbase Server, they will not be transmitted in compressed form (to and from the client) over the wire, using `couchbase2://`.
 
-
-
-
-// DNS SRV enabled by default?
-
-
-////
-include::{version-common}@sdk:shared:partial$dnssrv-pars.adoc[tag=dnssrv]
-
-DNS SRV bootstrapping is available in the Scala SDK from version 1.0.1.
-In order to make the SDK use the SRV records, you need to enable DNS SRV on the environment and pass in the hostname from your records (here `example.com`):
-
-[source,scala]
-----
-include::devguide:example$scala/ManagingConnections.scala[tag=dnssrv,indent=0]
-----
-
-If the DNS SRV records could not be loaded properly you'll get the exception logged and the given host name will be used as a A record lookup.
-
-----
-WARNING: DNS SRV lookup failed, proceeding with normal bootstrap.
-javax.naming.NameNotFoundException: DNS name not found [response code 3];
-   remaining name '_couchbase._tcp.example.com'
-	at com.sun.jndi.dns.DnsClient.checkResponseCode(DnsClient.java:651)
-	at com.sun.jndi.dns.DnsClient.isMatchResponse(DnsClient.java:569)
-----
-
-Also, if you pass in more than one node, DNS SRV bootstrap will not be initiated:
-
-----
-INFO: DNS SRV enabled, but less or more than one seed node given.
-Proceeding with normal bootstrap.
-----
-////
 
 include::{version-common}@sdk:shared:partial$managing-connections.adoc[tag=cloud]
 
@@ -397,3 +387,9 @@ Here's the same example, but using the Reactive API instead of the Async API:
 ----
 include::devguide:example$scala/ManagingConnections.scala[tag=reactive,indent=0]
 ----
+
+
+== Next Steps
+
+xref:secure-connections.adoc[Certificate Authentication] 
+

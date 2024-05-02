@@ -2,6 +2,7 @@
 // :page-aliases: ROOT:getting-started.adoc,ROOT:start-using.adoc,ROOT:hello-couchbase.adoc,ROOT:start-using-sdk.adoc
 :page-toclevels: 3
 :description: Install, connect, try. A quick start guide to get you up and running with Couchbase and the {name-sdk}.
+:forum-link: https://www.couchbase.com/forums/c/scala-sdk/37
 :page-partial:
 
 // Note to editors
@@ -279,7 +280,8 @@ client has not yet completed bootstrapping (connecting to the cluster, getting t
 ////
 
 
-`waitUntilReady` is an optional call.
+`waitUntilReady` is an optional call,
+but it is good practice to use it.
 Opening resources such as buckets is asynchronous --
 that is, the `cluster.bucket` call returns immediately and proceeds in the background.
 `waitUntilReady` ensures that the bucket resource is fully loaded before proceeding.
@@ -352,7 +354,7 @@ and then accessing the value of the *status* key as a String.
 ==== Better Error Handling
 
 All three of these operations could fail, so there's quite a lot of error handling code here to do something quite simple.
-One way to improve on this is by using flatMap, like this:
+One way to improve on this is by using `flatMap`, like this:
 
 [source,scala]
 ----
@@ -413,16 +415,15 @@ You get to decide what it means to "belong."
 Developers usually put documents of the same type in the same collection.
 
 For example, imagine you have two types of documents: customers and invoices. 
-You could put the customer documents in a collection called customers`, and the invoice documents in a collection called `invoices`.
+You could put the customer documents in a collection called `customers`, and the invoice documents in a collection called `invoices`.
 
 Each document belongs to exactly one collection. 
 A document’s ID is unique _within_ the collection.
 
 Different scopes can hold collections with different names. 
 There is no relationship between collections in different scopes.
-
-Each collection belongs to just one scope. 
-A collection’s name is unique within the scope.
+Each collection belongs to just one scope and
+a collection’s name is unique within the scope.
 
 
 More details can be found on the xref:concept-docs.data-model.adoc[Data Model page].
@@ -442,8 +443,8 @@ both
 === Help and Troubleshooting
 
 * xref:howtos:troubleshooting-cloud-connections.adoc[Troubleshooting common network problems].
-* https://www.couchbase.com/forums/c/scala-sdk/37[Help forum].
-* https://discord.com/channels/915294689681362954/955424070076338177[Discord channel].
+* {forum-link}[Help forum].
+* https://discord.com/channels/915294689681362954/1217642561645318194[Discord channel].
 * Read the xref:howtos:error-handling.adoc[error handling page].
 * xref:cloud:get-started:capella-iq/get-started-with-iq.adoc#generate-sdk-code-preview[Get help from Couchbase iQ].
 
