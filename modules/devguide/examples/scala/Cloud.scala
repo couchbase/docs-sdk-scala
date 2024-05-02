@@ -69,9 +69,6 @@ object Cloud {
     // end::bucket[]
 
     // tag::collection[]
-    // get a reference to the default collection, required for Couchbase server 6.5 or earlier
-    // val collection = bucket.defaultCollection
-
     val collection = bucket.scope("inventory").collection("airport")
     // end::collection[]
 
