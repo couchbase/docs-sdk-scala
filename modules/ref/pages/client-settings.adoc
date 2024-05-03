@@ -600,6 +600,10 @@ You are responsible for stopping it after it is no longer needed.
 
 include::{version-common}@sdk:shared:partial$client-settings-wide-network.adoc[]
 
+// split out WaitUntilReady?
+// (as not in Node.js)
+
+
 == Configuration Profiles
 
 Configuration Profiles provide predefined client settings that allow you to quickly configure an environment for common use-cases.
