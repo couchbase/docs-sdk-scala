@@ -7,6 +7,11 @@
 [abstract]
 {description}
 
+
+// add scoring note on https://docs.couchbase.com/server/current/release-notes/relnotes.html#known-issues-761 
+
+
+
 Full Text Search or FTS allows you to create, manage, and query full text indexes on JSON documents stored in Couchbase buckets.
 It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches.
 Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries.

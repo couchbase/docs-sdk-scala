@@ -9,7 +9,7 @@
 // This page pulls in content from -sdk-common-
 // and code samples from -example-dir-
 // 
-// It can be seen built at wwww.
+// It can be seen built at https://docs.couchbase.com/scala-sdk/1.6/ref/index.html
 
 [abstract]
 {description}

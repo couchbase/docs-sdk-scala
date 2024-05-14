@@ -20,7 +20,6 @@ Couchbase also offers fuzzy search, including Vector Search.
 // remember - inventory scope ;)
 
 The data service stores your documents, but is the best route to retrieving them?
-// You want to query your data, but does that always mean a {sqlpp} query to the Data Service?
 
 {sqlpp} is a familiar language, and an easy way for anyone familiar with Relational Databases (RDBMS) to work with documents stored in Couchbase --
 if you're sure that's the service that you want, jump to our xref:howtos:sqlpp-queries-with-sdk.adoc[Query Howto doc].
@@ -36,7 +35,7 @@ xref:{version-server}@server:n1ql:n1ql-language-reference/searchfun.adoc[Search 
 .{sqlpp} or CRUD API?
 [TIP]
 ====
-Maybe you'd prefer to retrieve whole documents and work on them as objects in {name_platform}, or do this after running just a few queries, reducing the number of Query and Index service nodes you need on your Capella (or self-managed) cluster.
+Maybe you'd prefer to retrieve whole documents and work on them as objects in {name_platform}, or do this after running just a few queries, reducing the number of Query and Index Service nodes you need on your Capella (or self-managed) cluster.
 Whether you go through the Data Service, or Query, you'll find that both follow the typical DML (Data Manipulation Language) patterns that you encounter in the relational database world.
 See the xref:data-durability-acid-transactions.adoc[Data Service section] for information on CRUD with the Data Service, with its fast binary protocol.
 ====
@@ -51,14 +50,24 @@ How you combine the Data Service and {sqlpp} should depend on your use case, but
 
 Couchbase offers a choice of:
 
-* Capella Columnar (currently in private preview) for real-time analytics, with data stored elsewhere in your data lake.
-* Couchbase Analytics Service (CBAS) for traditional data analytics.
+* https://info.couchbase.com/CapellaColumnar_Private_Preview_SignUp_LP.html[Capella Columnar (currently in private preview)] for real-time analytics, with data stored elsewhere in your data lake.
+* xref:howtos:analytics-using-sdk.adoc[Couchbase Analytics Service (CBAS)] for traditional data analytics.
 
-Both use the {sqlpp} query language.
+Both use versions of the {sqlpp} query language.
 
 
 === Search 
 
+Fuzzy search with text or a variety of other data:
+
+* <<vector-search,Vectors>> 
+* Structured or unstructured text
+* Dates
+* Numbers
+* CIDR notation
+* Geospatial data 
+
+Searches use indexes created against data at the Scope or the budket level.
 
 
 === Vector Search
@@ -71,7 +80,7 @@ You can also enable full access to an AI ecosystem with a Langchain integration,
 // From 7.6.2, you can 
 
 Read more in our xref:{version-server}@server:vector-search:vector-search.adoc[Vector Search documentation],
-or dive in and try it xref:howtos:vector-searching-with-sdk.adoc[with the {name-sdk}].
+or dive in and try xref:howtos:vector-searching-with-sdk.adoc[Vector Search with the {name-sdk}].
 
 
 
@@ -119,7 +128,7 @@ The binary protocol used is far quicker than streaming JSON with the Query Servi
 If you know the path to the piece of information that you need within a JSON document, then xref:howtos:subdocument-operations.adoc[Sub-Document operations] will not only retrieve the information more quickly, but will reduce the amount of data that needs to be sent over the network.
 
 
-== Range Scan
+=== Range Scan
 
 From version 7.6 of self-managed Couchbase Server
  -- and the current Capella --
@@ -165,7 +174,7 @@ Documentation including API reference should use the following text: "Use this A
 
 // index  ^
 
-== Query
+== Query & Index
 
 // e N1QL (Non-First Normal Form Query Language)
 // and link book?
@@ -175,13 +184,17 @@ Combining semi-flexible schema with SQL works well in a lot of use cases, but do
 See the xref:ref:which-data-service.adoc[service selection doc] for key consideration points in selecting which service to work with to get the best performance with your data, summarised in a handy table form.
 
 
-+ index - or not!
+=== Index
 
-////
+====
 There are three things important in database systems: performance, performance, performance.
-Creating the right index, with the right keys, right order, and right expression is critical to query
-performance in any database system. That’s true for Couchbase as well.
-////
+====
+
+Creating the right index, with the right keys, right order, and right expression is critical to query performance in any database system.
+That’s true for Couchbase as well.
+
+
+
 
 GSI & MOI GSI
 // B-Tree index - Still ForestDB on CE??

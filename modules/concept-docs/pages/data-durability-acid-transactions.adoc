@@ -16,6 +16,10 @@
 [abstract]
 {description}
 
+
+You want to query your data, but does that always mean a {sqlpp} query to the Data Service?
+The CRUD API of the {sqlpp} Query service is mirrored by the Data Service's API, but without the need for indexes, and with faster access than streaming JSON from the Query Service, over a binary protocol.
+
 [source,scala]
 ----
 collection.remove("document-key2", durability = Durability.Majority) match {

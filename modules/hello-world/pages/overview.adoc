@@ -26,6 +26,9 @@ xref:project-docs:sdk-release-notes.adoc[] |
 {sdk-api-link}[{name-sdk} API Reference]
 
 
+What's the point of a fast and scalable database if it's not easy to develop for?
+Couchbase gives you the {name_platform} APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
+
 
 [{tabs}] 
 ==== 
@@ -68,9 +71,6 @@ val result: Try[SearchResult] = scope.search("vector-index", request)
 --
 ====
 
-
-What's the point of a fast and scalable database if it's not easy to develop for?
-Couchbase gives you the {name_platform} APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
 
 Couchbase is a large platform -- covering many services -- and Couchbase SDKs are not thin wrappers generated around a REST API, but well thought out interfaces to the platform that make it easier to design and maintain your client code,
 and work with Couchbase in more natural ways for your platform.

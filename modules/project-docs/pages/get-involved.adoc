@@ -12,12 +12,3 @@ The https://github.com/couchbase/couchbase-jvm-clients/tree/master/scala-client[
 Please see the https://github.com/couchbase/couchbase-jvm-clients/blob/master/README.md[README^] file for further information.
 
 include::{version-common}@sdk:shared:partial$contrib.adoc[tag=contrib]
-////
-== Other Ways to Contribute
-
-* Join the discussion in our https://forums.couchbase.com/[forum] and on our 
-// https://discord.com/channels/915294689681362954/1217642561645318194
- https://discord.com/invite/sQ5qbPZuTh[Discord server].
-
-* Improve the documentation -- https://docs.couchbase.com/home/contribute/index.html[bug reports and pull requests are welcome].
-////
