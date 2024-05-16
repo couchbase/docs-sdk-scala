@@ -1,13 +1,9 @@
+:cert-link: project-docs:sdk-release-notes.adoc#version-1-3-0-26-april-2022
 include::{version-common}@sdk:pages:partial$troubleshooting-cloud-connections.adoc[]
 
 
-== Additional Steps
+// Additions to additional steps - scala-specific:
 
-* Check your IP is whitelisted in the https://docs.couchbase.com/cloud/index.html[Couchbase Capella] UI as an Allowed IP (make sure to hit Save after adding it).
-* That you are using "couchbases://<hostname>" as your connection string, to allow DNS SRV.
-* That you have downloaded the Capella cluster's Security Certificate and supplied it via `trustCertificate`.
-* That you have enabled TLS via `enableTls(true)`.
-* That the user you are connecting as has been created in Capella and has correct permissions for the bucket you are connecting to.
 * The SDK logging should give some indication as to what's failing. 
   In particular, check if the DNS SRV lookup is successful. 
   It will look something like:
@@ -15,7 +11,7 @@ include::{version-common}@sdk:pages:partial$troubleshooting-cloud-connections.ad
 ----
 [ INFO] (cb-events) [com.couchbase.core][DnsSrvRecordsLoadedEvent][2086ms] Loaded seed hosts from DNS SRV: [cb-0000.<hostname>, cb-0001.<hostname>, cb-0002.<hostname>]
 ----
-* You can determine if the certificate is the cause of the connection issues by disabling certificate validation with this alternative `ClusterEnvironment` configuration:
+* You can determine if the certificate is the cause of the connection issues by *temporarily* disabling certificate validation with this alternative `ClusterEnvironment` configuration:
 +
 [source,scala]
 ----

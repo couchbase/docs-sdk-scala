@@ -39,3 +39,9 @@ and https://github.com/couchbaselabs/flink-connector-couchbase[Apache Flink^].
 include::{version-common}@sdk:shared:partial$integrations.adoc[tag=other]
 
 https://docs.databricks.com/data/data-sources/couchbase.html[Databricks^] provides integration with the Couchbase Scala SDK and Spark.
+
+
+== See Also
+
+Couchbase Server (Capella or self-managed) offers many partner and community integrations --
+the xref:cloud:third-party:integrations.adoc[] page contains a full listing.

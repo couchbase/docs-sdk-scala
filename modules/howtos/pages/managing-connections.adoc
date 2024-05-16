@@ -149,7 +149,7 @@ Instead you are responsible for shutting it down after disconnecting all cluster
 == Secure Connections
 
 Both Couchbase Capella, and the
-xref:{version-server}@server:introduction:editions.adoc#enterprise-edition[Enterprise Edition of self-managed Couchbase Server],
+xref:{version-server}@server:introduction:editions.adoc#enterprise-edition[Enterprise Edition] of self-managed Couchbase Server,
  support full encryption of client-side traffic using Transport Layer Security (TLS).
 That includes data (key-value type) operations, queries, and configuration communication.
 Make sure you have the Enterprise Edition of Couchbase Server, or a Couchbase Capella account, before proceeding with configuring encryption on the client side.
@@ -280,7 +280,7 @@ NOTE: Any TLS certificates must be set up at the point where the connections are
 
 include::{version-common}@sdk:shared:partial$dnssrv-pars.adoc[tag=dnssrv]
 
-DNS SRV bootstrapping is enabled by default in the {name-sdk).
+DNS SRV bootstrapping is enabled by default in the {name-sdk}.
 In order to make the SDK use the SRV records, you need to pass in the hostname from your records (here `example.com`):
 
 [source,scala]
@@ -337,6 +337,8 @@ There are some different behaviors seen with this protocol:
 * Although documents continue to be stored compressed by Couchbase Server, they will not be transmitted in compressed form (to and from the client) over the wire, using `couchbase2://`.
 
 
+== Working in the Cloud
+
 include::{version-common}@sdk:shared:partial$managing-connections.adoc[tag=cloud]
 
 
@@ -381,4 +383,4 @@ include::devguide:example$scala/ManagingConnections.scala[tag=reactive,indent=0]
 
 == Next Steps
 
-xref:secure-connections.adoc[Certificate Authentication] 
+* xref:secure-connections.adoc[Certificate Authentication] 

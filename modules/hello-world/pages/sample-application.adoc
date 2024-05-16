@@ -7,6 +7,19 @@
 
 // include::project-docs:partial$attributes.adoc[]
 
+
+
+////
+For 1.7:
+https://github.com/couchbase-examples/scala-quickstart
+
+use some of https://developer.couchbase.com/tutorial-quickstart-scala-webservers ?
+
+point back to the previous version (Travel Sample) as an alternate version??
+////
+
+
+
 include::{version-common}@sdk:shared:partial$sample-application.adoc[tag=abstract]
 
 include::{version-common}@sdk:shared:partial$sample-application.adoc[tag=quick-start]

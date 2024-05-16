@@ -28,4 +28,5 @@ Information on using MapReduce Views with the SDK can still be accessed in our h
 
 Views are the only service which does not benefit from xref:{version-server}@server:learn:services-and-indexes/services/services.adoc#services-and-multi-dimensional-scaling[Multi-Dimensional Scaling],
 and is rarely the best choice over, say, xref:howtos:sqlpp-queries-with-sdk.adoc[our Query service] if you are starting a fresh application.
-See our discussion document on xref:concept-docs:querying-your-data.adoc[the best service for you to use] to query your data.
+See our discussion document on xref:concept-docs:querying-your-data.adoc[the best service for your use case] for querying your data.
+

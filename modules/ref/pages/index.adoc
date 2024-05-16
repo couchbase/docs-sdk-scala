@@ -17,8 +17,9 @@
 
 This section contains the following reference docs:
 
-* {sdk-api-link}[API Reference]
-* xref:ref:error-codes.adoc[]
+* {sdk-api-link}[API Reference^]
+* xref:ref:client-settings.adoc[]
+* xref:ref:error-codes.adoc[Error Code Reference]
 * xref:ref:glossary.adoc[Glossary]
 * xref:ref:travel-app-data-model.adoc[]
 
@@ -33,7 +34,8 @@ These are interspersed with the howto guides --
 but the complete set of discussion docs for the SDK is listed and linked below:
 
 
-// * xref[Overview]
+// TODO - put this in a better order.
+
 * xref:concept-docs:buckets-and-clusters.adoc[Buckets & Clusters]
 * xref:concept-docs:collections.adoc[Collections & Scope]
 * xref:concept-docs:compression.adoc[Compression]
@@ -56,7 +58,7 @@ but the complete set of discussion docs for the SDK is listed and linked below:
 ** xref:concept-docs:certificate-based-authentication.adoc[Cert Auth]
 ** xref:concept-docs:rbac.adoc[RBAC]
 
-+
+// +
 
 * xref:concept-docs:data-durability-acid-transactions.adoc[Data Modelling, Durability, and Consistency]
 
@@ -68,15 +70,16 @@ but the complete set of discussion docs for the SDK is listed and linked below:
 
 * xref:concept-docs:management-api.adoc[Managing Couchbase]
 
-?
+
 * xref:project-docs:deployment.adoc[SDK Deployment]
-?
 
 
 
 
 
+////
 External links.
 
 Discussion / Concept /  Understanding
 docs.
+////
