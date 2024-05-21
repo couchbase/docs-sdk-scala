@@ -21,7 +21,7 @@ Couchbase also offers fuzzy search, including Vector Search.
 
 The data service stores your documents, but is the best route to retrieving them?
 
-{sqlpp} is a familiar language, and an easy way for anyone familiar with Relational Databases (RDBMS) to work with documents stored in Couchbase --
+{sqlpp} is a SQL-family language, and an easy way for anyone familiar with Relational Databases (RDBMS) to work with documents stored in Couchbase --
 if you're sure that's the service that you want, jump to our xref:howtos:sqlpp-queries-with-sdk.adoc[Query Howto doc].
 
 
@@ -51,7 +51,7 @@ How you combine the Data Service and {sqlpp} should depend on your use case, but
 Couchbase offers a choice of:
 
 * https://info.couchbase.com/CapellaColumnar_Private_Preview_SignUp_LP.html[Capella Columnar (currently in private preview)] for real-time analytics, with data stored elsewhere in your data lake.
-* xref:howtos:analytics-using-sdk.adoc[Couchbase Analytics Service (CBAS)] for traditional data analytics.
+* xref:howtos:analytics-using-sdk.adoc[Couchbase Analytics Service (CBAS)] for traditional data analytics against your operational database.
 
 Both use versions of the {sqlpp} query language.
 

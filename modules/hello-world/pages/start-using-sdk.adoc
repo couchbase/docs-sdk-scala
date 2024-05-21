@@ -66,7 +66,7 @@ and remember the credentials for the user that you set up.
 Self-Managed Couchbase Server::
 +
 --
-You may want to look at one of the self-managed installation options:
+Install Couchbase Server locally, or in your private Cloud:
 
 * xref:{version-server}@server:install:get-started.adoc[Deployment overview]
 * xref:{version-server}@server:install:getting-started-docker.adoc[Docker Install]
@@ -77,6 +77,8 @@ You may want to look at one of the self-managed installation options:
 ** xref:{version-server}@server:cloud:couchbase-aws-marketplace.adoc[AWS Marketplace]
 ** xref:{version-server}@server:cloud:couchbase-azure-marketplace.adoc[Azure Marketplace]
 ** xref:{version-server}@server:cloud:couchbase-gcp-cloud-launcher.adoc[GCP Marketplace]
+
+For the example code below to run, you'll need the username and password of the Administrator user that you create, and the IP address of at least one of the nodes of the cluster.
 --
 ====
 
