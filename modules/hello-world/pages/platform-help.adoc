@@ -74,7 +74,8 @@ You can see the commands available with `:help`, and leave the REPL any time wit
 
 === Quick Intro to Scala
 
-Just enter `6 * 7` to see that everything is working fine (you should see the result returned:
+Just enter `6 * 7` to see that everything is working fine.
+You should see the result returned:
 
 [source,scala]
 ----
@@ -127,8 +128,20 @@ Here we will use SBT:
 $ sdk install sbt
 ----
 
+You can start SBT and run an interactive session.
+First change dirctory to an empty folder, then run:
+
+[source,console]
+----
+$ sbt 
+----
+
+SBT will take a while to start up as it upgrades various things for you and builds a new project.
+
 
 == Running Your Project
+
+
 
 [source,sbt,subs="+attributes"]
 ----
@@ -145,3 +158,11 @@ some intermediate steps....
 ----
 $ sbt run
 ----
+
+
+
+
+
+== Further Reading
+
+* The scala-sbt.org[Scala SBT site].

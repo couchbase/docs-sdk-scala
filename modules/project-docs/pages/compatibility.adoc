@@ -74,7 +74,7 @@ M1 ARM  architecture is fully supported in the Scala SDK.
 [discrete]
 === ARM Processor Support
 
-AWS Amazon Graviton2, Apple M1 ARM processors, and ARMv8 on Ubuntu 20.04+ (from SDK 1.4).
+ARM64: support for ARMv8 CPUs, such as the Amazon Graviton series and Apple M1 ARM processors.
 ****
 
 The JVM SDKs should also be expected to run on other commonly-available GNU/Linux distributions which support an appropriate JDK, but not all combinations can be tested -- notable exceptions are listed below.
@@ -152,11 +152,13 @@ See the notes there for Support details.
 
 === Capella Compatibility
 
-The Couchbase Scala SDK is fully compatible with Couchbase Capella, our fully-hosted database-as-a-service.
+The Couchbase {name_platform} SDK is fully compatible with Couchbase Capella, our fully-hosted database-as-a-service.
 To make development easier, the SDK includes the Capella client certificate ready installed.
 
 include::{version-common}@sdk:shared:partial$capella.adoc[tag=cloud]
 
+
+// add in Columnar link
 
 === Couchbase New Feature Availability Matrix
 

@@ -206,7 +206,7 @@ include::devguide:example$scala/Cloud.scala[]
 
 Otherwise, read on as we introduce the CRUD API and connection to Capella or self-managed Couchbase Server.
 
-TIP: There's a *View* link to the complete sample code on GitHub above each of the snippets on the page, and a *Copy* icon to grab just the snippet shown.
+TIP: There's a *View* link to the complete sample code on GitHub above each of the snippets on these SDK pages, and a *Copy* icon to grab just the snippet shown.
 
 
 == Connect to your Database
@@ -428,7 +428,7 @@ Each collection belongs to just one scope and
 a collection’s name is unique within the scope.
 
 
-More details can be found on the xref:concept-docs.data-model.adoc[Data Model page].
+More details can be found on the xref:concept-docs:data-model.adoc[Data Model page].
 // The xref:student-record-developer-tutorial.adoc[Student Records Tutorial] gives an introduction to data modeling in a document database alongside using the {name-sdk}.
 
 
