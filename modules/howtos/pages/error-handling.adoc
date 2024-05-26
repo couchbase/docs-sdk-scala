@@ -1,8 +1,7 @@
 = Handling Errors
-:description: Errors are inevitable.
+:description: Errors are inevitable. Scala offers several flexible approaches to handling them.
+:page-toclevels: 2
 :page-aliases: handling-error-conditions.adoc
-// :source-language: scala
-// :lang: Scala
 
 [abstract]
 {description}
@@ -40,9 +39,13 @@ include::devguide:example$scala/ErrorHandling.scala[tag=key-exists,indent=0]
 ----
 
 === Concurrency
-Couchbase provides optimistic concurrency using CAS.
+
+Couchbase provides optimistic concurrency using CAS (xref:howtos:concurrent-document-mutations.adoc[Compare and Swap]).
 Each document gets a CAS value on the server, which is changed on each mutation.
-When you get a document you automatically receive its CAS value, and when replacing the document, if you provide that CAS the server can check that the document has not been concurrently modified by another agent in-between.  If it has, it returns `CasMismatchException`, and the most appropriate response is to simply retry it:
+When you get a document you automatically receive its CAS value.
+When replacing the document, 
+if you provide that CAS the server can check that the document has not been concurrently modified by another agent in-between.
+If it has, it returns `CasMismatchException`, and the most appropriate response is to simply retry it:
 
 [source,scala]
 ----
@@ -50,10 +53,15 @@ include::devguide:example$scala/ErrorHandling.scala[tag=cas,indent=0]
 ----
 
 === Ambiguity
-There are situations with any distributed system in which it is simply impossible to know for sure if the operation completed successfully or not.
-Take this as an example: your application requests that a new document be created on Couchbase Server.  This completes, but, just before the server can notify the client that it was successful, a network switch dies and the application's connection to the server is lost.  The client will timeout waiting for a response and will raise a `TimeoutException`, but it's ambiguous to the app whether the operation succeeded or not.
 
-So `TimeoutException` is one ambiguous error, another is `DurabilityAmbiguousException`, which can returned when performing a durable operation.  This similarly indicates that the operation may or may not have succeeded: though when using durability you are guaranteed that the operation will either have been applied to all replicas, or none.
+There are situations with any distributed system in which it is simply impossible to know for sure if the operation completed successfully or not.
+Take this as an example: your application requests that a new document be created on Couchbase Server.
+This completes, but, just before the server can notify the client that it was successful, a network switch dies and the application's connection to the server is lost.
+The client will timeout waiting for a response and will raise a `TimeoutException`, but it's ambiguous to the app whether the operation succeeded or not.
+
+Another ambiguous error is `DurabilityAmbiguousException`, which can returned when performing a durable operation.
+This similarly indicates that the operation may or may not have succeeded --
+though when using durability you are guaranteed that the operation will either have been applied to all replicas, or none.
 
 Given the inevitability of ambiguity, how is the application supposed to handle this?
 
@@ -66,9 +74,11 @@ For instance, for inserts, they can simply be retried to see if they fail on `Do
 include::devguide:example$scala/ErrorHandling.scala[tag=insert,indent=0]
 ----
 
-That example is much closer to what an application will want to be doing.  Let's flesh it out further.
+That example is much closer to what an application will want to be doing.
+Let's flesh it out further.
 
 === Real-World Error Handling
+
 The application can write wrappers so that it can easily do operations without having to duplicate the error handling each time.  Something like this:
 
 [source,scala]
@@ -76,23 +86,30 @@ The application can write wrappers so that it can easily do operations without h
 include::devguide:example$scala/ErrorHandling.scala[tag=insert-real,indent=0]
 ----
 
-This will make a 'best effort' to do the insert (though its retry strategy is rather naive, and applications may want to implement a more sophisticated approach involving exponential backoff and circuit breaking.)
+This will make a 'best effort' to do the insert (though its retry strategy is rather naïve, and applications may want to implement a more sophisticated approach involving exponential backoff and circuit breaking.)
 
-If that best effort fails, and the `doInsert` call still returns a `Failure`, then it's highly context-dependent how to handle that.  Examples would include displaying a "please try again later" error to a user, if there is one, and logging it for manual human review.  The application must make a suitable call for each case.
+If that best effort fails, and the `doInsert` call still returns a `Failure`, then it's highly context-dependent how to handle that.
+Examples would include displaying a "please try again later" error to a user, if there is one, and logging it for manual human review.
+The application must make a suitable call for each case.
 
-The application can write similar wrappers for the other operations - replace, upsert et al.
-Note that the logic is a little different in each case: for inserts, we confirm if the operation has already been successful on an ambiguous result by checking for `DocumentExistsException`.  But this wouldn't make sense for an upsert.
+The application can write similar wrappers for the other operations -- replace, upsert, _et al_.
+Note that the logic is a little different in each case:
+for inserts, we confirm if the operation has already been successful on an ambiguous result by checking for `DocumentExistsException`
+But this wouldn't make sense for an upsert.
 
-=== Non-Idempotent Operations
-Idempotent operations are those that can be applied multiple times and only have one effect.  Repeatedly setting an email field is idempotent - increasing a counter by one is not.
+=== Idempotent and Non-Idempotent Operations
 
-Some operations we can view as idempotent as they will fail with no effect after the first success - such as inserts.
+TIP: Idempotent operations are those that can be applied multiple times and only have one effect.
+Repeatedly setting an email field is idempotent -- increasing a counter by one is not.
+
+Some operations we can view as idempotent as they will fail with no effect after the first success -- such as inserts.
 
 Idempotent operations are much easier to handle, as on ambiguous error results (`DurabilityAmbiguousException` and `TimeoutException`) the operation can simply be retried.
 
 Most key-value operations are idempotent.  For those that aren't, such as a Sub-Document `arrayAppend` call, or a counter increment, the application should, on an ambiguous result, first read the document to see if that change was applied.
 
 == Query and Analytics Errors
+
 A {sqlpp} (formerly N1QL) query either returns results or `QueryError`, like so:
 
 [source,scala]
