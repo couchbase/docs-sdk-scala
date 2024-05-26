@@ -28,7 +28,7 @@ The Scala SDK also comes with some convenience functionality for common Couchbas
 Management operations in the SDK may be performed through several interfaces depending on the object:
 
 * {bucket-api-reference}
-* {user-api-reference}
+* {user-api-reference} -- see the xref:sdk-user-management-example.adoc[User Management page]
 * {query-api-reference} 
 * {analytics-api-reference}
 * {search-api-reference}
