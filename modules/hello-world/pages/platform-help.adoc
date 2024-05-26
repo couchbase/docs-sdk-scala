@@ -165,4 +165,4 @@ $ sbt run
 
 == Further Reading
 
-* The scala-sbt.org[Scala SBT site].
+* The https://scala-sbt.org/[Scala SBT site].
