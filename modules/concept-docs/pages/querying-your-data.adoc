@@ -372,11 +372,6 @@ Data can be joined together, and Global Secondary Indexes can be used to speed u
 It’s a powerful and flexible way of querying, retrieving, and updating data, using a familiar language, but if you know the document’s key, then regular KV (or Sub-Doc) operations will always be faster.
 
 
-=== Lowest Latency
-Streaming in a distributed system is complex, and thus we do not make our internal streams and changes feed directly available.
-// Or do we? https://github.com/couchbase/java-dcp-client et al.
-However, it is exposed through use of our xref:2.4@spark-connector::index.adoc[Spark] or xref:3.4@kafka-connector::index.adoc[Kafka] connectors, which give you a high level API to our low level primitives.
-
 
 // not used before:
 === Repeating Expensive Searches

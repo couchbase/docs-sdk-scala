@@ -20,6 +20,7 @@
 You want to query your data, but does that always mean a {sqlpp} query to the Data Service?
 The CRUD API of the {sqlpp} Query service is mirrored by the Data Service's API, but without the need for indexes, and using a binary protocol gives faster access than streaming JSON from the Query Service.
 
+
 [source,scala]
 ----
 collection.remove("document-key2", durability = Durability.Majority) match {
@@ -215,6 +216,26 @@ Instead of talking about maxTTL in terms of documents expiring or not expiring, 
 
 
 === Further Reading
+
+
+
+
+
+This section of the docs covers the Data Service -- Couchbase's key-value document store, the heart of the database -- from the client perspective.
+It addresses:
+
+* Schemas for semi-structured data.
+* The sub-document API for retrieving and modifying only a portion of a document (saving network bandwidth and transmission time).
+* Durability options.
+* Field-Level Encryption.
+* Storing non-JSON documents.
+* & Concurrent Document Mutations.
+
+
+
+
+
+
 
 Below, we link some of the pages in this section that take a deeper dive into data structures, durability guarantees, and ???? --
 but if you are in a hurry to just learn more about querying your data, please skip ahead to xref:concept-docs:querying-your-data.adoc[the next section].
