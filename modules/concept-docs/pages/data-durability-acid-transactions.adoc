@@ -10,7 +10,7 @@
 // This page pulls in content from -sdk-common-
 // and code samples from -example-dir-
 // 
-// It can be seen built at wwww.
+// It can be seen built at http://docs.couchbase.com/scala-sdk/1.6/concept-docs/data-durability-acid-transactions.html
 
 
 [abstract]
@@ -88,63 +88,49 @@ Writes in Couchbase (from the SDK or elsewhere) are written to a single node. Fr
 == Data and Good Schema Design
 
 Each level of durability guarantee carries a price in time to persist to replicas or to disk.
-Transactional guarantees across multiple documents add another layer of performance cost -- something readily bourne when the data is important enough, and justifiably discarded for many categories of transient and unimportant data.
+Transactional guarantees across multiple documents add another layer of performance cost -- something readily borne when the data is important enough, and justifiably discarded for many categories of transient and unimportant data.
 However, many data fall into an intermediate category, and here the atomic consistency decision is made by what's tolerable for read and write times.
-In this case, consider if a tweak to the schema, to bring items into the same document, can give you transactional guarntees without th eperformance penalty of multi-document transactions.
+In this case, consider if a tweak to the schema, to bring items into the same document, can give you transactional guarntees without the performance penalty of multi-document transactions.
 
 Consider, too, that many operations are performed at the _collection_ level, and keeping documents in the same collection can make for speedier indexing and queries -- whether {sqlpp} or Search.
 
-
-// counter argument
-// when it's better to have small docs
-// https://www.couchbase.com/forums/t/single-document-structure-or-multiple-documents-for-user-data/37016 
-
+The Server enforces no schema, enabing evolutionary changes to your data model that reflect changes in the real world.
+The schema-on-read approach allows the client software that you write with the SDK to work with changes to an implicit schema,
+and allows heterogeneous data.
 
 
+=== Objects, Relations, Tables
+
+In the Relational Database (RDBMS) world, a translaton layer is often used between the objects of your data model in your application,
+and the tables that you store the data in.
+JSON storage allows you to store complex types, like nested records and arrays, without decomposing them to a second table
+(known in the SQL world as https://en.wikipedia.org/wiki/Database_normalization[database normalization^]).
+
+When the relational model was proposed, more than 50 years ago, limitations in available computer resources meant that removing data duplication in one-to-many and many-to-many relationships this way made a great deal of sense.
+There is still a case to be made for it for reducing inconsistencies -- the difference with a document database is that you get to choose when to do this.
 
 
+=== Collections and Scopes
 
-A document in Couchbase
+Couchbase's atomic units of data are documents, stored as key-value pairs.
+The value can be anything, but storing in JSON format enables indexing, searching, and many useful ways of working with the data from the SDK.
 
-valid JSON
+Collections are arbitary groupings of the data documents.
+Ones that suit your object model.
+For example, one collection of students enrolled at the college
+and one collection of courses available for them to take.
+Notionally you may view them as equivalent to an RDBMS table -- but it's up to you.
 
-key-value
-
-RDBMS table row
-
-
-but hierarchical data - normalization
-
-
-
-atomic unit
+Within a bucket, you can organize your collections into scopes -- some methods are available at the bucket level,
+but Search and Query Services favour Scope-level indexing and querying for greater efficiency.
 
 
-
-
-
-=== Collections
-
-// Working at the collection level - kv, query, ....
-// pull in some https://docs.couchbase.com/server/current/learn/data/scopes-and-collections.html ?
-
-
-Notionally equivalent to a table -- but it's up to you.
-
-
-Scope -- arbitary grouping of collections.
-
-
-
-=== Object Mapping & Modelling JSON
 
 
 
 
 // mention arrays where?
 // x.rowsAs(JsonArray.class) 
-
-
 
 // extra JSON choices - libs in Scala
 
@@ -158,7 +144,7 @@ Scope -- arbitary grouping of collections.
 
 This durability is enforced by the database, 
 
-
+*TODO* Durability section
 
 // Worth putting in?
 // Note, if you are working with an older, no longer supported version of Couchbase Server, you may want to look at 3.3@java-sdk:concept-docs:durability-replication-failure-considerations.adoc#older-server-versions in the earlier SDK docs.
@@ -189,10 +175,10 @@ In the SDK, the CAS is represented as a 64 bit integer for efficient copying but
 Pessimistic locking is the default approach for many RDBMS.
 With Couchbase, 
 
+== Expiration
 
+*TODO* MaxTTL
 
-
-== Multi-Document ACID Transactions
 
 
 
@@ -210,6 +196,12 @@ The summary of "Document do not expire" is actually incorrect. After I did some 
 Instead of talking about maxTTL in terms of documents expiring or not expiring, I believe we should discuss maxTTL's effect on a document's expiration setting: a non-zero value as sets a default expiration value for all documents contained in the bucket/collection (actually, I believe this is all newly-created documents . Setting maxTTL on a bucket or collection does not automatically change the expiration of existing documents, from what I have seen). It also sets the upper bound on a the expiration value you can set in a document directly. The actual expiration time is set by the document's expiration setting.  
 ////
 
+
+
+== Multi-Document ACID Transactions
+
+include::{version-common}@sdk:shared:partial$acid-transactions.adoc[tags=intro]
+See the xref:transactions.adoc[{name-sdk} transactions documentation].
 
 
 == Additional Information
@@ -240,9 +232,9 @@ It addresses:
 Below, we link some of the pages in this section that take a deeper dive into data structures, durability guarantees, and ???? --
 but if you are in a hurry to just learn more about querying your data, please skip ahead to xref:concept-docs:querying-your-data.adoc[the next section].
 
-* 
+* A deeper dive into ourxref:server:learn:data/scopes-and-collections.adoc[scopes and collections documentation].
 
-* 
+* xref:data-model.adoc#data-structures[Working with other data structures from the SDK].
 
 * Backups
 
