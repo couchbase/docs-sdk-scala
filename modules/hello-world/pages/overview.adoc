@@ -74,7 +74,7 @@ val result: Try[SearchResult] = scope.search("vector-index", request)
 
 Couchbase is a large platform -- covering many services -- and Couchbase SDKs are not thin wrappers generated around a REST API, but well thought out interfaces to the platform that make it easier to design and maintain your client code,
 and work with Couchbase in more natural ways for your platform.
-
+Install the SDK, and explore in the way that works best for you.
 
 .Installing the SDK via Scala Build Tool
 [source,sbt,subs="normal, attributes"]
@@ -83,6 +83,13 @@ libraryDependencies += "com.couchbase.client" %% "scala-client" % "{sdk_current_
 ----
 
 
+The links below will take you where you want to go -- as will the navigation on the left-hand side of this page.
+But if you don't know exactly where you need to go, try one of the following:
+
+* Our xref:hello-world:start-using-sdk.adoc[Quickstart Guide] introduces the SDK with a quick install, and CRUD examples against the Data Service.
+* Couchbase's familiar SQL-family query language and fuzzy search options (including vector search) are introduced on the xref:concept-docs/querying-your-data.adoc[] page.
+* The {name-sdk} docs are, necessarily, just a sub-set {sdk-api-link}[{name-sdk} API Reference] -- and a complete reference of all APIs can be found there.
+* For a fuller orientation, there is a xref:project-docs:metadoc-about-these-sdk-docs.adoc[guide to the {name-sdk} docs]
 
 
 {empty} +

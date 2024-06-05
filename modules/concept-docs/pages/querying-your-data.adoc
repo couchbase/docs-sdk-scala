@@ -135,44 +135,22 @@ From version 7.6 of self-managed Couchbase Server
 xref:howtos:kv-operations.adoc#kv-range-scan[KV Range Scan] offers the opportunity to group operations by ranges of alphanumerically adjacent keys.
 One common use case would be sequentially captured data given date/time-prefixed keys.
 
-Use this API for low concurrency batch queries where latency is not a critical as the system may have to scan a lot of documents to find the matching documents. For low latency range queries, it is recommended that you use SQL++ with the necessary indexes.
+// careful wording
+Use this API for low concurrency batch queries where latency is not a critical as the system may have to scan a lot of documents to find the matching documents.
+For low latency range queries, it is recommended that you use SQL++ with the necessary indexes.
 
+=== Query without Index
 
+From Couchbase Server 7.6 onwards,
+CRUD operations (such as `CREATE`, `INSERT`, and `SELECT`) and `JOIN` can be performed against the Query Service without an index (primary or secondary).
+This uses a xref:server:learn:services-and-indexes:indexes/query-without-index.adoc#sequential-scans[sequential scan], relying on a KV range scan to deliver the keys.
 
-////
-Query without Index
-default in Capella from 7.6?
+Sequential scans are best suited to small collections where key order is unimportant, or where the overhead of maintaining an index can’t be justified.
+For larger collections and greater performance, define the appropriate indexes to speed up your queries.
+For ordered document key operations, a primary index provides the same functionality, and will outperform a sequential scan.
 
-"Just like RDBMS, we want queries to run without requiring users to create index. Query will use sequentialscan. Performance test shows the performance is acceptable for simple queries. For more complex queries, users can use Index Advisor to get the index recommendations for better performance. This feature is also designed to limit the number of  concurrent sequentialscans based on cpu count to avoid impacting KV ops. So yes, we want this to be available to all users."'    
+Read on to learn more about the Query and Index services.
 
-
-
-https://docs.couchbase.com/server/current/learn/services-and-indexes/indexes/query-without-index.html#sequential-scans
-
-Sequential Scans
-If a keyspace does not have any suitable primary or secondary indexes for a query, the Query service can fall back on a sequential scan of the data to retrieve the document keys. A sequential scan uses an underlying mechanism known as a K/V range scan.
-
-Sequential scans are intended for simple, ready access to data, and are not intended as a high performance solution.
-
-Sequential scans are best suited to small collections where key order is unimportant, or where the overhead of maintaining an index can’t be justified. For larger collections and greater performance, define the appropriate indexes to speed up your queries. For ordered document key operations, a primary index provides the same functionality, and will outperform a sequential scan.
-////
-
-From 7.6 onwards,
-CRUD operations (such as `CREATE`, `INSERT`, and `SELECT`) and `JOIN` can be performed without an index -- as 
-// plan  -    IndexScan -->  Sequential Scan
-
- 
-// https://github.com/couchbaselabs/docs-devex/pull/69/files#diff-eed6d91a1678c6daccf06c8ed24fdd1aa0f20fd9af01098db942080e751b86d4 
-// https://github.com/couchbaselabs/docs-devex/pull/69 
-
-////
-?CBD-   575
-Documentation including API reference should use the following text: "Use this API for low concurrency batch queries where latency is not a critical as the system may have to scan a lot of documents to find the matching documents. For low latency range queries, it is recommended that you use SQL++ with the necessary indexes."
-////
-
-
-
-// index  ^
 
 == Query & Index
 
@@ -224,6 +202,11 @@ e the various indices you can create.
 // support hash joins on query & analytics), optimized for better pagination, CBO...
 // normalisation
 // foreign keys
+
+
+
+
+// "Before CB 7.1 if a Index+QUERY node gets failed due to any infra issue, then it will not automatic failover."
 
 
 
@@ -385,3 +368,9 @@ Could take something from Caching use tutorial?
 https://docs.couchbase.com/tutorials/session-storage/java.html
 
 ////
+
+
+== Further Reading
+
+* Index Advisor for recommendations to generate the best index(es) for your queries.
+
