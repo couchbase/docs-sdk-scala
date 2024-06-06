@@ -212,13 +212,16 @@ There's a couple of things to cover with the `replace` line.
 
 First, most of the methods in the Scala SDK take optional parameters that have sensible defaults.  One of them, `cas`, is provided here.  We'll see more throughout this document.
 
-So, what is CAS?
+
+[#optimistic-locking]
+=== What is CAS?
 
 CAS, or Compare and Swap, is a form of optimistic locking.  Every document in Couchbase has a CAS value, and it's changed on every mutation.  When you `get` a document you also get the document's CAS, and then when it's time to write the document, you send the same CAS back.  If another agent has modified that document, the Couchbase Server can detect you've provided a now-outdated CAS, and return an error instead of mutating the document.  This provides cheap, safe concurrency.  See xref:concurrent-document-mutations.adoc[this detailed description of CAS] for further details.
 
 In general, you'll want to provide a CAS value whenever you `replace` a document, to prevent overwriting another agent's mutations.
 
-== Retrying on CAS Failures
+=== Retrying on CAS Failures
+
 But if we get a CAS mismatch, we usually just want to retry the operation.  Let's see a more advanced `replace` example that shows one way to handle this:
 
 [source,scala]

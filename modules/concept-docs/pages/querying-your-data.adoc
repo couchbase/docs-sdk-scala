@@ -240,12 +240,6 @@ In JS-UDFs is vanilla Javascript + Full Query language support (including transa
 
 
 
-=== Lowest Latency
-
-Streaming in a distributed system is complex, and thus we do not make our internal streams and changes feed directly available.
-However, it is exposed through use of our xref:spark-connector::index.adoc[Spark] or xref:kafka-connector::index.adoc[Kafka] connectors, which give you a high level API to our low level primitives.
-
-
 
 == AI Help
 

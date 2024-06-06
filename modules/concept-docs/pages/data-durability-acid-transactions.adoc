@@ -252,8 +252,8 @@ see durability-replication-failure-considerations.adoc
 === Lowest Latency Streams
 
 Streaming in a distributed system is complex, and thus we do not make our internal streams and changes feed directly available.
-// Or do we? https://github.com/couchbase/java-dcp-client et al.
-However, it is exposed through use of our xref:2.4@spark-connector::index.adoc[Spark] or xref:3.4@kafka-connector::index.adoc[Kafka] connectors, which give you a high level API to our low level primitives.
+
+However, it is exposed through use of our xref:spark-connector::index.adoc[Spark] or xref:kafka-connector::index.adoc[Kafka] connectors, which give you a high level API to our low level primitives.
 
 
 The source connector streams documents from Couchbase Server using the high-performance Database Change Protocol (DCP) and publishes the latest version of each document to a Kafka topic in near real-time.
