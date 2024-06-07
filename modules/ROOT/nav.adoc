@@ -42,7 +42,6 @@
 * xref:concept-docs:durability-replication-failure-considerations.adoc[]
 ** xref:howtos:collecting-information-and-logging.adoc[]
 ** xref:howtos:health-check.adoc[Using Health Check]
-*** xref:concept-docs:health-check.adoc[Understanding Health Check]
 ** xref:concept-docs:response-time-observability.adoc[Observability]
 *** xref:howtos:slow-operations-logging.adoc[]
 *** xref:howtos:observability-metrics.adoc[]
