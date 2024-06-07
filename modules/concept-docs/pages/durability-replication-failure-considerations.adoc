@@ -42,5 +42,8 @@ but in almost every case with current Couchbase Server versions it's best to use
 
 include::{version-common}@sdk:shared:partial$durability-replication-failure-considerations.adoc[tag=txns]
 
-include::{version-common}@sdk:shared:partial$durability-replication-failure-considerations.adoc[tag=failover]
+
+// placeholder for discussions about what happens when a node goes down.
+
+// include::{version-common}@sdk:shared:partial$durability-replication-failure-considerations.adoc[tag=failover]
 
