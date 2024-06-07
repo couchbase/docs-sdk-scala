@@ -27,7 +27,7 @@ include::hello-world:start-using-sdk.adoc[tag=quick-install]
 
 
 [#latest-release]
-== Scala SDK 1.6 Releases
+== Scala SDK 1.7 Releases
 
 We always recommend using the latest version of the SDK -- it contains all of the latest security patches and support for new and upcoming features.
 All patch releases for each dot minor release should be API compatible, and safe to upgrade;
@@ -41,6 +41,8 @@ grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
 
+
+== Scala SDK 1.6 Releases
 
 === Version 1.6.2 (29 April 2024)
 
