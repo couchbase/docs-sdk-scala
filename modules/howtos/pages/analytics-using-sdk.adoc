@@ -1,10 +1,8 @@
 = Analytics
 :description: Parallel data management for complex queries over many records, using a familiar {sqlpp} syntax.
 :page-edition: Enterprise Edition:
-////
-:lang: Scala
-:source-language: scala
-////
+:page-aliases: concept-docs:analytics-for-sdk-users.adoc
+
 
 [abstract]
 {description}
@@ -12,7 +10,10 @@
 
 For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the xref:{version-server}@server:analytics:introduction.adoc[Couchbase Analytics Service (CBAS)].
 This is the analytic counterpart to our xref:sqlpp-queries-with-sdk.adoc[operational data focussed Query Service].
-The analytics service is available in Couchbase Data Platform 6.0 and later (developer preview in 5.5).
+
+The analytics service is available in xref:Capella]
+or the Enterprise Edition of self-managed Couchbase Server.
+A separate, as-a-service offering -- Capella Columnar -- is available as a https://info.couchbase.com/CapellaColumnar_Private_Preview_SignUp_LP.html[private preview].
 
 
 == Getting Started
@@ -91,7 +92,7 @@ include::devguide:example$scala/Analytics.scala[tag=parameters,indent=0]
 include::devguide:example$scala/Analytics.scala[tag=metrics,indent=0]
 ----
 
-For a full listing of available `Metrics` in `Metadata`, see the xref:concept-docs:analytics-for-sdk-users.adoc[Understanding Analytics] documentation.
+// For a full listing of available `Metrics` in `Metadata`, see the xref:concept-docs:analytics-for-sdk-users.adoc[Understanding Analytics] documentation.
 
 == Streaming Large Result Sets
 The Scala SDK provides three SDKs (documented further on xref:howtos:concurrent-async-apis.adoc[Choosing an API]):
