@@ -32,7 +32,6 @@
 ** xref:howtos:vector-searching-with-sdk.adoc[]
 *** xref:concept-docs:full-text-search-overview.adoc[Search]
 ** xref:howtos:analytics-using-sdk.adoc[]
-*** xref:concept-docs:analytics-for-sdk-users.adoc[]
 * xref:howtos:distributed-acid-transactions-from-the-sdk.adoc[Distributed ACID Transactions]
 // ** xref:howtos:transactions-single-query.adoc[]
 ** xref:howtos:transactions-tracing.adoc[]
