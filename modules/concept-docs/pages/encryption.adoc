@@ -1,3 +1,7 @@
+include::{version-common}@sdk:pages:partial$encryption.adoc[]
+
+
+////
 = Field Level Encryption
 :description: Fields within a document can be securely encrypted by the SDK, to support FIPS-140-2 compliance.
 :page-edition: Enterprise Edition
@@ -9,3 +13,4 @@
 
 Client-side implementation of Field Level Encryption is available in the xref:2.7@java-sdk::encryption.adoc[previous (2.0 API) version of the other SDKs].
 It will be enabled in a future release of the third generation SDK (Scala SDK 1.x).
+////

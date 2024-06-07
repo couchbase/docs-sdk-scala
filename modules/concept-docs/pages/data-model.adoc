@@ -12,7 +12,10 @@ include::{version-common}@sdk:shared:partial$data-model.adoc[tag=intro]
 
 include::{version-common}@sdk:shared:partial$data-model.adoc[tag=structures]
 
-== Creating a Data Structure
+
+
+
+// == Creating a Data Structure
 
 
 
