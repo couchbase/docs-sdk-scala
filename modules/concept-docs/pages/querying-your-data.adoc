@@ -159,7 +159,6 @@ Read on to learn more about the Query and Index services.
 
 If you are familiar with SQL, Couhbase's {sqlpp} dialect will hold few surprises.
 Combining semi-flexible schema with SQL works well in a lot of use cases, but do remember that our Data Service is even faster if you do already know the keys.
-See the xref:ref:which-data-service.adoc[service selection doc] for key consideration points in selecting which service to work with to get the best performance with your data, summarised in a handy table form.
 
 
 === Index
@@ -170,11 +169,19 @@ There are three things important in database systems: performance, performance, 
 
 Creating the right index, with the right keys, right order, and right expression is critical to query performance in any database system.
 That’s true for Couchbase as well.
+See the
+https://preview.docs-test.couchbase.com/sdk-test/scala-sdk/current/concept-docs/n1ql-query.html
+for an in depth look at indexes -- but essentially a Primary Index on the document keys will give you better search performance than trying to <<#query-without-index,query without index>>, but well-chosen secondary indexes will make all the difference to query performance.
+
+
+=== Query
+
+Our xref:howtos:sqlpp-queries-with-sdk.adoc[Querying with {sqlpp} guide] will get you started.
+See also the <<#furthre-reading,Further Reading>> section at the end of this page.
 
 
 
-
-GSI & MOI GSI
+// GSI & MOI GSI
 // B-Tree index - Still ForestDB on CE??
 
 
@@ -215,14 +222,8 @@ e the various indices you can create.
 // https://docs.couchbase.com/server/current/n1ql/n1ql-intro/queriesandresults.html#keyspace-reference
 
 
-Search
-
 
 // query context? / search index changes
-
-
-Analytics
-
 
 
 
@@ -366,5 +367,5 @@ https://docs.couchbase.com/tutorials/session-storage/java.html
 
 == Further Reading
 
-* Index Advisor for recommendations to generate the best index(es) for your queries.
+* xref:cloud:guides:index-advisor.adoc[Index Advisor] for recommendations to generate the best index(es) for your queries.
 
