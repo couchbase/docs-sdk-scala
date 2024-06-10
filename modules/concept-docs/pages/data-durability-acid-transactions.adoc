@@ -138,7 +138,18 @@ but Search and Query Services favour Scope-level indexing and querying for great
 
 == Durability
 
+Writes in Couchbase (from the SDK or elsewhere) are written to a single node.
+From there, Couchbase Server will take care of sending the mutation to any configured replicas, and to disk.
+By default all writes are asynchronous, but levels of durability can be set, to ensure replication and/or _persistence_ to disks, before the write is _committed_.
 
+
+// === Durable Writes
+
+include::{version-common}@sdk:shared:partial$durability-replication-failure-considerations.adoc[tag=syncrep]
+
+Further discussion can be found in the xref:concept-docs:durability-replication-failure-considerations.adoc[Durability and Failure Considerations documentation].
+
+A practical look at this -- using the `durability` parameter with mutating operations -- can be found on the xref:howtos:kv-operations.adoc#durability[Data Service page].
 
 
 
@@ -153,8 +164,8 @@ This durability is enforced by the database,
 
 == Concurrent Document Mutations
 
-
-
+You can use the CAS value to control how concurrent document modifications are handled.
+It helps avoid and control potential race conditions in which some mutations may be inadvertently lost or overridden by mutations made by other clients.
 
 === Performance considerations
 
@@ -173,12 +184,24 @@ In the SDK, the CAS is represented as a 64 bit integer for efficient copying but
 == Pessimistic locking
 
 Pessimistic locking is the default approach for many RDBMS.
-With Couchbase, 
+With Couchbase, optimistic locking with CAS is the recommended way to perform locking and concurrency control.
 
+Should you need the guarantees of explicit locking, documents can be locked using the _get-and-lock_ operation
+and unlocked either explicitly using the _unlock_ operation
+or implicitly by mutating the document with a valid CAS.
+While a document is locked, it may be retrieved but not modified without using the correct CAS value.
+When a locked document is retrieved, the server will return an invalid CAS value, preventing mutations of that document.
+
+More information, including a table of behaviors while an item is locked, can be fould in the
+xref:howtos:concurrent-document-mutations.adoc#pessimistic-locking[Pessimistic Locking section of the Concurrent Document Mutations page].
+
+
+
+////
 == Expiration
 
 *TODO* MaxTTL
-
+////
 
 
 
@@ -242,8 +265,8 @@ but if you are in a hurry to just learn more about querying your data, please sk
 
 
 
-For more on
-see durability-replication-failure-considerations.adoc
+For more on Durability, 
+see xref:durability-replication-failure-considerations.adoc[].
 
 
 
