@@ -1,11 +1,11 @@
 = Couchbase Scala SDK Documentation
 
-This repository hosts the documentation source for the https://docs.couchbase.com/scala-sdk/1.6/hello-world/overview.html[Couchbase Scala SDK].
+This repository hosts the documentation source for the https://docs.couchbase.com/scala-sdk/1.7/hello-world/overview.html[Couchbase Scala SDK].
 
-This branch documents the 1.6 release of the SDK.
-It follows the https://docs.couchbase.com/scala-sdk/1.6/project-docs/compatibility.html#api-version[SDK 3.5 API].
+This branch documents the 1.7 release of the SDK.
+It follows the https://docs.couchbase.com/scala-sdk/1.7/project-docs/compatibility.html#api-version[SDK 3.6 API].
 
-This branch reflects the new Information Architecture for the SDK docs -- this release was previously documented with the old structure (those old docs can be found under `temp/1.6`), and docs with this structure can be seen on the Couchbase docs site for releases 1.5 and earlier.
+This branch reflects the new Information Architecture for the SDK docs -- this release was previously documented with the old structure (those old docs can be found under the `temp/1.6` branch), and docs with this structure can be seen on the Couchbase docs site for releases 1.6 and earlier.
 
 
 == Contributing
@@ -122,7 +122,7 @@ Update the following files:
 
 === New Branches
 
-Production branches use the *release/x.y* naming pattern (e.g. `release/3.5`, `release/3.6`).
+Production branches use the *release/x.y* naming pattern (e.g. `release/3.7`, `release/3.6`).
 Antora uses the branch names in the playbook, but also uses the `version` given in the antor.yml file, to create the version navigation -- so this version number must be unique within the repo for any branches included in the playbook.
 When creating a new branch for a new release, remember to update the antora.yml file before trying to build.
 
