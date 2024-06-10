@@ -2,7 +2,9 @@
 :description: You can query for documents in Couchbase using the {sqlpp} query language, a language based on SQL, but designed for structured and flexible JSON documents.
 :page-aliases: n1ql-query.adoc,n1ql-queries-with-sdk.adoc
 // :page-aliases: ROOT:document-operations.adoc,ROOT:documents-creating,ROOT:documents-updating,ROOT:documents-retrieving,ROOT:documents-deleting,n1ql-queries-with-sdk.adoc
-
+:lang: Scala
+:example-source: devguide:example$scala/Queries.scala
+:example-source-lang: scala
 
 [abstract]
 {description}

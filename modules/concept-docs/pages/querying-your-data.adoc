@@ -227,7 +227,7 @@ e the various indices you can create.
 
 
 
-Eventing / Connectors
+// Eventing / Connectors
 ////
 Are the same in-built functions Eventing exposes available in UDFs (log, N1qlQuery, etc.)?
 No, Javascript UDFs do not come with the full language (timers, bucket ops, N1qlQuery, AnalyticsQuery, cURL, log etc) as Eventing does.
