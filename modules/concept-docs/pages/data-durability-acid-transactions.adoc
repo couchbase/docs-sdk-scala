@@ -252,7 +252,7 @@ It addresses:
 
 
 
-Below, we link some of the pages in this section that take a deeper dive into data structures, durability guarantees, and ???? --
+Below, we link some of the pages in this section that take a deeper dive into data structures, durability guarantees, and avoiding race conditions during concurrent document modifications --
 but if you are in a hurry to just learn more about querying your data, please skip ahead to xref:concept-docs:querying-your-data.adoc[the next section].
 
 * A deeper dive into ourxref:server:learn:data/scopes-and-collections.adoc[scopes and collections documentation].
