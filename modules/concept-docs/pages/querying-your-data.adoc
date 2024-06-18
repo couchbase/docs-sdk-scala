@@ -167,11 +167,12 @@ Combining semi-flexible schema with SQL works well in a lot of use cases, but do
 There are three things important in database systems: performance, performance, performance.
 ====
 
+
 Creating the right index, with the right keys, right order, and right expression is critical to query performance in any database system.
 That’s true for Couchbase as well.
-See the
-https://preview.docs-test.couchbase.com/sdk-test/scala-sdk/current/concept-docs/n1ql-query.html
-for an in depth look at indexes -- but essentially a Primary Index on the document keys will give you better search performance than trying to <<#query-without-index,query without index>>, but well-chosen secondary indexes will make all the difference to query performance.
+See the xref:concept-docs:n1ql-query.adoc[] page for an in depth look at indexes -- 
+but essentially a Primary Index on the document keys will give you better search performance than trying to <<#query-without-index,query without index>>, 
+but well-chosen secondary indexes will make all the difference to query performance.
 
 
 === Query
