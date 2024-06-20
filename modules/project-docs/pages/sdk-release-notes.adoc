@@ -40,7 +40,27 @@ grep '<reactor.version>' $src/pom.xml
 grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
+=== Version 1.7.0 (15 June 2024)
 
+Version 1.7.0 is the first release of the 1.7 series.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.7.0/com/couchbase/client/scala/index.html[API Reference] |
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.7.0/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.6.3**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+==== Improvements
+* https://issues.couchbase.com/browse/SCBC-461[SCBC-461]
+Adds support for base64-encoded vectors in `VectorQuery`.
+
+==== Bugfixes
+* https://issues.couchbase.com/browse/SCBC-428[SCBC-428]
+Fixed a regression introduced in version 3.4.5 that caused a Full-Text Search `BooleanQuery` to throw `InvalidArgumentException: Compound query has no child query` unless all 3 of "must", "should", and "mustNot" were specified.
+* https://issues.couchbase.com/browse/SCBC-463[SCBC-463]
+Release notes: Using a `MatchPhraseQuery` no longer results in an error.
 
 == Scala SDK 1.6 Releases
 
