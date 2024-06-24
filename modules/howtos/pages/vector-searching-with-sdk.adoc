@@ -46,8 +46,8 @@ This is currently implemented using xref:
 
 == Prerequisites
 
-7.6
-?
+Couchbase Server 7.6.0
+(7.6.2 for base64-encoded vectors) -- or recent Capella instance.
 
 // examples
 
@@ -120,6 +120,7 @@ include::devguide:example$scala/Search.java[tag=vector4,indent=0]
 
 == Further Reading
 
-* // Server Links
+* xref:server:vector-search:vector-search.adoc[Vector Search for AI Apps docs (self-managed Couchbase Server)]
+* xref:cloud::vector-search:vector-search.adoc[Vector Search for AI Apps docs (Capella DBaaS)]
 
 // https://developer.couchbase.com/tutorial-python-langchain-pdf-chat
