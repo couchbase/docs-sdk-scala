@@ -321,9 +321,16 @@ include::{version-common}@sdk:shared:partial$dnssrv-pars.adoc[tag=dnssrv]
 DNS SRV bootstrapping is enabled by default in the {name-sdk}.
 In order to make the SDK use the SRV records, you need to pass in the hostname from your records (here `example.com`):
 
+////
 [source,scala]
 ----
 include::devguide:example$scala/ManagingConnections.scala[tag=dnssrv,indent=0]
+----
+////
+
+[source,scala]
+----
+ClusterEnvironment env = ClusterEnvironment.builder().ioConfig(IoConfig.enableDnsSrv(true)).build();
 ----
 
 If the DNS SRV records could not be loaded properly you'll get the exception logged and the given host name will be used as a A record lookup.
