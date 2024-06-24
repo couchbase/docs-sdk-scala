@@ -29,3 +29,49 @@ https://docs.couchbase.com/sdk-api/couchbase-net-client/api/Couchbase.DataStruct
  a factory method off of the Collection class.
 Collction.Queue<T>(docId, QueueOptions)
 ////
+
+
+
+
+
+
+
+
+
+
+
+== Data and Good Schema Design
+
+Most operations are performed at the _collection_ or _scope_ level (although legacy bucket-level ops are often available),
+and keeping documents in the same collection can make for speedier indexing and queries -- whether {sqlpp} or Search.
+
+The Server enforces no schema, enabing evolutionary changes to your data model that reflect changes in the real world.
+The schema-on-read approach allows the client software that you write with the SDK to work with changes to an implicit schema,
+and allows heterogeneous data.
+
+
+=== Objects, Relations, Tables
+
+In the Relational Database (RDBMS) world, a translaton layer is often used between the objects of your data model in your application,
+and the tables that you store the data in.
+JSON storage allows you to store complex types, like nested records and arrays, without decomposing them to a second table
+(known in the SQL world as https://en.wikipedia.org/wiki/Database_normalization[database normalization^]).
+
+When the relational model was proposed, more than 50 years ago, limitations in available computer resources meant that removing data duplication in one-to-many and many-to-many relationships this way made a great deal of sense.
+There is still a case to be made for it for reducing inconsistencies -- the difference with a document database is that you get to choose when to do this.
+
+
+=== Collections and Scopes
+
+Couchbase's atomic units of data are documents, stored as key-value pairs.
+The value can be anything, but storing in JSON format enables indexing, searching, and many useful ways of working with the data from the SDK.
+
+Collections are arbitary groupings of the data documents.
+Ones that suit your object model.
+For example, one collection of students enrolled at the college
+and one collection of courses available for them to take.
+Notionally you may view them as equivalent to an RDBMS table -- but it's up to you.
+
+Within a bucket, you can organize your collections into scopes -- some methods are available at the bucket level,
+but Search and Query Services favour Scope-level indexing and querying for greater efficiency.
+
