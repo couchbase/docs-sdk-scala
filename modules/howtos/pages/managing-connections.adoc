@@ -32,12 +32,50 @@ include::devguide:example$scala/ManagingConnections.scala[tag=imports,indent=0]
 
 A connection to a Couchbase Server cluster is represented by a `Cluster` object.
 A `Cluster` provides access to buckets, scopes, and collections, as well as various Couchbase services and management interfaces.
-The simplest way to create a `Cluster` object is to call `Cluster.connect()` with a <<connection-strings, connection string>>, username, and password:
+The simplest way to create a `Cluster` object is to call `Cluster.connect()` with a <<connection-strings, connection string>> (or Capella endpoint), username, and password:
 
+[tabs,sync-group-id="Couchbase Capella|Self-Managed Couchbase Server"]
+==== 
+Couchbase Capella::
++
+--
+[source,scala]
+----
+include::devguide:example$scala/Cloud.scala[tag=connect,indent=0]
+----
+
+Note, the client certificate for connecting to a Capella database is included in the SDK installation.
+--
+
+Self-Managed Couchbase Server::
++ 
+-- 
 [source,scala]
 ----
 include::devguide:example$scala/ManagingConnections.scala[tag=initial,indent=0]
 ----
+--
+
+Cloud Native Gateway (CNG)::
++
+--
+Couchbase's large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string --
+currently only compatible with recent versions of xref:operator:ROOT:concept-cloud-native-gateway.adoc[Couchbase Autonomous Operator]:
+
+[source,scala]
+----
+.connect(
+  "couchbase2://10.12.14.16",
+  ClusterOptions
+    .create(username, password)
+    .environment(env)
+)
+----
+
+Read more on the xref:howtos:managing-connections.adoc#cloud-native-gateway[Connections] page.
+
+--
+====
 
 In a production environment, your connection string should include the addresses of multiple server nodes in case some are currently unavailable.
 Multiple addresses may be specified in a connection string by delimiting them with commas:
