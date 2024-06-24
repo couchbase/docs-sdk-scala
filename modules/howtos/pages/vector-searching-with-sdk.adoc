@@ -55,7 +55,7 @@ This is currently implemented using xref:
 In this first example we are performing a single vector query:
 [source,java]
 ----
-include::devguide:example$scala/Search.java[tag=vector1,indent=0]
+include::devguide:example$scala/FTS.scala[tag=vector1,indent=0]
 ----
 
 Let's break this down.
