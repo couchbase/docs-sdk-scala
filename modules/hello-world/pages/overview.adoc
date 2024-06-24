@@ -38,12 +38,7 @@ Data Ops (CRUD)::
 
 [source,scala]
 ----
-val json = JsonObject("foo" -> "bar", "baz" -> "qux")
-
-collection.upsert("document-key", json) match {
-  case Success(result)    => println("Document upsert successful")
-  case Failure(exception) => println("Error: " + exception)
-}
+include::devguide:example$scala/KvOperations.scala[indent=0,tag=upsert]
 ----
 --
 
@@ -53,8 +48,7 @@ collection.upsert("document-key", json) match {
 
 [source,scala]
 ----
-val statement = """select * from `travel-sample` limit 10;"""
-val result: Try[QueryResult] = cluster.query(statement)
+include::devguide:example$scala/Queries.scala[tag=simple,indent=0]
 ----
 --
 
@@ -64,9 +58,7 @@ Vector Search::
 
 [source,scala]
 ----
-val request = SearchRequest.vectorSearch(VectorSearch(VectorQuery("vector_field", vectorQuery)))
-
-val result: Try[SearchResult] = scope.search("vector-index", request)
+include::devguide:example$scala/FTS.scala[tag=vector1,indent=0]
 ----
 --
 ====
