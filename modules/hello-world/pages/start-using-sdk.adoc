@@ -32,11 +32,7 @@ but first let's look at those data operations, and installing the {name-sdk}.
 .Upsert with a Unique ID
 [source,scala]
 ----
-val docId = UUID.randomUUID().toString
-collection.upsert(docId, json) match {
-  case Success(result)    =>
-  case Failure(exception) => println("Error: " + exception)
-}
+include::devguide:example$scala/Cloud.scala[tag=upsert,indent=0]
 ----
 
 `upsert` inserts (creates) the document if it does not exist, or replaces it if it does.
