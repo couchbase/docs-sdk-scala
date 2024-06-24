@@ -11,10 +11,10 @@
 // https://github.com/couchbase/docs-sdk-common/blob/release/7.6/modules/shared/partials/start-using-sdk.adoc
 //
 // and code samples from
-// https://github.com/couchbase/docs-sdk-scala/tree/release/1.6/modules/devguide/examples/scala
+// https://github.com/couchbase/docs-sdk-scala/tree/release/1.7/modules/devguide/examples/scala
 // 
 // It can be seen built at
-// https://docs.couchbase.com/scala-sdk/1.6/hello-world/start-using-sdk.html
+// https://docs.couchbase.com/scala-sdk/1.7/hello-world/start-using-sdk.html
 
 
 [abstract]
