@@ -366,6 +366,8 @@ TIP: Setting the document expiry time only works when a document is created, and
 include::{version-common}@sdk:shared:partial$atomic.adoc[tag=xdcr]
 
 
+// Remove totally? All examples should now lead with collection level?
+////
 == Scoped KV Operations
 
 It is possible to perform scoped key value operations on named xref:{version-server}@server:learn:data/scopes-and-collections.adoc[`Collections`] _with Couchbase Server release, 7.0_.
@@ -376,6 +378,7 @@ Here is an example showing an upsert in the `users` collection, which lives in t
 ----
 include::devguide:example$scala/KvOperations.scala[indent=0,tag=named-collection-upsert]
 ----
+////
 
 == Additional Resources
 
