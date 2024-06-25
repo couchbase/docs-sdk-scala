@@ -53,7 +53,7 @@ Couchbase Server 7.6.0
 
 ==== Single vector query
 In this first example we are performing a single vector query:
-[source,java]
+[source,scala]
 ----
 include::devguide:example$scala/FTS.scala[tag=vector1,indent=0]
 ----
@@ -78,9 +78,9 @@ It returns the same `SearchResult` detailed earlier.
 ==== Multiple vector queries
 You can run multiple vector queries together:
 
-[source,java]
+[source,scala]
 ----
-include::devguide:example$scala/Search.java[tag=vector3,indent=0]
+include::devguide:example$scala/FTS.scala[tag=vector3,indent=0]
 ----
 
 How the results are combined (ANDed or ORed) can be controlled with `vectorSearchOptions().vectorQueryCombination()`.
@@ -88,9 +88,9 @@ How the results are combined (ANDed or ORed) can be controlled with `vectorSearc
 ==== Combining FTS and vector queries
 You can combine a traditional FTS query with vector queries:
 
-[source,java]
+[source,scala]
 ----
-include::devguide:example$scala/Search.java[tag=vector2,indent=0]
+include::devguide:example$scala/FTS.scala[tag=vector2,indent=0]
 ----
 
 How the results are combined (ANDed or ORed) can be controlled with `vectorSearchOptions().vectorQueryCombination()`.
@@ -101,9 +101,9 @@ How the results are combined (ANDed or ORed) can be controlled with `vectorSearc
 ==== FTS queries
 And note that traditional FTS queries, without vector search, are also supported with the new `cluster.search()` / `scope.search()` APIs:
 
-[source,java]
+[source,scala]
 ----
-include::devguide:example$scala/Search.java[tag=vector4,indent=0]
+include::devguide:example$scala/FTS.scala[tag=vector4,indent=0]
 ----
 
 ////
