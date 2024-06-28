@@ -37,14 +37,14 @@ You can define a _primary index_ on a collection.
 When a _primary_ index is defined you can issue non-covered (see below) queries on the bucket as well.
 This includes using the `META` function in the queries.
 
-[source,n1ql]
+[source,sqlpp]
 ----
 CREATE PRIMARY INDEX ON `users`;
 ----
 
 You can also define indexes over given document fields and then use those fields in the query:
 
-[source,n1ql]
+[source,sqlpp]
 ----
 CREATE INDEX ix_name ON `travel-sample`.inventory.hotel(name);
 CREATE INDEX ix_email ON `travel-sample`.inventory.hotel(email);
@@ -52,7 +52,7 @@ CREATE INDEX ix_email ON `travel-sample`.inventory.hotel(email);
 
 This would allow you to query the _travel-sample_ bucket's hotel collection regarding a document's `name` or `email` properties, thus:
 
-[source,n1ql]
+[source,sqlpp]
 ----
 SELECT name, email
 FROM `travel-sample`.inventory.hotel
@@ -78,7 +78,7 @@ Creating indexes on buckets with many existing documents can take a long time.
 You can build indexes in the background, creating _deferred_ indexes.
 The deferred indexes can be built together, rather than having to re-scan the entire bucket for each index.
 
-[source,sql]
+[source,sqlpp]
 ----
 CREATE PRIMARY INDEX ON `travel-sample`.inventory.hotel WITH {"defer_build": true};
 CREATE INDEX ix_name ON `travel-sample`.inventory.hotel(name) WITH {"defer_build": true};
