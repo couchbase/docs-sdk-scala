@@ -5,4 +5,11 @@
 :page-topic-type: reference
 :page-aliases: relnotes-scala-sdk
 
-include::1.6@scala-sdk:project-docs:page$sdk-release-notes.adoc[tag=all]
+
+[abstract]
+{description}
+
+Version 1.4 of the Scala SDK implements the 3.4 xref:compatibility.adoc#api-version[SDK API].
+See the xref:compatibility.html#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
+
+include::1.7@scala-sdk:project-docs:page$sdk-release-notes.adoc[tag=all]
