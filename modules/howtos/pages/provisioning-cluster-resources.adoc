@@ -274,3 +274,20 @@ To remove this design document:
 ----
 include::devguide:example$scala/ClusterResources.scala[tag=view-remove,indent=0]
 ----
+
+
+
+// backup and restore
+////
+This is not a service provided directly through the SDK, as it is easily achieved by using one of the following:
+
+* `cbbackupmgr`.
+* Invoke xref:server:rest-api:backup-rest-api.adoc[Backup/Restore API service] -- 
+which can be done through `CouchbaseHttpClient`, using `HttpTarget.backup()`.
+* xref:operator::concept-backup.adoc[Autonomous operator Backup/restore].
+* xref:cloud:clusters:manage-backup.adoc[Capella Backup/restore].
+
+The majority use case is to call a baackup from the commandline --
+using `cbbackupmgr`, or a `curl` with the REST API.
+////
+
