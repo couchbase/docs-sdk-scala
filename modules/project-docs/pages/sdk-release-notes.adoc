@@ -146,7 +146,7 @@ Upgraded Netty from 4.1.101 to 4.1.107.
 These methods do range-scans of documentIds.
 This feature requires Couchbase Server 7.6 or later.
 * https://issues.couchbase.com/browse/JVMCBC-xxxx[JVMCBC-1493]:
-`Collection.lookupInAnyReplica()` and `Collection.lookupInAllReplicas()` are now part of the SDK’s committed API.
+`Collection.lookupInAnyReplica()` and `Collection.lookupInAllReplicas()` are now part of the SDK's committed API.
 These methods do sub-document lookups against replicas.
 This feature requires Couchbase Server 7.6 or later.
 

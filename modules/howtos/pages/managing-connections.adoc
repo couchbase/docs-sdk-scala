@@ -197,8 +197,8 @@ Make sure you have the Enterprise Edition of Couchbase Server, or a Couchbase Ca
 Couchbase Capella::
 +
 --
-The Scala SDK bundles Capella’s standard root certificate by default.
-This means you don’t need any additional configuration to enable TLS -- simply use `couchbases://` in your connection string.
+The Scala SDK bundles Capella's standard root certificate by default.
+This means you don't need any additional configuration to enable TLS -- simply use `couchbases://` in your connection string.
 
 NOTE: Capella's root certificate is *not* signed by a well known CA (Certificate Authority).
 However, as the certificate is bundled with the SDK, it is trusted by default.
