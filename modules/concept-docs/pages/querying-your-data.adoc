@@ -145,7 +145,7 @@ From Couchbase Server 7.6 onwards,
 CRUD operations (such as `CREATE`, `INSERT`, and `SELECT`) and `JOIN` can be performed against the Query Service without an index (primary or secondary).
 This uses a xref:server:learn:services-and-indexes:indexes/query-without-index.adoc#sequential-scans[sequential scan], relying on a KV range scan to deliver the keys.
 
-Sequential scans are best suited to small collections where key order is unimportant, or where the overhead of maintaining an index can’t be justified.
+Sequential scans are best suited to small collections where key order is unimportant, or where the overhead of maintaining an index can't be justified.
 For larger collections and greater performance, define the appropriate indexes to speed up your queries.
 For ordered document key operations, a primary index provides the same functionality, and will outperform a sequential scan.
 
@@ -169,7 +169,7 @@ There are three things important in database systems: performance, performance, 
 
 
 Creating the right index, with the right keys, right order, and right expression is critical to query performance in any database system.
-That’s true for Couchbase as well.
+That's true for Couchbase as well.
 See the xref:concept-docs:n1ql-query.adoc[] page for an in depth look at indexes -- 
 but essentially a Primary Index on the document keys will give you better search performance than trying to <<#query-without-index,query without index>>, 
 but well-chosen secondary indexes will make all the difference to query performance.
@@ -282,7 +282,7 @@ You can follow the links below for more information on the services with the Cou
 
 
 == Use Cases
-It’s an understandable temptation to reach for the familiar, and Couchbase’s SQL-like {sqlpp} (formerly N1QL) makes the Query service an easy starting point for many, but it’s important to take time to match your use case to the best tool for the job.
+It's an understandable temptation to reach for the familiar, and Couchbase's SQL-like {sqlpp} (formerly N1QL) makes the Query service an easy starting point for many, but it's important to take time to match your use case to the best tool for the job.
 
 === Known documents
 When you already know the _Key_ (ID) of the document, then _KV Operations_ is by far the simplest way to retrieve or mutate it.
@@ -297,7 +297,7 @@ xref:7.1@server:learn:services-and-indexes/services/analytics-service.adoc[Couch
 CBAS supports workloads involving only SELECT (not INSERT or UPDATE), and uses local secondary indexes.
 Scalable performance comes from multi-node partitioned-parallel join, sort, aggregate, and grouped aggregate operators, and multiple storage devices (vbuckets over several nodes).
 
-Use the Analytics Service when you don’t know every aspect of the query in advance -- 
+Use the Analytics Service when you don't know every aspect of the query in advance -- 
 for example, if the data access patterns change frequently, or you want to avoid creating an index for each data access pattern,
 or you want to run ad hoc queries for data exploration or visualization.
 
@@ -308,7 +308,7 @@ Use KV Operations - for better performance.
 Where your mutations are on just a path within the document, use the Sub-Document API.
 
 For the “update from a WHERE clause” with our Query Service,
-in which case you don’t know which documents would be altered,
+in which case you don't know which documents would be altered,
 read the section on CAS and Concurrent Document Mutation to be aware of all of the implications.
 
 
@@ -322,7 +322,7 @@ For more sophisticated array operations, use {sqlpp}'s `USEKEY`.
 
 MapReduce Views uses distributed Map-Reduce for very fast aggregation operations (fast, because the indexes are pre-computed results) --
 ideal for pre-grouped aggregations, such as grouping temporal data sets (by day, by month, etc.).
-Views’ spatial support allows for fast searching over extensive geo-spatial data in Couchbase Data Platform 5.x -- however, Spatial Views are no longer supported in Couchbase Server 6.x, and so are not found in SDK 3.x.
+Views' spatial support allows for fast searching over extensive geo-spatial data in Couchbase Data Platform 5.x -- however, Spatial Views are no longer supported in Couchbase Server 6.x, and so are not found in SDK 3.x.
 Continuing improvements to our Query Service makes the latter usually a better choice,
 particularly as Views does not scale as well as the other services, lacking a global Index node.
 
@@ -348,7 +348,7 @@ For operational queries -- such as the front-end queries behind every page d
 
 The Query Service using {sqlpp} - SQL for JSON - is ideal for retrieving multiple documents that match specific queries.
 Data can be joined together, and Global Secondary Indexes can be used to speed up searches.
-It’s a powerful and flexible way of querying, retrieving, and updating data, using a familiar language, but if you know the document’s key, then regular KV (or Sub-Doc) operations will always be faster.
+It's a powerful and flexible way of querying, retrieving, and updating data, using a familiar language, but if you know the document's key, then regular KV (or Sub-Doc) operations will always be faster.
 
 
 

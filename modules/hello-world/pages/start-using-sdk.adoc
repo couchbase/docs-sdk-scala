@@ -322,7 +322,7 @@ The difference between the two is that if a document with that key already exist
 // throwing `DocumentExistsException` --
 while the `upsert` operation will succeed, replacing the content.
 
-We need to provide a unique ID as the key, and we’ll use a UUID here:
+We need to provide a unique ID as the key, and we'll use a UUID here:
 
 .Creating a new document
 [source,scala]
@@ -420,12 +420,12 @@ For example, imagine you have two types of documents: customers and invoices.
 You could put the customer documents in a collection called `customers`, and the invoice documents in a collection called `invoices`.
 
 Each document belongs to exactly one collection. 
-A document’s ID is unique _within_ the collection.
+A document's ID is unique _within_ the collection.
 
 Different scopes can hold collections with different names. 
 There is no relationship between collections in different scopes.
 Each collection belongs to just one scope and
-a collection’s name is unique within the scope.
+a collection's name is unique within the scope.
 
 
 More details can be found on the xref:concept-docs:data-model.adoc[Data Model page].

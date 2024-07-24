@@ -181,7 +181,7 @@ It only accepts Strings.
 |-
 |===
 
-Here’s an example of using the `RawStringTranscoder`:
+Here's an example of using the `RawStringTranscoder`:
 
 [source,scala]
 ----
@@ -211,7 +211,7 @@ The transcoder does not perform any form of real transcoding, and does not take 
 |-
 |===
 
-Here’s an example of using the `RawBinaryTranscoder`:
+Here's an example of using the `RawBinaryTranscoder`:
 
 [source,scala]
 ----
@@ -259,7 +259,7 @@ include::devguide:example$scala/Transcoding.scala[tag=overloaded2,indent=0]
 ----
 
 === Creating a Custom Transcoder
-Let’s look at a more complex example: encoding the JSON alternative, https://msgpack.org[MessagePack].
+Let's look at a more complex example: encoding the JSON alternative, https://msgpack.org[MessagePack].
 MessagePack is a compact binary data representation, so it should be stored with the binary Common Flag.
 The Common Flag is chosen by the transcoder, and none of the existing transcoders matches our needs (`RawBinaryTranscoder` does set the binary flag, but it passes data through directly rather than using a serializer).  
 So we need to write one.

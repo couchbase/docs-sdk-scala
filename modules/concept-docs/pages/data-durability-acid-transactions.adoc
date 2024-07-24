@@ -73,8 +73,8 @@ what is the performance cost of these choices.
 ////
 From 3.4 doc:
 
-Data durability refers to the fault tolerance and persistence of data in the face of software or hardware failure. Even the most reliable software and hardware might fail at some point, and along with the failures, introduce a chance of data loss. Couchbase’s durability features include Synchronous Replication, and the possibility to use distributed, multi-document ACID transactions. It is the responsibility of the development team and the software architect to evaluate the best choice for each use case.
-Couchbase’s distributed and scalable nature exposes any set-up to the risk of potential network and hardware problems. The key to durability is planning for resilience, by evaluating the options on offer for persistence and replication, and carefully considering the performance trade-offs involved.
+Data durability refers to the fault tolerance and persistence of data in the face of software or hardware failure. Even the most reliable software and hardware might fail at some point, and along with the failures, introduce a chance of data loss. Couchbase's durability features include Synchronous Replication, and the possibility to use distributed, multi-document ACID transactions. It is the responsibility of the development team and the software architect to evaluate the best choice for each use case.
+Couchbase's distributed and scalable nature exposes any set-up to the risk of potential network and hardware problems. The key to durability is planning for resilience, by evaluating the options on offer for persistence and replication, and carefully considering the performance trade-offs involved.
 
 Durability
 Writes in Couchbase (from the SDK or elsewhere) are written to a single node. From there, Couchbase Server will take care of sending the mutation to any configured replicas, and to disk. By default all writes are asynchronous, but levels of durability can be set, to ensure replication and/or persistence to disks, before the write is committed.
