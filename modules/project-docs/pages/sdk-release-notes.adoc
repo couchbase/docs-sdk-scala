@@ -1858,3 +1858,4 @@ Rename *master to *active throughout
 Remove scopeExists and collectionExists from CollectionManager
 * https://issues.couchbase.com/browse/SCBC-188[SCBC-188]:
 Align UserAndMetadata with latest RFC
+// end::all[]
