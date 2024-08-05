@@ -17,10 +17,6 @@
 
 
 
-
-
-
-
 ////
 * Couchbase Server 7.6 introduces Vector Search to enable AI integration, semantic search, and the RAG framework.
 A developer-friendly vector indexing engine exposes a vector database and search functionality.
@@ -41,8 +37,9 @@ A Vector Search database includes:
 
 
 
-This is currently implemented using xref:
-[Search Indexes], and can even be combined with traditional full text search queries.
+This is currently implemented using xref:full-text-searching-with-sdk.adoc[Search Indexes], and can even be combined with traditional full text search queries.
+Vector embeddings can be an array of floats or a xref:server:vector-search:run-vector-search-ui.adoc#base64[base64 encoded string].
+
 
 == Prerequisites
 
@@ -122,5 +119,6 @@ include::devguide:example$scala/FTS.scala[tag=vector4,indent=0]
 
 * xref:server:vector-search:vector-search.adoc[Vector Search for AI Apps docs (self-managed Couchbase Server)]
 * xref:cloud::vector-search:vector-search.adoc[Vector Search for AI Apps docs (Capella DBaaS)]
+* Vector Search in the https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/search/vector/index.html[Scala API reference].
 
 // https://developer.couchbase.com/tutorial-python-langchain-pdf-chat
