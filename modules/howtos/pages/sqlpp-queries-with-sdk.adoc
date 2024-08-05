@@ -179,6 +179,6 @@ include::howtos:partial$n1ql-additional-resources.adoc[]
 
 
 
-== Further Information
+// == Further Information
 
 
