@@ -1,4 +1,4 @@
-.Couchbase Scala SDK
+* xref:hello-world:overview.adoc[Couchbase {name_platform} SDK Overview]
 
 * xref:hello-world:start-using-sdk.adoc[Hello World]
 ** xref:hello-world:sample-application.adoc[]
