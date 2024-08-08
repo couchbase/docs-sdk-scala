@@ -162,6 +162,67 @@ This durability is enforced by the database,
 // https://docs.couchbase.com/java-sdk/current/concept-docs/durability-replication-failure-considerations.html#older-server-versions
 // Change link once 3.3 is archived?
 
+
+
+
+
+== Reading from Replicas
+
+By default, read requests from the SDK are directed to the node with the active vbucket.
+This bucket will usually be updated before any replicas (see <<durability,Durability>> above),
+and is best for consistency.
+
+Some use cases benefit -- for consistency or availability -- from accessing both the active copy of the document, and/or one or all replicas.
+This can be from the {anyreplica-api}[data service],
+and xref:howtos:subdocument-operations.adoc#reading-sub-documents-from-replicas[SubDoc Read from Replica].
+The method can either be one to return either the first result returned -- active or replica --
+which is useful if a node is timing out;
+or to return _all_ of the results, for client code to handle any inconsistency, or to build a consensus answer.
+
+
+////
+
+=== Preferred Server Group Replica Reads
+
+IMPORTANT: Preferred Server Group Replica Reads are only accessible with the {name-sdk} working with Couchbase Server 7.6.2 or newer (Capella or self-managed).
+
+xref:server:learn:clusters-and-availability/groups.adoc#understanding-server-group-awareness[Server Groups]
+can be used to define subsets of nodes within a Couchbase cluster, which contain a complete set of vbuckets (active or replica).
+As well as high availability use cases, Servre Groups can also be used to keep much traffic within the same cloud Availability Zone.
+
+For Capella users with high data volumes, egress charges for reads from other Availability Zones (AZ) in AWS can be a significant cost.
+The {name-sdk}, when making read replica requests, can make a request to a preferred Server Group --
+in this case the local AZ --
+and set to always read from a copy of the document in this local zone.
+This is done by putting cluster nodes in the same AZ into the same 
+xref:server:learn:clusters-and-availability/groups.adoc#server-groups-and-vbuckets[Server Group], too.
+
+This may mean the application has to be tolerant of slight inconsistencies,
+until the local replica catches up.
+Alternatively, it may demand a stronger level of durability, to ensure that all copies of a document are consistent before they are accessible --
+provided that this is `persistToMajority` with xref:server:learn:data/durability.adoc#majority[no more than one replica].
+
+Couchbase does not recommend this feature where read consistency is critical,
+but with the appropriate durability settings consistency can be favored ahead of availability.
+
+[CAUTION]
+.Replicas, Nodes, and Server Groups
+====
+Implicit in the rules for durability, and the process of setting up Server Groups, is the following information -- which we mention here explicitly to ensure it is all noted:
+
+* Moving servers between Server Groups updates the `clustermap` immediately, but to move the data, an administrator *must* perform rebalance. Until the rebalance is complete, the SDK will see and be able to 'use' the new server groups, but the `vBucketMap` may still refer to data in the previous locations.
+
+* The cluster should have enough nodes and group to make sure that copies of the same document are not stored on the same node, and each group has nodes that cover all 1024 vbuckets (in other words, the number of the groups does not exceeds number of the copies: `active+num_replicas`). The Admin UI should emit small yellow warning if the configuration is considered unbalanced.
+
+* Setting *three* replicas for the bucket xref:server:learn:data/durability.adoc#majority[disables durability for sync writes], also precluding the use of
+xref:concept-docs:transactions.adoc[multi-document ACID transactions].
+====
+
+////
+
+
+
+
 == Concurrent Document Mutations
 
 You can use the CAS value to control how concurrent document modifications are handled.
