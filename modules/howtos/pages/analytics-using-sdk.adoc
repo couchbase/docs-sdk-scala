@@ -15,7 +15,7 @@ include::{version-common}@sdk:shared:partial$columnar-available.adoc[tag=initial
 For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the xref:{version-server}@server:analytics:introduction.adoc[Couchbase Analytics Service (CBAS)].
 This is the analytic counterpart to our xref:sqlpp-queries-with-sdk.adoc[operational data focussed Query Service].
 
-The analytics service is available in xref:cloud:clusters:analytics-service/analytics-service.adoc[Capella]
+The analytics service is available in xref:cloud:clusters:analytics-service/analytics-service.adoc[Capella operational]
 or the Enterprise Edition of self-managed Couchbase Server.
 
 
