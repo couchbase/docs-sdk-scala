@@ -40,12 +40,14 @@ grep '<reactor.version>' $src/pom.xml
 grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
+
+
 === Version 1.7.2 (13 August 2024)
 
 Version 1.7.2 is the second maintenance release of the 1.7 series.
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.7.2/com/couchbase/client/scala/index.html[API Reference] |
-http://docs.couchbase.com/sdk-api/couchbase-core-io-3.7.2/[Core API Reference]
+http://docs.couchbase.com/sdk-api/couchbase-core-io-2.7.2/[Core API Reference]
 
 The supported and tested dependencies for this release are:
 
@@ -53,11 +55,14 @@ The supported and tested dependencies for this release are:
 * org.reactivestreams:**reactive-streams:1.0.4**
 
 ==== Improvements
+
 * https://issues.couchbase.com/browse/JVMCBC-1547[JVMCBC-1547]:
-Update DnsJava to 3.6.0.
+Updated DnsJava to 3.6.0.
 * https://issues.couchbase.com/browse/JCBC-2157[JCBC-2157]:
-Transaction settings are now configurable using the same callback pattern used by other environment settings. Here's an example of the new syntax:
-[source,name-of-language]
+Transaction settings are now configurable using the same callback pattern used by other environment settings.
+Here's an example of the new syntax:
++
+[source,scala]
 ----
 Cluster cluster = Cluster.connect(
   connectionString,
@@ -76,8 +81,10 @@ Cluster cluster = Cluster.connect(
 ----
 
 ==== Bug Fixes
-* https://issues.couchbase.com/browse/SCBC-462[SCBC-462] and https://issues.couchbase.com/browse/SCBC-469[SCBC-469]
-Now uses the correct internal transaction protocol identifier when interacting with other transactions.
+
+* https://issues.couchbase.com/browse/SCBC-462[SCBC-462], https://issues.couchbase.com/browse/SCBC-469[SCBC-469]:
+Now uses the correct internal transaction protocol identifier when interacting with other transactions --
+allowing Scala to continue sharing the core JVM implementation, but not having to follow implementation in lockstep with the Java SDK.
 
 
 === Version 1.7.1 (23 July 2024)
@@ -93,6 +100,7 @@ The supported and tested dependencies for this release are:
 * org.reactivestreams:**reactive-streams:1.0.4**
 
 ==== Improvements
+
 * https://issues.couchbase.com/browse/JVMCBC-1523[JVMCBC-1523]:
 Upgraded `org.iq80.snappy` from 0.4 to 0.5.
 * https://issues.couchbase.com/browse/JCBC-1528[JCBC-1528]:
@@ -106,11 +114,13 @@ This API change prevented upgrading to the latest Couchbase SDK, independently o
 The `upsertIndex()` call now prevents vector indexes from being created on server versions before version 7.6.0, which do not support these index types.
 
 ==== Bugfixes
+
 * https://issues.couchbase.com/browse/JVMCBC-1530[JVMCBC-1530]:
 Deprecated the `com.couchbase.client.core.error.QueryException` class.
-This exception is from SDK 3's beta development, and has never been thrown in a GA version of a Couchbase SDK.
+This exception is from the SDK 3 API's beta development, and has never been thrown in a GA version of a Couchbase SDK.
 * https://issues.couchbase.com/browse/JVMCBC-1534[JVMCBC-1534]:
 Fixed possible `DURABILITY_INVALID_LEVEL` if `Durability.NONE` is used with transactions.
+
 
 === Version 1.7.0 (15 June 2024)
 
@@ -125,14 +135,18 @@ The supported and tested dependencies for this release are:
 * org.reactivestreams:**reactive-streams:1.0.4**
 
 ==== Improvements
+
 * https://issues.couchbase.com/browse/SCBC-461[SCBC-461]:
 Adds support for base64-encoded vectors in `VectorQuery`.
 
 ==== Bugfixes
+
 * https://issues.couchbase.com/browse/SCBC-428[SCBC-428]:
 Fixed a regression introduced in version 3.4.5 that caused a Full-Text Search `BooleanQuery` to throw `InvalidArgumentException: Compound query has no child query` unless all three of "must", "should", and "mustNot" were specified.
 * https://issues.couchbase.com/browse/SCBC-463[SCBC-463]:
 Using a `MatchPhraseQuery` no longer results in an error.
+
+
 
 == Scala SDK 1.6 Releases
 
@@ -245,6 +259,7 @@ This feature requires Couchbase Server 7.6 or later.
 * https://issues.couchbase.com/browse/JVMCBC-1494[JVMCBC-1494]:
 If you specify `min=1` for a Full-Text Search disjunction query, the SDK now always sends the value to the server.
 Previously, the SDK assumed `1` was the default value, and omitted the parameter in that case.
+
 
 
 == Scala SDK 1.5 Releases
