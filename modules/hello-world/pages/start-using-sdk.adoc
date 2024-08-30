@@ -53,7 +53,7 @@ there are several self-managed options available:
 Couchbase Capella::
 +
 --
-If you haven't already got a database set up, the easiest route is to https://cloud.couchbase.com/sign-up[sign up to a trial of Couchbase Capella^], 
+If you haven't already got a database set up, the easiest route is to https://cloud.couchbase.com/sign-up[sign up to Couchbase Capella and deploy a perpetual free tier cluster^], 
 then come back to this page.
 Make a note of the xref:cloud:get-started:connect.adoc[endpoint] to connect to, 
 and remember the credentials for the user that you set up.
@@ -98,7 +98,7 @@ Couchbase Capella::
 * You have signed up to https://cloud.couchbase.com/sign-up[Couchbase Capella].
 
 * You have created your own bucket, or loaded the Travel Sample dataset.
-Note, the Travel Sample dataset is installed automatically by the Capella free trial.
+Note, the Travel Sample dataset is installed automatically when deploying a Capella perpetual free tier cluster.
 
 * A user is created with permissions to access the cluster (at least Application Access permissions).
 See the xref:cloud:get-started:cluster-and-data.adoc#credentials[Capella connection page] for more details.
