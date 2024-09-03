@@ -44,7 +44,7 @@ Couchbase Capella::
 include::devguide:example$scala/Cloud.scala[tag=connect,indent=0]
 ----
 
-Note, the client certificate for connecting to a Capella database is included in the SDK installation.
+Note, the client certificate for connecting to a Capella operational cluster is included in the SDK installation.
 --
 
 Self-Managed Couchbase Server::
