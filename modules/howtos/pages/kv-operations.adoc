@@ -382,7 +382,7 @@ include::devguide:example$scala/KvOperations.scala[indent=0,tag=named-collection
 
 == Additional Resources
 
-Working on just a specific path within a JSON document will reduce network bandwidth requirements - see the xref:subdocument-operations.adoc[Sub-Document] pages.
+Working on just a specific path within a JSON document will reduce network bandwidth requirements -- see the xref:subdocument-operations.adoc[Sub-Document] pages.
 
 As well as various xref:concept-docs:data-model.adoc[Formats] of JSON, Couchbase can work directly with xref:concept-docs:nonjson.adoc[arbitrary bytes, or binary format].
 
