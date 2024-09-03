@@ -53,7 +53,7 @@ there are several self-managed options available:
 Couchbase Capella::
 +
 --
-If you haven't already got a database set up, the easiest route is to https://cloud.couchbase.com/sign-up[sign up to a trial of Couchbase Capella^], 
+If you haven't already got a cluster set up, the easiest route is to https://cloud.couchbase.com/sign-up[sign up to a trial of Couchbase Capella^], 
 then come back to this page.
 Make a note of the xref:cloud:get-started:connect.adoc[endpoint] to connect to, 
 and remember the credentials for the user that you set up.
@@ -103,7 +103,7 @@ Note, the Travel Sample dataset is installed automatically by the Capella free t
 * A user is created with permissions to access the cluster (at least Application Access permissions).
 See the xref:cloud:get-started:cluster-and-data.adoc#credentials[Capella connection page] for more details.
 
-IMPORTANT: Couchbase Capella uses xref:cloud:organizations:organization-projects-overview.adoc[Roles] to control user access to database resources.
+IMPORTANT: Couchbase Capella uses xref:cloud:organizations:organization-projects-overview.adoc[Roles] to control user access to cluster resources.
 For the purposes of this guide, you can use the *Organization Owner* role automatically assigned to your account during installation of the Capella cluster.
 In production, Couchbase strongly recommends setting up users with more granular access roles as a best practice for data security.
 --
@@ -118,7 +118,7 @@ Self-Managed Couchbase Server::
 * A user is created with permissions to access your cluster (at least Application Access permissions).
 See xref:{version-server}@server:manage:manage-security/manage-users-and-roles.adoc[Manage Users, Groups and Roles] for more details.
 
-IMPORTANT: Couchbase Server uses xref:{version-server}@server:learn:security/roles.adoc[Role-Based Access Control (RBAC)] to control access to database resources.
+IMPORTANT: Couchbase Server uses xref:{version-server}@server:learn:security/roles.adoc[Role-Based Access Control (RBAC)] to control access to cluster resources.
 In this guide we suggest using the *Full Admin* role created during setup of your local Couchbase Server cluster.
 In production, Couchbase strongly recommends setting up users with more granular access roles as a best practice for data security.
 --
@@ -207,7 +207,7 @@ TIP: There's a *View* link to the complete sample code on GitHub above each of t
 
 == Connect to your Database
 
-Connect to your Couchbase Capella database (or your local Couchbase Cluster, if you are trying out self-managed Couchbase).
+Connect to your Couchbase Capella operational cluster (or your local Couchbase Cluster, if you are trying out self-managed Couchbase).
 
 
 [tabs,sync-group-id="Couchbase Capella|Self-Managed Couchbase Server"]
@@ -220,7 +220,7 @@ Couchbase Capella::
 include::devguide:example$scala/Cloud.scala[tag=connect,indent=0]
 ----
 
-Note, the client certificate for connecting to a Capella database is included in the SDK installation.
+Note, the client certificate for connecting to a Capella cluster is included in the SDK installation.
 --
 
 Self-Managed Couchbase Server::
