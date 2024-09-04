@@ -81,7 +81,7 @@ If you need pessimistic logging, in particular if you need to lock documents for
 // in Support wiki
 
 
-* `waitUntilReady` should be the default setting for `Cluster.connect` and `Cluster.bucket` in most cases, so that resources are fully loaded before the client proceeds with CRUD calls to the database.
+* `waitUntilReady` should be the default setting for `Cluster.connect` and `Cluster.bucket` in most cases, so that resources are fully loaded before the client proceeds with CRUD calls to the cluster.
 * LAN-type connection of client and server is recommended in production, but WAN development is a reality pre-production.
 Ensure that you're familiar with the 
 xref:ref:client-settings.adoc#constrained-network-environments[best timeout options for WAN environments],
