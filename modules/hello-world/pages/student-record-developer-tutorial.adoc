@@ -196,18 +196,18 @@ without the need for complex table joins to retrieve the enrollment information.
 
 == Creating Your Database
 
-In the next part of the tutorial, you're going to begin your exploration of Couchbase by by signing up for a Capella trial.
+In the next part of the tutorial, you're going to begin your exploration of Couchbase by signing up to Capella and deploying a free tier cluster.
 Capella is the simplest way of using Couchbase;
 should you wish to try a local Docker installation instead, you can adjust the connection steps in the tutorial below --
 but we strongly recommend Capella as the easiest way of getting started.
 
-On a free trial you will get a cluster of three nodes, featuring the Data Service, Query Service, and Index Service --
+In free tier, you'll get a free cluster of three nodes, featuring the Data Service, Query Service, and Index Service --
 all that you need to follow along with this tutorial.
 
 
 === Capella Installation
 
-Sign up to a free trial of https://www.couchbase.com/products/capella[the Couchbase Capella cloud service] then you can run through the tutorials for xref:cloud:get-started:get-started.adoc[Getting Started with Couchbase Capella].
+Sign up to of https://www.couchbase.com/products/capella[the Couchbase Capella cloud service] and deploy a free tier cluster to properly run through the tutorials for xref:cloud:get-started:get-started.adoc[Getting Started with Couchbase Capella].
 
 Make a note of the database endpoint, and any user names and passwords that you set up.
 You will use these to access your Capella database from the {name-sdk}.
