@@ -25,9 +25,6 @@ include::hello-world:start-using-sdk.adoc[tag=quick-install]
 // reminder - add spoiler tag to wrappers for cxx notes?
 
 
-
-[#latest-release]
-
 [#latest-release]
 == Scala SDK 1.7 Releases
 
@@ -42,7 +39,26 @@ grep '<reactor.version>' $src/pom.xml
 grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
+=== Version 1.7.4 (08 October 2024)
 
+Version 1.7.4 is the fourth maintenance release of the 1.7 series.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.7.4/com/couchbase/client/scala/index.html[API Reference] |
+http://docs.couchbase.com/sdk-api/couchbase-core-io-3.7.4/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.6.9**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+==== Improvements
+
+* https://jira.issues.couchbase.com/browse/JVMCBC-1573[JVMCBC-1573]:
+ExtParallelUnstaging leading to OOM when many concurrent transactions executed
+
+==== Bug Fixes
+* https://jira.issues.couchbase.com/browse/JVMCBC-1570[JVMCBC-1570]:
+SDK calculates incorrect replica for buckets with >= 2 replicas
 
 === Version 1.7.3 (23 September 2024)
 
