@@ -51,14 +51,17 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.6.9**
 * org.reactivestreams:**reactive-streams:1.0.4**
 
-==== Improvements
-
-* https://jira.issues.couchbase.com/browse/JVMCBC-1573[JVMCBC-1573]:
-ExtParallelUnstaging leading to OOM when many concurrent transactions executed
 
 ==== Bug Fixes
 * https://jira.issues.couchbase.com/browse/JVMCBC-1570[JVMCBC-1570]:
-SDK calculates incorrect replica for buckets with >= 2 replicas
+The SDK was producing an incorrect partition map in `CouchbaseBucketConfig`, for buckets with >= 2 replicas.
+This has now been fixed.
+
+==== Improvements
+* https://jira.issues.couchbase.com/browse/JVMCBC-1573[JVMCBC-1573]:
+`ExtParallelUnstaging` was producing more threads than required, leading to OOM when many concurrent transactions were executed.
+This has been rewritten to produce only the necessary number of threads are produced for each transaction.
+
 
 === Version 1.7.3 (23 September 2024)
 
