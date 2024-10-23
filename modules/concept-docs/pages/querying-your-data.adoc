@@ -151,6 +151,10 @@ Sequential scans are best suited to small collections where key order is unimpor
 For larger collections and greater performance, define the appropriate indexes to speed up your queries.
 For ordered document key operations, a primary index provides the same functionality, and will outperform a sequential scan.
 
+// or just use
+// https://docs.couchbase.com/cloud/n1ql/n1ql-language-reference/hints.html#use-keys-clause 
+// `USE PRIMARY KEYS`
+
 Read on to learn more about the Query and Index services.
 
 
