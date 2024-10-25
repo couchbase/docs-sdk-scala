@@ -3,6 +3,7 @@
 // :page-aliases: durability-replication-failure-considerations.adoc
 :description: Performance, availability, consistency -- balance your priorities, and model your data to achieve these goals.
 :page-toclevels: 2
+:anyreplica-api: pass:n[https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/Collection.html#getAnyReplica(id:String,options:com.couchbase.client.scala.kv.GetAnyReplicaOptions):scala.util.Try{startsb}com.couchbase.client.scala.kv.GetReplicaResult{endsb}]
 
 
 // Note to editors
@@ -173,9 +174,9 @@ This bucket will usually be updated before any replicas (see <<durability,Durabi
 and is best for consistency.
 
 Some use cases benefit -- for consistency or availability -- from accessing both the active copy of the document, and/or one or all replicas.
-This can be from the {anyreplica-api}[data service],
-and xref:howtos:subdocument-operations.adoc#reading-sub-documents-from-replicas[SubDoc Read from Replica].
-The method can either be one to return either the first result returned -- active or replica --
+This can be direct from the {anyreplica-api}[data service],
+or a xref:howtos:subdocument-operations.adoc#reading-sub-documents-from-replicas[SubDoc Read from Replica].
+The method can either be one to return the first result returned -- active or replica --
 which is useful if a node is timing out;
 or to return _all_ of the results, for client code to handle any inconsistency, or to build a consensus answer.
 
