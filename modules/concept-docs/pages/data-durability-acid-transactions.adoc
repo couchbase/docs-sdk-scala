@@ -3,7 +3,8 @@
 // :page-aliases: durability-replication-failure-considerations.adoc
 :description: Performance, availability, consistency -- balance your priorities, and model your data to achieve these goals.
 :page-toclevels: 2
-:anyreplica-api: pass:q[https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/Collection.html#getAnyReplica(id:String,options:com.couchbase.client.scala.kv.GetAnyReplicaOptions):scala.util.Try[com.couchbase.client.scala.kv.GetReplicaResult]
+// :anyreplica-api: pass:q[https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/Collection.html#getAnyReplica(id:String,options:com.couchbase.client.scala.kv.GetAnyReplicaOptions):scala.util.Try[com.couchbase.client.scala.kv.GetReplicaResult]
+:anyreplica-api: https://docs.couchbase.com/sdk-api/couchbase-scala-client/com/couchbase/client/scala/Collection.html
 
 
 // Note to editors
