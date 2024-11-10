@@ -38,6 +38,7 @@ grep '<reactor.version>' $src/pom.xml
 grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
+
 === Version 1.7.5 (06 November 2024)
 
 Version 1.7.5 is the fifth maintenance release of the 1.7 series.
@@ -51,15 +52,21 @@ The supported and tested dependencies for this release are:
 * org.reactivestreams:**reactive-streams:1.0.4**
 
 ==== Bug Fixes
+
 * https://jira.issues.couchbase.com/browse/JVMCBC-1572[JVMCBC-1572]:
-Due to a regression in 3.7.1, using a secure connection would cause `waitUntilReady()` to not wait, and would cause ping() to report failures even when nothing was wrong. The issue that caused these problems is now fixed.
+Due to a regression in 3.7.1, using a secure connection would cause `waitUntilReady()` to not wait, and would cause `ping()` to report failures even when nothing was wrong.
+The issue that caused these problems is now fixed.
 * https://jira.issues.couchbase.com/browse/JVMCBC-1577[JVMCBC-1577]:
-Due to a regression in 3.7.1, sometimes a request made shortly after calling Cluster.connect() would fail with a message that said the service is not available in the cluster, even if the service was actually available. This no longer happens.
+Due to a regression in 3.7.1, sometimes a request made shortly after calling `Cluster.connect()` would fail with a message that said the service is not available in the cluster, even if the service was actually available.
+This no longer happens.
 * https://jira.issues.couchbase.com/browse/JVMCBC-1579[JVMCBC-1579]:
-Deprecate com.couchbase.client.core.node.NodeIdentifier in favor of com.couchbase.client.core.topology.NodeIdentifier
+Deprecated `com.couchbase.client.core.node.NodeIdentifier` in favor of `com.couchbase.client.core.topology.NodeIdentifier`.
+
 ==== Improvements
+
 * https://jira.issues.couchbase.com/browse/JVMCBC-1576[JVMCBC-1576]:
-Bump protobuf version from 3.23.2 to 3.25.5
+Bumped `protobuf` version from `3.23.2` to `3.25.5`.
+
 
 === Version 1.7.4 (08 October 2024)
 
@@ -75,11 +82,13 @@ The supported and tested dependencies for this release are:
 
 
 ==== Bug Fixes
+
 * https://jira.issues.couchbase.com/browse/JVMCBC-1570[JVMCBC-1570]:
 The SDK was producing an incorrect partition map in `CouchbaseBucketConfig`, for buckets with >= 2 replicas.
 This has now been fixed.
 
 ==== Improvements
+
 * https://jira.issues.couchbase.com/browse/JVMCBC-1573[JVMCBC-1573]:
 `ExtParallelUnstaging` was producing more threads than required, leading to OOM when many concurrent transactions were executed.
 This has been rewritten to produce only the necessary number of threads are produced for each transaction.
