@@ -619,37 +619,8 @@ CAUTION: The Configuration Profiles feature is currently a xref:java-sdk:project
 A `ClusterEnvironment.WanDevelopmentProfile` configuration profile can be used to modify client settings for development or high-latency environments.
 This profile changes the default timeouts.
 
-
-.Profile Settings
-[cols="1,1"]
-|===
-| Setting | Value
-
-| `connectTimeout`
-| 20s
-
-| `kvTimeout`
-| 20s
-
-| `kvDurableTimeout`
-| 20s
-
-| `viewTimeout`
-| 120s
-
-| `queryTimeout`
-| 120s
-
-| `analyticsTimeout`
-| 120s
-
-| `searchTimeout`
-| 120s
-
-| `managementTimeout`
-| 120s
-|===
-
+// table - WAN profile timeouts
+include::{version-common}@sdk:shared:partial$client-settings-wan-profile.adoc[tag=profile-values]
 
 
 == Cloud Native Gateway
