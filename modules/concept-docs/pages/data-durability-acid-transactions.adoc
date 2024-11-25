@@ -103,7 +103,7 @@ and allows heterogeneous data.
 
 === Objects, Relations, Tables
 
-In the Relational Database (RDBMS) world, a translaton layer is often used between the objects of your data model in your application,
+In the Relational Database (RDBMS) world, a translation layer is often used between the objects of your data model in your application,
 and the tables that you store the data in.
 JSON storage allows you to store complex types, like nested records and arrays, without decomposing them to a second table
 (known in the SQL world as https://en.wikipedia.org/wiki/Database_normalization[database normalization^]).
