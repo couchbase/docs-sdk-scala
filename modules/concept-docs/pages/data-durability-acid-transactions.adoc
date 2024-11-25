@@ -157,7 +157,7 @@ A practical look at this -- using the `durability` parameter with mutating opera
 
 This durability is enforced by the cluster, 
 
-*TODO* Durability section
+// *TODO* Durability section
 
 // Worth putting in?
 // Note, if you are working with an older, no longer supported version of Couchbase Server, you may want to look at 3.3@java-sdk:concept-docs:durability-replication-failure-considerations.adoc#older-server-versions in the earlier SDK docs.
@@ -255,7 +255,7 @@ or implicitly by mutating the document with a valid CAS.
 While a document is locked, it may be retrieved but not modified without using the correct CAS value.
 When a locked document is retrieved, the server will return an invalid CAS value, preventing mutations of that document.
 
-More information, including a table of behaviors while an item is locked, can be fould in the
+More information, including a table of behaviors while an item is locked, can be found in the
 xref:howtos:concurrent-document-mutations.adoc#pessimistic-locking[Pessimistic Locking section of the Concurrent Document Mutations page].
 
 
@@ -318,7 +318,7 @@ It addresses:
 Below, we link some of the pages in this section that take a deeper dive into data structures, durability guarantees, and avoiding race conditions during concurrent document modifications --
 but if you are in a hurry to just learn more about querying your data, please skip ahead to xref:concept-docs:querying-your-data.adoc[the next section].
 
-* A deeper dive into ourxref:server:learn:data/scopes-and-collections.adoc[scopes and collections documentation].
+* A deeper dive into our xref:server:learn:data/scopes-and-collections.adoc[scopes and collections documentation].
 
 * xref:data-model.adoc#data-structures[Working with other data structures from the SDK].
 
