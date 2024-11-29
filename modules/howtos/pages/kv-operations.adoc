@@ -287,7 +287,8 @@ Here the SDK will do a simple poll of the replicas and only return once the requ
 include::devguide:example$scala/KvOperations.scala[indent=0,tag=durability-observed]
 ----
 
-To stress, durability is a useful feature but should not be the default for most applications, as there is a performance consideration, and the default level of safety provided by Couchbase will be resaonable for the majority of situations.
+To stress, durability is a useful feature but should not be the default for most applications, as there is a performance consideration,
+and the default level of safety provided by Couchbase will be reasonable for the majority of situations.
 
 
 == Expiration/TTL
