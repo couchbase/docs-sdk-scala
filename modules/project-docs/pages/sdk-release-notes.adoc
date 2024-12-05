@@ -27,6 +27,9 @@ include::hello-world:start-using-sdk.adoc[tag=quick-install]
 [#latest-release]
 == Scala SDK 1.7 Releases
 
+Version 1.7 of the Scala SDK implements the 3.6 xref:compatibility.adoc#api-version[SDK API].
+See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
+
 We always recommend using the latest version of the SDK -- it contains all of the latest security patches and support for new and upcoming features.
 All patch releases for each dot minor release should be API compatible, and safe to upgrade;
 any changes to expected behavior are noted in the release notes that follow.
@@ -232,6 +235,9 @@ Using a `MatchPhraseQuery` no longer results in an error.
 
 
 == Scala SDK 1.6 Releases
+
+Version 1.6 of the Scala SDK implements the 3.5 xref:compatibility.adoc#api-version[SDK API].
+See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
 
 === Version 1.6.3 (19 August 2024)
 
