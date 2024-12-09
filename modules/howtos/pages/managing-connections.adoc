@@ -315,6 +315,7 @@ NOTE: Any TLS certificates must be set up at the point where the connections are
 
 
 // DNS-SRV
+// == Using DNS SRV records
 
 include::{version-common}@sdk:shared:partial$dnssrv-pars.adoc[tag=dnssrv-rev]
 
