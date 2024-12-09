@@ -316,7 +316,7 @@ NOTE: Any TLS certificates must be set up at the point where the connections are
 
 // DNS-SRV
 
-include::{version-common}@sdk:shared:partial$dnssrv-pars.adoc[tag=dnssrv]
+include::{version-common}@sdk:shared:partial$dnssrv-pars.adoc[tag=dnssrv-rev]
 
 DNS SRV bootstrapping is enabled by default in the {name-sdk}.
 In order to make the SDK use the SRV records, you need to pass in the hostname from your records (here `example.com`):
