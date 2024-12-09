@@ -8,7 +8,8 @@
 {description}
 
 Couchbase {name-sdk} {sdk_dot_minor} implements the Couchbase SDK {sdk_api} API.
-1.x is the first release of the Couchbase Scala SDK, there are no releases implementing older APIs.
+1.x is the first release of the Couchbase Scala SDK, implementing https://github.com/couchbaselabs/sdk-rfcs/tree/master/rfc[Couchbase SDK3 APIs];
+there are no releases of the Scala SDK implementing older APIs.
 
 
 == Mixing Code from Other JVM Platforms

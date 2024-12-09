@@ -9,7 +9,7 @@
 {description}
 
 Version {sdk_dot_minor} of the Scala SDK implements the {sdk_api} xref:compatibility.adoc#api-version[SDK API].
-See the xref:compatibility.html#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
+See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
 
 
 == Installation
@@ -26,6 +26,9 @@ include::hello-world:start-using-sdk.adoc[tag=quick-install]
 
 [#latest-release]
 == Scala SDK 1.7 Releases
+
+Version 1.7 of the Scala SDK implements the 3.6 xref:compatibility.adoc#api-version[SDK API].
+See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
 
 We always recommend using the latest version of the SDK -- it contains all of the latest security patches and support for new and upcoming features.
 All patch releases for each dot minor release should be API compatible, and safe to upgrade;
@@ -233,6 +236,9 @@ Using a `MatchPhraseQuery` no longer results in an error.
 
 == Scala SDK 1.6 Releases
 
+Version 1.6 of the Scala SDK implements the 3.5 xref:compatibility.adoc#api-version[SDK API].
+See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
+
 === Version 1.6.3 (19 August 2024)
 
 This is a regular maintenance release.
@@ -347,8 +353,10 @@ Previously, the SDK assumed `1` was the default value, and omitted the parameter
 
 == Scala SDK 1.5 Releases
 
-Version 1.5 of the Scala SDK implements the 3.4 xref:compatibility.adoc#api-version[SDK API].
-See the xref:compatibility.html#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
+Version 1.5 of the Scala SDK implements the 3.4 xref:compatibility.adoc#api-version[SDK API],
+and includes support for the `couchbase2://` connection protocol --
+please see xref:howtos:managing-connections.adoc#cloud-native-gateway[Cloud Native Gateway] for more information.
+See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
 
 
 === Version 1.5.3 (6 February 2024)
@@ -525,7 +533,7 @@ Fix a regression in getAllScopes.
 == Scala SDK 1.4 Releases
 
 Version 1.4 of the Scala SDK implements the 3.4 xref:compatibility.adoc#api-version[SDK API].
-See the xref:compatibility.html#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
+See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
 
 
 === Version 1.4.11 (4 October 2023)
@@ -898,7 +906,7 @@ Make sure targeted round robin request keeps retrying if no config is available.
 == Scala SDK 1.3 Releases
 
 Version 1.3 of the Scala SDK implements the 3.3 xref:compatibility.adoc#api-version[SDK API].
-See the xref:compatibility.html#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
+See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
 
 
 === Version 1.3.4 (9 September 2022)
@@ -1060,7 +1068,7 @@ This plugs a resource leak where `LoggingMeter` worker threads would never be st
 == Scala SDK 1.2 Releases
 
 Version 1.2 of the Scala SDK implements the 3.2 xref:compatibility.adoc#api-version[SDK API].
-See the xref:compatibility.html#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
+See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
 
 
 === Version 1.2.6 (2 March 2022)
@@ -1387,7 +1395,7 @@ Ignore slow subscribers on certain Flux intervals.
 == Scala SDK 1.1 Releases
 
 Version 1.1 of the Scala SDK implements the 3.1 xref:compatibility.adoc#api-version[SDK API].
-See the xref:compatibility.html#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
+See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
 
 
 === Version 1.1.8 (1 March 2022)
@@ -1665,7 +1673,7 @@ Enhanced user management for collections/RBAC, to support future 7.0 release.
 == Scala SDK 1.0 Releases
 
 Version 1.0 of the Scala SDK implements the 3.0 xref:compatibility.adoc#api-version[SDK API].
-See the xref:compatibility.html#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
+See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
 
 
 === Version 1.0.9 (7 October 2020)

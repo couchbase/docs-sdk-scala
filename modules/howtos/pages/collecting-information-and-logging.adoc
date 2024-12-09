@@ -1,5 +1,7 @@
 = Logging
 :description: The Scala SDK logs events and also provides an event bus that transmits information about the behavior of your database system, including system and metric events.
+:page-toclevels: 2
+
 
 [abstract]
 {description}
