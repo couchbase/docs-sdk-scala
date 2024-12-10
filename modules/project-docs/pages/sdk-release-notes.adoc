@@ -41,6 +41,7 @@ grep '<reactor.version>' $src/pom.xml
 grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
+
 === Version 1.7.6 (04 December 2024)
 
 Version 1.7.6 is the sixth maintenance release of the 1.7 series.
@@ -54,16 +55,19 @@ The supported and tested dependencies for this release are:
 * org.reactivestreams:**reactive-streams:1.0.4**
 
 ==== Bug Fixes
+
 * https://jira.issues.couchbase.com/browse/JVMCBC-1783[JVMCBC-1783]:
 Fixed a race condition that could cause the SDK to continuously attempt to reconnect to a node, even after the node is rebalanced out of the cluster.
 
 ==== Improvements
+
 * https://jira.issues.couchbase.com/browse/JVMCBC-1560[JVMCBC-1560]:
-Add cluster UUID and name to metrics and spans
+Added cluster UUID and name to metrics and spans.
 * https://jira.issues.couchbase.com/browse/JVMCBC-1582[JVMCBC-1582]:
-Upgrade Netty from 4.1.112 to 4.1.115
+Upgraded `Netty` from `4.1.112` to `4.1.115`.
 * https://jira.issues.couchbase.com/browse/SCBC-471[SCBC-471]:
-Update dependencies
+Updated dependencies.
+
 
 === Version 1.7.5 (06 November 2024)
 
