@@ -254,7 +254,7 @@ Read more on the xref:howtos:managing-connections.adoc#cloud-native-gateway[Conn
 ====
 
 
-The `ClusterEnvironment.builder` is covered more fully on the xref:ref:client-settings.adoc#the-environment-builder[Clint Settings] page.
+The `ClusterEnvironment.builder` is covered more fully on the xref:ref:client-settings.adoc#the-environment-builder[Client Settings] page.
 
 
 NOTE: `Cluster.connect` returns a `Try[Cluster]`, as the Scala client uses functional error handling and does not throw exceptions.

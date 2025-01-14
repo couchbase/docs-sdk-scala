@@ -12,7 +12,7 @@
 // This page pulls in content from -sdk-common-
 // and code samples from -example-dir-
 // 
-// It can be seen built at http://docs.couchbase.com/scala-sdk/1.6/concept-docs/data-durability-acid-transactions.html
+// It can be seen built at http://docs.couchbase.com/scala-sdk/1.7/concept-docs/data-durability-acid-transactions.html
 
 
 [abstract]
