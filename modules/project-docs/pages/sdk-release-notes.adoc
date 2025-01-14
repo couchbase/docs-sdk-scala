@@ -42,6 +42,35 @@ grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
 
+
+=== Version 1.7.6 (04 December 2024)
+
+Version 1.7.7 is the seventh maintenance release of the 1.7 series.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.7.7/com/couchbase/client/scala/index.html[API Reference] |
+http://docs.couchbase.com/sdk-api/couchbase-core-io-3.7.7/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.6.9**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+
+==== Bug Fixes
+
+* https://jira.issues.couchbase.com/browse/JVMCBC-1592[JVMCBC-1592]:
+When fetching fresh cluster topology information for a bucket, the SDK now dispatches the request to a random eligible node instead of using a round-robin algorithm.
+Randomizing the node selection avoids a pathological condition where if the number of open buckets is equal to the number of nodes, and one of the nodes is degraded,
+the config refresh attempt for a particular bucket would fail repeatedly because it was always sent to the degraded node.
+* https://jira.issues.couchbase.com/browse/SCBC-474[SCBC-474]:
+Fixed a regression introduced in Scala SDK 1.4.3 that caused `JsonArray` and `JsonObject` to no longer be handled correctly when used as parameters in `QueryOptions`, and in `SearchOptions.raw`.
+
+==== Improvements
+
+* https://jira.issues.couchbase.com/browse/JVMCBC-1585[JVMCBC-1585]:
+When a thread executing `clusterOrScope.queryStreaming()` is interrupted, the thrown `CancellationException` now has the original `InterruptedException` as its cause.
+
+
 === Version 1.7.6 (04 December 2024)
 
 Version 1.7.6 is the sixth maintenance release of the 1.7 series.
