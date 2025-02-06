@@ -1,4 +1,5 @@
 = Using Couchbase Transactions
+:reftext: Distributed ACID Transactions from the Scala SDK
 :description: A practical guide on using Couchbase Distributed ACID transactions, via the Scala SDK.
 :page-partial:
 :page-aliases: acid-transactions
