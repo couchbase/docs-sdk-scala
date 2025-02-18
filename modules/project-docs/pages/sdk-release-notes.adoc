@@ -42,6 +42,29 @@ grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
 
+=== Version 1.7.8 (11 February 2025)
+
+Version 1.7.8 is the eighth maintenance release of the 1.7 series.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.7.8/com/couchbase/client/scala/index.html[API Reference] |
+http://docs.couchbase.com/sdk-api/couchbase-core-io-3.7.8/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.6.9**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+==== Improvements
+
+* https://jira.issues.couchbase.com/browse/JVMCBC-1609[JVMCBC-1609]:
+Added experimental client settings for tuning socket send/receive buffer size and channel outbound buffer high/low-water marks.
+** `io.sendBuffer`
+** `io.receiveBuffer`
+** `io.lowWaterMark`
+** `io.highWaterMark`
++
+NOTE: We do not currently recommend configuring these settings unless you are working with Couchbase technical support to diagnose a network performance issue.
+
 
 === Version 1.7.7 (08 January 2025)
 
