@@ -28,7 +28,7 @@ include::{version-common}@sdk:pages:partial$health-check.adoc[tag="uses"]
 
 == Ping
 
-`Ping` _actively_ queries the status of the specified services,giving status and latency information for every node reachable.
+`Ping` _actively_ queries the status of the specified services, giving status and latency information for every node reachable.
 In addition to its use as a monitoring tool, a regular `Ping` can be used in an environment which does not respect keep alive values for a connection.
 
 
