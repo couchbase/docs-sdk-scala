@@ -36,6 +36,12 @@ A Vector Search database includes:
 
 
 
+////
+Vector queries with GSI are fast and scale up, but sometimes you may wish to use Vector with the Search Service instead.
+
+Hybrid searches can combine Vector, geo-spatial search, range search, and traditional fuzzy text search for apps that...........
+////
+
 
 This is currently implemented using xref:full-text-searching-with-sdk.adoc[Search Indexes], and can even be combined with traditional full text search queries.
 Vector embeddings can be an array of floats or a xref:server:vector-search:run-vector-search-ui.adoc#base64[base64 encoded string].
