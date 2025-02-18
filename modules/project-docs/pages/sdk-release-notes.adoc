@@ -55,10 +55,15 @@ The supported and tested dependencies for this release are:
 * org.reactivestreams:**reactive-streams:1.0.4**
 
 ==== Improvements
+
 * https://jira.issues.couchbase.com/browse/JVMCBC-1609[JVMCBC-1609]:
-Add client settings for tuning socket buffers
-* https://jira.issues.couchbase.com/browse/JVMCBC-2179[JVMCBC-2179]:
-Add PATCH support to CouchbaseHttpClient
+Added experimental client settings for tuning socket send/receive buffer size and channel outbound buffer high/low-water marks.
+** `io.sendBuffer`
+** `io.receiveBuffer`
+** `io.lowWaterMark`
+** `io.highWaterMark`
++
+NOTE: We do not currently recommend configuring these settings unless you are working with Couchbase technical support to diagnose a network performance issue.
 
 
 === Version 1.7.7 (08 January 2025)
