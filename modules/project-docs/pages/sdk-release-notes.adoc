@@ -41,6 +41,8 @@ grep '<reactor.version>' $src/pom.xml
 grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
+
+
 === Version 1.7.9 (11 March 2025)
 
 Version 1.7.9 is the ninth maintenance release of the 1.7 series.
@@ -55,14 +57,14 @@ The supported and tested dependencies for this release are:
 
 ### Improvement
 
-* [JVMCBC-1614](https://couchbasecloud.atlassian.net/browse/JVMCBC-1614)
-Add ServiceType.id\(\)
+* https://couchbasecloud.atlassian.net/browse/JVMCBC-1614[JVMCBC-1614]:
+Added `ServiceType.id()`
 
-* [JVMCBC-1615](https://couchbasecloud.atlassian.net/browse/JVMCBC-1615)
-Move nodeUUID from NodeIdentifier to HostAndServicePorts
+* https://couchbasecloud.atlassian.net/browse/JVMCBC-1615[JVMCBC-1615]:
+Moved `nodeUUID` from `NodeIdentifier` to `HostAndServicePorts`.
 
-* [JVMCBC-1616](https://couchbasecloud.atlassian.net/browse/JVMCBC-1616)
-Upgrade Netty to 4.1.118
+* https://couchbasecloud.atlassian.net/browse/JVMCBC-1616[JVMCBC-1616]
+Upgraded Netty to `4.1.118`.
 
 
 === Version 1.7.8 (11 February 2025)
