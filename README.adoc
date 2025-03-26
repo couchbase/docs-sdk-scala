@@ -2,10 +2,10 @@
 
 This repository hosts the documentation source for the https://docs.couchbase.com/scala-sdk/1.7/hello-world/overview.html[Couchbase Scala SDK].
 
-This branch documents the 1.7 release of the SDK.
-It follows the https://docs.couchbase.com/scala-sdk/1.7/project-docs/compatibility.html#api-version[SDK 3.6 API].
+This branch documents the 1.8 release of the SDK.
+It follows the https://docs.couchbase.com/scala-sdk/1.8/project-docs/compatibility.html#api-version[SDK 3.7 API].
 
-This branch reflects the new Information Architecture for the SDK docs -- this release was previously documented with the old structure (those old docs can be found under the `temp/1.6` branch), and docs with this structure can be seen on the Couchbase docs site for releases 1.6 and earlier.
+This branch reflects the new Information Architecture for the SDK docs.
 
 
 == Contributing
@@ -26,7 +26,7 @@ TODO: Add in link to new JIRA.
 
 == Notes for Docs Maintainers
 
-The philosophy behind the Information Architecture can be found in the https://docs.couchbase.com/scala-sdk/1.6/project-docs/metadoc-about-these-sdk-docs.html[meta doc].
+The philosophy behind the Information Architecture can be found in the https://docs.couchbase.com/scala-sdk/1.8/project-docs/metadoc-about-these-sdk-docs.html[meta doc].
 
 === Directory Structure
 
