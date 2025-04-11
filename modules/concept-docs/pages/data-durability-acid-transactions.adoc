@@ -182,11 +182,9 @@ which is useful if a node is timing out;
 or to return _all_ of the results, for client code to handle any inconsistency, or to build a consensus answer.
 
 
-////
-
 === Preferred Server Group Replica Reads
 
-IMPORTANT: Preferred Server Group Replica Reads are only accessible with the {name-sdk} working with Couchbase Server 7.6.2 or newer (Capella or self-managed).
+IMPORTANT: Preferred Server Group Replica Reads are only accessible with the {name-sdk} working with Couchbase Server 7.6.2 or newer (Capella or self-managed), and from SDK 1.8.0.
 
 xref:server:learn:clusters-and-availability/groups.adoc#understanding-server-group-awareness[Server Groups]
 can be used to define subsets of nodes within a Couchbase cluster, which contain a complete set of vbuckets (active or replica).
@@ -219,10 +217,6 @@ Implicit in the rules for durability, and the process of setting up Server Group
 * Setting *three* replicas for the bucket xref:server:learn:data/durability.adoc#majority[disables durability for sync writes], also precluding the use of
 xref:concept-docs:transactions.adoc[multi-document ACID transactions].
 ====
-
-////
-
-
 
 
 == Concurrent Document Mutations
