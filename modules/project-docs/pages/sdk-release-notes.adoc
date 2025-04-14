@@ -55,7 +55,6 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.6.9**
 * org.reactivestreams:**reactive-streams:1.0.4**
 
-# Release notes - Scala Couchbase Client - 1.8.0
 
 ==== Bugfixes
 
