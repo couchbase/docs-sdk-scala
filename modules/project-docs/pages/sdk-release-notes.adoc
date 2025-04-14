@@ -59,18 +59,18 @@ The supported and tested dependencies for this release are:
 
 ==== Bugfixes
 
-https://couchbasecloud.atlassian.net/browse/JVMCBC-1628[JVMCBC-1628]:
+* https://couchbasecloud.atlassian.net/browse/JVMCBC-1628[JVMCBC-1628]:
 Specifying `DISABLE_READ_SKEW_DETECTION` was causing transactional `getMulti` to fail.
 This has now been fixed.
 
 ==== New Features
 
-https://couchbasecloud.atlassian.net/browse/SCBC-459[SCBC-459]:
+* https://couchbasecloud.atlassian.net/browse/SCBC-459[SCBC-459]:
 Allow to restrict replica set to selected server group.
 This feature allows the implementation of network optimization when traffic cost between server groups is higher than in the local group.
 In this case the application might select preferred server group in the connection options, and later opt-in for local operations during replica reads.
 
-https://couchbasecloud.atlassian.net/browse/JVMCBC-1602:[JVMCBC-1602]
+* https://couchbasecloud.atlassian.net/browse/JVMCBC-1602:[JVMCBC-1602]:
 Application Telemetry improvements.
 
 
