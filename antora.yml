@@ -1,5 +1,5 @@
 name: scala-sdk
-version: '1.7'
+version: '1.8'
 title: Scala SDK
 start_page: hello-world:overview.adoc
 nav:
@@ -9,8 +9,8 @@ asciidoc:
   attributes:
     page-nav-header-levels: 2
     server_version: '7.6.2'
-    sdk_current_version: '1.7.9'
-    sdk_dot_minor: '1.7'
+    sdk_current_version: '1.8.0'
+    sdk_dot_minor: '1.8'
     sdk_dot_major: '1.x'
     version-server: '7.6'
     version-common: '7.6'
