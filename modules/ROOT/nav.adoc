@@ -53,7 +53,7 @@
 ** xref:howtos:provisioning-cluster-resources.adoc[]
 ** xref:howtos:sdk-user-management-example.adoc[Managing Users]
 * xref:project-docs:deployment.adoc[SDK Deployment]
-** xref:project-docs:sdk-release-notes.adoc[Release Notes]
+** xref:project-docs:sdk-release-notes.adoc#scala-sdk-1-7-releases[Release Notes]
 *** https://docs-archive.couchbase.com/home/index.html[Older Versions Archive^]
 ** xref:project-docs:compatibility.adoc[]
 *** xref:project-docs:migrating-sdk-code-to-3.n.adoc[]
