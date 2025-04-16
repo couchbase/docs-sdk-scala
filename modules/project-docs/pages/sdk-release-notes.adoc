@@ -13,4 +13,4 @@
 Version 1.6 of the Scala SDK implements the 3.5 xref:compatibility.adoc#api-version[SDK API].
 See the xref:compatibility.html#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
 
-include::1.7@scala-sdk:project-docs:page$sdk-release-notes.adoc[tag=all]
+include::1.8@scala-sdk:project-docs:page$sdk-release-notes.adoc[tag=all]
