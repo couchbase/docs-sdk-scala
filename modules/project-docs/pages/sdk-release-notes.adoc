@@ -41,6 +41,8 @@ grep '<reactor.version>' $src/pom.xml
 grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
+
+
 === Version 1.8.1 (9 May  2025)
 
 Version 1.8.1 is the first maintenance release of the 1.8 series.
@@ -55,11 +57,15 @@ The supported and tested dependencies for this release are:
 
 ==== Bug Fixes
 
-* [SCBC-485](https://couchbasecloud.atlassian.net/browse/SCBC-485) SearchQuery.toString\(\) should return the query JSON
+* https://couchbasecloud.atlassian.net/browse/SCBC-485[SCBC-485]:
+`SearchQuery.toString()` has not been returning the query JSON since Scala SDK 1.4.5.
+This regression has now been fixed.
 
 ==== Improvements
 
-* [JVMCBC-1631](https://couchbasecloud.atlassian.net/browse/JVMCBC-1631) Update Netty to 4.1.119
+* https://couchbasecloud.atlassian.net/browse/JVMCBC-1631[JVMCBC-1631]:
+Updated `Netty` to `4.1.119`.
+
 
 === Version 1.8.0 (9 April 2025)
 
