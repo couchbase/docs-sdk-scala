@@ -56,13 +56,18 @@ The supported and tested dependencies for this release are:
 
 ==== Bug Fixes
 
-[SCBC-487](https://couchbasecloud.atlassian.net/browse/SCBC-487) The flexIndex parameter in TransactionQueryOptions is now correctly passed to the server.
+* https://couchbasecloud.atlassian.net/browse/SCBC-487[SCBC-487]:
+The `flexIndex` parameter in `TransactionQueryOptions` is now correctly passed to the server.
 
 ==== Improvements
 
-[SCBC-486](https://couchbasecloud.atlassian.net/browse/SCBC-486) Case class constructors made public again, for all input case classes that are part of the public interface.
+* https://couchbasecloud.atlassian.net/browse/SCBC-486[SCBC-486]:
+Case class constructors made public again, for all input case classes that are part of the public interface.
 
-[JVMCBC-1647](https://couchbasecloud.atlassian.net/browse/JVMCBC-1647) Upgrade Jackson from 2.17.2 to 2.17.3
+* https://couchbasecloud.atlassian.net/browse/JVMCBC-1647[JVMCBC-1647]:
+Upgraded `Jackson` from `2.17.2` to `2.17.3`.
+
+
 
 === Version 1.8.1 (9 May 2025)
 
