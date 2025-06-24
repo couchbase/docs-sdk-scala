@@ -22,7 +22,7 @@ see the xref:project-docs:compatibility.adoc#jdk-compat[compatibility docs].
 include::hello-world:start-using-sdk.adoc[tag=quick-install]
 
 
-include::{version-common}@sdk:page:partial$signed.adoc[tag=signed]
+include::{version-common}@sdk:pages:partial$signed.adoc[tag=signed]
 
 (3.8.2 is the JVM core of Scala SDK 1.8.2.)
 
