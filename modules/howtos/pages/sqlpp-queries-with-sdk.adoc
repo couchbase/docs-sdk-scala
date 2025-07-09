@@ -134,6 +134,7 @@ Here's how to perform a query and stream the results using the reactive API:
 include::devguide:example$scala/Queries.scala[tag=reactive,indent=0]
 ----
 
+NOTE: The Scala 3 version of the SDK does not carry forward support for the reactive API, since it depends on an external library that is end-of-life.    Please see xref:project-docs:migrating-to-scala-3.adoc[Migrating to Scala 3] for guidance on these and other changes.
 
 == Querying at Scope Level
 

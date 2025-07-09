@@ -321,7 +321,7 @@ def cas() {
 val result = collection.get("player432")
   .flatMap(doc => collection.mutateIn("player432", Array(
     decrement("gold", 150)
-  ), cas = doc.cas))
+  ), MutateInOptions().cas(doc.cas)))
   // #end::cas[]
 }
 
@@ -329,7 +329,7 @@ val result = collection.get("player432")
     // #tag::durability[]
     val result = collection.mutateIn("key", Array(
       insert("name", "andy")
-    ), durability = Durability.ClientVerified(ReplicateTo.One, PersistTo.One))
+    ), MutateInOptions().durability(Durability.ClientVerified(ReplicateTo.One, PersistTo.One)))
     // #end::durability[]
   }
 
@@ -337,7 +337,7 @@ val result = collection.get("player432")
     // #tag::sync-durability[]
     val result = collection.mutateIn("key", Array(
       insert("name", "andy")
-    ), durability = Durability.Majority)
+    ), MutateInOptions().durability(Durability.Majority))
     // #end::sync-durability[]
   }
 

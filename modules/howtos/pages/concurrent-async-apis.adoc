@@ -16,6 +16,7 @@ The Scala SDK provides three APIs, which can be freely mixed:
 * An asynchronous one, that returns `Future`.
 * A reactive one, that returns reactive primitives from the https://projectreactor.io/[Project Reactor] library, e.g. `Mono` and `Flux`.
 
+NOTE: The Scala 3 version of the SDK does not carry forward support for the reactive API, since it depends on an external library that is end-of-life.    Please see xref:project-docs:migrating-to-scala-3.adoc[Migrating to Scala 3] for guidance on these and other changes.
 
 == Using the Blocking API
 

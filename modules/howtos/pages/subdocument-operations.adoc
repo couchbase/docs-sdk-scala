@@ -112,25 +112,6 @@ Multiple operations can be combined, and this can be most neatly done with a for
 include::devguide:example$scala/SubDocument.scala[tag=combine]
 ----
 
-
-== Choosing an API
-
-The Scala SDK provides three APIs for all operations.  There's the simple blocking one you've already seen, then this
-asynchronous variant that returns Scala `Future`:
-
-[source,scala]
-----
-include::devguide:example$scala/SubDocument.scala[tag=get-future]
-----
-
-And a third that uses reactive programming primitives from https://projectreactor.io/[Project Reactor]:
-
-[source,scala]
-----
-include::devguide:example$scala/SubDocument.scala[tag=get-reactive]
-----
-
-
 == Mutating
 
 Mutation operations modify one or more paths in the document.

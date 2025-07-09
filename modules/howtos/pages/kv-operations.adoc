@@ -65,6 +65,8 @@ You can also directly encode and decode Scala case classes to and from the SDK.
 To make things easy and to help get you started, the Scala SDK also bundles a home-grown small JSON library, which you are free to use instead of or alongside any of the other supported JSON libraries.
 The philosophy behind this library is to provide a very easy-to-use API and the fastest JSON implementation possible.
 
+NOTE: The Scala 3 version of the SDK removes direct support for external JSON libraries and direct handling of case classes, though it remains easy to integrate both.    Please see xref:project-docs:migrating-to-scala-3.adoc[Migrating to Scala 3] for guidance on these and other changes.
+
 === Using JsonObject and JsonArray
 Using the built-in JSON library here's how to create some simple JSON:
 
@@ -124,7 +126,7 @@ include::devguide:example$scala/KvOperations.scala[indent=0,tag=upsert]
 [NOTE]
 =====
 All the examples here use the Scala SDK's simplest API, which blocks until the operation is performed.  There's also an asynchronous API that is based around Scala `Future`, and a
-reactive API.  See xref:concurrent-async-apis[Choosing an API] for more details.
+reactive API.  See xref:concurrent-async-apis#choosing-an-api[Choosing an API] for more details.
 =====
 
 == Handling Single Errors

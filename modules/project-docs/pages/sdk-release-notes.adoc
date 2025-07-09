@@ -24,13 +24,61 @@ include::hello-world:start-using-sdk.adoc[tag=quick-install]
 
 include::{version-common}@sdk:pages:partial$signed.adoc[tag=signed]
 
-(3.8.2 is the JVM core of Scala SDK 1.8.2.)
+(3.9.0 is the JVM core of Scala SDK 3.9.0.)
 
 
 
 // reminder - add spoiler tag to wrappers for cxx notes?
 
 [#latest-release]
+== Scala SDK 3.9 Releases
+
+Version 3.9 of the Scala SDK implements the 3.8 xref:compatibility.adoc#api-version[SDK API].
+See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
+
+Note that from 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier to users to track changes, and so the Scala SDK version has jumped from 1.8.x to 3.9.x.
+
+While this is technically an increase in the major, the Scala 2 versions of the SDK have only one very small breaking change made to the API, to remove a long-deprecated transactions method.  All other functionality works unchanged and users can upgrade existing applications without issue.
+
+The major new feature in the 3.9 series is the addition of a new version of the SDK, built for Scala 3.
+The Scala 3 version of the SDK has some API differences, documented on xref:project-docs:migrating-to-scala-3.adoc[migrating to Scala 3].
+But we expect the majority of Scala 2 applications will be able to migrate to Scala 3 and the Scala 3 version of the SDK with no-to-minimal differences.
+
+We always recommend using the latest version of the SDK -- it contains all of the latest security patches and support for new and upcoming features.
+All patch releases for each dot minor release should be API compatible, and safe to upgrade;
+any changes to expected behavior are noted in the release notes that follow.
+
+Binary compatibility is not guaranteed for any Scala SDK release, and you should rebuild your application when changing the SDK.
+
+////
+# get version numbers like this
+src=../couchbase-jvm-clients
+grep '<reactor.version>' $src/pom.xml
+grep ' <reactive-streams.version>' $src/pom.xml
+////
+
+=== Version 3.9.0 (August 2025)
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-3.9.0/com/couchbase/client/scala/index.html[API Reference] |
+http://docs.couchbase.com/sdk-api/couchbase-core-io-3.9.0/[Core API Reference]
+
+Note that the API reference is for the Scala 2.12 version of the SDK.
+The Scala 3 version of the SDK has some API differences, documented on xref:project-docs:migrating-to-scala-3.adoc[migrating to Scala 3].
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.6.9**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+==== Improvements
+
+// TODO: for release captain!
+
+==== Bug Fixes
+
+// TODO: for release captain!
+
+
 == Scala SDK 1.8 Releases
 
 Version 1.8 of the Scala SDK implements the 3.7 xref:compatibility.adoc#api-version[SDK API].

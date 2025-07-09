@@ -22,6 +22,7 @@ There's a wide range of great, popular JSON libaries for the JVM, and we've supp
 That is, you can use types from the https://circe.github.io/circe/[Circe library], and many others, when doing any operation.
 And if we're missing support for your favourite, then please let us know on the http://forums.couchbase.com/[forums].
 
+NOTE: The Scala 3 version of the SDK does not carry forward direct support for the external JSON libraries, though it remains easy to integrate with them.    Please see xref:project-docs:migrating-to-scala-3.adoc[Migrating to Scala 3] for guidance on these and other changes.
 
 == Optional Dependencies
 
@@ -195,6 +196,8 @@ Note that `JsonObjectSafe`, though presenting a more functional interface, is st
 
 It can be very useful to deal directly with Scala case classes, that is to send and retrieve them directly rather than via some interim type,
 and the Scala SDK includes built-in support for this.
+
+NOTE: The Scala 3 version of the SDK does not carry forward direct support for case classes, though it remains easy to use them directly via libraries such as Jsoniter and Circe.  Please contact us if this is functionality that is useful to you.
 
 It's necessary to write a small amount of boilerplate code first.
 If you try and insert a case class directly, you'll get an error.
