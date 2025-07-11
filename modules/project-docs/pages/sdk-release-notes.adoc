@@ -24,9 +24,7 @@ include::hello-world:start-using-sdk.adoc[tag=quick-install]
 
 include::{version-common}@sdk:pages:partial$signed.adoc[tag=signed]
 
-(3.8.2 is the JVM core of Scala SDK 1.8.2.)
-
-
+(3.8.3 is the JVM core of Scala SDK 1.8.3.)
 
 // reminder - add spoiler tag to wrappers for cxx notes?
 
@@ -47,6 +45,21 @@ grep '<reactor.version>' $src/pom.xml
 grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
+=== Version 1.8.3 (11 July 2025)
+
+Version 1.8.3 is the third maintenance release of the 1.8 series.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-1.8.3/com/couchbase/client/scala/index.html[API Reference] |
+http://docs.couchbase.com/sdk-api/couchbase-core-io-3.8.3/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.6.9**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+### Bug
+
+[JVMCBC-1654](https://couchbasecloud.atlassian.net/browse/JVMCBC-1654) Replica reads and KV range scan fail to time out if bucket does not exist, and can lead to OOM
 
 === Version 1.8.2 (4 June 2025)
 
