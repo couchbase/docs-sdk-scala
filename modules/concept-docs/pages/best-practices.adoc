@@ -29,8 +29,8 @@ There's plenty that can be done to remove bottlenecks in development and in perf
 
 But before worrying about bottlenecks, let's put security concerns first.
 
-Security is a process, and not just a set of checkboxes -- but 
-//
+Security is a process, and not just a set of checkboxes -- but there are key areas you must check off as you move from development, through testing, to deploying in production.
+
 
 === Roles and RBAC
 
@@ -46,7 +46,7 @@ Data security depends in part on only giving access to
 
 RBAC restrict resources on a Couchbase cluster to an identified user, allocated by role.
 
-*TODO* update and add Capella here
+// *TODO* update and add Capella here
 
 
 ==== Users, Resources, Roles, and Privileges
