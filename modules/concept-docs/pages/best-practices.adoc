@@ -217,7 +217,7 @@ Read up on security and performance considerations relevant to your use case.
 
 === Role-Based Access Control
 
-*TODO* add Capella info
+// *TODO* add Capella info
 
 All aspects of the Couchbase RBAC system are covered in the section xref:{version-server}@server:learn:security/authorization-overview.adoc[Authorization].
 Specifically, for information on:
