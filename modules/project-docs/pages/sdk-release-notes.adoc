@@ -24,7 +24,6 @@ include::hello-world:start-using-sdk.adoc[tag=quick-install]
 
 include::{version-common}@sdk:pages:partial$signed.adoc[tag=signed]
 
-(3.8.3 is the JVM core of Scala SDK 1.8.3.)
 
 // reminder - add spoiler tag to wrappers for cxx notes?
 
