@@ -29,9 +29,9 @@ include::{version-common}@sdk:pages:partial$signed.adoc[tag=signed]
 // reminder - add spoiler tag to wrappers for cxx notes?
 
 [#latest-release]
-== Scala SDK 1.8 Releases
+== Scala SDK 3.9 Releases
 
-Version 1.8 of the Scala SDK implements the 3.7 xref:compatibility.adoc#api-version[SDK API].
+Version 3.9 of the Scala SDK implements the 3.8 xref:compatibility.adoc#api-version[SDK API].
 See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
 
 We always recommend using the latest version of the SDK -- it contains all of the latest security patches and support for new and upcoming features.
@@ -44,6 +44,16 @@ src=../couchbase-jvm-clients
 grep '<reactor.version>' $src/pom.xml
 grep ' <reactive-streams.version>' $src/pom.xml
 ////
+
+
+=== Version 3.9.0 (?? August 2025)
+
+// Note on version jump to 3.9??
+
+
+== Scala SDK 1.8 Releases
+
+Version 1.8 of the Scala SDK implements the 3.7 xref:compatibility.adoc#api-version[SDK API].
 
 === Version 1.8.3 (11 July 2025)
 
