@@ -76,9 +76,9 @@ Install the SDK, and explore in the way that works best for you.
 libraryDependencies += "com.couchbase.client" %% "scala-client" % "{sdk_current_version}"
 ----
 
-The Scala SDK is provided with builds for Scala 2.12, 2.13 and 3.
+The Scala SDK is provided with builds for Scala 2.12, 2.13, and 3.
 `%%` takes care of selecting the right version in Scala Build Tool.
-If you are using another build tool such as Maven or Gradle, then specify `scala-client_2.12`, `scala-client_2.13` or `scala-client_3` as appropriate.
+If you are using another build tool such as Maven or Gradle, then specify `scala-client_2.12`, `scala-client_2.13`, or `scala-client_3`, as appropriate.
 The Scala 3 build can be used from applications compiled with Scala 3.3 through 3.7 inclusive, and even Scala 2.13.
 It is the recommended build for all users, except those on 2.12.
 
