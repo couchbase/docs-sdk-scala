@@ -1,7 +1,7 @@
 = Differences between Scala 2 and 3 SDK versions
 :description: The Scala 3 version of the SDK has some differences from the Scala 2 versions.
 :nav-title: Migrating to Scala SDK 3.x API
-:page-aliases: howtos:view-queries-with-sdk.adoc,concept-docs:understanding-views.adoc,howtos:working-with-collections.adoc
+:page-aliases: migrating-sdk-code-to-3.n.adoc,howtos:view-queries-with-sdk.adoc,concept-docs:understanding-views.adoc,howtos:working-with-collections.adoc
 
 [abstract]
 {description}
