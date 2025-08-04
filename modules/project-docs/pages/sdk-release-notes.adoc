@@ -84,11 +84,6 @@ The supported and tested dependencies for this release are:
 
 Version 1.8 of the Scala SDK implements the 3.7 xref:compatibility.adoc#api-version[SDK API].
 
-
-== Scala SDK 1.8 Releases
-
-Version 1.8 of the Scala SDK implements the 3.7 xref:compatibility.adoc#api-version[SDK API].
-
 === Version 1.8.3 (11 July 2025)
 
 Version 1.8.3 is the third maintenance release of the 1.8 series.
