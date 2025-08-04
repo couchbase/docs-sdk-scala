@@ -8,12 +8,12 @@ nav:
 asciidoc:
   attributes:
     page-nav-header-levels: 2
-    server_version: '7.6.6'
+    server_version: '8.0.0'
     sdk_current_version: '3.9.0'
     sdk_dot_minor: '3.9'
-    sdk_dot_major: '3.x'
-    version-server: '7.6'
-    version-common: '7.7'
+    sdk_dot_major: '1.x'
+    version-server: '8.0'
+    version-common: '8.0'
     name_platform: 'Scala'
     name-sdk: 'Scala SDK'
     sdk_api: '3.8'
