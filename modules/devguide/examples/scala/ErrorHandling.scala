@@ -16,12 +16,11 @@
 
 // #tag::imports[]
 import java.util.concurrent.TimeUnit
-
 import com.couchbase.client.core.error._
 import com.couchbase.client.scala._
 import com.couchbase.client.scala.durability._
 import com.couchbase.client.scala.json._
-import com.couchbase.client.scala.kv.MutationResult
+import com.couchbase.client.scala.kv.{InsertOptions, MutationResult, ReplaceOptions}
 
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
@@ -86,7 +85,7 @@ object ErrorHandling {
     // #tag::cas[]
     def doOperation(guard: Int = 3): Try[MutationResult] = {
       collection.get("doc")
-        .flatMap(doc => collection.replace(doc.id, newJson, cas = doc.cas)) match {
+        .flatMap(doc => collection.replace(doc.id, newJson, ReplaceOptions().cas(doc.cas))) match {
 
         case Success(value) => Success(value)
 
@@ -107,7 +106,7 @@ object ErrorHandling {
 
     // #tag::insert[]
     def doInsert(docId: String, json: JsonObject, guard: Int = InitialGuard): Try[String] = {
-      val result = collection.insert(docId, json, durability = Durability.Majority)
+      val result = collection.insert(docId, json, InsertOptions().durability(Durability.Majority))
 
       result match {
 
@@ -143,7 +142,7 @@ object ErrorHandling {
                  json: JsonObject,
                  guard: Int = InitialGuard,
                  delay: Duration = Duration(10, TimeUnit.MILLISECONDS)): Try[String] = {
-      val result = collection.insert(docId, json, durability = Durability.Majority)
+      val result = collection.insert(docId, json, InsertOptions().durability(Durability.Majority))
 
       result match {
 

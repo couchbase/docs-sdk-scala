@@ -131,9 +131,10 @@ It is best to upgrade either the SDK or the Couchbase version you are using.
 .Recommended SDK per Server Version Matrix
 [#table_sdk_versions]
 |===
-| | 1.4, 1.5 | 1.6, 1.7 | 1.8
+| | 1.4, 1.5 | 1.6, 1.7 | 1.8 | 3.9
 
 | *Server 7.0 - 7.2*
+| *✔*
 | *✔*
 | *✔*
 | *✔*
@@ -142,7 +143,11 @@ It is best to upgrade either the SDK or the Couchbase version you are using.
 | *✔*
 | *✔*
 | *✔*
+| *✔*
 |===
+
+Note that from 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier to users to track changes.
+So the version has jumped from 1.8.x to 3.9.x.
 
 ① Server 7.6 is compatible with all supported (not yet End-of-Life) versions of the {name-sdk}, but for full support of the latest features you need to upgrade to a recent version of the SDK.
 See the <<#couchbase-new-feature-availability-matrix,Feature Availablity matrix below>> and the xref:sdk-release-notes.adoc[Release Notes page].

@@ -21,12 +21,10 @@ in your Antora playbook.
 
 If you are not sure the best way to update the docs, please raise a JIRA ticket with your suggestion, putting in as much information as possible.
 
-TODO: Add in link to new JIRA.
-
 
 == Notes for Docs Maintainers
 
-The philosophy behind the Information Architecture can be found in the https://docs.couchbase.com/scala-sdk/1.8/project-docs/metadoc-about-these-sdk-docs.html[meta doc].
+The philosophy behind the Information Architecture can be found in the https://docs.couchbase.com/scala-sdk/3.9/project-docs/metadoc-about-these-sdk-docs.html[meta doc].
 
 === Directory Structure
 

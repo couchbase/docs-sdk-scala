@@ -180,8 +180,8 @@ object Queries {
       // ReactiveQueryResult contains a rows: Flux[QueryRow]
         .flatMapMany(result => result.rowsAs[JsonObject])
 
-// Just for example, block on the rows.  This is not best practice and apps
-// should generally not block.
+      // Just for example, block on the rows.  This is not best practice and apps
+      // should generally not block.
       val allRows: Seq[JsonObject] = rows
         .doOnNext(row => println(row))
         .doOnError(err => println(s"Error: $err"))

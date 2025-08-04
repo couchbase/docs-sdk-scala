@@ -18,6 +18,7 @@ This is the analytic counterpart to our xref:sqlpp-queries-with-sdk.adoc[operati
 The analytics service is available in xref:cloud:clusters:analytics-service/analytics-service.adoc[Capella operational]
 or the Enterprise Edition of self-managed Couchbase Server.
 
+NOTE: The Scala 3 version of the SDK does not carry forward support for analytics.  Please see xref:project-docs:migrating-to-scala-3.adoc[Migrating to Scala 3] for guidance on these and other changes.
 
 == Getting Started
 

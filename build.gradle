@@ -23,10 +23,10 @@ repositories {
 sourceSets {
     main {
         scala {
-            srcDirs = ['modules/hello-world/examples',
-                       'modules/howtos/examples',
-                       'modules/ref/examples',
-                       'modules/ROOT/examples'] 
+            // Include the actual location of the Scala example sources that ship with the documentation.
+            // The previous paths pointed to now-non-existent directories, so Gradle found no source files
+            // and therefore appeared to "do nothing" when you ran the build.
+            srcDirs = ['modules/devguide/examples/scala']
         }
     }
 }
