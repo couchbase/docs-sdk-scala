@@ -32,7 +32,7 @@ include::{version-common}@sdk:pages:partial$signed.adoc[tag=signed]
 Version 3.9 of the Scala SDK implements the 3.8 xref:compatibility.adoc#api-version[SDK API].
 See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
 
-Note that from 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier to users to track changes, and so the Scala SDK version has jumped from 1.8.x to 3.9.x.
+NOTE: From 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier to users to track changes. So the version has jumped from 1.8.x to 3.9.x.
 
 While this is technically an increase in the major, the Scala 2 versions of the SDK have only one very small breaking change made to the API, to remove a long-deprecated transactions method.  All other functionality works unchanged and users can upgrade existing applications without issue.
 
