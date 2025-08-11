@@ -11,7 +11,7 @@ asciidoc:
     server_version: '8.0.0'
     sdk_current_version: '3.9.0'
     sdk_dot_minor: '3.9'
-    sdk_dot_major: '1.x'
+    sdk_dot_major: '3.x'
     version-server: '7.6'
     version-common: '8.0'
     name_platform: 'Scala'
