@@ -17,12 +17,12 @@ In most cases, the xref:hello-world:start-using-sdk.adoc[Quickstart Guide] shoul
 The Scala SDK is tested against LTS versions of Oracle JDK and OpenJDK -- see our xref:project-docs:compatibility.adoc#jdk-compat[compatibility docs].
 The underlying OS normally makes no difference, but library incompatibilities in Alpine Linux makes a xref:project-docs:compatibility.adoc#alpine-linux-compatibility[workaround] necessary for this OS.
 
-The Couchbase Scala SDK 1.7 Client supports Scala 2.12 and 2.13.
+The Couchbase Scala SDK 3.9 Client supports Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive).
 
 
 == Installing the SDK
 
-The Couchbase Scala SDK is available on the Maven repository, packaged for Scala 2.12 and 2.13.
+The Couchbase Scala SDK is available on the Maven repository, packaged for Scala 2.12, 2.13, and 3.
 
 === With SBT Projects
 
@@ -34,7 +34,7 @@ It can be included in your SBT build like this:
 libraryDependencies += "com.couchbase.client" %% "scala-client" % "{sdk_current_version}"
 ----
 
-This will automatically use the Scala 2.12 or 2.13 builds, as appropriate for your SBT project.
+This will automatically use the correct build for your Scala version.
 
 === With Gradle Projects
 
@@ -47,7 +47,17 @@ dependencies {
 }
 ----
 
-or 2.13:
+or 2.13 or 3.3 through 3.7:
+
+[source,groovy,subs="+attributes"]
+----
+dependencies {
+    compile group: 'com.couchbase.client', name: 'scala-client_3', version: '{sdk_current_version}'
+}
+----
+
+There is a dedicated 2.13 build too, but from the 3.9.0 release we recommended 2.13 users use the 3.x build instead.  
+If the 2.13 build is explicitly desired, it can be included like this:
 
 [source,groovy,subs="+attributes"]
 ----
@@ -71,7 +81,21 @@ It can be included in your Maven `pom.xml` like this for 2.12:
 </dependencies>
 ----
 
-or 2.13:
+or 2.13 or 3.3 through 3.7:
+
+[source,xml,subs="+attributes"]
+----
+<dependencies>
+    <dependency>
+        <groupId>com.couchbase.client</groupId>
+        <artifactId>scala-client_3</artifactId>
+        <version>{sdk_current_version}</version>
+    </dependency>
+</dependencies>
+----
+
+There is a dedicated 2.13 build too, but from the 3.9.0 release we recommended 2.13 users use the 3.x build instead. 
+If the 2.13 build is explicitly desired, it can be included like this:
 
 [source,xml,subs="+attributes"]
 ----
