@@ -17,12 +17,12 @@ In most cases, the xref:hello-world:start-using-sdk.adoc[Quickstart Guide] shoul
 The Scala SDK is tested against LTS versions of Oracle JDK and OpenJDK -- see our xref:project-docs:compatibility.adoc#jdk-compat[compatibility docs].
 The underlying OS normally makes no difference, but library incompatibilities in Alpine Linux makes a xref:project-docs:compatibility.adoc#alpine-linux-compatibility[workaround] necessary for this OS.
 
-The Couchbase Scala SDK 3.9 Client supports Scala 2.12, 2.13 and 3.3 through 3.7 (inclusive).
+The Couchbase Scala SDK 3.9 Client supports Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive).
 
 
 == Installing the SDK
 
-The Couchbase Scala SDK is available on the Maven repository, packaged for Scala 2.12, 2.13 and 3.
+The Couchbase Scala SDK is available on the Maven repository, packaged for Scala 2.12, 2.13, and 3.
 
 === With SBT Projects
 
@@ -56,7 +56,8 @@ dependencies {
 }
 ----
 
-There is a dedicated 2.13 build too, but from the 3.9.0 release we recommended 2.13 users use the 3.x build instead.  If the 2.13 build is explicitly desired, it can be included like this:
+There is a dedicated 2.13 build too, but from the 3.9.0 release we recommended 2.13 users use the 3.x build instead.  
+If the 2.13 build is explicitly desired, it can be included like this:
 
 [source,groovy,subs="+attributes"]
 ----
@@ -93,7 +94,8 @@ or 2.13 or 3.3 through 3.7:
 </dependencies>
 ----
 
-There is a dedicated 2.13 build too, but from the 3.9.0 release we recommended 2.13 users use the 3.x build instead.  If the 2.13 build is explicitly desired, it can be included like this:
+There is a dedicated 2.13 build too, but from the 3.9.0 release we recommended 2.13 users use the 3.x build instead. 
+If the 2.13 build is explicitly desired, it can be included like this:
 
 [source,xml,subs="+attributes"]
 ----
