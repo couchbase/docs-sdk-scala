@@ -82,7 +82,7 @@ If this change causes the SDK to select the incorrect network for your deploymen
 
 ==== Bug Fixes
 
-* https://couchbasecloud.atlassian.net/browse/SCBC-491[SCBVC-491]:
+* https://couchbasecloud.atlassian.net/browse/SCBC-491[SCBC-491]:
 Fixed a regression in 1.6.2 where attempting to manage unscoped (cluster-level) eventing functions throws a `NullPointerException`.
 
 * https://couchbasecloud.atlassian.net/browse/JVMCBC-1656[JVMCBC-1656]:
