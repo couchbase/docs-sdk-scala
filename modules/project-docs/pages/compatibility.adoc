@@ -10,7 +10,7 @@ Plus notes on Cloud, networks, and AWS Lambda.
 {description}
 
 
-The Couchbase Scala SDK {sdk_dot_minor} Client supports Scala 2.12 and 2.13.
+The Couchbase Scala SDK {sdk_dot_minor} Client supports Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive).
 
 
 == Platform Compatibility
