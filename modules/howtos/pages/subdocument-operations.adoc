@@ -316,7 +316,7 @@ Couchbase Server 7.6 and later support Sub-Doc lookup from replicas, which could
 
 The `collection.lookupInAnyReplica()` method reads from all replicas and the active, and returns the first response.
 
-[source,java]
+[source,scala]
 ----
 include::devguide:example$scala/SubDocument.scala[tag=lookup-in-any-replica,indent=0]
 ----
@@ -326,7 +326,7 @@ This includes if the document does not exist.
 
 The `collection.lookupInAllReplicas()` fetches all available replicas (and the active), and returns all responses.
 
-[source,java]
+[source,scala]
 ----
 include::devguide:example$scala/SubDocument.scala[tag=lookup-in-all-replicas,indent=0]
 ----
@@ -364,7 +364,7 @@ include::devguide:example$scala/SubDocument.scala[tag=cas]
 
 == Durability
 
-Couchbase's xref:2.7@java-sdk::durability.adoc[traditional durability], using `PersistTo` and `ReplicateTo`, is
+Couchbase's https://docs-archive.couchbase.com/java-sdk/2.7/durability.html[traditional durability], using `PersistTo` and `ReplicateTo`, is
 xref:concept-docs:durability-replication-failure-considerations.adoc#older-server-versions[still available], particularly for talking to Couchbase Server 6.0 and earlier:
 
 [source,scala]
