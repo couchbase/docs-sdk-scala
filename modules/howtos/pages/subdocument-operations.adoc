@@ -318,7 +318,7 @@ The `collection.lookupInAnyReplica()` method reads from all replicas and the act
 
 [source,java]
 ----
-include::example$SubDocument.scala[tag=lookup-in-any-replica,indent=0]
+include::devguide:example$scala/SubDocument.scala[tag=lookup-in-any-replica,indent=0]
 ----
 
 If no replica or active returns a successful result, a `Failure(DocumentUnretrivableException)` is returned.
@@ -328,7 +328,7 @@ The `collection.lookupInAllReplicas()` fetches all available replicas (and the a
 
 [source,java]
 ----
-include::example$SubDocument.scala[tag=lookup-in-all-replicas,indent=0]
+include::devguide:example$scala/SubDocument.scala[tag=lookup-in-all-replicas,indent=0]
 ----
 
 Errors from the replicas and the active are ignored, so if all fail (including if the document does not exist), an empty stream is returned.
