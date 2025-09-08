@@ -54,6 +54,38 @@ grep '<reactor.version>' $src/pom.xml
 grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
+=== Version 3.9.1 (5 September 2025)
+
+Version 3.9.1 is the first maintenance release of the 3.9 series.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-3.9.1/com/couchbase/client/scala/index.html[API Reference] |
+http://docs.couchbase.com/sdk-api/couchbase-core-io-3.9.1/[Core API Reference]
+
+Note that the API reference is for the Scala 2.12 version of the SDK.
+The Scala 3 version of the SDK has some API differences, documented on xref:project-docs:migrating-to-scala-3.adoc[migrating to Scala 3].
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.6.9**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+==== Bug Fixes
+
+* https://couchbasecloud.atlassian.net/browse/SCBC-492[SCBC-492]:
+Fixed a regression that caused `getAllReplica` and `lookupInAllReplica` operations to fail unless explicitly passed a timeout.
+
+==== Improvements
+
+* https://couchbasecloud.atlassian.net/browse/JVMCBC-1677[JVMCBC-1677]:
+The BOM (`couchbase-client-bom`) now includes the `scala-client_3` artifact.
+
+* https://couchbasecloud.atlassian.net/browse/JVMCBC-1678[JVMCBC-1678]:
+Upgraded `Netty` to `4.1.124`.
+
+* https://couchbasecloud.atlassian.net/browse/JVMCBC-1680[JVMCBC-1680]:
+When parsing cluster topology into a `ClusterTopology` object, the original JSON is now retained, so it can be re-parsed with different parameters later.
+
+
 
 === Version 3.9.0 (5 August 2025)
 
