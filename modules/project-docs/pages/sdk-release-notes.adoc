@@ -54,6 +54,32 @@ grep '<reactor.version>' $src/pom.xml
 grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
+=== Version 3.9.2 (10 October 2025)
+
+Version 3.9.2 is the second maintenance release of the 3.9 series.
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-3.9.2/com/couchbase/client/scala/index.html[API Reference] |
+http://docs.couchbase.com/sdk-api/couchbase-core-io-3.9.2/[Core API Reference]
+
+Note that the API reference is for the Scala 2.12 version of the SDK.
+The Scala 3 version of the SDK has some API differences, documented on xref:project-docs:migrating-to-scala-3.adoc[migrating to Scala 3].
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.6.9**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+==== Bug Fixes
+
+* https://couchbasecloud.atlassian.net/browse/SCBC-495[SCBC-495]:
+`cluster.disconnect()` now cleanly shuts down, including waiting for the thread pool to exit.
+
+==== Improvements
+
+* https://couchbasecloud.atlassian.net/browse/JVMCBC-1694[JVMCBC-1694]:
+Updated `Netty` to `4.1.127`.
+
+
 === Version 3.9.1 (5 September 2025)
 
 Version 3.9.1 is the first maintenance release of the 3.9 series.
