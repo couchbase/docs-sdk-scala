@@ -72,12 +72,13 @@ The supported and tested dependencies for this release are:
 ==== Bug Fixes
 
 * https://couchbasecloud.atlassian.net/browse/SCBC-495[SCBC-495]:
-cluster.disconnect\(\) now cleanly shuts down, including waiting for the thread pool to exit.
+`cluster.disconnect()` now cleanly shuts down, including waiting for the thread pool to exit.
 
 ==== Improvements
 
 * https://couchbasecloud.atlassian.net/browse/JVMCBC-1694[JVMCBC-1694]:
-Updated Netty to 4.1.127
+Updated `Netty` to `4.1.127`.
+
 
 === Version 3.9.1 (5 September 2025)
 
