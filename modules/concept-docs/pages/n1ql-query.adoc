@@ -69,7 +69,7 @@ You can also create and define indexes in the SDK using:
 
 [source,scala]
 ----
-include::example$N1qlQuery.scala[tag=create-index,indent=0]
+include::devguide:example$scala/N1qlQuery.scala[tag=create-index,indent=0]
 ----
 
 == Index Building
@@ -94,7 +94,7 @@ Building deferred indexes can also be done via the SDK:
 
 [source,scala]
 ----
-include::example$N1qlQuery.scala[tag=build-index,indent=0]
+include::devguide:example$scala/N1qlQuery.scala[tag=build-index,indent=0]
 ----
 
 Note that the build step is still asynchronous, so `watchIndexes` is used to wait for the indexes to be completed.
