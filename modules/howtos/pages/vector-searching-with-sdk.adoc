@@ -50,9 +50,10 @@ Here is the xref:server:vector-index:hyperscale-vector-index.adoc#query-example[
 wrapped inside the {name-sdk} Query API.
 
 .Hyperscale Index Example
-[source,java]
+[source,scala]
 ----
-        QueryResult result = cluster.query(
+cluster
+  .query(
         "SELECT d.id, d.question, d.wanted_similar_color_from_search, " +
         "  ARRAY_CONCAT( " +
           "d.couchbase_search_query.knn[0].vector[0:4], " +
@@ -62,18 +63,20 @@ wrapped inside the {name-sdk} Query API.
         "WHERE d.id = '#87CEEB';",
         queryOptions().metrics(true));
 
-        for (JsonObject row : result.rowsAsObject()) {
-          System.out.println(row);
-        }
+  .flatMap(_.rowsAs[JsonObject]) match {
+  case Success(rows: Seq[JsonObject]) =>
+    rows.foreach(row => println(row))
+  case Failure(err) =>
+    println(s"Error: $err")
+}
 ----
 
 Parameterizing the query, as with xref:sqlpp-queries-with-sdk.adoc#parameterized-queries[regular queries], will allow the reuse of the xref:server:n1ql:n1ql-intro/queriesandresults.adoc#prepare-stmts[Query Plan].
 This can be more efficient, unless you are doing a lot of optimization to your query.
 
 .Parameterized Vector Query
-[source,java]
 ----
-	final QueryResult result = cluster.query(
+      val stmt = (
         "SELECT d.id, d.question, d.wanted_similar_color_from_search, " +
         "  ARRAY_CONCAT( " +
           "d.couchbase_search_query.knn[0].vector[0:4], " +
@@ -81,12 +84,8 @@ This can be more efficient, unless you are doing a lot of optimization to your q
         ") AS vector " +
 	    "FROM `vector-sample`.`color`.`rgb-questions` AS d " +
 		"WHERE d.id = $id;",
-	queryOptions()
+	QueryOptions()
 		.parameters(JsonObject.create().put("id", "#87CEEB")));
-
-        for (JsonObject row : result.rowsAsObject()) {
-          System.out.println(row);
-          }
 ----
 
 
