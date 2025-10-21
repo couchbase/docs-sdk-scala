@@ -16,7 +16,7 @@
 
 
 
-ector Search has been available in Couchbase Capella Operational and self-managed Server since version 7.6, using the Couchbase Search Service.
+Vector Search has been available in Couchbase Capella Operational and self-managed Server since version 7.6, using the Couchbase Search Service.
 Version 8.0 introduces vector query using Global Secondary Indexes (GSI), the Query Service index --
 using either a fast Hyperscale index, or a composite index to combine scalar queries with semantic search.
 
