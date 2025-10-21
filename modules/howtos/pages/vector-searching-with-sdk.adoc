@@ -85,7 +85,7 @@ This can be more efficient, unless you are doing a lot of optimization to your q
 	    "FROM `vector-sample`.`color`.`rgb-questions` AS d " +
 		"WHERE d.id = $id;",
 	QueryOptions()
-		.parameters(JsonObject.create().put("id", "#87CEEB")));
+		.parameters(JsonObject.create().put("id", "#87CEEB")))
 ----
 
 
