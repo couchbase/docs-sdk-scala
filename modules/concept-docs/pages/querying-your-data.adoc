@@ -1,6 +1,6 @@
 = Querying Your Data 
 :page-toclevels: 2
-:page-aliases: data-services.adoc,choosing-the-right-service.adoc,http-services.adoc
+:page-aliases: data-services.adoc,choosing-the-right-service.adoc,http-services.adoc,howtos:view-queries-with-sdk.adoc
 :description: Choosing the right service to query your data.
 
 
