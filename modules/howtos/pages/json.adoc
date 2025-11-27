@@ -9,6 +9,15 @@
 The Couchbase Server is a key-value store that's agnostic to what's stored, but it's very common to store JSON.
 
 
+// from https://jira.issues.couchbase.com/browse/DOC-5306 
+// here for future reference
+// for page improvements
+// "There's some bits I'd like to add to that existing page - how to handle/return String and Array[Byte], and perhaps a few more examples for each JSON library.  But that's non-essential, and no need for another page I think."
+// sayeth Graham
+
+
+
+
 == Philosophy
 
 The Scala SDK has these main objectives for JSON:
