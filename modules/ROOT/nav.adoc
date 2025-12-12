@@ -67,6 +67,7 @@
 * xref:ref:index.adoc[]
 ** https://docs.couchbase.com/sdk-api/couchbase-scala-client[API Reference^]
 ** https://docs.couchbase.com/sdk-api/couchbase-core-io/[JVM Core IO API^]
+** https://github.com/couchbase/couchbase-jvm-clients/tree/master/scala-client[Scala SDK Source Code]
 ** xref:ref:client-settings.adoc[]
 ** xref:ref:error-codes.adoc[]
 ** xref:ref:glossary.adoc[Glossary]
