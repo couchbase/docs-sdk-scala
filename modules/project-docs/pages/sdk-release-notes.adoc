@@ -54,6 +54,34 @@ grep '<reactor.version>' $src/pom.xml
 grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
+
+
+=== Version 3.10.1 (14 January 2026)
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-3.10.1/com/couchbase/client/scala/index.html[API Reference] |
+http://docs.couchbase.com/sdk-api/couchbase-core-io-3.10.1/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.6.9**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+==== Bug Fixes
+
+* https://jira.issues.couchbase.com/browse/JVMCBC-1709[JVMCBC-1709]:
+Enabling TLS inside an OSGi container no longer causes `java.lang.ClassNotFoundException: javax.net.ssl.TrustManagerFactory not found by core-io`.
+
+
+==== Improvements
+
+* https://jira.issues.couchbase.com/browse/JVMCBC-1707[JVMCBC-1707]:
+Upgraded `Netty` from `4.1.128` to `4.1.130`.
+
+* https://jira.issues.couchbase.com/browse/SCBC-500[SCBC-500]: Deprecated the Views API.
++
+NOTE: Server-side support for Views has been deprecated since Couchbase Server 7.0, and will be removed in a future server release.
+
+
 === Version 3.10.0 (11 November 2025)
 
 Version 3.10.0 is the first release of the 3.10 series.
