@@ -337,7 +337,6 @@ Some applications may find `getAndTouch` useful, which fetches a document while 
 include::devguide:example$scala/KvOperations.scala[indent=0,tag=expiry-touch]
 ----
 
-include::{version-common}@sdk:shared:partial$documents.adoc[tag=exp-note]
 
 
 // CAS
