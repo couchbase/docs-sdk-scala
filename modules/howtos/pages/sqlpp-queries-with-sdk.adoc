@@ -140,7 +140,7 @@ NOTE: The Scala 3 version of the SDK does not carry forward support for the reac
 
 // rearrange and put scope first????
 
-It is possible to query off the xref:7.1@server:learn:data/scopes-and-collections.adoc[`Scope` level] with _Couchbase Server version 7.0_ onwards,
+It is possible to query off the xref:{version-server}@server:learn:data/scopes-and-collections.adoc[`Scope` level] with _Couchbase Server version 7.0_ onwards,
 using the `scope.query()` method.
 It takes the statement as a required argument, and then allows additional options if needed.
 
