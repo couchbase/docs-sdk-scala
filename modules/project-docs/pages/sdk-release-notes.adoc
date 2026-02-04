@@ -56,22 +56,45 @@ grep ' <reactive-streams.version>' $src/pom.xml
 
 
 
-=== Version 3.11.0 (????? February 2026)
-
-Version 3.11.0 is the first release of the 3.11 series.
+[[v3.11.0]]
+=== Version 3.11.0 (04 February 2026)
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-3.11.0/com/couchbase/client/scala/index.html[API Reference] |
-http://docs.couchbase.com/sdk-api/couchbase-core-io-3.11.0/[Core API Reference]
+https://docs.couchbase.com/sdk-api/couchbase-core-io-3.11.0/[Core API Reference]
 
 Note that the API reference is for the Scala 2.12 version of the SDK.
 The Scala 3 version of the SDK has some API differences, documented on xref:project-docs:migrating-to-scala-3.adoc[migrating to Scala 3].
 
 The supported and tested dependencies for this release are:
 
+* io.projectreactor:**reactor-core:3.6.9**
+* org.reactivestreams:**reactive-streams:1.0.4**
 
+==== Bug Fixes
 
+* https://jira.issues.couchbase.com/browse/JVMCBC-1705[JVMCBC-1705]:
+Fixed an issue that could cause the transaction cleanup task to terminate unexpectedly, leaving the SDK unable to clean up incomplete transactions.
 
+==== Improvements
 
+* https://jira.issues.couchbase.com/browse/JVMCBC-1708[JVMCBC-1708]:
+Upgraded OpenTelemetry from `1.31.0` to `1.57.0`.
+
+* https://jira.issues.couchbase.com/browse/JVMCBC-1692[JVMCBC-1692]:
+SQL++ statements are now excluded from tracing spans unless the query has parameters.
+
+* https://jira.issues.couchbase.com/browse/SCBC-501[SCBC-501]:
+Developers who want to use the latest https://opentelemetry.io/docs/specs/semconv/db/database-spans/[OpenTelemetry semantic conventions for database client spans] can now opt in by setting the `OTEL_SEMCONV_STABILITY_OPT_IN` environment variable to `database` (or `database/dup` to create duplicate spans using both old and new conventions).
+Alternatively, you can opt in via the `observabilitySemanticConventions` client setting, which has a higher precedence than the environment variable.
+
+* https://jira.issues.couchbase.com/browse/JVMCBC-1635[JVMCBC-1635]:
+Upgraded Netty from `4.1.130` to `4.2.9`.
+[TIP]
+Netty 4.2 introduces a new memory allocator called `AdaptiveByteBufAllocator`.
+By default, this version of the Couchbase SDK continues using the tried and true `PooledByteBufAllocator`.
+However, the default may change in a future minor version.
+If you want to use the new allocator now, set the Java system property `com.couchbase.client.core.deps.io.netty.allocator.type` to `adaptive`.
+On the other hand, if you want to insulate your project from possible future changes to the default allocator, set that property to `pooled`.
 
 
 == Scala SDK 3.10 Releases
