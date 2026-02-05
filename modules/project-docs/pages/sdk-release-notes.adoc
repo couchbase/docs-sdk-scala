@@ -56,7 +56,6 @@ grep ' <reactive-streams.version>' $src/pom.xml
 
 
 
-[[v3.11.0]]
 === Version 3.11.0 (04 February 2026)
 
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-3.11.0/com/couchbase/client/scala/index.html[API Reference] |
@@ -78,13 +77,14 @@ Fixed an issue that could cause the transaction cleanup task to terminate unexpe
 ==== Improvements
 
 * https://jira.issues.couchbase.com/browse/JVMCBC-1708[JVMCBC-1708]:
-Upgraded OpenTelemetry from `1.31.0` to `1.57.0`.
+Upgraded `OpenTelemetry` from `1.31.0` to `1.57.0`.
 
 * https://jira.issues.couchbase.com/browse/JVMCBC-1692[JVMCBC-1692]:
-SQL++ statements are now excluded from tracing spans unless the query has parameters.
+{sqlpp} statements are now excluded from tracing spans unless the query has parameters.
 
 * https://jira.issues.couchbase.com/browse/SCBC-501[SCBC-501]:
-Developers who want to use the latest https://opentelemetry.io/docs/specs/semconv/db/database-spans/[OpenTelemetry semantic conventions for database client spans] can now opt in by setting the `OTEL_SEMCONV_STABILITY_OPT_IN` environment variable to `database` (or `database/dup` to create duplicate spans using both old and new conventions).
+Developers who want to use the latest https://opentelemetry.io/docs/specs/semconv/db/database-spans/[OpenTelemetry semantic conventions for database client spans]
+can now opt in by setting the `OTEL_SEMCONV_STABILITY_OPT_IN` environment variable to `database` (or `database/dup` to create duplicate spans using both old and new conventions).
 Alternatively, you can opt in via the `observabilitySemanticConventions` client setting, which has a higher precedence than the environment variable.
 
 * https://jira.issues.couchbase.com/browse/JVMCBC-1635[JVMCBC-1635]:
