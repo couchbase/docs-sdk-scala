@@ -61,6 +61,10 @@ grep ' <reactive-streams.version>' $src/pom.xml
 https://docs.couchbase.com/sdk-api/couchbase-scala-client-3.11.0/com/couchbase/client/scala/index.html[API Reference] |
 https://docs.couchbase.com/sdk-api/couchbase-core-io-3.11.0/[Core API Reference]
 
+[CAUTION]
+This version has a serious bug that causes a document inserted in a transaction to expire immediately.
+If your project uses transactions, we recommend staying on 3.10.1 until 3.11.1 is available.
+
 Note that the API reference is for the Scala 2.12 version of the SDK.
 The Scala 3 version of the SDK has some API differences, documented on xref:project-docs:migrating-to-scala-3.adoc[migrating to Scala 3].
 
