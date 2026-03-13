@@ -37,6 +37,18 @@ All simple query types are created in the same manner.
 Some have additional properties, which can be seen in common query type descriptions.
 Couchbase FTS's xref:{version-server}@server:fts:fts-query-types.adoc[range of query types] enable powerful searching using multiple options, to ensure results are just within the range wanted.
 
+[TIP]
+.Search Results Limit
+====
+By default, the Search Service returns only the first 10 matches (`size: 10`, `from: 0`).
+To retrieve more results, you must explicitly define pagination settings such as `size` or `from` in your query.
+
+For information about formatting your Search query and specifying limits, see xref:server:search:search-request-params.adoc[].
+
+For information about pagination in Search responses, see xref:server:fts:fts-search-response.adoc#pagination[Pagination].
+====
+
+
 == Working with Results
 
 The result of a search query has three components: rows, facets, and metadata.
