@@ -2,7 +2,7 @@
 :description: Release notes, brief installation instructions, and download archive for the Couchbase Scala Client.
 :navtitle: Release Notes
 :page-toclevels: 2
-:page-aliases: relnotes-scala-sdk
+:page-aliases: relnotes-scala-sdk.adoc
 
 // tag::all[]
 [abstract]
