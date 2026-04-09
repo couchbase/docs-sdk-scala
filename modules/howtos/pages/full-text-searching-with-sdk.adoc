@@ -1,5 +1,5 @@
 = Search
-:description: You can use the Search Service to create queryable search indexes in Couchbase Server.
+:description: You can use the Search Service to create queryable Search indexes in Couchbase Server.
 :page-pagination: full
 :page-toclevels: 2
 
@@ -15,7 +15,7 @@
 The Search Service allows you to create, manage, and query search indexes on JSON documents stored in Couchbase buckets.
 It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches.
 Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries.
-The Scala SDK exposes an API for performing search queries which abstracts some of the complexity of using the underlying REST API.
+The Scala SDK exposes an API for performing Search queries which abstracts some of the complexity of using the underlying REST API.
 
 == Examples
 The examples below use these imports:
@@ -64,7 +64,7 @@ include::devguide:example$scala/FTS.scala[tag=results,indent=0]
 
 == Consistency
 
-Like the Couchbase Query Service, the Search Service allows provides optional _Read-Your-Own-Writes (RYOW)_ consistency, ensuring results contain information from updated indexes:
+Like the Couchbase Query Service, the Search Service provides optional _Read-Your-Own-Writes (RYOW)_ consistency, ensuring results contain information from updated indexes:
 
 [source.scala]
 ----
