@@ -12,7 +12,7 @@
 
 
 
-The Search Service allows you to create, manage, and query search indexes on JSON documents stored in Couchbase buckets.
+The Search Service allows you to create, manage, and query Search indexes on JSON documents stored in Couchbase buckets.
 It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches.
 Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries.
 The Scala SDK exposes an API for performing Search queries which abstracts some of the complexity of using the underlying REST API.
