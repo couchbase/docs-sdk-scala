@@ -27,7 +27,7 @@ include::{version-common}@sdk:pages:partial$signed.adoc[tag=signed]
 // reminder - add spoiler tag to wrappers for cxx notes?
 
 [#latest-release]
-== Scala SDK 3.11 Releases
+== Scala SDK 3.12 Releases
 
 Version 3.11 of the Scala SDK implement the 3.9 xref:compatibility.adoc#api-version[SDK API].
 See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
@@ -55,6 +55,13 @@ grep '<reactor.version>' $src/pom.xml
 grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
+
+
+
+
+
+
+== Scala SDK 3.11 Releases
 
 
 === Version 3.11.1 (16 February 2026)

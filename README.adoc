@@ -1,9 +1,9 @@
 = Couchbase Scala SDK Documentation
 
-This repository hosts the documentation source for the https://docs.couchbase.com/scala-sdk/3.10/hello-world/overview.html[Couchbase Scala SDK].
+This repository hosts the documentation source for the https://docs.couchbase.com/scala-sdk/3.12/hello-world/overview.html[Couchbase Scala SDK].
 
-This branch documents the 3.11 release of the SDK.
-It follows the https://docs.couchbase.com/scala-sdk/3.11/project-docs/compatibility.html#api-version[SDK 3.9 API].
+This branch documents the 3.12 release of the SDK.
+It follows the https://docs.couchbase.com/scala-sdk/3.12/project-docs/compatibility.html#api-version[SDK 3.10 API].
 
 This branch reflects the new Information Architecture for the SDK docs.
 
