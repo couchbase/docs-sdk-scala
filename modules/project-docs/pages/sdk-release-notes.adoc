@@ -31,9 +31,6 @@ include::{version-common}@sdk:shared:partial$relnotes.adoc[tag=signed]
 [#latest-release]
 == Scala SDK 3.13 Releases
 
-Version 3.13 of the Scala SDK implement the 3.10 xref:compatibility.adoc#api-version[SDK API].
-See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
-
 NOTE: From 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier to users to track changes. 
 So the version jumped from 1.8.x to 3.9.x.
 While this is technically an increase in the major, the Scala 2 versions of the SDK have only one very small breaking change made to the API, to remove a long-deprecated transactions method.  
