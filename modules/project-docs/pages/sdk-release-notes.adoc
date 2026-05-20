@@ -1,5 +1,5 @@
 = SDK Release Notes
-:description: Release notes, brief installation instructions, and download archive for the Couchbase Scala Client.
+:description: Release notes, installation instructions, and download archive for the Couchbase {name_platform} Client.
 :navtitle: Release Notes
 :page-toclevels: 2
 :page-aliases: relnotes-scala-sdk.adoc
@@ -8,28 +8,30 @@
 [abstract]
 {description}
 
-Version {sdk_dot_minor} of the Scala SDK implements the {sdk_api} xref:compatibility.adoc#api-version[SDK API].
-See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
+include::{version-common}@sdk:shared:partial$relnotes.adoc[tag=intro]
 
 
-== Installation
-
+=== Installation
 
 * The Scala SDK is tested against LTS versions of Oracle JDK and OpenJDK -- 
 see the xref:project-docs:compatibility.adoc#jdk-compat[compatibility docs].
 * The Couchbase {name-sdk} {sdk_dot_minor} Client supports Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive).
 
-include::hello-world:start-using-sdk.adoc[tag=quick-install]
+include::{version-common}@sdk:shared:partial$relnotes.adoc[tag=installation-moved]
 
 
-include::{version-common}@sdk:pages:partial$signed.adoc[tag=signed]
+// JVM signed
+include::{version-common}@sdk:shared:partial$relnotes.adoc[tag=signed]
 
-// reminder - add spoiler tag to wrappers for cxx notes?
+// tag::all[]
+
+
+
 
 [#latest-release]
-== Scala SDK 3.12 Releases
+== Scala SDK 3.13 Releases
 
-Version 3.11 of the Scala SDK implement the 3.9 xref:compatibility.adoc#api-version[SDK API].
+Version 3.13 of the Scala SDK implement the 3.10 xref:compatibility.adoc#api-version[SDK API].
 See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
 
 NOTE: From 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier to users to track changes. 
@@ -56,6 +58,9 @@ grep ' <reactive-streams.version>' $src/pom.xml
 ////
 
 
+
+
+== Scala SDK 3.12 Releases
 
 
 
