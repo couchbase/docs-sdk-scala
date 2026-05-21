@@ -14,8 +14,10 @@ asciidoc:
     sdk_dot_major: '3.x'
     version-server: '8.1'
     version-common: '3.10'
+    java_latest_lts_version: '25'
     name_platform: 'Scala'
     name_platform_lc: 'scala'
+    lang-code: 'scala'
     name-sdk: 'Scala SDK'
     archive_version: 1.0
     archive_major: 1.x
