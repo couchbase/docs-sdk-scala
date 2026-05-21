@@ -30,7 +30,7 @@ xref:project-docs:sdk-release-notes.adoc[] |
 NOTE: From 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier to users to track changes. So the version has jumped from 1.8.x to 3.9.x.
 
 
-What's the point of a fast and scalable database if it's not easy to develop for?
+A fast and scalable database is even better when it's easy to develop for.
 Couchbase gives you the {name_platform} APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
 
 
