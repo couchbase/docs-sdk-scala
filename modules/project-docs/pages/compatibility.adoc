@@ -24,7 +24,7 @@ The Couchbase Scala SDK {sdk_dot_minor} Client supports Scala 2.12, 2.13, and 3.
 
 The {name-sdk} is tested with Oracle JDK and OpenJDK.
 Other JDK implementations might work but are not tested and are unsupported.
-We recommend running the latest LTS version (i.e. at the time of writing JDK 21) with the highest patch version available.
+We recommend running the latest LTS version (i.e. at the time of writing JDK 25) with the highest patch version available.
 
 The following JDK releases are supported:
 
@@ -70,7 +70,7 @@ The SDK has been tested on a representative subset of the platforms listed below
 === Mac OS X
 
 The current and previous two releases of OS X.
-At time of writing (February 2026): 26 (Tahoe), 15 (Sequoia), and 14 (Sonoma).
+At time of writing (June 2026): 26 (Tahoe), 15 (Sequoia), and 14 (Sonoma).
 ****
 
 The JVM SDKs should also be expected to run on other commonly-available GNU/Linux distributions which support an appropriate JDK, but not all combinations can be tested -- notable exceptions are listed below.
@@ -135,7 +135,7 @@ It is best to upgrade either the SDK or the Couchbase version you are using.
 .Recommended SDK per Server Version Matrix
 [#table_sdk_versions]
 |===
-| | 1.4, 1.5 | 1.6, 1.7 | 1.8 | 3.9-3.11
+| | 1.4, 1.5 | 1.6, 1.7 | 1.8 | 3.9-3.12
 
 | *Server 8.0* ①
 | *✔*
