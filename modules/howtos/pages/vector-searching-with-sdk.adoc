@@ -17,8 +17,23 @@
 
 
 Vector Search has been available in Couchbase Capella Operational and self-managed Server since version 7.6, using the Couchbase Search Service.
+
 Version 8.0 introduces vector query using Global Secondary Indexes (GSI), the Query Service index --
 using either a fast Hyperscale index, or a composite index to combine scalar queries with semantic search.
+
+The difference between the two versions are summarised as follows:
+
+|===
+| Feature | Service used | Minimum server version
+
+| Vector query with Global Secondary Index
+| Query Service
+| [.status]#8.x#
+
+| Vector search
+| Search Service (FTS)
+| [.status]#7.6.x#
+|===
 
 For fast and scalable vector queries, use one of the above two GSI choices -- detailed in the next section.
 If you don't require the speed and scale of vector query with GSI, or need to combine vector, geo-spatial search, range search, and traditional fuzzy text searches, then consider <<#vector-search-with-the-search-service>>.
