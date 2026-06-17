@@ -10,8 +10,29 @@ Several data structures are supported by the SDK, including map, list, queue, an
 
 include::{version-common}@sdk:shared:partial$data-model.adoc[tag=intro]
 
-include::{version-common}@sdk:shared:partial$data-model.adoc[tag=structures]
 
+== Data Structures 
+
+Data structures in Couchbase are similar in concept to data structures in Scala:
+
+* *Map* is an iterable over a set of keys and values, like a https://docs.scala-lang.org/overviews/collections-2.13/maps.html[Scala Map].
+* *List* is is a finite immutable sequence.
+Values can be placed in the beginning or end of a list, and can be accessed using numeric indexes.
+// or can it ?   https://docs.scala-lang.org/overviews/collections-2.13/concrete-immutable-collection-classes.html#lists
+* *Queue* is a First In First Out (FIFO) sequence,
+like a https://docs.scala-lang.org/overviews/collections-2.13/concrete-immutable-collection-classes.html#immutable-queues[Scala Immutable Queue].
+* *Set* is an iterable with no duplicate values.
+// https://docs.scala-lang.org/overviews/collections-2.13/sets.html#inner-main
+
+These data structures are stored as JSON documents in Couchbase, and can therefore be accessed both using the Query Service and normal key-value operations.
+Data structures can also be manipulated using the traditional sub-document and full-document KV APIs.
+
+Using the data structures API may help your application in two ways:
+
+* *Simplicity*: Data structures provide high level operations by which you can deal with documents as if they were container data structures.
+Adding an item to a dictionary is expressed as `MapAdd`, rather than retrieving the entire document, modifying it locally, and then saving it back to the server.
+* *Efficiency*: Data structure operations don't transfer the entire document across the network.
+Only the relevant data is exchanged between client and server, allowing for less network overhead and shorter latency.
 
 
 
