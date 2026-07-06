@@ -4,10 +4,13 @@
 :page-toclevels: 2
 :page-topic-type: reference
 :page-aliases: relnotes-scala-sdk
+:name_platform_lc: scala
 
 // tag::all[]
 [abstract]
 {description}
+
+include::6.5@sdk:shared:partial$use-latest.adoc[tag=latest]
 
 
 [#latest-release]
