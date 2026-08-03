@@ -15,7 +15,7 @@ See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibil
 == Installation
 
 
-* The Scala SDK is tested against LTS versions of Oracle JDK and OpenJDK -- 
+* The Scala SDK is tested against LTS versions of OpenJDK --
 see the xref:project-docs:compatibility.adoc#jdk-compat[compatibility docs].
 * The Couchbase {name-sdk} {sdk_dot_minor} Client supports Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive).
 
