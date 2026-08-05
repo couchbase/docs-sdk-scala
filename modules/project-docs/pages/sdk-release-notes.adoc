@@ -69,10 +69,10 @@ The supported and tested dependencies for this release are:
 ==== Improvements
 
 * https://jira.issues.couchbase.com/browse/SCBC-365[SCBC-365]:
-The SDK now caches `Bucket`, `Scope`, and `Collection` instances for better performance when an application repeatedly gets the same bucket / scope / collection.
+The SDK now caches `Bucket`, `Scope`, and `Collection` instances for better performance when an application repeatedly gets the same bucket, scope, or collection.
 
 * https://jira.issues.couchbase.com/browse/SCBC-520[SCBC-520]:
-The `couchbase2://` protocol now supports SQL++ query index management with `cluster.queryIndexes` and `collection.queryIndexes`.
+The `couchbase2://` protocol now supports {sqlpp} query index management with `cluster.queryIndexes` and `collection.queryIndexes`.
 
 ==== Bug Fixes
 
