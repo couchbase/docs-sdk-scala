@@ -13,7 +13,7 @@ include::{version-common}@sdk:shared:partial$relnotes.adoc[tag=intro]
 
 === Installation
 
-* The Scala SDK is tested against LTS versions of Oracle JDK and OpenJDK -- 
+* The Scala SDK is tested against LTS versions of OpenJDK -- 
 see the xref:project-docs:compatibility.adoc#jdk-compat[compatibility docs].
 * The Couchbase {name-sdk} {sdk_dot_minor} Client supports Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive).
 
@@ -30,6 +30,10 @@ include::{version-common}@sdk:shared:partial$relnotes.adoc[tag=signed]
 
 [#latest-release]
 == Scala SDK 3.13 Releases
+
+
+Version 3.13 of the Scala SDK implement the 3.10 xref:compatibility.adoc#api-version[SDK API].
+See the xref:compatibility.adoc#couchbase-feature-availability-matrix[compatibility pages] for more information on feature compatibility with different versions of Couchbase Server.
 
 NOTE: From 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier to users to track changes. 
 So the version jumped from 1.8.x to 3.9.x.
@@ -58,6 +62,39 @@ grep ' <reactive-streams.version>' $src/pom.xml
 
 
 == Scala SDK 3.12 Releases
+
+
+
+
+=== Version 3.12.2 (28 July 2026)
+
+https://docs.couchbase.com/sdk-api/couchbase-scala-client-3.12.2/com/couchbase/client/scala/index.html[API Reference] |
+https://docs.couchbase.com/sdk-api/couchbase-core-io-3.12.2/[Core API Reference]
+
+The supported and tested dependencies for this release are:
+
+* io.projectreactor:**reactor-core:3.6.9**
+* org.reactivestreams:**reactive-streams:1.0.4**
+
+==== Improvements
+
+* https://jira.issues.couchbase.com/browse/SCBC-365[SCBC-365]:
+The SDK now caches `Bucket`, `Scope`, and `Collection` instances for better performance when an application repeatedly gets the same bucket, scope, or collection.
+
+* https://jira.issues.couchbase.com/browse/SCBC-520[SCBC-520]:
+The `couchbase2://` protocol now supports {sqlpp} query index management with `cluster.queryIndexes` and `collection.queryIndexes`.
+
+==== Bug Fixes
+
+* https://jira.issues.couchbase.com/browse/JVMCBC-1755[JVMCBC-1755]:
+`bucket.waitUntilReady()` no longer times out during rebalance when some nodes are not yet hosting the bucket.
+
+* https://jira.issues.couchbase.com/browse/JVMCBC-1752[JVMCBC-1752]:
+The `couchbase2://` protocol was returning incorrect mutation tokens, with `partitionUUID` erroneously set to the same value as `partitionID`.
+This is low-impact, and only affects developers who use the `couchbase2://` protocol and specify the "consistent with" option when querying or searching.
+
+* https://jira.issues.couchbase.com/browse/SCBC-519[SCBC-519]:
+Fixed an issue where using the bucket management APIs with `couchbase2://` would throw `NullPointerException` if the bucket did not have a minimum durability level set.
 
 
 === Version 3.12.1 (08 July 2026)
