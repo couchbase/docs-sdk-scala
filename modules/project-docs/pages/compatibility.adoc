@@ -198,7 +198,7 @@ include::{version-common}@sdk:shared:partial$capella.adoc[tag=cloud]
 
 | Vector Search
 | N/A
-2+| From SDK 3.6.0 (base64 encoded vectors from 3.7.0)
+2+| From SDK 1.6.0 (base64 encoded vectors from 1.7.0)
 
 | Preferred Server Group Replica Reads
 | N/A
