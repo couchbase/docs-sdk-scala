@@ -22,21 +22,27 @@ The Couchbase Scala SDK {sdk_dot_minor} Client supports Scala 2.12, 2.13, and 3.
 
 === JDK Version Compatibility
 
-The {name-sdk} is tested with Oracle JDK and OpenJDK.
-Other JDK implementations might work but are not tested and are unsupported.
-We recommend running the latest LTS version (i.e. at the time of writing JDK 25) with the highest patch version available.
+We test the {name-sdk} with https://adoptium.net/[Eclipse Temurin] versions 8, 17, 21, and 25.
+We recommend running the latest LTS version of the JDK (at the time of writing, JDK {java_latest_lts_version}).
 
-The following JDK releases are supported:
+The following OpenJDK releases are supported:
 
 * https://adoptium.net/[OpenJDK 25 with HotSpot JVM] (recommended)
 * https://adoptium.net/[OpenJDK 21 with HotSpot JVM]
 * https://adoptium.net/[OpenJDK 17 with HotSpot JVM]
-* https://www.oracle.com/java/technologies/downloads/#jdk17[Oracle JDK 17]
-* https://adoptium.net/[OpenJDK 11] (Hotspot recommended) or https://www.oracle.com/java/technologies/downloads/#jdk11[Oracle JDK 11]
-* https://adoptium.net/[OpenJDK 1.8 with HotSpot JVM]
-* https://www.oracle.com/java/technologies/downloads/#java8[Oracle JDK 1.8]
+* https://adoptium.net/[OpenJDK 11 with HotSpot JVM]
+* https://adoptium.net/[OpenJDK 8 with HotSpot JVM]
 
-Please make sure you run on one of the latest patch releases, since they provide stability improvements and security fixes in general.
+The following Oracle JDK releases are also supported but we do not do any testing with them owing to Oracle license issues:
+
+* https://www.oracle.com/java/technologies/downloads/#java17[Oracle JDK 17]
+* https://www.oracle.com/java/technologies/downloads/#java11[Oracle JDK 11]
+* https://www.oracle.com/java/technologies/downloads/#java8[Oracle JDK 8]
+
+Other JDK implementations might work but are untested and unsupported.
+
+[TIP]
+Make sure to stay up to date with JDK patch releases because they provide stability improvements and security fixes.
 
 
 
@@ -190,7 +196,7 @@ include::{version-common}@sdk:shared:partial$capella.adoc[tag=cloud]
 
 | Vector Search
 | N/A
-2+| From SDK 3.6.0 (base64 encoded vectors from 3.7.0)
+2+| From SDK 1.6.0 (base64 encoded vectors from 1.7.0)
 
 | Preferred Server Group Replica Reads
 | N/A

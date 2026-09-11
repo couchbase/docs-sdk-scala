@@ -14,7 +14,7 @@ In most cases, the xref:hello-world:start-using-sdk.adoc[Quickstart Guide] shoul
 
 == Prerequisites
 
-The Scala SDK is tested against LTS versions of Oracle JDK and OpenJDK -- see our xref:project-docs:compatibility.adoc#jdk-compat[compatibility docs].
+The Scala SDK is tested against LTS versions of OpenJDK -- see our xref:project-docs:compatibility.adoc#jdk-compat[compatibility docs].
 The underlying OS normally makes no difference, but library incompatibilities in Alpine Linux makes a xref:project-docs:compatibility.adoc#alpine-linux-compatibility[workaround] necessary for this OS.
 
 The Couchbase Scala SDK 3.9 Client supports Scala 2.12, 2.13, and 3.3 through 3.7 (inclusive).
