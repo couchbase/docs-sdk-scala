@@ -121,6 +121,9 @@ The following table covers possible exceptions, and gives the version of the {na
 |===
 
 <1> As part of the standard SDK {sqlpp} API, it should be compatible with all earlier versions of the SDK -- but it has not been tested.
+
+Note, from 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier for users to track changes.
+Thus the Scala SDK jumped from 1.8 to 3.9 as a minor version bump.*
 // end::feature-compat[]
 
 
