@@ -139,6 +139,8 @@ While it's beyond the scope of this guide to teach reactive programming, it's im
 
 === Bulk Operations
 
+include::{version-common}@sdk:shared:partial$best-practices.adoc[tag=bulk-get-sidebar]
+
 For bulk operations, and applying the golden rules above,
 call `flatMap` inside `SFlux`, as in the `upsert` example following:
 
