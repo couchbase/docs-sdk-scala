@@ -425,8 +425,3 @@ Here's the same example, but using the Reactive API instead of the Async API:
 ----
 include::devguide:example$scala/ManagingConnections.scala[tag=reactive,indent=0]
 ----
-
-
-== Next Steps
-
-* xref:secure-connections.adoc[Certificate Authentication] 
